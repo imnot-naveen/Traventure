@@ -1,19 +1,20 @@
 <nav>
-  <div class="navbar-container">
-      <div id="logo">
-          <a href="#home"><img src="../assests/logo/logo.png" alt="logo"></a>
-      </div>
-      <div class="menu-toggle" id="menu-toggle">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-      </div>
-      <ul class="nav-menu" id="nav-menu">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li id="login-link"><a href="#login" onclick="handleLogin()">Login</a></li>
-          <li class="hidden" id="user-icon"><a href="#profile" onclick="handleLogout()"><img src="../assests/icons/user.png" alt="userimg" class="user-icon-img"></a></li>
-      </ul>
-  </div>
-</nav>
+    <div class="navbar-container">
+        <div id="logo">
+            <a href="#home"><img src="../assests/logo/logo.png" alt="logo"></a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li id="login-link"><a href="#login" onclick="handleLogin(event)">Login</a></li>
+            <li class="hidden" id="user-icon"><a href="#profile" onclick="handleLogout(event)"><img src="../assests/icons/user.png" alt="userimg" class="user-icon-img"></a></li>
+        </ul>
+    </div>
+  </nav>
+  
