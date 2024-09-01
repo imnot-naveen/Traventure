@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="AdminDashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Admin Dashboard</h2>
+            <ul>
+                <li><a href="#" class="tab-link" data-tab="admin-details">Admin Details</a></li>
+                <li><a href="#" class="tab-link" data-tab="users">Manage Users</a></li>
+                <li><a href="#" class="tab-link" data-tab="settings">View Users</a></li>
+                <li><a href="#" class="tab-link" data-tab="reports">Forum</a></li>
+            </ul>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content">
+            <div class="tab-content" id="admin-details">
+                <h2>Admin Details</h2>
+                <p>Welcome to the admin dashboard! Here are your details...</p>
+                <!-- Add more admin details here -->
+            </div>
+            <div class="tab-content" id="users" style="display: none;">
+                <h2>Manage Users</h2>
+                <p>Here you can manage users...</p>
+                <!-- Add user management content here -->
+            </div>
+            <div class="tab-content" id="settings" style="display: none;">
+                <h2>Settings</h2>
+                <p>Here you can adjust the settings...</p>
+                <!-- Add settings content here -->
+            </div>
+            <div class="tab-content" id="reports" style="display: none;">
+                <h2>Reports</h2>
+                <p>View various reports here...</p>
+                <!-- Add reports content here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="AdminDashboard.js"></script>
+</body>
+</html>
