@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #F8F9FC; /* Light background */
 }
 
 .dashboard-container {
@@ -13,7 +13,7 @@ body {
 /* Sidebar styles */
 .sidebar {
   width: 250px;
-  background-color: #333;
+  background-color: #11134F; /* Dark blue */
   color: white;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -23,7 +23,7 @@ body {
   font-size: 1.5rem;
   margin-bottom: 20px;
   text-align: center;
-  color: #fff;
+  color: #BDC8E8; /* Lighter blue */
 }
 
 .sidebar ul {
@@ -36,31 +36,32 @@ body {
 }
 
 .sidebar ul li a {
-  color: white;
+  color: rgb(0, 0, 0);
   text-decoration: none;
   display: block;
   padding: 10px;
-  background-color: #444;
+  background-color: #BDC8E8; /* Lighter blue */
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
 .sidebar ul li a:hover {
-  background-color: #555;
+  background-color: #F8F9FC; /* Light background for hover */
+  color: #11134F; /* Dark blue text */
 }
 
 /* Content area styles */
 .content {
   flex-grow: 1;
   padding: 20px;
-  background-color: #fff;
+  background-color: #F8F9FC;
   overflow-y: auto;
 }
 
 .content h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
-  color: #333;
+  color: #11134F; /* Dark blue */
 }
 
 .tab-content {
