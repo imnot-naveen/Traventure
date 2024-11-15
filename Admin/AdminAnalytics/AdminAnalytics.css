@@ -150,7 +150,6 @@ aside .close:hover{
   color: var(--color-hover-blue);
 }
 
-
 aside .sidebar{
   background: white;
   display: flex;
@@ -159,8 +158,6 @@ aside .sidebar{
   position: relative;
   top: 3rem;
 }
-
-
 
 aside h3{
   font-weight: 500;
@@ -219,21 +216,6 @@ aside .sidebar a:hover span{
 
 main{
   margin-top: 1.4rem;
-}
-
-main .date{
-  display: inline-block;
-  background: var(--color-border);
-  border-radius: var(--boarder-radius-1);
-  margin-top: 1rem;
-  padding: 0.5rem 1.6rem;
-
-}
-
-main .date input[type="date"]{
-  background: transparent;
-  color: var(--color-text-secondary);
-
 }
 
 main .insights{

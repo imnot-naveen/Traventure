@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="AdminDashboard.css">
+  <link rel="stylesheet" href="AdminBookings.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="sidebar">
-                <a href="#" class="active">
+                <a href="../AdminDashboard/AdminDashboard.html">
                     <span class="material-symbols-outlined">
                         grid_view
                     </span>
@@ -45,7 +45,7 @@
                     </span>
                     <h3>Analytics</h3>
                 </a>
-                <a href="../AdminBookings/AdminBookings.html">
+                <a href="#"  class="active">
                     <span class="material-symbols-outlined">
                         report
                     </span>
@@ -59,8 +59,9 @@
                 </a>
             </div>
     </aside>
+
     <main>
-            <h1>Admin Dashboard</h1>
+            <h1>Booking Details</h1>
             <div class="insights">
                 <div class="sales">
                     <span class="material-symbols-outlined">analytics</span>
@@ -311,6 +312,24 @@
         </div>
   </div>
 
-  <script src="AdminDashboard.js"></script>
+  <script>
+    const sideMenu = document.querySelector("aside");
+    const menuBtn = document.querySelector("#menu-btn");
+    const closeBtn = document.querySelector("#close-btn");
+
+    menuBtn.addEventListener('click', ()=>{
+      sideMenu.style.display = 'block';
+    })
+
+    closeBtn.addEventListener('click', ()=>{
+      sideMenu.style.display = 'none';
+    })
+
+    function toggleDropdown(id) {
+      const dropdown = document.getElementById(id);
+      dropdown.classList.toggle('active');
+    }
+
+  </script>
 </body>
 </html>
