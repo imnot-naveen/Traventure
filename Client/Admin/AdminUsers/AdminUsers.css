@@ -329,7 +329,7 @@ main .recent-orders{
 }
 
 main .recent-orders h2{
-  margin-bottom: 0.8rem;
+  margin-bottom: -3rem;
 }
 
 main .search-container {
@@ -342,11 +342,11 @@ main .search-container {
 
 /* Input field styles */
 main .search-input {
-  width: 75%;
-  padding: 10px 10px;
+  width: 50%;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 14px;
   outline: none;
   transition: all 0.3s ease;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -424,13 +424,6 @@ main table tbody tr:last-child td{
   margin: 0 10px;
 }
 
-
-main .recent-orders a{
-  text-align: center;
-  display: block;
-  margin: 1rem auto;
-  color: var(--color-primary);
-}
 
 /* RIGHT */
 
@@ -533,25 +526,6 @@ main .recent-orders a{
   background: #15c378;
 }
 
-.right .sales-analytics .add-product {
-  background-color: transparent;
-  border: 2px dashed var(--color-primary);
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.right .sales-analytics .add-product div{
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.right .sales-analytics .add-product div h3{
-  font-weight: 500;
-}
-
 /* Media Queries */
 
 @media screen and (max-width: 1200px){
@@ -596,7 +570,7 @@ main .recent-orders a{
 
   main .search-input {
     font-size: 14px; /* Adjust font size for smaller screens */
-    padding: 10px 12px;
+    padding: 0;
   }
 
 

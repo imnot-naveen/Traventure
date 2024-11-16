@@ -52,7 +52,7 @@ function filterUsers() {
 }
 
 let currentPage = 1;
-const rowsPerPage = 10;
+const rowsPerPage = 6;
 
 function displayTable() {
     const tableBody = document.getElementById("userTableBody");
