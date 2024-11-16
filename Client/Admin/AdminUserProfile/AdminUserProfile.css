@@ -222,21 +222,6 @@ main{
   margin-top: 1.4rem;
 }
 
-main .date{
-  display: inline-block;
-  background: var(--color-border);
-  border-radius: var(--boarder-radius-1);
-  margin-top: 1rem;
-  padding: 0.5rem 1.6rem;
-
-}
-
-main .date input[type="date"]{
-  background: transparent;
-  color: var(--color-text-secondary);
-
-}
-
 main .insights{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -345,6 +330,38 @@ main .recent-orders h2{
   margin-bottom: 0.8rem;
 }
 
+main .search-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  position: relative;
+  float: right;
+}
+
+/* Input field styles */
+main .search-input {
+  width: 75%;
+  padding: 10px 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder color */
+main .search-input::placeholder {
+  color: #888;
+}
+
+/* Focus effect */
+main .search-input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 4px 6px rgba(74, 144, 226, 0.3);
+  background-color: #f9f9ff;
+}
+
 main .recent-orders table{
   background: #ffff;
   width: 100%;
@@ -368,6 +385,17 @@ main table tbody td{
 main table tbody tr:last-child td{
   border: none;
 }
+
+#userTable tbody tr {
+  cursor: pointer;  
+  transition: background-color 0.3s ease;  
+}
+
+#userTable tbody tr:hover {
+  background-color: var(--color-border);  
+  color: var(--color-text);  
+}
+
 
 main .recent-orders a{
   text-align: center;
@@ -534,6 +562,16 @@ main .recent-orders a{
     margin: 2rem 0 0 8.8rem;
   }
 
+  main .search-container {
+    max-width: 300px; /* Reduce width on smaller laptops and tablets */
+  }
+
+  main .search-input {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    padding: 10px 12px;
+  }
+
+
   main .recent-orders table{
     width: 83vw;
   }
@@ -607,6 +645,17 @@ main .recent-orders a{
     margin: 3rem 0 0 0;
     width: 100%;
   }
+
+  main .search-container {
+    max-width: 100%; /* Full width for mobile */
+    padding: 0 15px; /* Add some padding */
+  }
+
+  main .search-input {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
 
   main .recent-orders table{
     width: 100%;

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="AdminUsers.css">
+  <title>User Profile | Admin</title>
+  <link rel="stylesheet" href="AdminUserProfile.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
@@ -61,7 +61,7 @@
     </aside>
 
     <main>
-            <h1>Users</h1>
+            <h1>User Profile</h1>
             <div class="insights">
                 <div class="sales">
                     <span class="material-symbols-outlined">analytics</span>
@@ -134,59 +134,91 @@
             </div>
             <!-- END OF INSIGHTS -->
              <div class="recent-orders">
-                <h2>Recent Bookings</h2>
-                <table>
+                <h2>User Details</h2>
+                <div class="search-container">
+                    <input
+                      type="text"
+                      id="searchBar"
+                      class="search-input"
+                      placeholder="Search users by name..."
+                      oninput="filterUsers()"
+                    />
+                  </div>
+                <table id="userTable">
                     <thead>
                         <tr>
-                            <th>Booking ID</th>
-                            <th>User</th>
-                            <th>Starting Station</th>
-                            <th>Destination</th>
-                            <th>Amount</th>
+                            <th>User ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Conntact No</th>
+                            <th>Email</th>
+                            <th>Preferences</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="userTableBody">
                         <tr>
                             <td>10002</td>
-                            <td>Dimuthu Harshamal</td>
-                            <td>Fort</td>
-                            <td>Kandy</td>
-                            <td>$20.00</td>   
+                            <td>Dimuthu</td>
+                            <td>Harshamal</td>
+                            <td>0750737225</td>
+                            <td>dimuthuharshamal@gmail.com</td>
+                            <td>Mountains</td>   
                         </tr>
                         <tr>
-                            <td>10003</td>
-                            <td>John Doe</td>
-                            <td>Fort</td>
-                            <td>Galle</td>
-                            <td>$13.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10004</td>
-                            <td>Kavindu Perera</td>
-                            <td>Maradana</td>
-                            <td>Badulla</td>
-                            <td>$220.00</td>   
+                            <td>10002</td>
+                            <td>Dimuthu</td>
+                            <td>Harshamal</td>
+                            <td>0750737225</td>
+                            <td>dimuthuharshamal@gmail.com</td>
+                            <td>Mountains</td>   
                         </tr>
                         <tr>
                             <td>10005</td>
-                            <td>Kamal Gunarathne</td>
-                            <td>Kalutara</td>
-                            <td>Beliatta</td>
-                            <td>$30.00</td>   
+                            <td>Pasindu</td>
+                            <td>Harshamal</td>
+                            <td>0750737225</td>
+                            <td>dimuthuharshamal@gmail.com</td>
+                            <td>Mountains</td>   
                         </tr>
                         <tr>
-                            <td>10006</td>
-                            <td>Tharushi Senarathne</td>
-                            <td>Maho</td>
-                            <td>Ambewela</td>
-                            <td>$22.00</td>   
+                            <td>10002</td>
+                            <td>Dimuthu</td>
+                            <td>Harshamal</td>
+                            <td>0750737225</td>
+                            <td>dimuthuharshamal@gmail.com</td>
+                            <td>Mountains</td>   
                         </tr>
                         <tr>
-                            <td>10007</td>
-                            <td>Sandya Perera</td>
-                            <td>Panadura</td>
-                            <td>Galle</td>
-                            <td>$12.00</td>   
+                            <td>10002</td>
+                            <td>Dimuthu</td>
+                            <td>Harshamal</td>
+                            <td>0750737225</td>
+                            <td>dimuthuharshamal@gmail.com</td>
+                            <td>Mountains</td>   
+                        </tr>
+                        <tr>
+                            <td>10002</td>
+                            <td>Dimuthu</td>
+                            <td>Harshamal</td>
+                            <td>0750737225</td>
+                            <td>dimuthuharshamal@gmail.com</td>
+                            <td>Mountains</td>   
+                        </tr>
+                        <tr>
+                            <td>10002</td>
+                            <td>Dimuthu</td>
+                            <td>Harshamal</td>
+                            <td>0750737225</td>
+                            <td>dimuthuharshamal@gmail.com</td>
+                            <td>Mountains</td>   
+                        </tr>
+                        <tr>
+                            <td>10002</td>
+                            <td>Dimuthu</td>
+                            <td>Harshamal</td>
+                            <td>0750737225</td>
+                            <td>dimuthuharshamal@gmail.com</td>
+                            <td>Mountains</td>   
                         </tr>
                     </tbody>
                 </table>
@@ -312,6 +344,6 @@
         </div>
   </div>
 
- <script src="AdminUsers.js"></script>
+ <script src="AdminUserProfile.js"></script>
 </body>
 </html>
