@@ -47,8 +47,8 @@
                 </a>
                 <a href="#"  class="active">
                     <span class="material-symbols-outlined">
-                        report
-                    </span>
+                        confirmation_number
+                        </span>
                     <h3>Bookings</h3>
                 </a>
                 <a href="#">
@@ -135,6 +135,15 @@
             <!-- END OF INSIGHTS -->
              <div class="recent-orders">
                 <h2>Recent Bookings</h2>
+                <div class="search-container">
+                    <input
+                      type="text"
+                      id="searchBar"
+                      class="search-input"
+                      placeholder="Search users by name..."
+                      oninput="filterUsers()"
+                    />
+                  </div>
                 <table>
                     <thead>
                         <tr>
@@ -142,6 +151,7 @@
                             <th>User</th>
                             <th>Starting Station</th>
                             <th>Destination</th>
+                            <th>No of Passengers</th>
                             <th>Amount</th>
                         </tr>
                     </thead>
@@ -151,6 +161,7 @@
                             <td>Dimuthu Harshamal</td>
                             <td>Fort</td>
                             <td>Kandy</td>
+                            <td>3</td>
                             <td>$20.00</td>   
                         </tr>
                         <tr>
@@ -158,6 +169,7 @@
                             <td>John Doe</td>
                             <td>Fort</td>
                             <td>Galle</td>
+                            <td>3</td>
                             <td>$13.00</td>   
                         </tr>
                         <tr>
@@ -165,6 +177,7 @@
                             <td>Kavindu Perera</td>
                             <td>Maradana</td>
                             <td>Badulla</td>
+                            <td>3</td>
                             <td>$220.00</td>   
                         </tr>
                         <tr>
@@ -172,6 +185,7 @@
                             <td>Kamal Gunarathne</td>
                             <td>Kalutara</td>
                             <td>Beliatta</td>
+                            <td>3</td>
                             <td>$30.00</td>   
                         </tr>
                         <tr>
@@ -179,6 +193,7 @@
                             <td>Tharushi Senarathne</td>
                             <td>Maho</td>
                             <td>Ambewela</td>
+                            <td>3</td>
                             <td>$22.00</td>   
                         </tr>
                         <tr>
@@ -186,11 +201,16 @@
                             <td>Sandya Perera</td>
                             <td>Panadura</td>
                             <td>Galle</td>
+                            <td>3</td>
                             <td>$12.00</td>   
                         </tr>
                     </tbody>
                 </table>
-                <a href="#">Show All</a>
+                <div class="pagination">
+                    <button id="prevBtn" onclick="prevPage()">Previous</button>
+                    <span id="pageInfo"></span>
+                    <button id="nextBtn" onclick="nextPage()">Next</button>
+                </div>
              </div>
         </main>
 
@@ -225,7 +245,7 @@
                                 </span>
                         </div>
                         <div class="message">
-                            <p><b>Myke Tyson</b> received his order of drone v1.22.</p>
+                            <p><b>Myke Tyson</b> booked 3 tickets to Kandy.</p>
                             <small class="text-muted">2 Minutes Ago</small>
                         </div>
                     </div>
@@ -300,36 +320,9 @@
                         <h3>849</h3>
                     </div>
                 </div>
-                <div class="item add-product">
-                    <div>
-                        <span class="material-symbols-outlined">
-                            add
-                            </span>
-                        <h3>Add Product</h3>
-                    </div>
-                </div>
              </div>
         </div>
   </div>
-
-  <script>
-    const sideMenu = document.querySelector("aside");
-    const menuBtn = document.querySelector("#menu-btn");
-    const closeBtn = document.querySelector("#close-btn");
-
-    menuBtn.addEventListener('click', ()=>{
-      sideMenu.style.display = 'block';
-    })
-
-    closeBtn.addEventListener('click', ()=>{
-      sideMenu.style.display = 'none';
-    })
-
-    function toggleDropdown(id) {
-      const dropdown = document.getElementById(id);
-      dropdown.classList.toggle('active');
-    }
-
-  </script>
+  <script src="AdminBookings.js"></script>
 </body>
 </html>

@@ -113,7 +113,7 @@ b{
 /* aside-bar styling */
 aside{
   height: 100vh;
-  background-color: #fff;
+  background-color: #df2323;
 }
 
 aside .top{
@@ -317,45 +317,28 @@ main .insights small{
   margin-top: 1.6rem;
 }
 
-/*---RECET ORDERS---*/
+/* Charts */
 
-main .recent-orders{
-  margin-top: 2rem;
+.charts {
+  display: flex; /* Enables a flex container */
+  gap: 20px; /* Adds space between the charts */
+  justify-content: center; /* Centers the charts horizontally */
+  align-items: flex-start; /* Aligns the charts to the top */
 }
 
-main .recent-orders h2{
-  margin-bottom: 0.8rem;
+.chart-container {
+  width: 50%;
+  max-width: 900px;
+  margin-top: 20px;
+  position: relative;
+  aspect-ratio: 16 / 9; /* Maintain a 16:9 aspect ratio */
 }
 
-main .recent-orders table{
-  background: #ffff;
+canvas {
   width: 100%;
-  border-radius: var(--boarder-radius-3);
-  padding: var(--card-padding);
-  text-align: center;
-  box-shadow: var(--box-shadow);
-  transition: all 300ms ease;
-}
-
-main .recent-orders table:hover{
-  box-shadow: none;
-}
-
-main table tbody td{
-  height: 2.8rem;
-  border-bottom: 1px solid var(--color-bg-lighter);
-  color: var(--color-text-secondary);
-}
-
-main table tbody tr:last-child td{
-  border: none;
-}
-
-main .recent-orders a{
-  text-align: center;
-  display: block;
-  margin: 1rem auto;
-  color: var(--color-primary);
+  height: 100%;
+  border: 1px solid #ddd;
+  background-color: #fff;
 }
 
 /* RIGHT */

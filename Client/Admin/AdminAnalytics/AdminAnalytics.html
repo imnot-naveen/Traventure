@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Admin Analytics</title>
   <link rel="stylesheet" href="AdminAnalytics.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
@@ -12,7 +12,7 @@
     <aside>
     <div class="top">
                 <div class="logo">
-                    <img src="../../assests/logo/logo.png" alt="logo">
+                    <img src="../../assets/logo/logo.png" alt="logo">
                 </div>
                 <div class="close" id="close-btn">
                     <span class="material-symbols-outlined">
@@ -47,8 +47,8 @@
                 </a>
                 <a href="../AdminBookings/AdminBookings.html">
                     <span class="material-symbols-outlined">
-                        report
-                    </span>
+                        confirmation_number
+                        </span>
                     <h3>Bookings</h3>
                 </a>
                 <a href="#">
@@ -129,69 +129,20 @@
                         Last 24 Hours
                     </small>
                 </div>
-                <!-- END OF INCOME -->
 
             </div>
             <!-- END OF INSIGHTS -->
-             <div class="recent-orders">
-                <h2>Recent Bookings</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Booking ID</th>
-                            <th>User</th>
-                            <th>Starting Station</th>
-                            <th>Destination</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>10002</td>
-                            <td>Dimuthu Harshamal</td>
-                            <td>Fort</td>
-                            <td>Kandy</td>
-                            <td>$20.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10003</td>
-                            <td>John Doe</td>
-                            <td>Fort</td>
-                            <td>Galle</td>
-                            <td>$13.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10004</td>
-                            <td>Kavindu Perera</td>
-                            <td>Maradana</td>
-                            <td>Badulla</td>
-                            <td>$220.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10005</td>
-                            <td>Kamal Gunarathne</td>
-                            <td>Kalutara</td>
-                            <td>Beliatta</td>
-                            <td>$30.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10006</td>
-                            <td>Tharushi Senarathne</td>
-                            <td>Maho</td>
-                            <td>Ambewela</td>
-                            <td>$22.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10007</td>
-                            <td>Sandya Perera</td>
-                            <td>Panadura</td>
-                            <td>Galle</td>
-                            <td>$12.00</td>   
-                        </tr>
-                    </tbody>
-                </table>
-                <a href="#">Show All</a>
+             <div class="charts">
+                <div class="chart-container">
+                    <h2>User Growth</h2>
+                        <canvas id="lineChart" width="400" height="400"></canvas>
+                 </div>
+                 <div class="chart-container">
+                    <h2>Bookings</h2>
+                        <canvas id="lineChart" width="400" height="400"></canvas>
+                 </div>
              </div>
+             
         </main>
 
         <div class="right">
@@ -305,5 +256,6 @@
   </div>
 
  <script src="AdminAnalytics.js"></script>
+ <script src="AdminAnalytics-lineChart.js"></script>
 </body>
 </html>
