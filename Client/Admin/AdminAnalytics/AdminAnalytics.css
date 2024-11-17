@@ -341,8 +341,46 @@ canvas {
   background-color: #fff;
 }
 
-/* RIGHT */
+/* Downloads Section */
+.Downloads {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  gap: 15px; /* Space between buttons */
+  margin: 20px 0; /* Spacing above and below */
+  flex-wrap: wrap; /* Wrap buttons to the next row on smaller screens */
+}
 
+/* Download Buttons */
+.Download {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  font-size: 16px; /* Button text size */
+  font-family: Arial, sans-serif; /* Font family */
+  padding: 10px 20px; /* Button padding */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: all 0.3s ease; /* Smooth hover and active effects */
+  flex: 1 1 auto; /* Allow buttons to shrink/grow responsively */
+  min-width: 150px; /* Minimum width for smaller buttons */
+  text-align: center; /* Center-align button text */
+}
+
+/* Hover Effect */
+.Download:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Active State */
+.Download:active {
+  transform: translateY(2px); /* Button press effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow on press */
+}
+
+/* RIGHT */
 .right{
   margin-top: 1.4rem;
 }
@@ -435,7 +473,7 @@ canvas {
 }
 
 .right .sales-analytics .item.offline .icon{
-  background: #ea470b;
+  background: #ffffff;
 }
 
 .right .sales-analytics .item.customers .icon{
@@ -472,22 +510,15 @@ canvas {
     gap: 0;
   }
 
-  main .recent-orders{
-    width: 94%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 2rem 0 0 8.8rem;
+  .Downloads {
+    gap: 15px; /* Reduce gap between buttons */
   }
 
-  main .recent-orders table{
-    width: 83vw;
+  .Download {
+    font-size: 15px; /* Slightly smaller text size */
+    padding: 10px 20px; /* Adjust padding for medium screens */
   }
 
-  main table tbody tr td:last-child,
-  main table tbody tr td:first-child{
-    display: none;
-  }
 }
 
 @media screen and (max-width: 768px){
@@ -548,16 +579,18 @@ canvas {
     padding: 0 1rem;
   }
 
-  main .recent-orders{
-    position: relative;
-    margin: 3rem 0 0 0;
-    width: 100%;
+  .Downloads {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Smaller gap between stacked buttons */
+    align-items: center; /* Center-align buttons */
   }
 
-  main .recent-orders table{
-    width: 100%;
-    margin: 0;
+  .Download {
+    width: 80%; /* Buttons take up 80% of the screen width */
+    font-size: 14px; /* Smaller font size for better fit */
+    padding: 8px 16px; /* Adjust padding for small screens */
   }
+
 
   .right{
     width: 94%;
