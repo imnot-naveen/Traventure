@@ -76,5 +76,25 @@ class Person {
 
         return null; // Return null if the query fails
     }
+
+    // Create User Method
+    public function createUser() {
+        $query = "INSERT INTO " . $this->person_table . " 
+                  (username, first_name, last_name, email, contact_number) 
+                  VALUES (:username, :firstName, :lastName, :email, :contactNumber)";
+        
+        // Prepare the statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind data
+        $stmt->bindParam(':username', $this->username);
+        $stmt->bindParam(':firstName', $this->first_name);
+        $stmt->bindParam(':lastName', $this->last_name);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':contactNumber', $this->contact_number);
+
+        // Execute the query
+        return $stmt->execute();
+    }
 }
 ?>
