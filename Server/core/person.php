@@ -63,5 +63,19 @@ class Person {
     
         return ['success' => false, 'message' => 'User  could not be created.'];
     }
+
+    public function getUserProfile($username) {
+        $query = 'SELECT * FROM ' . $this->person_table . ' WHERE username = :username LIMIT 1';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+    
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } else {
+            return null;
+        }
+    }
+    
 }
 ?>
