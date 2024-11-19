@@ -61,7 +61,40 @@ class Person {
             }
         }
     
-        return ['success' => false, 'message' => 'User  could not be created.'];
+        return ['success' => false, 'message' => 'User could not be created.'];
+    }
+
+    // Get all persons
+    public function getAllPersons() {
+        $query = 'SELECT username, firstName AS first_name, lastName AS last_name, email, contactNo AS contact_number 
+                  FROM ' . $this->person_table;
+        $stmt = $this->conn->prepare($query);
+
+        if ($stmt->execute()) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch all records as an associative array
+        }
+
+        return null; // Return null if the query fails
+    }
+
+    // Create User Method
+    public function createUser() {
+        $query = "INSERT INTO " . $this->person_table . " 
+                  (username, first_name, last_name, email, contact_number) 
+                  VALUES (:username, :firstName, :lastName, :email, :contactNumber)";
+        
+        // Prepare the statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind data
+        $stmt->bindParam(':username', $this->username);
+        $stmt->bindParam(':firstName', $this->first_name);
+        $stmt->bindParam(':lastName', $this->last_name);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':contactNumber', $this->contact_number);
+
+        // Execute the query
+        return $stmt->execute();
     }
 }
 ?>
