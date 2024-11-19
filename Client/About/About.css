@@ -5,17 +5,19 @@ body {
   background-color: #f9f9f9;
   color: #333;
   line-height: 1.6;
+  position: relative;
+  min-height: 100vh;
 }
 
 body::after {
   content: "";
   display: block;
   position: absolute;
-  bottom: -20px;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 200px;
-  background: url('../assests/shapes/wave.svg') no-repeat bottom;
+  background: url('../assets/shapes/wave.svg') no-repeat bottom;
   background-size: cover;
   z-index: -1;
 }
@@ -34,6 +36,7 @@ p {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #4d4d4d;
+  padding: 0 15px; /* Add padding for better spacing on mobile */
 }
 
 #p1 {
@@ -57,4 +60,16 @@ p {
 
 #navbar-placeholder {
   width: 100%;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 200px; /* Ensure space for the wave at the bottom */
+  }
+
+  p {
+    padding: 0 20px; /* Increase padding for mobile devices */
+    margin: 10px auto; /* Slightly reduce margin for mobile devices */
+  }
 }
