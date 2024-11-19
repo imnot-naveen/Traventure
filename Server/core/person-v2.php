@@ -10,7 +10,7 @@ class Person {
     public $last_name;
     public $email;
     public $contact_number;
-    public $password; // Only for use in the login table
+    public $password; // Only for use in login table
 
     // Constructor to initialize db connection
     public function __construct($db) {
@@ -27,7 +27,7 @@ class Person {
         $stmt->execute();
     
         if ($stmt->rowCount() > 0) {
-            return ['success' => false, 'message' => 'User already exists.'];
+            return ['success' => false, 'message' => 'User  already exists.'];
         }
     
         // Insert into the person table
@@ -55,7 +55,7 @@ class Person {
             $stmt->bindParam(':email', $this->email);
     
             if ($stmt->execute()) {
-                return ['success' => true, 'message' => 'User created successfully.'];
+                return ['success' => true, 'message' => 'User  created successfully.'];
             } else {
                 return ['success' => false, 'message' => 'Failed to create login entry.'];
             }
