@@ -1,0 +1,137 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+body {
+    background-color: #fbfbfb;
+    color: #333;
+    line-height: 1.6;
+}
+
+/*header {
+    background-color: #ffffff;
+    height:80px;
+    padding: 0.02px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar{
+    margin:10px auto;
+    display:flex;
+    margin-left:10px;
+    margin-right: 70px;
+    align-items:center;
+}*/
+
+
+/*ul {
+    flex: 1;
+    text-align:right;
+    margin-bottom: 2px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+ul li {
+    display:inline-block;
+    list-style:none;
+    margin:0 25px;
+    
+}
+
+ul li a{
+    text-decoration:none;
+    color: #11134f;
+    padding: 10px;
+
+}
+
+ul li a:hover{
+    color:rgb(8, 77, 181);
+}*/
+
+
+
+main{
+    
+    margin-left: 120px;
+    color: #11134f;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+section h1{
+    margin-top: 100px;
+    
+}
+
+
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width:800px;
+    margin-top: 40px;
+    margin-left: 180px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notification img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.notification-content h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #2c3e50;
+    margin-top: -40px;
+}
+
+.notification-content p {
+    margin: 10px 0;
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-top: 50px;
+    margin-left: -60px;
+}
+
+.notification-actions {
+    margin-top: 10px;
+    margin-left: 100px;
+    display: flex;
+    gap: 15px;
+}
+
+
+.accept-button {
+    width:100px;
+    height:40px;
+    background:#11134f;
+    border:2px solid #11134f;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.decline-button {
+    width:100px;
+    height:40px;
+    background:#FF0000;
+    border:2px solid #FF0000;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.edit-icon:hover,
+.delete-icon:hover {
+    opacity: 0.7;
+}
+
