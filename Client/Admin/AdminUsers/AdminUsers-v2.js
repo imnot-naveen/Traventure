@@ -11,29 +11,16 @@ closeBtn.addEventListener('click', ()=>{
 })
 
 //Table row href
-document.addEventListener("DOMContentLoaded", function() {
-  const tableRows = document.querySelectorAll("#userTable tbody tr");
+// document.addEventListener("DOMContentLoaded", function() {
+//   const tableRows = document.querySelectorAll("#userTable tbody tr");
 
-  tableRows.forEach(row => {
-      // Add click event to each row
-      row.addEventListener("click", function() {
-          const userId = this.cells[0].textContent; 
-          window.location.href = `../AdminUserProfile/AdminUserProfile.html`; 
-      });
-  });
-});
-
-//     document.addEventListener("DOMContentLoaded", function() {
-//     const tableRows = document.querySelectorAll("#userTable tbody tr");
-
-//     tableRows.forEach(row => {
-//         row.style.cursor = "pointer"; 
-//         // Add click event to each row
-//         row.addEventListener("click", function() {
-//             const userId = this.cells[0].textContent; // Assuming first cell has the User ID
-//             window.location.href = `/Users/${userId}`;  // Replace with your URL structure
-//         });
-//     });
+//   tableRows.forEach(row => {
+//       // Add click event to each row
+//       row.addEventListener("click", function() {
+//           const userId = this.cells[0].textContent; 
+//           window.location.href = `../AdminUserProfile/AdminUserProfile.html`; 
+//       });
+//   });
 // });
 
 
