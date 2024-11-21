@@ -19,7 +19,7 @@ $person = new Person($db);
 $data = json_decode(file_get_contents("php://input"));
 
 // Check if data is valid
-if (!isset($data->username, $data->first_name, $data->last_name, $data->email, $data->contact_number, $data->password)) {
+if (!isset($data->username, $data->first_name, $data->last_name, $data->email, $data->contact_number, $data->password, $data->user_type)) {
     http_response_code(400);
     echo json_encode(['message' => 'Invalid input']);
     exit();
@@ -32,7 +32,7 @@ $person->last_name = $data->last_name;
 $person->email = $data->email;
 $person->contact_number = $data->contact_number;
 $person->password = $data->password;
-
+$person->user_type = $data->user_type;
 // Execute signup
 $result = $person->signup();
 http_response_code($result['success'] ? 200 : 400); // Set appropriate HTTP status code

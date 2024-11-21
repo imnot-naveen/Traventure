@@ -125,6 +125,7 @@ document
     const email = document.getElementById("email").value;
     const newPassword = document.getElementById("new-password").value;
     const confirmPassword = document.getElementById("confirm-password").value;
+    const userType = "Traveller";
 
     if (newPassword !== confirmPassword) {
       alert("Passwords do not match. Please try again.");
@@ -143,6 +144,7 @@ document
         email: email,
         contact_number: contactNumber,
         password: newPassword,
+        user_type: userType,
       }),
     })
       .then((response) => response.json())
