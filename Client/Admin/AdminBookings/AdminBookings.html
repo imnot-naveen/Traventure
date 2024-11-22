@@ -39,6 +39,24 @@
                     </span>
                     <h3>Users</h3>
                 </a>
+                <a href="../AdminTsp/AdminTsp.html">
+                    <span class="material-symbols-outlined">
+                        train
+                    </span>
+                    <h3>Train Service Providers</h3>
+                </a>
+                <a href="../AdminCW/AdminCW.html">
+                    <span class="material-symbols-outlined">
+                        smb_share
+                        </span>
+                    <h3>Content Writers</h3>
+                </a>
+                <a href="../AdminDriver/AdminDriver.html">
+                    <span class="material-symbols-outlined">
+                        directions_car
+                        </span>
+                    <h3>Drivers</h3>
+                </a>
                 <a href="../AdminAnalytics/AdminAnalytics.html">
                     <span class="material-symbols-outlined">
                         monitoring
