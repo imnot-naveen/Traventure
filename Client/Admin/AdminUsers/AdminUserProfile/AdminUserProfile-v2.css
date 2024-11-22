@@ -348,7 +348,8 @@ main{
 /* RIGHT */
 
 .right{
-  margin-top: 1.4rem;
+  margin-top: -50rem;
+  margin-right: 4.5rem;
 }
 
 .right .top{
