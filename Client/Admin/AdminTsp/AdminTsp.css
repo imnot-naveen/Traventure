@@ -161,8 +161,6 @@ aside .sidebar{
   top: 3rem;
 }
 
-
-
 aside h3{
   font-weight: 500;
 }
@@ -220,21 +218,6 @@ aside .sidebar a:hover span{
 
 main{
   margin-top: 1.4rem;
-}
-
-main .date{
-  display: inline-block;
-  background: var(--color-border);
-  border-radius: var(--boarder-radius-1);
-  margin-top: 1rem;
-  padding: 0.5rem 1.6rem;
-
-}
-
-main .date input[type="date"]{
-  background: transparent;
-  color: var(--color-text-secondary);
-
 }
 
 main .insights{
@@ -333,6 +316,8 @@ main .insights .progress .number{
 
 main .insights small{
   margin-top: 1.6rem;
+  overflow-x: auto;
+  margin-bottom: 10px;
 }
 
 /*---RECET ORDERS---*/
@@ -342,8 +327,71 @@ main .recent-orders{
 }
 
 main .recent-orders h2{
-  margin-bottom: 0.8rem;
+  margin-bottom: -3rem;
 }
+
+main .search-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  position: relative;
+  float: right;
+}
+
+/* Input field styles */
+main .search-input {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder color */
+main .search-input::placeholder {
+  color: #888;
+}
+
+/* Focus effect */
+main .search-input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 4px 6px rgba(74, 144, 226, 0.3);
+  background-color: #f9f9ff;
+}
+
+.Add-users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#Add-user {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover Effect for Desktop */
+#Add-user:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Active State for Desktop */
+#Add-user:active {
+  background-color: #388e3c;
+  transform: scale(0.95);
+}
+
 
 main .recent-orders table{
   background: #ffff;
@@ -369,11 +417,40 @@ main table tbody tr:last-child td{
   border: none;
 }
 
-main .recent-orders a{
+#userTable tbody tr {
+  cursor: pointer;  
+  transition: background-color 0.3s ease;  
+}
+
+#userTable tbody tr:hover {
+  background-color: var(--color-border);  
+  color: var(--color-text);  
+}
+
+.pagination {
   text-align: center;
-  display: block;
-  margin: 1rem auto;
-  color: var(--color-primary);
+  margin: 10px 0;
+}
+
+.pagination button {
+  padding: 5px 15px;
+  margin: 0 5px;
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 16px;
+  margin: 0 10px;
 }
 
 /* RIGHT */
@@ -477,7 +554,6 @@ main .recent-orders a{
   background: #15c378;
 }
 
-
 /* Media Queries */
 
 @media screen and (max-width: 1200px){
@@ -514,6 +590,24 @@ main .recent-orders a{
     left: 50%;
     transform: translateX(-50%);
     margin: 2rem 0 0 8.8rem;
+  }
+
+  main .search-container {
+    max-width: 300px; /* Reduce width on smaller laptops and tablets */
+  }
+
+  main .search-input {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    padding: 0;
+  }
+
+  .Add-users {
+    margin: 15px 0; /* Adjust margin for smaller screens */
+  }
+
+  #Add-user {
+    padding: 12px 25px; /* Slightly larger padding for better visibility */
+    font-size: 18px; /* Increase font size */
   }
 
   main .recent-orders table{
@@ -590,10 +684,41 @@ main .recent-orders a{
     width: 100%;
   }
 
+  main .search-container {
+    max-width: 100%; /* Full width for mobile */
+    padding: 0 15px; /* Add some padding */
+  }
+
+  main .search-input {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .Add-users {
+    margin: 10px 0; /* Reduce margin for tighter space */
+  }
+
+  #Add-user {
+    width: 100%; /* Full-width button for mobile */
+    padding: 15px; /* Increase padding for touch-friendly design */
+    font-size: 16px; /* Ensure font is still readable */
+    border-radius: 8px; /* Slightly more rounded for mobile */
+  }
+
+
   main .recent-orders table{
     width: 100%;
     margin: 0;
   }
+
+  .pagination button {
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.pagination span {
+    font-size: 12px;
+}
 
   .right{
     width: 94%;

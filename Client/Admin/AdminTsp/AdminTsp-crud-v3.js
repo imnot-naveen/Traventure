@@ -16,7 +16,7 @@ fetch('../../../Server/api/adminUser.php')
                 row.addEventListener("click", () => {
                     const userId = person.username; // Use a unique identifier like username
                     console.log("Navigating to User Profile:", userId);
-                    window.location.href = `AdminUserProfile/AdminUserProfile.html?user=${userId}`;
+                    window.location.href = `../AdminUserProfile/AdminUserProfile.php?user=${userId}`;
                 });
             });
         } else {

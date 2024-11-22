@@ -10,10 +10,19 @@ closeBtn.addEventListener('click', ()=>{
   sideMenu.style.display = 'none';
 })
 
-function toggleDropdown(id) {
-  const dropdown = document.getElementById(id);
-  dropdown.classList.toggle('active');
-}
+//Table row href
+// document.addEventListener("DOMContentLoaded", function() {
+//   const tableRows = document.querySelectorAll("#userTable tbody tr");
+
+//   tableRows.forEach(row => {
+//       // Add click event to each row
+//       row.addEventListener("click", function() {
+//           const userId = this.cells[0].textContent; 
+//           window.location.href = `../AdminUserProfile/AdminUserProfile.html`; 
+//       });
+//   });
+// });
+
 
 function filterUsers() {
   const searchValue = document.getElementById("searchBar").value.toLowerCase();
@@ -64,4 +73,3 @@ function prevPage() {
 
 // Initialize the table display
 document.addEventListener("DOMContentLoaded", displayTable);
-

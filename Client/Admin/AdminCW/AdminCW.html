@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Users | Admin</title>
   <link rel="stylesheet" href="AdminCW.css">
+  <link rel="stylesheet" href="AdminCWAdd.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
@@ -45,7 +46,7 @@
                     </span>
                     <h3>Train Service Providers</h3>
                 </a>
-                <a href="#" class="active">
+                <a href="#" class="active"> 
                     <span class="material-symbols-outlined">
                         smb_share
                         </span>
@@ -82,11 +83,13 @@
             <h1>Content Writers</h1>
             <div class="insights">
                 <div class="sales">
-                    <span class="material-symbols-outlined">analytics</span>
+                    <span class="material-symbols-outlined">
+                        group_add
+                        </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Booking Sales</h3>
-                            <h1>$25,056</h1>
+                            <h3>Total Users</h3>
+                            <h1>5,056</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -98,7 +101,7 @@
                         </div>
                     </div>
                     <small class="text-muted">
-                        Last 24 Hours
+                        Total
                     </small>
                 </div>
 
@@ -121,18 +124,18 @@
                         </div>
                     </div>
                     <small class="text-muted">
-                        Last 24 Hours
+                        Last 30 Days
                     </small>
                 </div>
 
                 <div class="income">
                     <span class="material-symbols-outlined">
-                        trending_up
+                        psychology
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Income</h3>
-                            <h1>$10,123</h1>
+                            <h3>User Preferences</h3>
+                            <h1>123</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -150,9 +153,10 @@
                 <!-- END OF INCOME -->
 
             </div>
+            <!-- <a href="AdminCW-profile/AdminCW-profile.html"></a> -->
             <!-- END OF INSIGHTS -->
              <div class="recent-orders">
-                <h2>Recent Bookings</h2>
+                <h2>Content Writers</h2>
                 <div class="search-container">
                     <input
                       type="text"
@@ -162,66 +166,52 @@
                       oninput="filterUsers()"
                     />
                   </div>
-                <table>
+                  <div class="Add-users">
+                    <button id="Add-user">Add User</button>
+                  </div>
+                  <div id="userModal" class="modal">
+                    <div class="modal-content">
+                      <span class="close">&times;</span>
+                      <h2>Add New User</h2>
+                      <form id="addUserForm">
+                        <div class="form-group">
+                          <label for="username">Username</label>
+                          <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="firstName">First Name</label>
+                          <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="lastName">Last Name</label>
+                          <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="contactNumber">Contact Number</label>
+                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
+                        </div>
+                        <div class="modal-buttons">
+                          <button type="submit" class="btn-save">Save</button>
+                          <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                <table id="userTable">
                     <thead>
                         <tr>
-                            <th>Booking ID</th>
-                            <th>User</th>
-                            <th>Starting Station</th>
-                            <th>Destination</th>
-                            <th>No of Passengers</th>
-                            <th>Amount</th>
+                            <th>Username</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Contact Number</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>10002</td>
-                            <td>Dimuthu Harshamal</td>
-                            <td>Fort</td>
-                            <td>Kandy</td>
-                            <td>3</td>
-                            <td>$20.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10003</td>
-                            <td>John Doe</td>
-                            <td>Fort</td>
-                            <td>Galle</td>
-                            <td>3</td>
-                            <td>$13.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10004</td>
-                            <td>Kavindu Perera</td>
-                            <td>Maradana</td>
-                            <td>Badulla</td>
-                            <td>3</td>
-                            <td>$220.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10005</td>
-                            <td>Kamal Gunarathne</td>
-                            <td>Kalutara</td>
-                            <td>Beliatta</td>
-                            <td>3</td>
-                            <td>$30.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10006</td>
-                            <td>Tharushi Senarathne</td>
-                            <td>Maho</td>
-                            <td>Ambewela</td>
-                            <td>3</td>
-                            <td>$22.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10007</td>
-                            <td>Sandya Perera</td>
-                            <td>Panadura</td>
-                            <td>Galle</td>
-                            <td>3</td>
-                            <td>$12.00</td>   
-                        </tr>
+                    <tbody id="userTableBody">
                     </tbody>
                 </table>
                 <div class="pagination">
@@ -263,7 +253,7 @@
                                 </span>
                         </div>
                         <div class="message">
-                            <p><b>Myke Tyson</b> booked 3 tickets to Kandy.</p>
+                            <p><b>Myke Tyson</b> received his order of drone v1.22.</p>
                             <small class="text-muted">2 Minutes Ago</small>
                         </div>
                     </div>
@@ -341,6 +331,9 @@
              </div>
         </div>
   </div>
-  <script src="AdminCW.js"></script>
+
+ <script src="AdminCW.js"></script>
+ <script src="AdminCW-crud.js"></script>
+ <script src="AdminCWAdd.js"></script>
 </body>
 </html>

@@ -316,6 +316,8 @@ main .insights .progress .number{
 
 main .insights small{
   margin-top: 1.6rem;
+  overflow-x: auto;
+  margin-bottom: 10px;
 }
 
 /*---RECET ORDERS---*/
@@ -360,6 +362,36 @@ main .search-input:focus {
   background-color: #f9f9ff;
 }
 
+.Add-users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#Add-user {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover Effect for Desktop */
+#Add-user:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Active State for Desktop */
+#Add-user:active {
+  background-color: #388e3c;
+  transform: scale(0.95);
+}
+
 
 main .recent-orders table{
   background: #ffff;
@@ -383,6 +415,16 @@ main table tbody td{
 
 main table tbody tr:last-child td{
   border: none;
+}
+
+#userTable tbody tr {
+  cursor: pointer;  
+  transition: background-color 0.3s ease;  
+}
+
+#userTable tbody tr:hover {
+  background-color: var(--color-border);  
+  color: var(--color-text);  
 }
 
 .pagination {
@@ -410,7 +452,6 @@ main table tbody tr:last-child td{
   font-size: 16px;
   margin: 0 10px;
 }
-
 
 /* RIGHT */
 
@@ -560,6 +601,14 @@ main table tbody tr:last-child td{
     padding: 0;
   }
 
+  .Add-users {
+    margin: 15px 0; /* Adjust margin for smaller screens */
+  }
+
+  #Add-user {
+    padding: 12px 25px; /* Slightly larger padding for better visibility */
+    font-size: 18px; /* Increase font size */
+  }
 
   main .recent-orders table{
     width: 83vw;
@@ -644,6 +693,18 @@ main table tbody tr:last-child td{
     font-size: 14px;
     padding: 10px 12px;
   }
+
+  .Add-users {
+    margin: 10px 0; /* Reduce margin for tighter space */
+  }
+
+  #Add-user {
+    width: 100%; /* Full-width button for mobile */
+    padding: 15px; /* Increase padding for touch-friendly design */
+    font-size: 16px; /* Ensure font is still readable */
+    border-radius: 8px; /* Slightly more rounded for mobile */
+  }
+
 
   main .recent-orders table{
     width: 100%;

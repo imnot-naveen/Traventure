@@ -121,7 +121,7 @@ aside .top{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem; /* Padding for spacing */
+  padding: 1rem;
   border-radius: var(--boarder-radius-2); /* Rounded corners */
   margin: 1rem 1rem 0 1rem; /* Spacing from the top */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -213,125 +213,160 @@ aside .sidebar a:hover span{
   margin-left: 1rem;
 }
 
-/*=======MAIN=======*/
+
 /*=======MAIN=======*/
 
-main {
-  padding: 1.2rem; /* Adding padding for spacing */
-  background-color: var(--color-primary-neutral-light);
-  border-radius: var(--boarder-radius-2);
-  box-shadow: var(--box-shadow);
+main{
+  margin-top: 1.4rem;
 }
 
-.profile-container {
+
+/* Main Content Styling */
+.main-content {
+  flex-grow: 2;
+  background-color: #f8f9fc;
+  padding: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #11134F;
+}
+
+/* Profile Section */
+.writer-profile {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  width: 80%;
-  max-width: 1200px; 
-
+  margin-top: 20px;
 }
 
-.profile-details {
-  background-color: #fff;
-  padding: var(--card-padding);
-  border-radius: var(--boarder-radius-3);
-  box-shadow: var(--box-shadow);
-  width: 100%;
-  max-width: 25rem; /* Restricting the width */
-  text-align: center;
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+  border: 1px solid #BDC8E8;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.profile-details img {
+.profile-image img {
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  max-width: 6rem; /* Control image size */
-  margin-bottom: 1.5rem;
+  border: 2px solid #BDC8E8;
+  margin-right: 20px;
 }
 
 .profile-details h2 {
-  margin-bottom: 0.8rem;
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #11134F;
 }
 
-.profile-details .role,
-.profile-details .email,
-.profile-details .contact {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+.profile-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
 }
 
-.profile-details .buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
+.profile-details p strong {
+  color: #11134F;
 }
 
-.profile-details .buttons button {
-  padding: 0.6rem 1.4rem;
-  color: white;
+/* Action Buttons */
+.action-buttons {
+  margin-top: 20px;
+}
+
+.action-buttons .btn-update,
+.action-buttons .btn-delete {
+  padding: 10px 20px;
+  font-size: 14px;
   border: none;
-  border-radius: var(--boarder-radius-2);
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-#update{
-  background-color: #007BFF;
+.action-buttons .btn-update {
+  background-color: #4CAF50;
+  color: white;
+  margin-right: 10px;
 }
 
-#update:hover{
-  background-color: #003c7c;
+.action-buttons .btn-update:hover {
+  background-color: #45a049;
 }
 
-#delete{
-  background-color: #e71212;
+.action-buttons .btn-delete {
+  background-color: #f44336;
+  color: white;
 }
 
-#delete:hover{
-  background-color: #850b0b;
+.action-buttons .btn-delete:hover {
+  background-color: #d32f2f;
 }
 
+/* Activity Logs Section */
+.activity-logs {
+  margin-top: 40px;
+}
 
-/* User History Section */
-.user-history {
+.activity-logs h3 {
+  font-size: 18px;
+  color: #11134F;
+  margin-bottom: 10px;
+}
+
+.logs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
   background-color: #fff;
-  padding: var(--card-padding);
-  border-radius: var(--boarder-radius-2);
-  box-shadow: var(--box-shadow);
-  margin-top: 2rem;
 }
 
-.user-history h3 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  text-align: center;
+.logs-table th, .logs-table td {
+  border: 1px solid #BDC8E8;
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.logs-table th {
+  background-color: #f2f2f2;
+  color: #11134F;
+}
+
+.logs-table tr:hover {
+  background-color: #f9f9f9;
 }
 
 
 /* RIGHT */
 
-.right {
-  margin-top: -50rem; /* Add proper margin from the top */
-  margin-right: 2rem; /* Adjust left margin to bring it into view */
-  background-color: #6C757D;
+.right{
+  margin-top: 1.4rem;
 }
 
-.right .top {
+.right .top{
   display: flex;
-  justify-content: flex-end;
+  justify-content: end;
   gap: 2rem;
 }
 
-.right .top button {
+.right .top button{
   display: none;
 }
 
-.right .top .profile {
+.right .top .profile{
   display: flex;
+  gap: 2rem;
   text-align: right;
 }
+
 
 
 /* Media Queries */
@@ -359,14 +394,39 @@ main {
     margin-top: 1.8rem;
   }
 
-  .profile-container {
-    flex-direction: column;
-    align-items: center;
+  .profile-card {
+    max-width: 80%;
+    padding: 15px;
   }
 
-  .profile-details {
-    max-width: 20rem; /* Adjusting max width on smaller screens */
+  /* Reduce font size for profile details */
+  .profile-details h2 {
+    font-size: 18px;
   }
+
+  .profile-details p {
+    font-size: 13px;
+  }
+
+  /* Adjust the action buttons for better alignment */
+  .action-buttons .btn-update,
+  .action-buttons .btn-delete {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  /* Make the logs table more compact */
+  .logs-table th, .logs-table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  /* Adjust the logs table for narrower layout */
+  .logs-table {
+    width: 90%;
+    margin: 0 auto;
+  }
+
 
 }
 
@@ -423,39 +483,36 @@ main {
     cursor: pointer;
   }
 
-  main {
-    padding: 1.2rem;
-    margin-top: 5rem; /* Give some space if the top nav sticks */
+  main{
+    margin-top: 8rem;
+    padding: 0 1rem;
   }
 
-  .profile-container {
+  .profile-card {
     flex-direction: column;
     align-items: center;
+    text-align: center;
+  }
+  .profile-image img {
+    margin-bottom: 15px;
   }
 
-  .profile-details {
-    max-width: 100%;
-    width: 90%;
+  .logs-table th, .logs-table td {
+    font-size: 12px;
+    padding: 8px;
   }
 
-  .profile-details img {
-    max-width: 5rem;
-  }
-
-  .profile-details .buttons button {
-    width: 100%;
-    padding: 0.6rem 0;
-  }
 
 
   .right{
     width: 94%;
     margin: 0 auto 4rem;
+
   }
 
   .right .top{
     position: fixed;
-    top: 0;
+    top: 0rem;
     left: 0;
     align-items: center;
     padding: 0 0 0.8rem;
