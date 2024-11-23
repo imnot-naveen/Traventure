@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2024 at 05:12 AM
+-- Generation Time: Nov 23, 2024 at 05:20 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -50,6 +50,20 @@ CREATE TABLE `contentwriter` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inactiveusers`
+--
+
+CREATE TABLE `inactiveusers` (
+  `username` varchar(20) NOT NULL,
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `contactNo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `login`
 --
 
@@ -66,6 +80,7 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`username`, `email`, `password`, `userType`) VALUES
 ('exampleUser', 'john@gmail.com', '$2y$10$WuC8oD2QqXqyiRC.4brkwOAADS.E4Vk6uNbYRirSBUl2Ru1N5m.dC', ''),
+('exampleUser2', 'jane@gmail.com', '$2y$10$v0uZ8cJkSpwcwQNuyf3KQ.JbK4xqMExt2YbAWCkjXZDBBjNkFQ/zy', ''),
 ('imnot_naveen', 'naveenharinda2@gmail.com', '$2y$10$V1gFv0ZxZJIlaH/oOG/OAuQFJfhKwyovsC8Km87zUjcqwX4wuYjIe', '');
 
 -- --------------------------------------------------------
@@ -90,6 +105,7 @@ CREATE TABLE `person` (
 
 INSERT INTO `person` (`username`, `firstName`, `lastName`, `email`, `contactNo`, `userType`, `profile_picture`) VALUES
 ('exampleUser', 'John', 'Doe', 'john@gmail.com', 123456789, 'Traveller', ''),
+('exampleUser2', 'Jane', 'Doe', 'jane@gmail.com', 123456789, 'Traveller', ''),
 ('imnot_naveen', 'Naveen ', 'Harinda', 'naveenharinda2@gmail.com', 774554321, 'Traveller', '');
 
 -- --------------------------------------------------------
@@ -253,7 +269,8 @@ CREATE TABLE `train` (
   `startStation` int(11) NOT NULL,
   `endStation` int(11) NOT NULL,
   `departureTime` time NOT NULL,
-  `arrivalTime` time NOT NULL
+  `arrivalTime` time NOT NULL,
+  `days` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -346,6 +363,12 @@ ALTER TABLE `contentwriter`
   ADD KEY `cw_username` (`username`);
 
 --
+-- Indexes for table `inactiveusers`
+--
+ALTER TABLE `inactiveusers`
+  ADD PRIMARY KEY (`username`);
+
+--
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
@@ -405,8 +428,8 @@ ALTER TABLE `trainserviceprovider`
 -- Indexes for table `trainstops`
 --
 ALTER TABLE `trainstops`
-  ADD KEY `trainstops_triainid` (`trainID`),
-  ADD KEY `trainstops_stationid` (`stationid`);
+  ADD KEY `trainstops_stationid` (`stationid`),
+  ADD KEY `trainstops_triainid` (`trainID`);
 
 --
 -- Indexes for table `traintrip`
@@ -497,8 +520,8 @@ ALTER TABLE `trainserviceprovider`
 -- Constraints for table `trainstops`
 --
 ALTER TABLE `trainstops`
-  ADD CONSTRAINT `trainstops_stationid` FOREIGN KEY (`stationid`) REFERENCES `station` (`stationID`),
-  ADD CONSTRAINT `trainstops_triainid` FOREIGN KEY (`trainID`) REFERENCES `train` (`trainID`);
+  ADD CONSTRAINT `trainstops_stationid` FOREIGN KEY (`stationid`) REFERENCES `station` (`stationID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `trainstops_triainid` FOREIGN KEY (`trainID`) REFERENCES `train` (`trainID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `traintrip`
