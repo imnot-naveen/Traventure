@@ -19,4 +19,5 @@ require_once(INC_PATH.DS."config.php");
 //core classes 
 require_once(CORE_PATH.DS."person.php");
 require_once(CORE_PATH.DS. "login.php");
+require_once(CORE_PATH.DS. "train.php");
 ?>
