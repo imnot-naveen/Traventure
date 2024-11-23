@@ -220,95 +220,133 @@ main{
   margin-top: 1.4rem;
 }
 
-
-/* Main Content Styling */
-.main-content {
-  flex-grow: 2;
-  background-color: #f8f9fc;
-  padding: 20px;
+main .insights{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.6rem;
 }
 
-.header h1 {
+main .insights > div{
+  background: #fff;
+  padding: var(--card-padding);
+  border-radius: var(--boarder-radius-3);
+  margin-top: 1rem;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+
+main .insights > div:hover{
+  box-shadow: none;
+}
+
+main .insights > div span {
+  background: rgb(31, 144, 220);
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: #ffff;
+  font-size: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid #11134F;
+}
+
+.profile-info h2 {
+  font-size: 20px;
   margin: 0;
-  font-size: 24px;
   color: #11134F;
 }
 
-/* Profile Section */
-.writer-profile {
+.profile-info h3 {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #BDC8E8;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.active {
+  display: inline-block; /* Makes it appear as a block for padding */
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text color */
+  border-radius: 12px; /* Rounded corners */
+  padding: 4px 10px; /* Adds spacing inside the badge */
+  font-size: 12px;
+}
+
+.profile-details {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-top: 20px;
 }
 
-.profile-card {
-  display: flex;
-  flex-direction: row;
-  background-color: #ffffff;
-  border: 1px solid #BDC8E8;
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 600px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.left-details, .right-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.profile-image img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 2px solid #BDC8E8;
-  margin-right: 20px;
-}
-
-.profile-details h2 {
-  margin: 0 0 10px;
-  font-size: 20px;
-  color: #11134F;
-}
-
-.profile-details p {
-  margin: 5px 0;
+.left-details li,
+.right-details li {
+  margin: 8px 0;
   font-size: 14px;
   color: #333;
 }
 
-.profile-details p strong {
-  color: #11134F;
+.right-details {
+  padding-left: 20rem;
+  text-align: left;
 }
 
-/* Action Buttons */
 .action-buttons {
-  margin-top: 20px;
+  margin-top: 80px;
+  display: flex;
+  gap: 10px; /* Space between buttons */
 }
 
-.action-buttons .btn-update,
-.action-buttons .btn-delete {
+.update-button,
+.deactivate-button {
   padding: 10px 20px;
-  font-size: 14px;
+  font-size: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.action-buttons .btn-update {
-  background-color: #4CAF50;
-  color: white;
-  margin-right: 10px;
-}
-
-.action-buttons .btn-update:hover {
-  background-color: #45a049;
-}
-
-.action-buttons .btn-delete {
-  background-color: #f44336;
+/* Update Button Style */
+.update-button {
+  background-color: #007bff; /* Blue color */
   color: white;
 }
 
-.action-buttons .btn-delete:hover {
-  background-color: #d32f2f;
+.update-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
+
+/* Deactivate Button Style */
+.deactivate-button {
+  background-color: #dc3545; /* Red color */
+  color: white;
+}
+
+.deactivate-button:hover {
+  background-color: #a71d2a; /* Darker red on hover */
+}
+
 
 /* Activity Logs Section */
 .activity-logs {
@@ -368,10 +406,7 @@ main{
   text-align: right;
 }
 
-
-
 /* Media Queries */
-
 @media screen and (max-width: 1200px){
   .container{
     width: 94%;
@@ -395,26 +430,26 @@ main{
     margin-top: 1.8rem;
   }
 
-  .profile-card {
-    max-width: 80%;
-    padding: 15px;
-  }
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between profile picture and info */
+}
 
-  /* Reduce font size for profile details */
-  .profile-details h2 {
+.profile-info h2 {
+    font-size: 24px; /* Slightly larger font for name */
+}
+
+.profile-info h3 {
     font-size: 18px;
-  }
+}
 
-  .profile-details p {
-    font-size: 13px;
-  }
+.action-buttons {
+    justify-content: flex-end; /* Align buttons to the right for larger screens */
+    gap: 15px; /* Increase gap slightly for large screens */
+}
 
-  /* Adjust the action buttons for better alignment */
-  .action-buttons .btn-update,
-  .action-buttons .btn-delete {
-    font-size: 13px;
-    padding: 8px 16px;
-  }
+  
 
   /* Make the logs table more compact */
   .logs-table th, .logs-table td {
@@ -489,21 +524,31 @@ main{
     padding: 0 1rem;
   }
 
-  .profile-card {
+  .profile-header {
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .profile-image img {
-    margin-bottom: 15px;
-  }
+    align-items: center; /* Center align for smaller screens */
+    gap: 15px;
+}
+
+.profile-info h2 {
+    font-size: 22px; /* Adjust font size */
+}
+
+.profile-info h3 {
+    font-size: 16px;
+}
+
+.action-buttons {
+    justify-content: center; /* Center-align buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap if needed */
+    gap: 10px; /* Reduce gap slightly for medium screens */
+}
 
   .logs-table th, .logs-table td {
     font-size: 12px;
     padding: 8px;
   }
-
-
 
   .right{
     width: 94%;

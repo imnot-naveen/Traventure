@@ -249,60 +249,68 @@ main .insights > div span {
   font-size: 2rem;
 }
 
-main .insights > div.expenses span{
-  background: #c34415;
-}
-
-main .insights > div.income span{
-  background: #15c378;
-}
-
-main .insights > div .middle{
+.profile-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-main .insights h3{
-  margin: 1rem 0 0.6rem;
-  font-size: 1rem;
-}
-
-main .insights .progress{
-  position: relative;
-  width: 92px;
-  height: 92px;
+.profile-picture {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid #11134F;
 }
 
-main .insights svg{
-  width: 7rem;
-  height: 7rem;
+.profile-info h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #11134F;
 }
 
-main .insights svg circle{
-  fill: none;
-  stroke: var(--color-primary);
-  stroke-width: 14;
-  stroke-linecap: round;
-  transform: translate(5px, 5px);
-  stroke-dasharray: 110;
-  stroke-dashoffset: 92;
+.profile-info h3 {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #BDC8E8;
 }
 
-main .insights .sales svg circle{
-  stroke-dashoffset: -30;
-  stroke-dasharray: 200;
+.status {
+  font-weight: bold;
 }
 
-main .insights .expenses svg circle{
-  stroke-dashoffset: 20;
-  stroke-dasharray: 80;
+.status.active {
+  display: inline-block; /* Makes it appear as a block for padding */
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text color */
+  border-radius: 12px; /* Rounded corners */
+  padding: 4px 10px; /* Adds spacing inside the badge */
+  font-size: 12px;
 }
 
-main .insights .sales svg circle{
-  stroke-dashoffset: 35;
-  stroke-dasharray: 110;
+.profile-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.left-details, .right-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left-details li,
+.right-details li {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.right-details {
+  padding-left: 20rem;
+  text-align: left;
 }
 
 main .insights .progress .number{
