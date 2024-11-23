@@ -248,11 +248,11 @@ main .insights > div span {
 }
 
 main .insights > div.expenses span{
-  background: #c34415;
+  background: #15c378;
 }
 
 main .insights > div.income span{
-  background: #15c378;
+  background: #c34415;
 }
 
 main .insights > div .middle{

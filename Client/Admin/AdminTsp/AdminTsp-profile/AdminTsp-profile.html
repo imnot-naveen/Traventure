@@ -85,7 +85,7 @@
                     <div class="profile-header">
                         <img src="../../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture">
                         <div class="profile-info">
-                            <h2>Dimuthu Harshamal</h2>
+                            <h2 id="tspName">TSP Not found</h2>
                             <h3>Train Service Provider</h3>
                             <p>Status: <span class="status active">Active</span></p>
                         </div>
@@ -93,12 +93,12 @@
                     <div class="profile-details">
                         <div class="profile-details">
                             <ul class="left-details">
-                                <li>Email: admin@example.com</li>
-                                <li>Phone: +94 71 234 5678</li>
+                                <li>Email: <span id="tspEmail">email not found</span></li>
+                                <li>Phone: <span id="tspContact">Contact no: Not found</span></li>
                             </ul>
                             <ul class="right-details">
                                 <li>Role: Administrator</li>
-                                <li>Last Login: 2024-11-22</li>
+                                <li>TSP ID: <span id="tspid">Tsp: Not found</span></li>
                             </ul>
                         </div>
                         <div class="action-buttons">
@@ -108,8 +108,8 @@
                     </div>
                 </div>
             </div>
-      
-            <!-- Activity Logs Section -->
+
+            <!-- Activity Logs Section 
             <section class="activity-logs">
               <h3>Activity Logs</h3>
               <table class="logs-table">
@@ -140,7 +140,7 @@
               </table>
             </section>
           </div>
-        </div>
+        </div>-->
 
         </main>
 
@@ -168,5 +168,6 @@
   </div>
 
  <script src="AdminTsp-profile.js"></script>
+ <script src="AdminTsp-profile-crud.js"></script>
 </body>
 </html>

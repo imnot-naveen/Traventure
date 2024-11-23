@@ -278,7 +278,7 @@ main .insights > div span {
 }
 
 .status.active {
-  display: inline-block; /* Makes it appear as a block for padding */
+  display: inline-block; 
   background-color: #007bff; /* Blue background */
   color: white; /* White text color */
   border-radius: 12px; /* Rounded corners */
@@ -493,8 +493,7 @@ main .insights > div span {
   @keyframes showMenu {
     to{
       left: 0;
-    }
-    
+    }  
   }
 
   aside .logo{
@@ -591,5 +590,4 @@ main .insights > div span {
   .right .top button span{
     font-size: 2rem;
   }
-
 }

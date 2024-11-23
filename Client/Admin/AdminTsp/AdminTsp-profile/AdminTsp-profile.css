@@ -239,14 +239,6 @@ main .insights > div:hover{
   box-shadow: none;
 }
 
-main .insights > div span {
-  background: rgb(31, 144, 220);
-  padding: 0.5rem;
-  border-radius: 50%;
-  color: #ffff;
-  font-size: 2rem;
-}
-
 .profile-header {
   display: flex;
   align-items: center;
@@ -297,6 +289,8 @@ main .insights > div span {
   list-style: none;
   padding: 0;
   margin: 0;
+  margin-top: -20px;
+
 }
 
 .left-details li,
@@ -307,14 +301,15 @@ main .insights > div span {
 }
 
 .right-details {
-  padding-left: 20rem;
+  padding-top: 0px;
+  margin-left: 15rem;
   text-align: left;
 }
 
 .action-buttons {
-  margin-top: 80px;
+  margin-top: 100px;
   display: flex;
-  gap: 10px; /* Space between buttons */
+  gap: 20px; /* Space between buttons */
 }
 
 .update-button,
@@ -346,41 +341,6 @@ main .insights > div span {
 .deactivate-button:hover {
   background-color: #a71d2a; /* Darker red on hover */
 }
-
-
-
-/* Action Buttons
-.action-buttons {
-  margin-top: 20px;
-}
-
-.action-buttons .btn-update,
-.action-buttons .btn-delete {
-  padding: 10px 20px;
-  font-size: 14px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.action-buttons .btn-update {
-  background-color: #4CAF50;
-  color: white;
-  margin-right: 10px;
-}
-
-.action-buttons .btn-update:hover {
-  background-color: #45a049;
-}
-
-.action-buttons .btn-delete {
-  background-color: #f44336;
-  color: white;
-}
-
-.action-buttons .btn-delete:hover {
-  background-color: #d32f2f;
-} */
 
 /* Activity Logs Section */
 .activity-logs {

@@ -10,33 +10,6 @@ closeBtn.addEventListener('click', ()=>{
   sideMenu.style.display = 'none';
 })
 
-//Table row href
-// document.addEventListener("DOMContentLoaded", function() {
-//   const tableRows = document.querySelectorAll("#userTable tbody tr");
-
-//   tableRows.forEach(row => {
-//       // Add click event to each row
-//       row.addEventListener("click", function() {
-//           const userId = this.cells[0].textContent; 
-//           window.location.href = `../AdminUserProfile/AdminUserProfile.html`; 
-//       });
-//   });
-// });
-
-
-function filterUsers() {
-  const searchValue = document.getElementById("searchBar").value.toLowerCase();
-  const rows = document.querySelectorAll("#userTable tbody tr");
-
-  rows.forEach((row) => {
-    const name = row.querySelector("td:nth-child(2)").innerText.toLowerCase();
-    if (name.includes(searchValue)) {
-      row.style.display = ""; // Show row
-    } else {
-      row.style.display = "none"; // Hide row
-    }
-  });
-}
 
 let currentPage = 1;
 const rowsPerPage = 6;
