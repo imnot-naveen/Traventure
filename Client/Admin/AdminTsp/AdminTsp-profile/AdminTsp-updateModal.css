@@ -59,3 +59,11 @@ form button {
 form button:hover {
   background-color: #0a0835;
 }
+
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    margin: 20% auto;
+  }
+}

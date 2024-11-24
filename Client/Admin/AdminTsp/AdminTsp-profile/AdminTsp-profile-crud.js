@@ -18,7 +18,24 @@ if (tspId) {
               document.getElementById('tspEmail').textContent = data.data.email;
               document.getElementById('tspContact').textContent = data.data.contact_number;
               document.getElementById('tspid').textContent = data.data.tspid;
-              // Add more fields as needed
+              document.getElementById('tspStatus').textContent = data.data.Active_status;
+              
+              // Add the update status button if needed
+              const statusButton = document.getElementById('confirmDeactivateBtn');
+              if (statusButton) {
+                  // Check current status and update button text accordingly
+                  if (data.data.Active_status === 'active') {
+                      statusButton.textContent = 'Deactivate';
+                  } else {
+                      statusButton.textContent = 'Activate';
+                  }
+
+                  // Add event listener for updating status
+                  statusButton.addEventListener('click', function() {
+                      const newStatus = (data.data.Active_status === 'active') ? 'inactive' : 'active';
+                      updateTspStatus(tspId, newStatus);
+                  });
+              }
           } else {
               console.error('TSP not found:', data.message);
           }
@@ -26,4 +43,29 @@ if (tspId) {
       .catch(error => console.error('Error fetching TSP details:', error));
 } else {
   console.error('No TSP ID provided in the URL');
+}
+
+// Function to update TSP status
+function updateTspStatus(tspId, newStatus) {
+  fetch('../../../../Server/api/adminTsp_Deactivate.php', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          tspid: tspId,
+          status: newStatus
+      })
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          alert(`TSP status has been updated to ${newStatus}`);
+          document.getElementById('tspStatus').textContent = newStatus; // Update the status on the page
+          document.getElementById('updateStatusButton').textContent = (newStatus === 'active') ? 'Deactivate' : 'Activate'; // Update the button text
+      } else {
+          console.error('Failed to update TSP status:', data.message);
+      }
+  })
+  .catch(error => console.error('Error updating TSP status:', error));
 }

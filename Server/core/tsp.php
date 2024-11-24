@@ -7,6 +7,7 @@ class TrainServiceProvider extends Person {
 
     // TSP-specific properties
     public $tspid;
+    public $Active_status;
 
     // Constructor to initialize db connection and parent class
     public function __construct($db) {
@@ -46,7 +47,7 @@ class TrainServiceProvider extends Person {
 
     // GET all train service providers
     public function getAllTSPs() {
-        $query = 'SELECT t.username, p.firstName AS first_name, p.lastName AS last_name, p.email, p.contactNo AS contact_number, 
+        $query = 'SELECT t.username, p.firstName AS first_name, p.lastName AS last_name, p.email, p.contactNo AS contact_number, t.status AS Active_status,
                          t.TSPID AS tspid 
                   FROM ' . $this->tsp_table . ' t
                   INNER JOIN ' . $this->person_table . ' p ON t.username = p.username';
@@ -79,7 +80,7 @@ class TrainServiceProvider extends Person {
   public function getTSPDetails($tspid) {
     try {
         $query = 'SELECT t.username, p.firstName AS first_name, p.lastName AS last_name, 
-                         p.email, p.contactNo AS contact_number, t.TSPID AS tspid
+                         p.email, p.contactNo AS contact_number,t.status AS Active_status, t.TSPID AS tspid
                   FROM ' . $this->tsp_table . ' t
                   INNER JOIN ' . $this->person_table . ' p ON t.username = p.username
                   WHERE t.TSPID = :tspid LIMIT 1';
@@ -138,6 +139,28 @@ class TrainServiceProvider extends Person {
     }catch(PDOException $e){
         return ['success' => false, 'message' => $e->getMessage()];
     }       
-  }  
+  } 
+  
+  public function updateStatus($tspid, $status) {
+    try {
+        // Corrected query with consistent placeholder naming
+        $query = 'UPDATE ' . $this->tsp_table . ' SET status = :status WHERE TSPID = :tspid';
+        $stmt = $this->conn->prepare($query);
+
+        // Correct parameter binding
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt->bindParam(':tspid', $tspid, PDO::PARAM_STR);
+
+        // Execute the statement and check success
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    } catch (PDOException $e) {
+        error_log("Error updating status: " . $e->getMessage());
+        return false;
+    }
+}
+
 }
 ?>
