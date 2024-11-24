@@ -96,6 +96,48 @@ class TrainServiceProvider extends Person {
         return null; // Handle any errors (optionally log them)
     }
   }
-  
+
+  public function updateTsp(){
+    try{
+        //Initilize query parts
+        $setParts = [];
+        $params = [];
+
+        //Dynamically build query parts for provided fields
+        if(!empty($this->first_name)){
+            $setParts[] = 'p.firstName = :first_name';
+            $params[':first_name'] = $this->first_name;
+        }
+        if (!empty($this->last_name)) {
+            $setParts[] = 'p.lastName = :last_name';
+            $params[':last_name'] = $this->last_name;
+        }
+        if (!empty($this->contact_number)) {
+            $setParts[] = 'p.contactNo = :contact_number';
+            $params[':contact_number'] = $this->contact_number;
+        }
+
+        //Ensure atleast one field is being updated
+        if(empty($setParts)){
+            return ['success' => false, 'message' => 'No fields provided for update.'];
+        }
+
+        //Finalize query
+        $query = 'UPDATE '. $this->tsp_table . ' t INNER JOIN ' . $this->person_table . ' p ON t.username = p.username SET '. implode(', ', $setParts) . ' WHERE t.TSPID = :tspid';
+
+        $params[':tspid'] = $this->tspid;
+
+        //prepare and execute
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute($params)){
+            return ['success' => true, 'message' => 'TSP updated successfully.'];
+        }
+
+        return ['success' => false, 'message' => 'Failed to update TSP.'];
+
+    }catch(PDOException $e){
+        return ['success' => false, 'message' => $e->getMessage()];
+    }       
+  }  
 }
 ?>
