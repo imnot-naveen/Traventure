@@ -25,51 +25,59 @@ window.addEventListener("click", (event) => {
   }
 });
 
-// Handle Form Submission
-document.getElementById("addUserForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const username = document.getElementById("username").value;
-  const firstName = document.getElementById("firstName").value;
-  const lastName = document.getElementById("lastName").value;
-  const email = document.getElementById("email").value;
-  const contactNumber = document.getElementById("contactNumber").value;
 
-  console.log("New User Data:", {
-    username,
-    firstName,
-    lastName,
-    email,
-    contactNumber,
-  });
+// Handle TSP registration form submission
+document
+  .getElementById("addTspForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
 
-  modal.style.display = "none";
-});
+    // Get form input values
+    const tspid = document.getElementById("tspid").value;
+    const username = document.getElementById("username").value;
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const email = document.getElementById("email").value;
+    const contactNumber = document.getElementById("contactNumber").value;
+    const newPassword = document.getElementById("new-password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
 
-//Add user to database
-document.getElementById("addUserForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevent the default form submission
+    // Validate passwords match
+    if (newPassword !== confirmPassword) {
+      alert("Passwords do not match. Please try again.");
+      return;
+    }
 
-  // Collect form data
-  const formData = new FormData(this);
-  const formObject = Object.fromEntries(formData.entries());
+    // Prepare the data to send to the server
+    const requestData = {
+      tspid: tspid,
+      username: username,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      contactNumber: contactNumber,
+      password: newPassword, // Note: Password hashing is handled server-side
+    };
 
-  // Send the data to the backend
-  fetch("../../../Server/api/adminAddUser.php", {
+    // Send the data to the API
+    fetch("../../../Server/api/adminTspAdd.php", {
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(formObject),
-  })
+      body: JSON.stringify(requestData),
+    })
       .then((response) => response.json())
-      .then((data) => {
-          if (data.success) {
-              alert("User added successfully!");
-              this.reset(); // Clear the form
-          } else {
-              alert("Error adding user: " + data.error);
-          }
+      .then((jsonData) => {
+        if (jsonData.success) {
+          alert("TSP Registration successful!");
+          modal.style.display = "none";
+        } else {
+          alert(jsonData.message || "TSP registration failed. Please try again.");
+        }
       })
-      .catch((error) => console.error("Error:", error));
-});
-
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again later.");
+      });
+  });

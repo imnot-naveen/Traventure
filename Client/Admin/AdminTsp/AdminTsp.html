@@ -171,32 +171,52 @@
                     <div class="modal-content">
                       <span class="close">&times;</span>
                       <h2>Add New TSP</h2>
-                      <form id="addUserForm">
+                      <form id="addTspForm">
+                        <div class="form-group">
+                          <label for="tspid">TSP ID</label>
+                          <input type="number" id="tspid" name="tspid" required autocomplete="off">
+                        </div>
+                        
                         <div class="form-group">
                           <label for="username">Username</label>
-                          <input type="text" id="username" name="username" required>
+                          <input type="text" id="username" name="username" required autocomplete="username">
                         </div>
+                        
                         <div class="form-group">
                           <label for="firstName">First Name</label>
-                          <input type="text" id="firstName" name="firstName" required>
+                          <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
                         </div>
+                        
                         <div class="form-group">
                           <label for="lastName">Last Name</label>
-                          <input type="text" id="lastName" name="lastName" required>
+                          <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
                         </div>
+                        
                         <div class="form-group">
                           <label for="email">Email</label>
-                          <input type="email" id="email" name="email" required>
+                          <input type="email" id="email" name="email" required autocomplete="email">
                         </div>
+                        
                         <div class="form-group">
                           <label for="contactNumber">Contact Number</label>
-                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
+                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required autocomplete="tel">
                         </div>
+                        
+                        <div class="form-group">
+                          <label for="new-password">Password</label>
+                          <input type="password" id="new-password" name="new-password" required autocomplete="new-password">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="confirm-password">Confirm Password</label>
+                          <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password">
+                        </div>
+                        
                         <div class="modal-buttons">
                           <button type="submit" class="btn-save">Save</button>
                           <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
                         </div>
-                      </form>
+                      </form>                      
                     </div>
                   </div>
                 <table id="userTable">

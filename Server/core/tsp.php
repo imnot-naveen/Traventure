@@ -4,10 +4,13 @@ class TrainServiceProvider extends Person {
     private $tsp_table = 'trainserviceprovider';
     private $conn;
     private $person_table = 'person';
+    private $login_table = 'login';
 
     // TSP-specific properties
     public $tspid;
     public $Active_status;
+    public $password; // Only for use in login table
+    public $userType;
 
     // Constructor to initialize db connection and parent class
     public function __construct($db) {
@@ -15,36 +18,87 @@ class TrainServiceProvider extends Person {
         $this->conn = $db; // Assign the database connection
     }
 
-    // Method to register a TSP
+
     public function registerTSP() {
         try {
-            // Check if the TSP exists
-            $query = 'SELECT * FROM ' . $this->tsp_table . ' WHERE TSPID = :tspid LIMIT 1';
+            // Step 1: Check if the TSPID or email already exists
+            $query = 'SELECT * FROM trainserviceprovider tsp
+                      INNER JOIN person p ON tsp.username = p.username
+                      WHERE tsp.TSPID = :tspid OR p.email = :email LIMIT 1';
+
             $stmt = $this->conn->prepare($query);
+
             $stmt->bindParam(':tspid', $this->tspid);
+            $stmt->bindParam(':email', $this->email);
             $stmt->execute();
-
+    
             if ($stmt->rowCount() > 0) {
-                return ['success' => false, 'message' => 'Train Service Provider already exists.'];
+                return ['success' => false, 'message' => 'Train Service Provider or email already exists.'];
             }
-
-            // Insert into the trainserviceprovider table
-            $query = 'INSERT INTO ' . $this->tsp_table . ' SET TSPID = :tspid, username = :username';
+    
+            // Step 2: Begin transaction
+            $this->conn->beginTransaction();
+    
+            // Step 3: Insert into the person table
+            $query = 'INSERT INTO person (username, firstName, lastName, email, contactNo) 
+                      VALUES (:username, :first_name, :last_name, :email, :contact_no)';
             $stmt = $this->conn->prepare($query);
-
+    
+            $stmt->bindParam(':username', $this->username);
+            $stmt->bindParam(':first_name', $this->first_name);
+            $stmt->bindParam(':last_name', $this->last_name);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':contact_no', $this->contact_number);
+    
+            if (!$stmt->execute()) {
+                $this->conn->rollBack();
+                return ['success' => false, 'message' => 'Failed to register person details.'];
+            }
+    
+            // Step 4: Insert into the trainserviceprovider table
+            $query = 'INSERT INTO trainserviceprovider (TSPID, username) 
+                      VALUES (:tspid, :username)';
+            $stmt = $this->conn->prepare($query);
+    
             $stmt->bindParam(':tspid', $this->tspid);
             $stmt->bindParam(':username', $this->username);
-
-            if ($stmt->execute()) {
-                return ['success' => true, 'message' => 'Train Service Provider registered successfully.'];
+    
+            if (!$stmt->execute()) {
+                $this->conn->rollBack();
+                return ['success' => false, 'message' => 'Failed to register Train Service Provider.'];
             }
-
-            return ['success' => false, 'message' => 'Failed to register Train Service Provider.'];
+    
+            // Step 5: Insert into the login table
+            $query = 'INSERT INTO login (username, email, password, userType) 
+                      VALUES (:username, :email, :password, :userType)';
+            $stmt = $this->conn->prepare($query);
+    
+            // Hash the password for security
+            $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+    
+            $stmt->bindParam(':username', $this->username);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':password', $hashedPassword);
+            $stmt->bindParam(':userType', $this->userType);
+    
+            if (!$stmt->execute()) {
+                $this->conn->rollBack();
+                return ['success' => false, 'message' => 'Failed to register login details.'];
+            }
+    
+            // Step 6: Commit the transaction
+            $this->conn->commit();
+    
+            return ['success' => true, 'message' => 'Train Service Provider registered successfully.'];
+            
         } catch (PDOException $e) {
+            // Rollback the transaction on error
+            $this->conn->rollBack();
             return ['success' => false, 'message' => $e->getMessage()];
         }
     }
-
+       
+    
     // GET all train service providers
     public function getAllTSPs() {
         $query = 'SELECT t.username, p.firstName AS first_name, p.lastName AS last_name, p.email, p.contactNo AS contact_number, t.status AS Active_status,
