@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(../assests/content-writer.jpg);
+  background-size: cover; /* Ensure the image covers the entire screen */
+  background-position: center center; /* Position the image in the center */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  position: relative; 
+  min-height: 100vh;
+  background-blend-mode: overlay;
+  font-family: Arial, sans-serif; /* Add a font for better readability */
+}
+
+main {
+  padding-bottom: 100px; /* Space to ensure main content doesn't overlap with footer */
+  margin: 100px auto 0 auto;
+}
+
+.btn {
+  position: relative;
+  border: 2px solid #11134f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+  width: 50%;
+  max-width: 300px;
+  height: 70px;
+  background-color: #ffffff;
+  margin: 0 auto;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 1;
+  text-align: center;
+  margin-top: 100px;
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Correct centering */
+}
+
+.circle {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background: #11134f;
+  border-radius: 50px;
+  left: 0;
+  top: -2px;
+  z-index: 2;
+  transition: .5s cubic-bezier(1, 0, 8, 1);
+}
+
+.btn:hover .circle {
+  width: 300px;
+}
+
+.arrow {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  transform: rotate(45deg);
+  top: 25px;
+  left: 20px;
+  transition: .5s;
+}
+
+.btn:hover .arrow {
+  left: 40px;
+}
+
+.arrow:before {
+  content: '';
+  position: absolute;
+  width: 34px;
+  height: 3px;
+  background: #fff;
+  transform: rotate(-45deg);
+  left: -10px;
+  top: 8px;
+  opacity: 0;
+  transition: .5s;
+}
+
+.btn:hover .arrow:before {
+  opacity: 1;
+}
+
+.text {
+  position: absolute;
+  top: 0;
+  left: 110px;
+  font-size: 1rem;
+  line-height: 70px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  z-index: 3;
+  transition: .5s;
+}
+
+.text a {
+  text-decoration: none;
+  color: #11134f;
+}
+
+.btn:hover .text a {
+  color: #fff;
+}
+
+.intro {
+  color: #ffffff;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 80%;
+  margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-position: top center; /* Adjust position on very small screens */
+}
+  .btn {
+      width: 80%; /* Adjust button width on smaller screens */
+      margin-top: 100px;
+      left: 50%; /* Center button */
+      transform: translateX(-50%); /* Ensure button is centered */
+  }
+
+  .text {
+      font-size: 1.2rem;
+  }
+
+  .intro {
+      font-size: 1rem;
+      margin-top: 20px;
+  }
+}
+
+
+

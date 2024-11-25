@@ -1,0 +1,133 @@
+*
+{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+body{
+    background-color: white;
+    font-family:'Times New Roman', Times, serif;
+    
+}
+
+
+
+main{
+    margin-top:100px;
+    margin-left: 100px;
+    color: #11134f;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.blog h2{
+    margin-top: 50px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 150px;
+}
+
+
+.content-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    line-height: 1.6;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .blog-title{
+    color: #11134f;
+    margin-top: 50px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: left;
+  }
+  
+  .image {
+    width: 800px;
+    height: 500px;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+  
+  
+/* For smaller screens (tablets and smaller) */
+@media (max-width: 1024px) {
+    main {
+        margin-left: 50px;  /* Reduce margin for smaller screens */
+    }
+
+    .blog h2 {
+        margin-left: 20px;  /* Reduce left margin for smaller screens */
+        font-size: 24px;  /* Adjust font size for better readability */
+    }
+
+    .blog-title {
+        font-size: 28px;  /* Reduce the size of blog title */
+    }
+
+    .content-container {
+        padding: 15px;  /* Reduce padding for smaller screens */
+        font-size: 16px;  /* Adjust font size */
+    }
+
+    .image {
+        width: 100%;  /* Make image responsive */
+        height: auto;  /* Maintain aspect ratio */
+        max-width: 100%;  /* Ensure it doesn't overflow */
+        margin-top: 15px;  /* Adjust margin */
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 768px) {
+    main {
+        margin-left: 20px;  /* Further reduce margin */
+    }
+
+    .blog h2 {
+        margin-left: 10px;  /* Further reduce margin for h2 */
+        font-size: 22px;  /* Smaller font size for h2 */
+    }
+
+    .blog-title {
+        font-size: 22px;  /* Adjust font size of blog title */
+    }
+
+    .content-container {
+        font-size: 14px;  /* Adjust font size for mobile */
+    }
+
+    .image {
+        width: 100%;  /* Ensure image takes full width */
+        height: auto;  /* Maintain aspect ratio */
+    }
+}
+
+/* For very small screens (phones in portrait mode) */
+@media (max-width: 480px) {
+    main {
+        margin-left: 10px;  /* Minimal margin */
+    }
+
+    .blog h2 {
+        margin-left: 5px;  /* Minimal left margin */
+        font-size: 20px;  /* Smaller font size */
+    }
+
+    .blog-title {
+        font-size: 18px;  /* Smaller title for small screens */
+    }
+
+    .content-container {
+        font-size: 12px;  /* Smaller font size for very small screens */
+        padding: 10px;  /* Less padding */
+    }
+
+    .image {
+        width: 100%;  /* Image should take the full width */
+        height: auto;  /* Maintain aspect ratio */
+        margin-top: 10px;  /* Adjust margin */
+    }
+}
+

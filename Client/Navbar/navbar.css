@@ -1,0 +1,169 @@
+body,html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  nav {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right:0;
+    left: 0;
+    height: 80px;
+    width: 100%;
+    margin: 0;
+  }
+  
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.5s;
+    
+    
+  }
+  
+  #logo img {
+    height: 65px;
+  }
+  
+  #menu-toggle {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #11134F;
+    margin: 5px;
+    transition: 0.3s;
+  }
+  
+
+
+  .nav-menu {
+    flex: 1;
+    list-style-type: none;
+    padding: 0;
+    top: 0;               /* Correct or remove this */
+    height: 62px;
+    display: flex;               /* Ensure it’s a flex container */
+    gap: 20px;                   /* Space between items */
+    justify-content: flex-end;   /* Align items to the right */
+    align-items: center;         /* Vertically center items */
+    background-color: #ffffff;
+}
+  
+/*.nav-menu li {
+    margin-left: 20px;
+    display:inline-block;
+    
+    
+  }
+  
+  .nav-menu li a {
+    color: #11134F;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.2rem;
+    padding: 15px;
+    display: block;
+  }
+  
+  .nav-menu li a:hover {
+    color: blue;
+  }
+  
+  .user-icon-img {
+    width: 20px; 
+    height: 20px; 
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; 
+        left: 0;
+    }
+  
+    .nav-menu.active {
+        display: flex;
+    }
+  
+    .nav-menu li {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+  
+    .menu-toggle {
+        display: block;
+    }
+  }*/
+
+
+
+  
+
+  
+  .nav-menu li {
+    margin-left: 20px;
+    
+  }
+  
+  .nav-menu li a {
+    color: #11134F;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.2rem;
+    padding: 10px;
+    display: block;
+  }
+  
+  .nav-menu li a:hover {
+    color: blue;
+  }
+  
+  .user-icon-img {
+    width: 20px; 
+    height: 20px; 
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; 
+        left: 0;
+    }
+  
+    .nav-menu.active {
+        display: flex;
+    }
+  
+    .nav-menu li {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+  
+    .menu-toggle {
+        display: block;
+    }
+  }
+  
+  

@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fbfbfb;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Main Layout */
+main {
+    margin-left: 120px;
+    color: #11134f;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+section h1 {
+    margin-top: 100px;
+}
+
+/* Ride Box */
+.ride {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 500px;
+    height: 600px;
+    margin-top: 100px;
+    margin-left: 350px;
+    padding: 20px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Location Info */
+.location-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.location-info img.location-icon {
+    width: 60px;
+    height: 60px;
+}
+
+.location-info .start,
+.location-info .end {
+    font-size: 17px;
+    color: #11134f;
+}
+
+.location-info img.arrow {
+    width: 50px;
+    height: 30px;
+}
+
+/* Distance Info */
+.distance-info {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    margin-top: 30px;
+    color: #11134f;
+    font-size: 20px;
+}
+
+/* Ride Details */
+.ride-details {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 380px;
+    height: 250px;
+    margin-top: 70px;
+    margin-left: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ride-details .title {
+    color: red;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.ride-details details {
+    font-size: 12px;
+    text-align: left;
+}
+
+/* Button */
+.btn-arrive {
+    width: 100px;
+    height: 40px;
+    background: #11134f;
+    border: 2px solid #11134f;
+    color: #ffffff;
+    font-size: 15px;
+    margin-top: 30px;
+    margin-left: 200px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Adjust main container margin */
+    main {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    /* Ride box adjustments */
+    .ride {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+        padding: 15px;
+    }
+
+    /* Location info adjustment */
+    .location-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .location-info img.location-icon,
+    .location-info img.arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .distance-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .ride-details {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .btn-arrive {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Further mobile styles */
+@media screen and (max-width: 480px) {
+    .ride {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .location-info img.location-icon,
+    .location-info img.arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .distance-info {
+        gap: 15px;
+    }
+
+    .ride-details {
+        width: 100%;
+    }
+
+    .btn-arrive {
+        width: 100%;
+    }
+}
