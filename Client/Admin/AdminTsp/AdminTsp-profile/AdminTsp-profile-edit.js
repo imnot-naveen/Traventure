@@ -1,85 +1,76 @@
-const tspProfileUrl = '../../../../Server/api/adminTspUpdate.php'; 
+// Get DOM elements
+const updateModal = document.getElementById("updateTspModal");
+const openModalBtn = document.querySelector(".update-button");
+const closeModalBtn = document.querySelector(".close");
+const updateForm = document.getElementById("updateTspForm");
 
-// Open Modal with fetched data
-function openModal(tspid) {
-  fetchTspProfile(tspid);  // Fetch TSP profile data based on the TSP ID
-  document.getElementById('updateTspModal').style.display = 'block'; // Show the modal
-}
-
-// Close Modal
-function closeModal() {
-  document.getElementById('updateTspModal').style.display = 'none';
-  document.getElementById('updateTspForm').reset();  // Reset form fields when modal is closed
-}
-
-// Fetch TSP Profile Data from server
-function fetchTspProfile(tspid) {
-  fetch(`${tspProfileUrl}?tspid=${tspid}`)  // Pass TSP ID as a query parameter
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to fetch TSP profile');
-      }
-      return response.json();
-    })
-    .then(data => {
+// Function to fetch TSP details and populate the modal
+function fetchTspDetails(tspId) {
+  fetch(`../../../../Server/api/adminTspUpdate.php?tspid=${tspId}`)
+    .then((response) => response.json())
+    .then((data) => {
       if (data.success) {
-        // Populate form fields with the fetched TSP data
-        document.getElementById('tspFirstName').value = data.tsp.first_name || '';
-        document.getElementById('tspLastName').value = data.tsp.last_name || '';
-        document.getElementById('tspPhone').value = data.tsp.contact_number || '';
+        const tsp = data.data;
+        document.getElementById("tspId").value = tsp.tspid;
+        document.getElementById("tspFirstName").value = tsp.first_name || "";
+        document.getElementById("tspLastName").value = tsp.last_name || "";
+        document.getElementById("tspPhone").value = tsp.contact_number || "";
+        updateModal.style.display = "flex";
       } else {
-        console.error('Failed to load TSP profile:', data.message);
+        alert(data.message || "Failed to fetch TSP details.");
       }
     })
-    .catch(error => {
-      console.error('Error fetching TSP profile:', error);
-    });
+    .catch((error) => console.error("Error fetching TSP details:", error));
 }
 
-// Form Submission Handler
-document.getElementById('updateTspForm').addEventListener('submit', function (event) {
-  event.preventDefault();  // Prevent default form submission
-
-  const formData = new FormData(this);
-
-  // Prepare data for sending to server (only include updated fields)
-  const updatedData = {};
-  formData.forEach((value, key) => {
-    if (value) {
-      updatedData[key] = value; // Only include fields that are not empty
-    }
-  });
-
-  // Send the updated data to the server
-  fetch(tspProfileUrl, {
-    method: 'POST',
-    body: JSON.stringify(updatedData), // Send as JSON
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      alert('TSP Updated Successfully');
-      closeModal();  // Close modal after successful submission
-    } else {
-      alert('Failed to update TSP: ' + data.message);
-    }
-  })
-  .catch(error => {
-    console.error('Error updating TSP:', error);
-    alert('Failed to update TSP');
-  });
+// Open modal when button is clicked
+openModalBtn.addEventListener("click", () => {
+  const tspId = new URLSearchParams(window.location.search).get("tspid");
+  if (tspId) {
+    fetchTspDetails(tspId);
+  } else {
+    alert("TSP ID is missing in the URL.");
+  }
 });
 
-// Example event listener for dynamically triggering modal open
-document.addEventListener('DOMContentLoaded', () => {
-  const tableRows = document.querySelectorAll('.tsp-row'); // Example: rows with class 'tsp-row'
-  tableRows.forEach(row => {
-    row.addEventListener('click', () => {
-      const tspid = row.getAttribute('data-tspid'); // Fetch TSP ID from a data attribute
-      openModal(tspid);
-    });
-  });
+// Close modal on close button click
+closeModalBtn.addEventListener("click", () => {
+  updateModal.style.display = "none";
+});
+
+// Handle modal close when clicking outside
+window.addEventListener("click", (event) => {
+  if (event.target === updateModal) {
+    updateModal.style.display = "none";
+  }
+});
+
+// Handle form submission to update TSP
+updateForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = {
+    tspid: document.getElementById("tspId").value,
+    first_name: document.getElementById("tspFirstName").value,
+    last_name: document.getElementById("tspLastName").value,
+    contact_number: document.getElementById("tspPhone").value,
+  };
+
+  fetch("../../../../Server/api/adminTspUpdate.php", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert(data.message || "TSP updated successfully.");
+        updateModal.style.display = "none";
+      } else {
+        alert(data.message || "Failed to update TSP.");
+      }
+    })
+    .catch((error) => console.error("Error updating TSP:", error));
 });
