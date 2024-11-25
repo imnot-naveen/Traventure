@@ -271,10 +271,10 @@ main .insights > div:hover{
 
 .status.active {
   display: inline-block; /* Makes it appear as a block for padding */
-  background-color: #007bff; /* Blue background */
-  color: white; /* White text color */
-  border-radius: 12px; /* Rounded corners */
-  padding: 4px 10px; /* Adds spacing inside the badge */
+  background-color: #007bff; 
+  color: white; 
+  border-radius: 12px; 
+  padding: 4px 10px;
   font-size: 12px;
 }
 
