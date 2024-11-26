@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f9;
+  }
+  
+  #destination-list {
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+  .destination-item {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+  }
+  
+  .destination-number {
+    font-size: 3rem;
+    color: orange;
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .destination-title {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .destination-slideshow {
+    position: relative;
+    max-width: 100%;
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  .slideshow-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .arrow.left {
+    left: 10px;
+  }
+  
+  .arrow.right {
+    right: 10px;
+  }
+  
+  .destination-description {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  .nearest-station {
+    font-size: 1.2em; 
+    margin-bottom: 0.5em; 
+  }
