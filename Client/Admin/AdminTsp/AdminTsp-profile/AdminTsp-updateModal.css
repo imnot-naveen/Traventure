@@ -20,15 +20,15 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.close {
+.close-u {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close-u:hover,
+.close-u:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;

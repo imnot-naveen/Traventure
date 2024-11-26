@@ -213,9 +213,7 @@ aside .sidebar a:hover span{
   margin-left: 1rem;
 }
 
-
 /*=======MAIN=======*/
-
 main{
   margin-top: 1.4rem;
 }
@@ -334,51 +332,55 @@ main .insights > div:hover{
 
 /* Deactivate Button Style */
 .deactivate-button {
-  background-color: #dc3545; /* Red color */
+  background-color: #000000; /* Red color */
   color: white;
 }
 
 .deactivate-button:hover {
-  background-color: #a71d2a; /* Darker red on hover */
+  background-color: #524647; /* Darker red on hover */
 }
 
-/* Activity Logs Section */
-.activity-logs {
-  margin-top: 40px;
+/* Table */
+main .recent-orders{
+  margin-top: 2rem;
 }
 
-.activity-logs h3 {
-  font-size: 18px;
-  color: #11134F;
-  margin-bottom: 10px;
+main .recent-orders h2{
+  margin-bottom: 0.8rem;
 }
 
-.logs-table {
+main .recent-orders table{
+  background: #ffff;
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  background-color: #fff;
+  border-radius: var(--boarder-radius-3);
+  padding: var(--card-padding);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
 }
 
-.logs-table th, .logs-table td {
-  border: 1px solid #BDC8E8;
-  text-align: left;
-  padding: 10px;
-  font-size: 14px;
+main .recent-orders table:hover{
+  box-shadow: none;
 }
 
-.logs-table th {
-  background-color: #f2f2f2;
-  color: #11134F;
+main table tbody td{
+  height: 2.8rem;
+  border-bottom: 1px solid var(--color-bg-lighter);
+  color: var(--color-text-secondary);
 }
 
-.logs-table tr:hover {
-  background-color: #f9f9f9;
+main table tbody tr:last-child td{
+  border: none;
 }
 
+main .recent-orders a{
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+  color: var(--color-primary);
+}
 
 /* RIGHT */
-
 .right{
   margin-top: -50rem;
   margin-right: 4.5rem;
@@ -388,6 +390,7 @@ main .insights > div:hover{
   display: flex;
   justify-content: end;
   gap: 2rem;
+  background-color: #3ac015;
 }
 
 .right .top button{
@@ -398,9 +401,8 @@ main .insights > div:hover{
   display: flex;
   gap: 2rem;
   text-align: right;
+  z-index: 100;
 }
-
-
 
 /* Media Queries */
 
@@ -519,11 +521,15 @@ main .insights > div:hover{
   }
 
   main .insights {
-    grid-template-columns: 1fr; /* Stack elements vertically */
+    grid-template-columns: 1fr; 
     gap: 1rem;
   }
 
-  /* Adjust profile header */
+  main .sales{
+    width: 95vw;
+    margin-left: 1rem;
+  }
+
   .profile-header {
     flex-direction: column;
     align-items: flex-start;
@@ -544,7 +550,6 @@ main .insights > div:hover{
     font-size: 14px;
   }
 
-  /* Adjust profile details layout */
   .profile-details {
     flex-direction: column;
     align-items: flex-start;
@@ -567,6 +572,10 @@ main .insights > div:hover{
   .update-button,
   .deactivate-button {
     width: auto; /* Reset width if previously set */
+  }
+
+  main .recent-orders{
+    display: none;
   }
 
   .right{

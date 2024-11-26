@@ -43,7 +43,7 @@
 }
 
 /* Close Button */
-.close {
+.close-m {
   float: right;
   font-size: 1.5rem;
   font-weight: bold;
@@ -51,7 +51,7 @@
   cursor: pointer;
 }
 
-.close:hover {
+.close-m:hover {
   color: #ff0000;
 }
 

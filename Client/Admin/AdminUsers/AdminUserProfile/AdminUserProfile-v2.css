@@ -213,9 +213,7 @@ aside .sidebar a:hover span{
   margin-left: 1rem;
 }
 
-
 /*=======MAIN=======*/
-
 main{
   margin-top: 1.4rem;
 }
@@ -541,7 +539,6 @@ main .insights > div span {
   main .sales{
     width: 95vw;
     margin-left: 1rem;
-
   }
 
   /* Adjust profile header */

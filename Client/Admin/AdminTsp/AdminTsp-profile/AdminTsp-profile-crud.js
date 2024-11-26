@@ -22,12 +22,15 @@ if (tspId) {
               
               // Add the update status button if needed
               const statusButton = document.getElementById('confirmDeactivateBtn');
+              const activeBtn = document.getElementById('deactivateBtn')
               if (statusButton) {
                   // Check current status and update button text accordingly
                   if (data.data.Active_status === 'active') {
                       statusButton.textContent = 'Deactivate';
+                      activeBtn.textContent = 'Deactivate';
                   } else {
                       statusButton.textContent = 'Activate';
+                      activeBtn.textContent = 'Activate';
                   }
 
                   // Add event listener for updating status

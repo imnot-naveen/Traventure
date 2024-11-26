@@ -1,7 +1,7 @@
 // Get DOM elements
 const updateModal = document.getElementById("updateTspModal");
 const openModalBtn = document.querySelector(".update-button");
-const closeModalBtn = document.querySelector(".close");
+const closeModalBtn = document.querySelector(".close-u");
 const updateForm = document.getElementById("updateTspForm");
 
 // Function to fetch TSP details and populate the modal

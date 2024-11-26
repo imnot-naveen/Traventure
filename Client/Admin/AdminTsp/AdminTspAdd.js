@@ -1,7 +1,7 @@
 // Get DOM elements
 const modal = document.getElementById("userModal");
 const openModalBtn = document.getElementById("Add-user");
-const closeModalBtn = document.querySelector(".close");
+const closeModalBtn = document.querySelector(".close-m");
 const cancelBtn = document.getElementById("cancelBtn");
 
 // Open Modal

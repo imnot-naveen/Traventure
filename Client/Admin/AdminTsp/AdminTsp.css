@@ -364,14 +364,14 @@ main .search-input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  margin: 20px 20rem;
 }
 
 #Add-user {
-  background-color: #4CAF50;
+  background-color: #4a90e2;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 16px;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
@@ -380,16 +380,15 @@ main .search-input:focus {
 
 /* Hover Effect for Desktop */
 #Add-user:hover {
-  background-color: #45a049;
+  background-color: #3669a3;
   transform: scale(1.05);
 }
 
 /* Active State for Desktop */
 #Add-user:active {
-  background-color: #388e3c;
+  background-color: #2d5889;
   transform: scale(0.95);
 }
-
 
 main .recent-orders table{
   background: #ffff;
