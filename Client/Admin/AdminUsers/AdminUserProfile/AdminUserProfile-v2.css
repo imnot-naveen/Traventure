@@ -432,39 +432,52 @@ main .insights > div span {
     margin-top: 1.8rem;
   }
 
+  /* Adjust insights grid for larger screens */
+  main .insights {
+    grid-template-columns: repeat(2, 1fr); /* Display two columns on larger screens */
+    gap: 2rem;
+  }
+
+  /* Profile header */
   .profile-header {
-    display: flex;
     align-items: center;
-    gap: 20px; /* Space between profile picture and info */
-}
-
-.profile-info h2 {
-    font-size: 24px; /* Slightly larger font for name */
-}
-
-.profile-info h3 {
-    font-size: 18px;
-}
-
-.action-buttons {
-    justify-content: flex-end; /* Align buttons to the right for larger screens */
-    gap: 15px; /* Increase gap slightly for large screens */
-}
-  
-
-  /* Make the logs table more compact */
-  .logs-table th, .logs-table td {
-    font-size: 13px;
-    padding: 8px;
   }
 
-  /* Adjust the logs table for narrower layout */
+  .profile-picture {
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-info h2 {
+    font-size: 22px;
+  }
+
+  .profile-info h3 {
+    font-size: 16px;
+  }
+
+  /* Adjust profile details layout */
+  .profile-details {
+    margin-top: 20px;
+  }
+
+  .right-details {
+    margin-left: 12rem;
+  }
+
+  /* Action buttons layout */
+  .action-buttons {
+    gap: 30px;
+  }
+
+  /* Logs table */
   .logs-table {
-    width: 90%;
-    margin: 0 auto;
+    font-size: 14px;
   }
 
-
+  .logs-table th, .logs-table td {
+    padding: 12px;
+  }
 }
 
 @media screen and (max-width: 768px){
@@ -520,38 +533,71 @@ main .insights > div span {
     cursor: pointer;
   }
 
-  main{
-    margin-top: 8rem;
-    padding: 0 1rem;
+  main .insights {
+    grid-template-columns: 1fr; /* Stack elements vertically */
+    gap: 1rem;
   }
 
+  main .sales{
+    width: 95vw;
+    margin-left: 1rem;
+
+  }
+
+  /* Adjust profile header */
   .profile-header {
-    display: flex;
     flex-direction: column;
-    align-items: center; /* Center align for smaller screens */
-    gap: 15px;
-}
-
-.profile-info h2 {
-    font-size: 22px; /* Adjust font size */
-}
-
-.profile-info h3 {
-    font-size: 16px;
-}
-
-.action-buttons {
-    justify-content: center; /* Center-align buttons */
-    flex-wrap: wrap; /* Allow buttons to wrap if needed */
-    gap: 10px; /* Reduce gap slightly for medium screens */
-}
-
-  .logs-table th, .logs-table td {
-    font-size: 12px;
-    padding: 8px;
+    align-items: flex-start;
   }
 
+  /* Profile picture */
+  .profile-picture {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 
+  /* Profile info */
+  .profile-info h2 {
+    font-size: 18px;
+  }
+
+  .profile-info h3 {
+    font-size: 14px;
+  }
+
+  /* Adjust profile details layout */
+  .profile-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .left-details, .right-details {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .right-details{
+    margin-left: -20rem;
+  }
+
+  /* Action buttons side by side */
+  .action-buttons {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    justify-content: flex-start; /* Align buttons to the left */
+    margin-top: 40px;
+  }
+
+  /* Make sure buttons are side by side */
+  .update-button,
+  .deactivate-button {
+    width: auto; /* Reset width if previously set */
+  }
+
+  /* Adjust table layout */
+  .logs-table {
+    font-size: 12px;
+  }
 
   .right{
     width: 94%;

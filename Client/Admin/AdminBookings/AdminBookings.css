@@ -215,7 +215,6 @@ aside .sidebar a:hover span{
 
 
 /*=======MAIN=======*/
-
 main{
   margin-top: 1.4rem;
 }
@@ -565,8 +564,17 @@ main table tbody tr:last-child td{
     width: 83vw;
   }
 
-  main table tbody tr td:last-child,
-  main table tbody tr td:first-child{
+  /* Hide first, second, and last columns in the table header */
+  main table thead tr th:first-child,
+  main table thead tr th:nth-child(2),
+  main table thead tr th:last-child {
+    display: none;
+  }
+
+  /* Hide first, second, and last columns in the table body */
+  main table tbody tr td:first-child,
+  main table tbody tr td:nth-child(2),
+  main table tbody tr td:last-child {
     display: none;
   }
 }
@@ -635,14 +643,25 @@ main table tbody tr:last-child td{
     width: 100%;
   }
 
-  main .search-container {
-    max-width: 100%; /* Full width for mobile */
-    padding: 0 15px; /* Add some padding */
+  .search-container {
+    width: 70%;
+    margin: 1rem 0; 
+    position: relative; 
+    display: flex; 
+    justify-content: center; 
   }
 
-  main .search-input {
-    font-size: 14px;
-    padding: 10px 12px;
+  .search-input {
+    /* width: 30%; 
+    max-width: 200px; 
+    padding: 8px; 
+    font-size: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: none; 
+    outline: none; 
+    transition: all 0.3s ease;  */
+    display: none;
   }
 
   main .recent-orders table{

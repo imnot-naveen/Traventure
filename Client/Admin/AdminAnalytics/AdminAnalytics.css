@@ -579,6 +579,10 @@ canvas {
     padding: 0 1rem;
   }
 
+  .chart-container{
+    display: none;
+  }
+
   .Downloads {
     flex-direction: column; /* Stack buttons vertically */
     gap: 10px; /* Smaller gap between stacked buttons */

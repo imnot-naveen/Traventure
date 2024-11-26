@@ -213,9 +213,7 @@ aside .sidebar a:hover span{
   margin-left: 1rem;
 }
 
-
 /*=======MAIN=======*/
-
 main{
   margin-top: 1.4rem;
 }
@@ -562,10 +560,6 @@ main table tbody tr:last-child td{
     grid-template-columns: 7rem auto 23rem;
   }
 
-  aside .logo h2{
-    display: none;
-  }
-
   aside .sidebar h3{
     display: none;
   }
@@ -614,10 +608,20 @@ main table tbody tr:last-child td{
     width: 83vw;
   }
 
-  main table tbody tr td:last-child,
-  main table tbody tr td:first-child{
+ /* Hide first, second, and last columns in the table header */
+  main table thead tr th:first-child,
+  main table thead tr th:nth-child(2),
+  main table thead tr th:last-child {
     display: none;
   }
+
+  /* Hide first, second, and last columns in the table body */
+  main table tbody tr td:first-child,
+  main table tbody tr td:nth-child(2),
+  main table tbody tr td:last-child {
+    display: none;
+  }
+
 }
 
 @media screen and (max-width: 768px){
@@ -684,27 +688,41 @@ main table tbody tr:last-child td{
     width: 100%;
   }
 
-  main .search-container {
-    max-width: 100%; /* Full width for mobile */
-    padding: 0 15px; /* Add some padding */
+  .search-container {
+    width: 70%;
+    margin: 1rem 0; 
+    position: relative; 
+    display: flex; 
+    justify-content: center; 
   }
 
-  main .search-input {
-    font-size: 14px;
-    padding: 10px 12px;
+  .search-input {
+    /* width: 30%; 
+    max-width: 200px; 
+    padding: 8px; 
+    font-size: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: none; 
+    outline: none; 
+    transition: all 0.3s ease;  */
+    display: none;
   }
 
   .Add-users {
-    margin: 10px 0; /* Reduce margin for tighter space */
+    position: absolute; 
+    top: -1rem; 
+    right: 1rem; 
+    z-index: 10; 
   }
 
   #Add-user {
-    width: 100%; /* Full-width button for mobile */
-    padding: 15px; /* Increase padding for touch-friendly design */
-    font-size: 16px; /* Ensure font is still readable */
-    border-radius: 8px; /* Slightly more rounded for mobile */
+    background-color: #000; 
+    color: white; 
+    border-radius: 8px; 
+    font-size: 14px; 
+    padding: 8px 12px;
   }
-
 
   main .recent-orders table{
     width: 100%;
@@ -755,5 +773,4 @@ main table tbody tr:last-child td{
   .right .top button span{
     font-size: 2rem;
   }
-
 }
