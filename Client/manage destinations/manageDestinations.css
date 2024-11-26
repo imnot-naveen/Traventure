@@ -1,0 +1,62 @@
+/* styles.css */
+#manage-destinations {
+    width: 80%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  #manage-destinations button {
+    background-color: orange;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  #destination-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .destination-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: #fff;
+  }
+  
+  .destination-item .actions {
+    margin-top: 10px;
+  }
+  
+  .actions button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .photo-tile {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+  }
+  
+  .photo-tile img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .photo-tile .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    font-size: 0.8rem;
+    border: none;
+    cursor: pointer;
+  }
+  

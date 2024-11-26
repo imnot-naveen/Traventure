@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['routeName']) && isset($
 
         // Validate indices and get train stops
         if ($startIndex !== false && $endIndex !== false && $startIndex < $endIndex) {
-            $trainStops = array_slice($stations, $startIndex + 1, $endIndex - $startIndex - 1);
+            $trainStops = array_slice($stations, $startIndex, $endIndex - $startIndex + 1);
             echo json_encode($trainStops);
         } else {
             echo json_encode([]); // No train stops found
