@@ -9,7 +9,7 @@ body {
 
 /* Hero Section */
 .hero-container {
-  background: url('../assests/img/hero-2.jpg') no-repeat center center/cover, 
+  background: url('../assets/img/hero-2.jpg') no-repeat center center/cover, 
               radial-gradient(circle at top left, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%),
               linear-gradient(135deg, rgba(0, 0, 0, 0.3) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.3) 75%, rgba(0, 0, 0, 0.3));
   background-blend-mode: overlay;
