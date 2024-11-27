@@ -13,11 +13,10 @@ class BlogPostAPI {
         $this->conn = $db;
     }
 
-    // Fetch all blog posts with pagination
     public function getAllBlogPosts($limit, $offset) {
         $query = "
             SELECT 
-                id, title, city, intro, content, imageURL, created_at
+                blog_id AS id, title, city, intro, content, imageURL AS image, createdAt
             FROM 
                 blogposts
             LIMIT :limit OFFSET :offset
@@ -28,21 +27,10 @@ class BlogPostAPI {
         $stmt->execute();
 
         $blogPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // Get total number of blog posts
-        $totalQuery = "SELECT COUNT(*) as total FROM blogposts";
-        $totalStmt = $this->conn->prepare($totalQuery);
-        $totalStmt->execute();
-        $totalBlogPosts = $totalStmt->fetch(PDO::FETCH_ASSOC)['total'];
-
-        return [
-            'blogPosts' => $blogPosts,
-            'totalBlogPosts' => $totalBlogPosts
-        ];
+        return $blogPosts;
     }
 }
 
-// Check if limit and offset are provided
 $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 10;
 $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
 

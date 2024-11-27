@@ -1,47 +1,58 @@
-/*document.addEventListener('DOMContentLoaded', () => {
-    const postData = JSON.parse(sessionStorage.getItem('selectedPost'));
+document.addEventListener("DOMContentLoaded", () => {
+  // Get the post ID from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const postId = urlParams.get("post_id");
 
-    if (postData) {
-        document.querySelector('section h2').innerText = `Traventure in ${postData.city}: Where to go and What to see`;
-        document.querySelector('.blog-title').textContent = postData.title;
-        document.querySelector('.image').src = postData.image;
-        document.querySelector('.blog-content').textContent = postData.content;
-    } else {
-        document.querySelector('main').innerHTML = '<p>Post not found.</p>';
-    }
-});*/
+  if (!postId) {
+    document.querySelector(".blog-post-container").innerHTML =
+      "<p>No blog post specified. Please select a post to view.</p>";
+    return;
+  }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Get post ID from URL parameters (or another method of identifying the post)
-    const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('post_id');
+  // Fetch blog post details
+  fetch(`../../Server/api/getblogpost.php?blog_id=${postId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        const post = data.post;
 
-    if (postId) {
-        // Fetch post data from the server using the post ID
-        fetch(`post.php?id=${postId}`)  // Replace with your actual API endpoint
-            .then(response => response.json())
-            .then(postData => {
-                if (postData) {
-                    // Update the page with the post data
-                    document.querySelector('section h2').innerText = `Traventure in ${postData.city}: Where to go and What to see`;
-                    document.querySelector('.blog-title').textContent = postData.title;
-                    document.querySelector('.image').src = postData.image;
-                    document.querySelector('.blog-content').textContent = postData.content;
-                } else {
-                    // Show an error message if the post is not found
-                    document.querySelector('main').innerHTML = '<p>Post not found.</p>';
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching post:', error);
-                document.querySelector('main').innerHTML = '<p>There was an error loading the post.</p>';
-            });
-    } else {
-        document.querySelector('main').innerHTML = '<p>Invalid post ID.</p>';
-    }
+        // Update page title
+        document.title = `Traventure - ${post.title}`;
+
+        // Populate post details
+        document.getElementById("post-title").textContent = post.title;
+        document.getElementById("post-city").textContent = post.city;
+
+        // Format date
+        const createdDate = new Date(post.createdAt);
+        document.getElementById("post-date").textContent =
+          createdDate.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+
+        // Set image
+        const postImage = document.getElementById("post-image");
+        postImage.src = `../../Public/Uploads/${post.image}`;
+        postImage.alt = post.title;
+
+        // Set intro and content
+        document.getElementById("post-intro").textContent = post.intro;
+        document.getElementById("post-body").innerHTML = post.content.replace(
+          /\n/g,
+          "<br>"
+        ); // Convert newlines to <br> tags
+      } else {
+        // Handle error
+        document.querySelector(
+          ".blog-post-container"
+        ).innerHTML = `<p>Error: ${data.message}</p>`;
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      document.querySelector(".blog-post-container").innerHTML =
+        "<p>An error occurred while loading the blog post.</p>";
+    });
 });
-
-
-
-
-

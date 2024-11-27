@@ -3,41 +3,50 @@
 include_once('../core/initialize.php');
 header('Content-Type: application/json');
 
-// Retrieve and decode incoming JSON data
-$data = json_decode(file_get_contents("php://input"));
+// Ensure the request method is POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
+    exit();
+}
 
 // Validate required fields
-if (empty($data->title) || empty($data->city) || empty($data->intro) || empty($data->content) || empty($data->imageURL)) {
+if (empty($_POST['title']) || empty($_POST['city']) || empty($_POST['intro']) || empty($_POST['content'])) {
     echo json_encode(['success' => false, 'message' => 'Invalid input: All fields are required.']);
     exit();
 }
 
 try {
-    // Start transaction
-    $db->beginTransaction();
+    // Process uploaded file if available
+    $imageURL = null;
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = '../../Public/Uploads/';
+        $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+            $imageURL = $uploadFile; // Store the file path
+        } else {
+            throw new Exception('Failed to upload image.');
+        }
+    }
 
-    // Insert into `blogposts` table
+    // Prepare query to insert blog post
     $query = 'INSERT INTO blogposts (title, city, intro, content, imageURL, createdAt, updatedAt) 
               VALUES (:title, :city, :intro, :content, :imageURL, NOW(), NOW())';
-
     $stmt = $db->prepare($query);
-    $stmt->bindParam(':title', $data->title);
-    $stmt->bindParam(':city', $data->city);
-    $stmt->bindParam(':intro', $data->intro);
-    $stmt->bindParam(':content', $data->content);
-    $stmt->bindParam(':imageURL', $data->imageURL);
+
+    // Bind parameters
+    $stmt->bindParam(':title', $_POST['title']);
+    $stmt->bindParam(':city', $_POST['city']);
+    $stmt->bindParam(':intro', $_POST['intro']);
+    $stmt->bindParam(':content', $_POST['content']);
+    $stmt->bindParam(':imageURL', $imageURL);
 
     // Execute the query
     if ($stmt->execute()) {
-        // Commit transaction
-        $db->commit();
         echo json_encode(['success' => true, 'message' => 'Blog post added successfully.']);
     } else {
         throw new Exception('Failed to insert blog post details.');
     }
 } catch (Exception $e) {
-    // Rollback transaction on error
-    $db->rollBack();
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
 ?>
