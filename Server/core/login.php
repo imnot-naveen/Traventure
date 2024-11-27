@@ -6,6 +6,7 @@ class Login {
     public $username;
     public $email;
     public $password;
+    public $userType;
 
     public function __construct($db) {
         $this->conn = $db;

@@ -74,71 +74,7 @@ class Person {
             }
         }
     
-        return ['success' => false, 'message' => 'User could not be created.'];
-    }
-
-    // Get user profile
-    public function getUserProfile($username) {
-        $query = 'SELECT * FROM ' . $this->person_table . ' WHERE username = :username LIMIT 1';
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        } else {
-            return null;
-        }
-    }
-
-    // Update user profile
-    public function updateProfile() {
-        // Validate input
-        if (empty($this->username) || empty($this->first_name) || empty($this->last_name) || empty($this->email) || empty($this->contact_number)) {
-            return ['success' => false, 'message' => 'All fields are required'];
-        }
-
-        try {
-            // Update person table
-            $query = 'UPDATE ' . $this->person_table . ' 
-                      SET firstName = :first_name, 
-                          lastName = :last_name, 
-                          email = :email, 
-                          contactNo = :contact_number 
-                      WHERE username = :username';
-            
-            $stmt = $this->conn->prepare($query);
-            
-            $stmt->bindParam(':first_name', $this->first_name);
-            $stmt->bindParam(':last_name', $this->last_name);
-            $stmt->bindParam(':email', $this->email);
-            $stmt->bindParam(':contact_number', $this->contact_number);
-            $stmt->bindParam(':username', $this->username);
-            
-            if ($stmt->execute()) {
-                // Optionally update email in login table
-                $login_query = 'UPDATE ' . $this->login_table . ' SET email = :email WHERE username = :username';
-                $login_stmt = $this->conn->prepare($login_query);
-                $login_stmt->bindParam(':email', $this->email);
-                $login_stmt->bindParam(':username', $this->username);
-                $login_stmt->execute();
-
-                return [
-                    'success' => true, 
-                    'message' => 'Profile updated successfully',
-                    'data' => [
-                        'firstName' => $this->first_name,
-                        'lastName' => $this->last_name,
-                        'email' => $this->email,
-                        'contactNo' => $this->contact_number
-                    ]
-                ];
-            }
-
-            return ['success' => false, 'message' => 'Failed to update profile'];
-        } catch (Exception $e) {
-            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
-        }
+        return ['success' => false, 'message' => 'User  could not be created.'];
     }
 }
 ?>

@@ -82,7 +82,7 @@ document
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    fetch("/traventure/server/api/login.php", {
+    fetch("../../Server/api/login.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

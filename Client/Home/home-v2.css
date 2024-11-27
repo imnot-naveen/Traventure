@@ -14,7 +14,7 @@ body {
               linear-gradient(135deg, rgba(0, 0, 0, 0.3) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.3) 75%, rgba(0, 0, 0, 0.3));
   background-blend-mode: overlay;
   text-align: center;
-  padding: 150px 20px; /* Adjusted for better balance */
+  padding: 220px 20px; /* Adjusted for better balance */
   color: #fff;
   position: relative;
   z-index: 1;
