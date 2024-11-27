@@ -265,7 +265,7 @@ button.prev img, button.next img {
 
 /* Last Section */
 .last-section {
-  background: url('/assests/img/last-section.jpg') no-repeat center center/cover;
+  background: url('../assests/img/last-section.jpg') no-repeat center center/cover;
   padding: 127px 20px;
   color: #fff;
   text-align: center;

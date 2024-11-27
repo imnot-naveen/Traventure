@@ -11,6 +11,7 @@ class Person {
     public $email;
     public $contact_number;
     public $password; // Only for use in login table
+    public $user_type;
 
     // Constructor to initialize db connection
     public function __construct($db) {
@@ -27,11 +28,13 @@ class Person {
         $stmt->execute();
     
         if ($stmt->rowCount() > 0) {
-            return ['success' => false, 'message' => 'User  already exists.'];
+            return ['success' => false, 'message' => 'User already exists.'];
         }
     
         // Insert into the person table
-        $query = 'INSERT INTO ' . $this->person_table . ' SET username = :username, firstName = :first_name, lastName = :last_name, email = :email, contactNo = :contact_number';
+        $query = 'INSERT INTO ' . $this->person_table . ' 
+                  SET username = :username, firstName = :first_name, lastName = :last_name, 
+                      email = :email, contactNo = :contact_number, userType = :user_type;';
         $stmt = $this->conn->prepare($query);
     
         // Bind parameters
@@ -40,10 +43,11 @@ class Person {
         $stmt->bindParam(':last_name', $this->last_name);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':contact_number', $this->contact_number);
-    
+        $stmt->bindParam(':user_type', $this->user_type);
         if ($stmt->execute()) {
             // Insert into the login table
-            $query = 'INSERT INTO ' . $this->login_table . ' SET username = :username, password = :password, email = :email';
+            $query = 'INSERT INTO ' . $this->login_table . ' 
+                      SET username = :username, password = :password, email = :email, userType = "Traveller"';
             $stmt = $this->conn->prepare($query);
     
             // Hash the password
@@ -55,55 +59,22 @@ class Person {
             $stmt->bindParam(':email', $this->email);
     
             if ($stmt->execute()) {
-                return ['success' => true, 'message' => 'User  created successfully.'];
+                // Insert into the registereduser table
+                $query = 'INSERT INTO registereduser (username) VALUES (:username)';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':username', $this->username);
+    
+                if ($stmt->execute()) {
+                    return ['success' => true, 'message' => 'User created successfully.'];
+                } else {
+                    return ['success' => false, 'message' => 'Failed to create registered user entry.'];
+                }
             } else {
                 return ['success' => false, 'message' => 'Failed to create login entry.'];
             }
         }
     
-        return ['success' => false, 'message' => 'User could not be created.'];
+        return ['success' => false, 'message' => 'User  could not be created.'];
     }
-
-    // Get all persons
-    public function getAllPersons() {
-        $query = 'SELECT username, firstName AS first_name, lastName AS last_name, email, contactNo AS contact_number 
-                  FROM ' . $this->person_table;
-        $stmt = $this->conn->prepare($query);
-
-        if ($stmt->execute()) {
-            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch all records as an associative array
-        }
-
-        return null; // Return null if the query fails
-    }
-
-    // Create User Method
-    public function createUser() {
-        try {
-            $query = "INSERT INTO " . $this->person_table . " 
-                      (username, firstName, lastName, email, contactNo) 
-                      VALUES (:username, :first_name, :last_name, :email, :contact_number)";
-            
-            // Prepare the statement
-            $stmt = $this->conn->prepare($query);
-    
-            // Bind data
-            $stmt->bindParam(':username', $this->username);
-            $stmt->bindParam(':first_name', $this->first_name);
-            $stmt->bindParam(':last_name', $this->last_name);
-            $stmt->bindParam(':email', $this->email);
-            $stmt->bindParam(':contact_number', $this->contact_number);
-    
-            // Execute the query
-            if ($stmt->execute()) {
-                return ['success' => true, 'message' => 'User created successfully'];
-            }
-    
-            return ['success' => false, 'message' => 'Failed to create user'];
-        } catch (PDOException $e) {
-            return ['success' => false, 'message' => $e->getMessage()];
-        }
-    }
-    
 }
 ?>

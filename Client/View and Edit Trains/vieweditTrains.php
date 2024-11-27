@@ -1,0 +1,74 @@
+<?php
+session_start(); // Start the session
+
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+if (!($_SESSION['userType'] == "TSP")){
+    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Trains List</title>
+    <link rel="stylesheet" href="vieweditTrains.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Traventure Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About us</a></li>
+                <li class="profile"><a href="#"><img class="user-icon" src="user-icon.png" alt="User icon"> R</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="table-container">
+        <h2>Trains</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Train No.</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="train-list">
+                <!-- Dynamic train rows will be populated here -->
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button id="prev-btn">Previous</button>
+            <span id="current-page">1</span>
+            <button id="next-btn">Next</button>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Delete</h3>
+            <p>Are you sure you want to delete this train?</p>
+            <div class="modal-buttons">
+                <button id="confirmDelete" class="delete-btn">Delete</button>
+                <button id="cancelDelete" class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="viewedittrains.js"></script>
+</body>
+</html>
