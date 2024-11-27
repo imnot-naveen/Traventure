@@ -16,7 +16,7 @@ body::after {
   left: 0;
   width: 100%;
   height: 200px;
-  background: url('../assests/wave.svg') no-repeat bottom;
+  background: url('../assets/wave.svg') no-repeat bottom;
   background-size: cover;
   z-index: -1;
 }
