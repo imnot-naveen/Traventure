@@ -1,10 +1,29 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+if ($_SESSION['userType'] !== "Admin") {
+    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TSP Profile | Admin</title>
-  <link rel="stylesheet" href="AdminDriver-profile.css">
+  <link rel="stylesheet" href="AdminCW-profile.css">
+  <link rel="stylesheet" href="../../Common/Logout_Modal.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
@@ -21,55 +40,55 @@
                 </div>
             </div>
             <div class="sidebar">
-                <a href="../../AdminDashboard/AdminDashboard.html">
+                <a href="../../AdminDashboard/AdminDashboard.php">
                     <span class="material-symbols-outlined">
                         grid_view
                     </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="../../AdminForum/AdminForum.html">
+                <a href="../../AdminForum/AdminForum.php">
                     <span class="material-symbols-outlined">
                         forum
                     </span>
                     <h3>Forums</h3>
                 </a>
-                <a href="../../AdminUsers/AdminUsers.html">
+                <a href="../../AdminUsers/AdminUsers.php">
                     <span class="material-symbols-outlined">
                         manage_accounts
                     </span>
                     <h3>Users</h3>
                 </a>
-                <a href="../../AdminTsp/AdminTsp.html">
+                <a href="../../AdminTsp/AdminTsp.php">
                     <span class="material-symbols-outlined">
                         train
                     </span>
                     <h3>Train Service Providers</h3>
                 </a>
-                <a href="../../AdminCW/AdminCW.html">
+                <a href="../AdminCW.php"  class="active">
                     <span class="material-symbols-outlined">
                         smb_share
                         </span>
                     <h3>Content Writers</h3>
                 </a>
-                <a href="../AdminDriver.html" class="active">
+                <a href="../../AdminDriver/AdminDriver.php">
                     <span class="material-symbols-outlined">
                         directions_car
                         </span>
                     <h3>Drivers</h3>
                 </a>
-                <a href="../../AdminAnalytics/AdminAnalytics.html">
+                <a href="../../AdminAnalytics/AdminAnalytics.php">
                     <span class="material-symbols-outlined">
                         monitoring
                     </span>
                     <h3>Analytics</h3>
                 </a>
-                <a href="../../AdminBookings/AdminBookings.html">
+                <a href="../../AdminBookings/AdminBookings.php">
                     <span class="material-symbols-outlined">
                         confirmation_number
                         </span>
                     <h3>Bookings</h3>
                 </a>
-                <a href="#">
+                <a id="logoutButton">
                     <span class="material-symbols-outlined">
                         logout
                     </span>
@@ -79,7 +98,7 @@
     </aside>
 
     <main>
-            <h1>TSP Profile</h1>
+            <h1>Content Writer's Profile</h1>
             <div class="insights">
               <div class="sales">
                   <div class="profile-header">
@@ -108,8 +127,7 @@
                   </div>
               </div>
           </div>
-            
-
+      
             <!-- Activity Logs Section -->
             <section class="activity-logs">
               <h3>Activity Logs</h3>
@@ -164,10 +182,22 @@
                     </div>
                 </div>
             </div>
-
         </div>
   </div>
 
- <script src="AdminDriver-profile.js"></script>
+         <!-- Dialog Box -->
+         <div id="logoutDialog" class="modal-lo">
+            <div class="modal-content-lo">
+                <h2>Logout</h2>
+                <p>Are you sure you want to logout?</p>
+                <div class="button-group">
+                    <button id="confirmLogout" class="btn btn-confirm">Yes</button>
+                    <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    
+ <script src="../../Common/Logout_Modal.js"></script>
+ <script src="AdminCW-profile.js"></script>
 </body>
 </html>

@@ -1,11 +1,30 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+if ($_SESSION['userType'] !== "Admin") {
+    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Users | Admin</title>
-  <link rel="stylesheet" href="AdminDriver.css">
-  <link rel="stylesheet" href="AdminDriverAdd.css">
+  <title>TSPs | Admin</title>
+  <link rel="stylesheet" href="AdminTsp.css">
+  <link rel="stylesheet" href="AdminTspAdd.css">
+  <link rel="stylesheet" href="../Common/Logout_Modal.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
@@ -22,55 +41,55 @@
                 </div>
             </div>
             <div class="sidebar">
-                <a href="../AdminDashboard/AdminDashboard.html">
+                <a href="../AdminDashboard/AdminDashboard.php">
                     <span class="material-symbols-outlined">
                         grid_view
                     </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="../AdminForum/AdminForum.html">
+                <a href="../AdminForum/AdminForum.php">
                     <span class="material-symbols-outlined">
                         forum
                     </span>
                     <h3>Forums</h3>
                 </a>
-                <a href="../AdminUsers/AdminUsers.html" >
+                <a href="../AdminUsers/AdminUsers.php">
                     <span class="material-symbols-outlined">
                         manage_accounts
                     </span>
                     <h3>Users</h3>
                 </a>
-                <a href="../AdminTsp/AdminTsp.html">
+                <a href="#"  class="active">
                     <span class="material-symbols-outlined">
                         train
                     </span>
                     <h3>Train Service Providers</h3>
                 </a>
-                <a href="../AdminCW/AdminCW.html">
+                <a href="../AdminCW/AdminCW.php">
                     <span class="material-symbols-outlined">
                         smb_share
                         </span>
                     <h3>Content Writers</h3>
                 </a>
-                <a href="#" class="active">
+                <a href="../AdminDriver/AdminDriver.php">
                     <span class="material-symbols-outlined">
                         directions_car
                         </span>
                     <h3>Drivers</h3>
                 </a>
-                <a href="../AdminAnalytics/AdminAnalytics.html">
+                <a href="../AdminAnalytics/AdminAnalytics.php">
                     <span class="material-symbols-outlined">
                         monitoring
                     </span>
                     <h3>Analytics</h3>
                 </a>
-                <a href="../AdminBookings/AdminBookings.html">
+                <a href="../AdminBookings/AdminBookings.php">
                     <span class="material-symbols-outlined">
                         confirmation_number
                         </span>
                     <h3>Bookings</h3>
                 </a>
-                <a href="#">
+                <a href="#" id="logoutButton">
                     <span class="material-symbols-outlined">
                         logout
                     </span>
@@ -80,7 +99,7 @@
     </aside>
 
     <main>
-            <h1>Drivers</h1>
+            <h1>Train Service Providers</h1>
             <div class="insights">
                 <div class="sales">
                     <span class="material-symbols-outlined">
@@ -88,8 +107,8 @@
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Users</h3>
-                            <h1>5,056</h1>
+                            <h3>Total TSPs</h3>
+                            <h1 id="tspCount">Loading..</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -107,11 +126,11 @@
 
                 <div class="expenses">
                     <span class="material-symbols-outlined">
-                        bar_chart
+                        train
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>User Accounts</h3>
+                            <h3>Trains Added</h3>
                             <h1>43</h1>
                         </div>
                         <div class="progress">
@@ -130,11 +149,11 @@
 
                 <div class="income">
                     <span class="material-symbols-outlined">
-                        psychology
+                        cancel
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>User Preferences</h3>
+                            <h3>Trains Cancalled</h3>
                             <h1>123</h1>
                         </div>
                         <div class="progress">
@@ -150,12 +169,11 @@
                         Last 24 Hours
                     </small>
                 </div>
-                <!-- END OF INCOME -->
 
             </div>
             <!-- END OF INSIGHTS -->
              <div class="recent-orders">
-                <h2>Drivers Details</h2>
+                <h2>TSPs Details</h2>
                 <div class="search-container">
                     <input
                       type="text"
@@ -166,44 +184,65 @@
                     />
                   </div>
                   <div class="Add-users">
-                    <button id="Add-user">Add Driver</button>
+                    <button id="Add-user">Add TSP</button>
                   </div>
                   <div id="userModal" class="modal">
                     <div class="modal-content">
-                      <span class="close">&times;</span>
-                      <h2>Add New Driver</h2>
-                      <form id="addUserForm">
+                      <span class="close-m">&times;</span>
+                      <h2>Add New TSP</h2>
+                      <form id="addTspForm">
+                        <div class="form-group">
+                          <label for="tspid">TSP ID</label>
+                          <input type="number" id="tspid" name="tspid" required autocomplete="off">
+                        </div>
+                        
                         <div class="form-group">
                           <label for="username">Username</label>
-                          <input type="text" id="username" name="username" required>
+                          <input type="text" id="username" name="username" required autocomplete="username">
                         </div>
+                        
                         <div class="form-group">
                           <label for="firstName">First Name</label>
-                          <input type="text" id="firstName" name="firstName" required>
+                          <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
                         </div>
+                        
                         <div class="form-group">
                           <label for="lastName">Last Name</label>
-                          <input type="text" id="lastName" name="lastName" required>
+                          <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
                         </div>
+                        
                         <div class="form-group">
                           <label for="email">Email</label>
-                          <input type="email" id="email" name="email" required>
+                          <input type="email" id="email" name="email" required autocomplete="email">
                         </div>
+                        
                         <div class="form-group">
                           <label for="contactNumber">Contact Number</label>
-                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
+                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required autocomplete="tel">
                         </div>
+                        
+                        <div class="form-group">
+                          <label for="new-password">Password</label>
+                          <input type="password" id="new-password" name="new-password" required autocomplete="new-password">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="confirm-password">Confirm Password</label>
+                          <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password">
+                        </div>
+                        
                         <div class="modal-buttons">
                           <button type="submit" class="btn-save">Save</button>
                           <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
                         </div>
-                      </form>
+                      </form>                      
                     </div>
                   </div>
                 <table id="userTable">
                     <thead>
                         <tr>
                             <th>Username</th>
+                            <th>TSP ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
@@ -331,8 +370,21 @@
         </div>
   </div>
 
- <script src="AdminDriver-crud-v3.js"></script>
- <script src="AdminDriver.js"></script>
- <script src="AdminDriverAdd.js"></script>
+          <!-- Dialog Box -->
+          <div id="logoutDialog" class="modal-lo">
+            <div class="modal-content-lo">
+                <h2>Logout</h2>
+                <p>Are you sure you want to logout?</p>
+                <div class="button-group">
+                    <button id="confirmLogout" class="btn btn-confirm">Yes</button>
+                    <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+ <script src="../Common/Logout_Modal.js"></script>
+ <script src="AdminTsp-crud-v3.js"></script>
+ <script src="AdminTsp.js"></script>
+ <script src="AdminTspAdd.js"></script>
 </body>
 </html>

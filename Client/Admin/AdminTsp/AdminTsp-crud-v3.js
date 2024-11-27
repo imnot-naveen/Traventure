@@ -19,7 +19,7 @@ fetch('../../../Server/api/adminTsp.php')
                 row.classList.add("clickable-row");
                 row.addEventListener("click", () => {
                     const tspId = tsp.tspid;
-                    window.location.href = `AdminTsp-profile/AdminTsp-profile.html?tspid=${tspId}`;
+                    window.location.href = `AdminTsp-profile/AdminTsp-profile.php?tspid=${tspId}`;
                 });
             });
 

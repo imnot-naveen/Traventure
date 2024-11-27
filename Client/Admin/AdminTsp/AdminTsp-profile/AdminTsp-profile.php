@@ -1,3 +1,21 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+if ($_SESSION['userType'] !== "Admin") {
+    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,19 +42,19 @@
                 </div>
             </div>
             <div class="sidebar">
-                <a href="../../AdminDashboard/AdminDashboard.html">
+                <a href="../../AdminDashboard/AdminDashboard.php">
                     <span class="material-symbols-outlined">
                         grid_view
                     </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="../../AdminForum/AdminForum.html">
+                <a href="../../AdminForum/AdminForum.php">
                     <span class="material-symbols-outlined">
                         forum
                     </span>
                     <h3>Forums</h3>
                 </a>
-                <a href="../../AdminUsers/AdminUsers.html">
+                <a href="../../AdminUsers/AdminUsers.php">
                     <span class="material-symbols-outlined">
                         manage_accounts
                     </span>
@@ -48,25 +66,25 @@
                     </span>
                     <h3>Train Service Providers</h3>
                 </a>
-                <a href="../../AdminCW/AdminCW.html">
+                <a href="../../AdminCW/AdminCW.php">
                     <span class="material-symbols-outlined">
                         smb_share
                         </span>
                     <h3>Content Writers</h3>
                 </a>
-                <a href="../../AdminDriver/AdminDriver.html">
+                <a href="../../AdminDriver/AdminDriver.php">
                     <span class="material-symbols-outlined">
                         directions_car
                         </span>
                     <h3>Drivers</h3>
                 </a>
-                <a href="../../AdminAnalytics/AdminAnalytics.html">
+                <a href="../../AdminAnalytics/AdminAnalytics.php">
                     <span class="material-symbols-outlined">
                         monitoring
                     </span>
                     <h3>Analytics</h3>
                 </a>
-                <a href="../../AdminBookings/AdminBookings.html">
+                <a href="../../AdminBookings/AdminBookings.php">
                     <span class="material-symbols-outlined">
                         confirmation_number
                         </span>
@@ -149,7 +167,7 @@
                         
                     </tbody>
                 </table>
-                <a href="../AdminBookings/AdminBookings.html">Show All</a>
+                <a href="../AdminBookings/AdminBookings.php">Show All</a>
              </div>
 
             <!-- Modal Structure -->
@@ -167,7 +185,17 @@
                         <input type="text" id="tspLastName" name="lastName" placeholder="Last Name"  />
                         
                         <label for="tspPhone">Phone:</label>
-                        <input type="tel" id="tspPhone" name="contactNumber" placeholder="Phone Number" />
+                        <input 
+                            type="tel" 
+                            id="tspPhone" 
+                            name="contactNumber" 
+                            placeholder="Enter Sri Lankan Phone Number" 
+                            pattern="0[0-9]{2}[0-9]{7}" 
+                            maxlength="10" 
+                            minlength="10" 
+                            required 
+                            title="Phone number must be a valid Sri Lankan number (e.g., 0771234567 or 0112345678)." 
+                        />
                         
                         <button type="submit">Update</button>
                     </form>

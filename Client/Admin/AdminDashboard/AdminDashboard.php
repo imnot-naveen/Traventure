@@ -1,14 +1,32 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+if ($_SESSION['userType'] !== "Admin") {
+    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Analytics</title>
-  <link rel="stylesheet" href="AdminAnalytics.css">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="AdminDashboard.css">
   <link rel="stylesheet" href="../Common/Logout_Modal.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
-<body> 
+<body>
   <div class="container">
     <aside>
     <div class="top">
@@ -22,49 +40,49 @@
                 </div>
             </div>
             <div class="sidebar">
-                <a href="../AdminDashboard/AdminDashboard.html">
+                <a href="#" class="active">
                     <span class="material-symbols-outlined">
                         grid_view
                     </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="../AdminForum/AdminForum.html">
+                <a href="../AdminForum/AdminForum.php">
                     <span class="material-symbols-outlined">
                         forum
                     </span>
                     <h3>Forums</h3>
                 </a>
-                <a href="../AdminUsers/AdminUsers.html">
+                <a href="../AdminUsers/AdminUsers.php">
                     <span class="material-symbols-outlined">
                         manage_accounts
                     </span>
                     <h3>Users</h3>
                 </a>
-                <a href="../AdminTsp/AdminTsp.html">
+                <a href="../AdminTsp/AdminTsp.php">
                     <span class="material-symbols-outlined">
                         train
                     </span>
                     <h3>Train Service Providers</h3>
                 </a>
-                <a href="../AdminCW/AdminCW.html">
+                <a href="../AdminCW/AdminCW.php">
                     <span class="material-symbols-outlined">
                         smb_share
                         </span>
                     <h3>Content Writers</h3>
                 </a>
-                <a href="../AdminDriver/AdminDriver.html">
+                <a href="../AdminDriver/AdminDriver.php">
                     <span class="material-symbols-outlined">
                         directions_car
                         </span>
                     <h3>Drivers</h3>
                 </a>
-                <a href="#" class="active">
+                <a href="../AdminAnalytics/AdminAnalytics.php">
                     <span class="material-symbols-outlined">
                         monitoring
                     </span>
                     <h3>Analytics</h3>
                 </a>
-                <a href="../AdminBookings/AdminBookings.html">
+                <a href="../AdminBookings/AdminBookings.php">
                     <span class="material-symbols-outlined">
                         confirmation_number
                         </span>
@@ -78,93 +96,86 @@
                 </a>
             </div>
     </aside>
-
     <main>
-            <h1>Analytics</h1>
+            <h1>Admin Dashboard</h1>
             <div class="insights">
                 <div class="sales">
-                    <span class="material-symbols-outlined">analytics</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Booking Sales</h3>
-                            <h1>$25,056</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
+                    <div class="profile-header">
+                        <img src="../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture">
+                        <div class="profile-info">
+                            <h2>Dimuthu Harshamal</h2>
+                            <h3>Admin</h3>
+                            <p>Status: <span class="status active">Active</span></p>
                         </div>
                     </div>
-                    <small class="text-muted">
-                        Last 24 Hours
-                    </small>
-                </div>
-
-                <div class="expenses">
-                    <span class="material-symbols-outlined">
-                        bar_chart
-                        </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>User Accounts</h3>
-                            <h1>43</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>87%</p>
-                            </div>
+                    <div class="profile-details">
+                        <div class="profile-details">
+                            <ul class="left-details">
+                                <li>Email: admin@example.com</li>
+                                <li>Phone: +94 71 234 5678</li>
+                            </ul>
+                            <ul class="right-details">
+                                <li>Role: Administrator</li>
+                                <li>Last Login: 2024-11-22</li>
+                            </ul>
                         </div>
                     </div>
-                    <small class="text-muted">
-                        Last 24 Hours
-                    </small>
                 </div>
-
-                <div class="income">
-                    <span class="material-symbols-outlined">
-                        trending_up
-                        </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Income</h3>
-                            <h1>$10,123</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Last 24 Hours
-                    </small>
-                </div>
-
             </div>
+
             <!-- END OF INSIGHTS -->
-             <div class="charts">
-                <div class="chart-container">
-                    <h2>User Growth</h2>
-                        <canvas id="lineChart" width="400" height="400"></canvas>
-                 </div>
-                 <div class="chart-container .booking-chart">
-                    <h2>Bookings</h2>
-                        <canvas id="lineChart2" width="400" height="400"></canvas>
-                 </div>
-             </div> 
-             <div class="Downloads">
-                <button class="Download" id="Booking">Download Bookings</button>
-                <button class="Download" id="Users">Download User Growth</button>
-              </div>              
+             <div class="recent-orders">
+                <h2>Recent Bookings</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>User</th>
+                            <th>Starting Station</th>
+                            <th>Destination</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10002</td>
+                            <td>Dimuthu Harshamal</td>
+                            <td>Fort</td>
+                            <td>Kandy</td>
+                            <td>$20.00</td>   
+                        </tr>
+                        <tr>
+                            <td>10003</td>
+                            <td>John Doe</td>
+                            <td>Fort</td>
+                            <td>Galle</td>
+                            <td>$13.00</td>   
+                        </tr>
+                        <tr>
+                            <td>10004</td>
+                            <td>Kavindu Perera</td>
+                            <td>Maradana</td>
+                            <td>Badulla</td>
+                            <td>$220.00</td>   
+                        </tr>
+                        <tr>
+                            <td>10005</td>
+                            <td>Kamal Gunarathne</td>
+                            <td>Kalutara</td>
+                            <td>Beliatta</td>
+                            <td>$30.00</td>   
+                        </tr>
+                        <tr>
+                            <td>10006</td>
+                            <td>Tharushi Senarathne</td>
+                            <td>Maho</td>
+                            <td>Ambewela</td>
+                            <td>$22.00</td>   
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="../AdminBookings/AdminBookings.php">Show All</a>
+             </div>
         </main>
 
         <div class="right">
@@ -188,7 +199,7 @@
             </div>
 
             <!-- END OF TOP --> 
-            <div class="recent-updates">
+             <div class="recent-updates">
                 <h2>Recent Updates</h2>
                 <div class="updates">
                     <div class="update">
@@ -275,23 +286,21 @@
                 </div>
              </div>
         </div>
-  </div>
+</div>
 
-        <!-- Dialog Box -->
-        <div id="logoutDialog" class="modal-lo">
-            <div class="modal-content-lo">
-                <h2>Logout</h2>
-                <p>Are you sure you want to logout?</p>
-                <div class="button-group">
-                    <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                    <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-                </div>
+      <!-- Dialog Box -->
+      <div id="logoutDialog" class="modal-lo">
+        <div class="modal-content-lo">
+            <h2>Logout</h2>
+            <p>Are you sure you want to logout?</p>
+            <div class="button-group">
+                <button id="confirmLogout" class="btn btn-confirm">Yes</button>
+                <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
             </div>
         </div>
- <script src="../Common/Logout_Modal.js"></script>
- <script src="AdminAnalytics.js"></script>
- <script src="AdminAnalytics-lineChart.js"></script>
- <script src="AdminAnalytics-lineChart2.js"></script>
+    </div>
 
+  <script src="AdminDashboard.js"></script>
+  <script src="../Common/Logout_Modal.js"></script>
 </body>
 </html>

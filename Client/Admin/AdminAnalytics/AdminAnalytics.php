@@ -1,14 +1,32 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+if ($_SESSION['userType'] !== "Admin") {
+    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Users | Admin</title>
-  <link rel="stylesheet" href="AdminCW.css">
-  <link rel="stylesheet" href="AdminCWAdd.css">
+  <title>Admin Analytics</title>
+  <link rel="stylesheet" href="AdminAnalytics.css">
+  <link rel="stylesheet" href="../Common/Logout_Modal.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
-<body>
+<body> 
   <div class="container">
     <aside>
     <div class="top">
@@ -22,55 +40,55 @@
                 </div>
             </div>
             <div class="sidebar">
-                <a href="../AdminDashboard/AdminDashboard.html">
+                <a href="../AdminDashboard/AdminDashboard.php">
                     <span class="material-symbols-outlined">
                         grid_view
                     </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="../AdminForum/AdminForum.html">
+                <a href="../AdminForum/AdminForum.php">
                     <span class="material-symbols-outlined">
                         forum
                     </span>
                     <h3>Forums</h3>
                 </a>
-                <a href="../AdminUsers/AdminUsers.html">
+                <a href="../AdminUsers/AdminUsers.php">
                     <span class="material-symbols-outlined">
                         manage_accounts
                     </span>
                     <h3>Users</h3>
                 </a>
-                <a href="../AdminTsp/AdminTsp.html">
+                <a href="../AdminTsp/AdminTsp.php">
                     <span class="material-symbols-outlined">
                         train
                     </span>
                     <h3>Train Service Providers</h3>
                 </a>
-                <a href="#" class="active"> 
+                <a href="../AdminCW/AdminCW.php">
                     <span class="material-symbols-outlined">
                         smb_share
                         </span>
                     <h3>Content Writers</h3>
                 </a>
-                <a href="../AdminDriver/AdminDriver.html">
+                <a href="../AdminDriver/AdminDriver.php">
                     <span class="material-symbols-outlined">
                         directions_car
                         </span>
                     <h3>Drivers</h3>
                 </a>
-                <a href="../AdminAnalytics/AdminAnalytics.html">
+                <a href="#" class="active">
                     <span class="material-symbols-outlined">
                         monitoring
                     </span>
                     <h3>Analytics</h3>
                 </a>
-                <a href="../AdminBookings/AdminBookings.html">
+                <a href="../AdminBookings/AdminBookings.php">
                     <span class="material-symbols-outlined">
                         confirmation_number
                         </span>
                     <h3>Bookings</h3>
                 </a>
-                <a href="#">
+                <a href="#" id="logoutButton">
                     <span class="material-symbols-outlined">
                         logout
                     </span>
@@ -80,16 +98,14 @@
     </aside>
 
     <main>
-            <h1>Content Writers</h1>
+            <h1>Analytics</h1>
             <div class="insights">
                 <div class="sales">
-                    <span class="material-symbols-outlined">
-                        group_add
-                        </span>
+                    <span class="material-symbols-outlined">analytics</span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Users</h3>
-                            <h1>5,056</h1>
+                            <h3>Total Booking Sales</h3>
+                            <h1>$25,056</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -101,7 +117,7 @@
                         </div>
                     </div>
                     <small class="text-muted">
-                        Total
+                        Last 24 Hours
                     </small>
                 </div>
 
@@ -124,18 +140,18 @@
                         </div>
                     </div>
                     <small class="text-muted">
-                        Last 30 Days
+                        Last 24 Hours
                     </small>
                 </div>
 
                 <div class="income">
                     <span class="material-symbols-outlined">
-                        psychology
+                        trending_up
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>User Preferences</h3>
-                            <h1>123</h1>
+                            <h3>Total Income</h3>
+                            <h1>$10,123</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -150,76 +166,23 @@
                         Last 24 Hours
                     </small>
                 </div>
-                <!-- END OF INCOME -->
 
             </div>
-            <!-- <a href="AdminCW-profile/AdminCW-profile.html"></a> -->
             <!-- END OF INSIGHTS -->
-             <div class="recent-orders">
-                <h2>Content Writers</h2>
-                <div class="search-container">
-                    <input
-                      type="text"
-                      id="searchBar"
-                      class="search-input"
-                      placeholder="Search users by name..."
-                      oninput="filterUsers()"
-                    />
-                  </div>
-                  <div class="Add-users">
-                    <button id="Add-user">Add User</button>
-                  </div>
-                  <div id="userModal" class="modal">
-                    <div class="modal-content">
-                      <span class="close">&times;</span>
-                      <h2>Add New User</h2>
-                      <form id="addUserForm">
-                        <div class="form-group">
-                          <label for="username">Username</label>
-                          <input type="text" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                          <label for="firstName">First Name</label>
-                          <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        <div class="form-group">
-                          <label for="lastName">Last Name</label>
-                          <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                        <div class="form-group">
-                          <label for="email">Email</label>
-                          <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                          <label for="contactNumber">Contact Number</label>
-                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
-                        </div>
-                        <div class="modal-buttons">
-                          <button type="submit" class="btn-save">Save</button>
-                          <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                <table id="userTable">
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Contact Number</th>
-                        </tr>
-                    </thead>
-                    <tbody id="userTableBody">
-                    </tbody>
-                </table>
-                <div class="pagination">
-                    <button id="prevBtn" onclick="prevPage()">Previous</button>
-                    <span id="pageInfo"></span>
-                    <button id="nextBtn" onclick="nextPage()">Next</button>
-                </div>
-             </div>
+             <div class="charts">
+                <div class="chart-container">
+                    <h2>User Growth</h2>
+                        <canvas id="lineChart" width="400" height="400"></canvas>
+                 </div>
+                 <div class="chart-container .booking-chart">
+                    <h2>Bookings</h2>
+                        <canvas id="lineChart2" width="400" height="400"></canvas>
+                 </div>
+             </div> 
+             <div class="Downloads">
+                <button class="Download" id="Booking">Download Bookings</button>
+                <button class="Download" id="Users">Download User Growth</button>
+              </div>              
         </main>
 
         <div class="right">
@@ -332,8 +295,21 @@
         </div>
   </div>
 
- <script src="AdminCW.js"></script>
- <script src="AdminCW-crud.js"></script>
- <script src="AdminCWAdd.js"></script>
+        <!-- Dialog Box -->
+        <div id="logoutDialog" class="modal-lo">
+            <div class="modal-content-lo">
+                <h2>Logout</h2>
+                <p>Are you sure you want to logout?</p>
+                <div class="button-group">
+                    <button id="confirmLogout" class="btn btn-confirm">Yes</button>
+                    <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+ <script src="../Common/Logout_Modal.js"></script>
+ <script src="AdminAnalytics.js"></script>
+ <script src="AdminAnalytics-lineChart.js"></script>
+ <script src="AdminAnalytics-lineChart2.js"></script>
+
 </body>
 </html>

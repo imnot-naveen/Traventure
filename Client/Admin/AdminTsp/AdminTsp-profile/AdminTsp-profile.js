@@ -14,7 +14,7 @@ closeBtn.addEventListener('click', ()=>{
 // Get elements
 const deactivateBtn = document.getElementById('deactivateBtn');
 const modal = document.getElementById('deactivateModal');
-const closeModal = document.getElementById('closeModal-d'); // Ensure the ID matches
+const closeModal = document.getElementById('closeModal-d'); 
 const confirmDeactivateBtn = document.getElementById('confirmDeactivateBtn');
 const cancelDeactivateBtn = document.getElementById('cancelDeactivateBtn');
 
