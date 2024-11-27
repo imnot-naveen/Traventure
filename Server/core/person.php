@@ -26,15 +26,17 @@ class Person {
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':username', $this->username);
         $stmt->execute();
-
+    
         if ($stmt->rowCount() > 0) {
             return ['success' => false, 'message' => 'User already exists.'];
         }
-
+    
         // Insert into the person table
-        $query = 'INSERT INTO ' . $this->person_table . ' SET username = :username, firstName = :first_name, lastName = :last_name, email = :email, contactNo = :contact_number, userType = :user_type;';
+        $query = 'INSERT INTO ' . $this->person_table . ' 
+                  SET username = :username, firstName = :first_name, lastName = :last_name, 
+                      email = :email, contactNo = :contact_number, userType = :user_type;';
         $stmt = $this->conn->prepare($query);
-
+    
         // Bind parameters
         $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':first_name', $this->first_name);
@@ -42,27 +44,36 @@ class Person {
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':contact_number', $this->contact_number);
         $stmt->bindParam(':user_type', $this->user_type);
-
         if ($stmt->execute()) {
             // Insert into the login table
-            $query = 'INSERT INTO ' . $this->login_table . ' SET username = :username, password = :password, email = :email';
+            $query = 'INSERT INTO ' . $this->login_table . ' 
+                      SET username = :username, password = :password, email = :email, userType = "Traveller"';
             $stmt = $this->conn->prepare($query);
-
+    
             // Hash the password
             $hashed_password = password_hash($this->password, PASSWORD_DEFAULT);
-
+    
             // Bind parameters
             $stmt->bindParam(':username', $this->username);
             $stmt->bindParam(':password', $hashed_password);
             $stmt->bindParam(':email', $this->email);
-
+    
             if ($stmt->execute()) {
-                return ['success' => true, 'message' => 'User created successfully.'];
+                // Insert into the registereduser table
+                $query = 'INSERT INTO registereduser (username) VALUES (:username)';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':username', $this->username);
+    
+                if ($stmt->execute()) {
+                    return ['success' => true, 'message' => 'User created successfully.'];
+                } else {
+                    return ['success' => false, 'message' => 'Failed to create registered user entry.'];
+                }
             } else {
                 return ['success' => false, 'message' => 'Failed to create login entry.'];
             }
         }
-
+    
         return ['success' => false, 'message' => 'User could not be created.'];
     }
 

@@ -13,7 +13,7 @@ class Login {
 
     public function loginUser() {
         session_start();
-
+    
         // Check if either username or email is provided
         if (!empty($this->username)) {
             $query = 'SELECT * FROM ' . $this->login_table . ' WHERE username = :username LIMIT 1';
@@ -29,36 +29,38 @@ class Login {
                 'message' => 'Username or email is required.'
             );
         }
-
+    
         // Execute the query
         $stmt->execute();
-
+    
         // If a user is found
         if ($stmt->rowCount() > 0) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    
             // Verify the entered password against the stored hashed password
             if (password_verify($this->password, $user['password'])) {
-                // Set session variables
+                // Store only required data in session
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
-
+                $_SESSION['userType'] = $user['userType'];
+    
                 return array(
                     'success' => true,
                     'message' => 'Login successful.'
                 );
             } else {
                 return array(
-                    'success' => false,  
+                    'success' => false,
                     'message' => 'Invalid password.'
                 );
             }
         } else {
             return array(
-                'success' => false,  
+                'success' => false,
                 'message' => 'User not found.'
             );
         }
     }
+    
 }
 ?>

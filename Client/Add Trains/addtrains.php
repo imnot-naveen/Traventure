@@ -1,32 +1,39 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+if ($_SESSION['userType'] !== "TSP") {
+    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Train</title>
-    <link rel="stylesheet" href="edittrains.css">
+    <title>Add Trains</title>
+    <link rel="stylesheet" href="addtrains.css">
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="logo.png" alt="Traventure Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">About us</a></li>
-                <li class="profile"><a href="#"><img class="user-icon" src="user-icon.png" alt="User icon"> R</a></li>
-            </ul>
-        </nav>
+        <h1>Train Scheduler</h1>
     </header>
-    
     <div class="form-container">
-        <h2>Edit Train Details</h2>
-        <form id="editTrainForm">
+        <h2>Add Trains</h2>
+        <form id="addTrainForm">
             <div class="form-group">
                 <label for="trainNo">Train No:</label>
-                <input type="text" id="trainNo" name="trainNo" readonly>
+                <input type="text" id="trainNo" name="trainNo" required>
             </div>
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -78,15 +85,12 @@
             <div class="form-group">
                 <label for="trainStops">Train Stops:</label>
                 <div id="trainStops">
-                    <p>Loading train stops...</p>
+                    <p>Please select start and end stations to see train stops.</p>
                 </div>
             </div>
-            <div class="button-group">
-                <button type="submit" class="btn save-btn">Save Changes</button>
-                <button type="button" class="btn cancel-btn" onclick="window.location.href='vieweditTrains.html'">Cancel</button>
-            </div>
+            <button type="submit" class="btn">Add Train</button>
         </form>
     </div>
-    <script src="edittrains.js"></script>
+    <script src="addtrains.js"></script>
 </body>
 </html>
