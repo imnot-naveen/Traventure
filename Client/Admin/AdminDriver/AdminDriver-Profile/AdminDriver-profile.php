@@ -3,12 +3,12 @@
 session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['username'])) {
-    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    header("Location: ../../../Login/LoginPage.html"); 
     exit();
 }
 
 if ($_SESSION['userType'] !== "Admin") {
-    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    header("Location: ../../../Home/home.html"); 
     exit();
 }
 
