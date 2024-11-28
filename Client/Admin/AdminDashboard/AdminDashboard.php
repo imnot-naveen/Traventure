@@ -1,19 +1,19 @@
 <?php
 
-session_start();
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
-    exit();
-}
+// session_start();
+// // Check if the user is logged in
+// if (!isset($_SESSION['username'])) {
+//     header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+//     exit();
+// }
 
-if ($_SESSION['userType'] !== "Admin") {
-    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
-    exit();
-}
+// if ($_SESSION['userType'] !== "Admin") {
+//     header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+//     exit();
+// }
 
 // Get the username from the session
-$username = $_SESSION['username'];
+// $username = $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>

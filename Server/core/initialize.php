@@ -18,4 +18,5 @@ require_once(CORE_PATH . DS . "person.php");
 require_once(CORE_PATH.DS. "login.php");
 require_once(CORE_PATH.DS. "tsp.php");
 require_once(CORE_PATH.DS. "train.php");
+require_once(CORE_PATH.DS. "admin.php")
 ?>
