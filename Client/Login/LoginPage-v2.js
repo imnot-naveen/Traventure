@@ -112,7 +112,7 @@ document
               window.location.href = "../home/home.html";
               break;
             case "TSP":
-              window.location.href = "../manage trains/managetrains.php";
+              window.location.href = "../TSP Dashboard/dashboard.php";
               break;
             case "CW":
               window.location.href = "../CW Home/home.html";

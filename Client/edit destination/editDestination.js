@@ -203,5 +203,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function goBack() {
-  window.location.href = "destinations.html";
+  window.location.href = "../manage destinations/managedestinations.php";
 }
