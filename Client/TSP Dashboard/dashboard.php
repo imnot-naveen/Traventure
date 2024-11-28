@@ -21,7 +21,7 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traventure</title>
-    <link rel="stylesheet" href="managetrains.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
     <header>
@@ -32,8 +32,8 @@ $username = $_SESSION['username'];
     <main>
         <div class="content">
             <div class="buttons">
-                <button class="btn" onclick="location.href='../add trains/addtrains.php';">Add Trains <img src="arrow.png" alt="Arrow icon"> </button>
-                <button class="btn" onclick="location.href='../view and edit trains/viewedittrains.php';">View / Edit Trains <img src="arrow.png" alt="Arrow icon"> </button>
+                <button class="btn" onclick="location.href='../manage trains/managetrains.php';">Manage Trains <img src="arrow.png" alt="Arrow icon"> </button>
+                <button class="btn" onclick="location.href='../manage destinations/managedestinations.php';">Manage Destinations <img src="arrow.png" alt="Arrow icon"> </button>
             </div>
             <div class="image">
                 <img src="train.png" alt="Train image">
