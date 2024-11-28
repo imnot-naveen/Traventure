@@ -13,7 +13,7 @@
        
     <main>
         <section>
-        <h1>All Attractions</h1>
+        <h1>All Posts</h1>
         
         <div class="create">
             <a href="../CWCreate/create.html"><button class="crt">Create</button></a>
@@ -51,7 +51,7 @@
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../Navbar/navbar.html')
+      fetch('../Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;

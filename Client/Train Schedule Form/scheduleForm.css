@@ -4,8 +4,10 @@
     --text-dark: #333;
     --text-light: #666;
     --background-light: #f4f7f9;
+    --background-dark: #e0e0e0;
     --white: #ffffff;
     --transition: all 0.3s ease;
+    --border-radius: 12px;
 }
 
 * {
@@ -26,12 +28,13 @@ header {
     text-align: center;
     background-color: var(--white);
     padding: 20px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 header img {
@@ -46,7 +49,7 @@ header img:hover {
 header h1 {
     margin: 10px 0 0;
     font-size: 28px;
-    color: var(--text-dark);
+    color: var(--primary-color);
     font-weight: 700;
 }
 
@@ -59,7 +62,7 @@ header p {
 /* Container Styling */
 .container {
     text-align: center;
-    background-image: /*inear-gradient(rgba(26, 115, 232, 0.7), rgba(13, 71, 161, 0.7)), */url('9\ arch\ train.jpg');
+    background-image: url('9 arch train.jpg'); /* Corrected the image path */
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -68,21 +71,36 @@ header p {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better contrast */
+    z-index: 1;
 }
 
 .form-box {
     background: rgba(255, 255, 255, 0.95);
     padding: 40px;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
+    position: relative;
+    z-index: 2; /* Ensure the form box is above the overlay */
     transition: var(--transition);
 }
 
 .form-box:hover {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    transform: translateY(-10px);
+    transform: translateY(-5px);
 }
 
 .form-group {
@@ -105,7 +123,7 @@ header p {
     padding: 12px;
     margin-top: 8px;
     border: 2px solid #e0e0e0;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     font-size: 16px;
     transition: var(--transition);
     outline: none;
@@ -114,7 +132,7 @@ header p {
 .form-box select:focus, 
 .form-box input[type="date"]:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
 }
 
 .form-box button {
@@ -125,9 +143,10 @@ header p {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.form-box button:hover {
+.form-box button :hover {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -185,12 +204,5 @@ footer {
     .form-box button {
         font-size: 14px;
         padding: 10px;
-    }
-}
-
-/* Accessibility and Additional Improvements */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
     }
 }

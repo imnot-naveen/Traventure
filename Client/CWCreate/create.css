@@ -1,99 +1,170 @@
+:root {
+    --primary-color: #11134f;
+    --secondary-color: #0d1b4c;
+    --accent-color: #007bff;
+    --background-color: #f5f5f5;
+    --white: #ffffff;
+    --text-color: #333;
+    --border-radius: 12px;
+    --input-border-color: rgba(13, 27, 76, 0.2);
+}
+
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    background-color: rgb(214, 245, 249);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
 main {
-    margin: 80px auto 20px auto;
-    color: #ffffff;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-image: url(../assests/beach.jpg);
-    padding: 30px;
+    width: 100%;
     max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--secondary-color);
+    font-size: 2.5rem;
 }
 
 .form-group {
-    margin-bottom: 20px;
-    width: 100%;
+    margin-bottom: 25px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-family: sans-serif;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--secondary-color);
+    font-size: 16px;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 15px;
+    border: 2px solid var(--input-border-color);
+    border-radius: 8px;
     font-size: 16px;
+    background-color: #f9f9fc;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
 }
 
 .form-group input[type="file"] {
-    padding: 5px;
+    padding: 10px;
+    border: 2px dashed var(--input-border-color);
+}
+
+/* Custom file input styling */
+.form-group input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+    width: 0;
+}
+
+.form-group input[type="file"]::before {
+    content: 'Select files';
+    display: inline-block;
+    background: var(--secondary-color);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.form-group input[type="file"]:hover::before {
+    background-color: var(--accent-color);
 }
 
 .post-button {
-    background-color: #11134f;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
     width: 100%;
-    max-width: 300px;
-    margin-top: 10px;
-    align-self: center;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
 }
 
 .post-button:hover {
-    background-color: #6c63ff;
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Media Queries for Responsiveness */
+/* Validation and error states */
+.form-group input:invalid,
+.form-group textarea:invalid {
+    border-color: #dc3545;
+}
+
+.form-group input:valid,
+.form-group textarea:valid {
+    border-color: #28a745;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     main {
-        margin: 50px 20px;
-        padding: 20px;
+        margin: 30px 20px;
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
     }
 
     .form-group input,
     .form-group textarea {
-        font-size: 14px;
-    }
-
-    .post-button {
+        font-size: 16px;
         padding: 12px;
     }
 }
 
 @media (max-width: 480px) {
     main {
-        margin: 30px 10px;
-        padding: 15px;
+        margin: 20px 10px;
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
     }
 
     .form-group input,
     .form-group textarea {
         font-size: 14px;
-    }
-
-    .post-button {
         padding: 10px;
     }
 }

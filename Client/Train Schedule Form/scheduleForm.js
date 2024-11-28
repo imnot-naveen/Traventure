@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // Set the current date as the default value for the date input
+  const today = new Date();
+  const formattedDate = today.toISOString().split("T")[0]; // Format to YYYY-MM-DD
+  searchDateInput.value = formattedDate;
+
   // Fetch stations from the backend
   const fetchStations = async () => {
     try {
