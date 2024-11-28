@@ -1,137 +1,252 @@
-/* addtrains.css */
-
-body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
+:root {
+    --primary-color: #11134f;
+    --secondary-color: #0d1b4c;
+    --accent-color: #007bff;
+    --background-color: #f5f5f5;
+    --white: #ffffff;
+    --text-color: #333;
+    --border-radius: 12px;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styling */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 28px;
-    color: #0d1b4c;
+.logo img {
+    height: 50px;
 }
 
-.form-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.go-back-btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 600;
+    gap: 10px;
+    transition: color 0.3s ease;
 }
 
-h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #0d1b4c;
+.go-back-btn:hover {
+    color: var(--accent-color);
+}
+
+.go-back-btn svg {
+    stroke: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.go-back-btn:hover svg {
+    transform: translateX(-5px);
+}
+
+/* Main Content */
+main {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.form-wrapper {
+    width: 100%;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.form-header p {
+    color: rgba(0, 0, 0, 0.6);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Form Styling */
+.train-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-left: 5px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper svg {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    stroke: var(--secondary-color);
+    opacity: 0.7;
 }
 
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
+    padding: 15px 15px 15px 50px;
+    border: 2px solid rgba(13, 27, 76, 0.2);
+    border-radius: var(--border-radius);
     font-size: 16px;
-    transition: border-color 0.3s;
+    transition: all 0.3s ease;
+    background-color: #f9f9fc;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-    border-color: #007BFF;
+    border-color: var(--accent-color);
     outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
 
-button.btn {
-    background-color: #007BFF;
+.time-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.station-selectors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.btn {
+    background-color: var(--primary-color);
     color: white;
-    padding: 10px 15px;
+    padding: 15px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: var(--border-radius);
+    font-size: 18px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    margin-top: 20px;
 }
 
-button.btn:hover {
-    background-color: #0056b3;
-}
-
-#trainStops {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    padding: 10px;
-    border: 1px dashed #ced4da;
-    border-radius: 4px;
-    background-color: #fff; 
-    margin-top: 10px;
-}
-
-#trainStops p {
-    margin: 0;
-    color: #6c757d;
+.btn:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .train-stop {
     display: flex;
-    flex-direction: column;
-    align-items: right;
+    align-items: center;
+    gap: 15px;
+    background-color: #f9f9fc;
+    border: 1px solid rgba(13, 27, 76, 0.1);
+    border-radius: 30px;
+    padding: 10px 15px;
     margin-bottom: 10px;
-    width: 100%; 
-    margin-left: 0%;
 }
 
-.train-stop input[type="checkbox"] {
-    margin-left: 0px;
+.train-stop-label {
+    flex-grow: 1;
+    font-weight: 500;
+    color: var(--secondary-color);
 }
 
 .train-stop-times {
     display: flex;
-    align-items: left;
+    align-items: center;
     gap: 10px;
-    margin-left: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
-.train-stop-times.active {
-    opacity: 1;
+.time-pill {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid rgba(13, 27, 76, 0.2);
+    border-radius: 20px;
+    padding: 5px 10px;
+    gap: 5px;
 }
 
-.train-stop-times label {
-    font-size: 0.8em;
-    color: #666;
+.time-pill svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--secondary-color);
+    opacity: 0.7;
 }
 
-.train-stop-times input {
-    width: 100px;
+.time-pill input {
+    border: none;
+    width: 70px;
+    text-align: center;
+    background: transparent;
+    font-size: 14px;
 }
 
+.time-pill input:focus {
+    outline: none;
+}
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-grid,
+    .time-group,
+    .station-selectors {
+        grid-template-columns: 1fr;
+    }
 
+    .form-wrapper {
+        padding: 20px;
+    }
 
-
-
+    .form-header h1 {
+        font-size: 2rem;
+    }
+}

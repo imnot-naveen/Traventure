@@ -20,25 +20,66 @@ $username = $_SESSION['username'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traventure</title>
+    <title>Train Service Provider Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="logo.png" alt="Traventure Logo">
+            <h1>Train Service Provider</h1>
         </div>
-    </header>
-    <main>
-        <div class="content">
-            <div class="buttons">
-                <button class="btn" onclick="location.href='../manage trains/managetrains.php';">Manage Trains <img src="arrow.png" alt="Arrow icon"> </button>
-                <button class="btn" onclick="location.href='../manage destinations/managedestinations.php';">Manage Destinations <img src="arrow.png" alt="Arrow icon"> </button>
+        
+        <ul class="nav-menu">
+            <li>
+                <a href="../manage trains/managetrains.php">
+                    <img src="train-icon.png" alt="Manage Trains">
+                    Manage Trains
+                </a>
+            </li>
+            <li>
+                <a href="../manage destinations/managedestinations.php">
+                    <img src="destination-icon.png" alt="Manage Destinations">
+                    Manage Destinations
+                </a>
+            </li>
+        </ul>
+
+        <<a href="#" class="logout-btn" title="Logout">
+    <img src="logout-icon.png" alt="Logout" style="width: 20px; height: 20px;">
+    Logout
+</a>
+    </div>
+
+    <div class="main-content">
+        <h2 class="dashboard-title">Dashboard Overview</h2>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <img src="total-trains-icon.png" alt="Total Trains">
+                <h3>Total Trains</h3>
+                <p>25 Trains</p>
             </div>
-            <div class="image">
-                <img src="train.png" alt="Train image">
+            
+            <div class="dashboard-card">
+                <img src="active-routes-icon.png" alt="Active Routes">
+                <h3>Active Routes</h3>
+                <p>12 Routes</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <img src="passengers-icon.png" alt="Passengers This Month">
+                <h3>Passengers This Month</h3>
+                <p>5,420 Passengers</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <img src="revenue-icon.png" alt="Monthly Revenue">
+                <h3>Monthly Revenue</h3>
+                <p>$124,500</p>
             </div>
         </div>
-    </main>
+    </div>
+    <script src="dashboard.js"></script>
 </body>
 </html>
