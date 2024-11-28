@@ -1,14 +1,14 @@
 <?php
-session_start(); // Start the session
-
+session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
     exit();
 }
 
-if (!($_SESSION['userType'] == "TSP")){
-    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+if (trim($_SESSION['userType']) !== "TSP") {
+    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
 }
 
 // Get the username from the session

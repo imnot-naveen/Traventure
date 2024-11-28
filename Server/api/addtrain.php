@@ -23,7 +23,7 @@ try {
           VALUES (:trainID, :name, :type, :startStation, :endStation, :departureTime, :arrivalTime, :days)';
     $stmt = $db->prepare($query);
     $stmt->bindParam(':trainID', $data->trainID);
-    $stmt->bindParam(':name', var: $data->name);
+    $stmt->bindParam(':name', $data->name);
     $stmt->bindParam(':type', $data->type);
     $stmt->bindParam(':startStation', $data->startStation);
     $stmt->bindParam(':endStation', $data->endStation);
@@ -55,7 +55,7 @@ try {
 
     // Commit transaction
     $db->commit();
-    echo json_encode(['success' => true, 'message' => 'Train and stops added successfully.']);
+    echo json_encode(['success' => true, 'message' => 'Train and stops added successfully.', 'redirect' => '../../client/manage trains/managetrains.php']);
 } catch (Exception $e) {
     // Rollback transaction on error
     $db->rollBack();

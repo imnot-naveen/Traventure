@@ -1,14 +1,15 @@
 <?php
-session_start(); // Start the session
 
+session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
     exit();
 }
 
-if (!($_SESSION['userType'] == "TSP")){
-    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+if (trim($_SESSION['userType']) !== "TSP") {
+    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
 }
 
 // Get the username from the session
@@ -31,8 +32,8 @@ $username = $_SESSION['username'];
     <main>
         <div class="content">
             <div class="buttons">
-                <button class="btn" onclick="location.href='../add trains/addtrains.html';">Add Trains <img src="arrow.png" alt="Arrow icon"> </button>
-                <button class="btn" onclick="location.href='../view and edit trains/viewedittrains.html';">Manage Trains <img src="arrow.png" alt="Arrow icon"> </button>
+                <button class="btn" onclick="location.href='../add trains/addtrains.php';">Add Trains <img src="arrow.png" alt="Arrow icon"> </button>
+                <button class="btn" onclick="location.href='../view and edit trains/viewedittrains.php';">Manage Trains <img src="arrow.png" alt="Arrow icon"> </button>
             </div>
             <div class="image">
                 <img src="train.png" alt="Train image">

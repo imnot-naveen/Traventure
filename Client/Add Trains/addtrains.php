@@ -7,8 +7,8 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-if ($_SESSION['userType'] !== "TSP") {
-    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
+if (trim($_SESSION['userType']) !== "TSP") {
+    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage
     exit();
 }
 

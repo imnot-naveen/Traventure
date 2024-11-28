@@ -27,15 +27,10 @@ function renderDestinationList(destinations) {
         <h3>${destination.name}</h3>
         <p>${destination.description}</p>
         <div class="actions">
-          <button class="view-btn" data-id="${destination.id}">View</button>
           <button class="edit-btn" data-id="${destination.id}">Edit</button>
           <button class="delete-btn" data-id="${destination.id}">Delete</button>
         </div>
       `;
-
-    destinationItem.querySelector(".view-btn").addEventListener("click", () => {
-      window.location.href = `../view destination/viewDestination.html?id=${destination.id}`;
-    });
 
     destinationItem.querySelector(".edit-btn").addEventListener("click", () => {
       window.location.href = `../edit destination/editDestination.html?id=${destination.id}`;
