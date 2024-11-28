@@ -4,7 +4,7 @@
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
 // Define the root path of your site dynamically
-defined('SITE_ROOT') ? null : define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . DS . 'Traventure_dev' . DS . 'Traventure');
+defined('SITE_ROOT') ? null : define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']. DS . 'Traventure');
 
 // Define the includes and core paths
 defined('INC_PATH') ? null : define('INC_PATH', SITE_ROOT . DS . 'Server' . DS . 'includes');

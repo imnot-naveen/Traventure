@@ -1,3 +1,9 @@
+<?php 
+    if(isset($_SESSION['username']))
+    {
+       $username = $_SESSION['username'];
+    } 
+?>
 <nav>
     <div class="navbar-container">
         <div id="logo">
@@ -12,8 +18,7 @@
             <li><a href="../Home/home.html">Home</a></li>
             <li><a href="#blog">Blog</a></li>
             <li><a href="../About/About.html">About Us</a></li>
-            <li id="login-link"><a href="#login" onclick="handleLogin(event)">Login</a></li>
-            <li class="hidden" id="user-icon"><a href="#profile" onclick="handleLogout(event)"><img src="../assets/icons/user.png" alt="userimg" class="user-icon-img"></a></li>
+            <li id="login-link"><a href="../login/LoginPage.html" >Login</a></li>
         </ul>
     </div>
   </nav>
