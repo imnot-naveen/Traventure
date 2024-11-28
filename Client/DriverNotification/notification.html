@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traventure</title>
+    <link rel="stylesheet" href="notification.css">
+    <link rel="stylesheet" href="../Navbar/navbar.css">
+  <link rel="stylesheet" href="../Footer/footer.css">
+</head>
+    <body>
+        <nav id="navbar-placeholder"></nav>
+       
+    <main>
+        <section>
+        <h1>Ride Notifications</h1>
+        </section>
+
+        <section>
+        <!-- First Notification -->
+            <div class="notification">
+                <div class="notification-content">
+                    <img src="../assets/person.png" alt="Person Icon">
+                    <h2>3 min</h2>
+                    <p>Ella Station - Nine Arch Bridge</p>
+                    <div class="notification-actions">
+                        <a href="../DriverRide/ride.html"><button class="accept-button">Accept</button></a>
+                        <button class="decline-button">Decline</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Notification -->
+            <div class="notification">
+                <div class="notification-content">
+                    <img src="../assets/person.png" alt="Person Icon">
+                    <h2>5 min</h2>
+                    <p>Kandy Station - Temple of the Tooth</p>
+                    <div class="notification-actions">
+                        <a href="../DriverRide/ride.html"><button class="accept-button">Accept</button></a>
+                        <button class="decline-button">Decline</button>
+                    </div>
+                </div>
+            </div>
+      
+    </section>
+    
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="../Navbar/navbar.js"></script>
+  <script src="notification.js"></script>
+  <script>
+    // Function to load the Navbar
+    function loadNavbar() {
+      fetch('../Navbar/navbar.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('navbar-placeholder').innerHTML = data;
+          // Initialize the navbar functionalities
+          document.getElementById('menu-toggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+          });
+
+          // Set the initial state
+          updateNavbarState(false); // Set initial state (false means not logged in)
+        });
+    }
+
+    // Function to load the Footer
+    function loadFooter() {
+      fetch('../Footer/footer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('footer').innerHTML = data;
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      loadNavbar();
+      loadFooter();
+    });
+
+    // Handle login state (optional)
+    function handleLogin(event) {
+      event.preventDefault();
+      // Simulate login action
+      updateNavbarState(true); // Set state to logged in
+    }
+
+    function handleLogout(event) {
+      event.preventDefault();
+      // Simulate logout action
+      updateNavbarState(false); // Set state to logged out
+    }
+
+    function updateNavbarState(isLoggedIn) {
+      if (isLoggedIn) {
+        document.getElementById('login-link').classList.add('hidden');
+        document.getElementById('user-icon').classList.remove('hidden');
+      } else {
+        document.getElementById('login-link').classList.remove('hidden');
+        document.getElementById('user-icon').classList.add('hidden');
+      }
+    }
+  </script>
+    </body>
+</html>
