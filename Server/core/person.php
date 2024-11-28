@@ -32,7 +32,7 @@ class Person {
         }
 
         // Insert into the person table
-        $query = 'INSERT INTO ' . $this->person_table . ' SET username = :username, firstName = :first_name, lastName = :last_name, email = :email, contactNo = :contact_number, userType = :user_type;';
+        $query = 'INSERT INTO ' . $this->person_table . ' SET username = :username, firstName = :first_name, lastName = :last_name, email = :email, contactNo = :contact_number, userType = "Traveller"';
         $stmt = $this->conn->prepare($query);
 
         // Bind parameters
@@ -41,11 +41,10 @@ class Person {
         $stmt->bindParam(':last_name', $this->last_name);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':contact_number', $this->contact_number);
-        $stmt->bindParam(':user_type', $this->user_type);
 
         if ($stmt->execute()) {
             // Insert into the login table
-            $query = 'INSERT INTO ' . $this->login_table . ' SET username = :username, password = :password, email = :email';
+            $query = 'INSERT INTO ' . $this->login_table . ' SET username = :username, password = :password, email = :email, userType = "Traveller"';
             $stmt = $this->conn->prepare($query);
 
             // Hash the password

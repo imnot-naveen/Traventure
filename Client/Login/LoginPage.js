@@ -101,26 +101,7 @@ document
       .then((jsonData) => {
         if (jsonData.success) {
           alert(jsonData.message || "Login successful!");
-
-          // Redirect based on userType
-          switch (jsonData.userType) {
-            case "Admin":
-              window.location.href =
-                "../Admin/AdminDashboard/AdminDashboard.php";
-              break;
-            case "Traveller":
-              window.location.href = "../home/home.html";
-              break;
-            case "TSP":
-              window.location.href = "../manage trains/managetrains.php";
-              break;
-            case "CW":
-              window.location.href = "../CW Home/home.html";
-              break;
-            default:
-              alert("Unknown user type. Contact support.");
-              break;
-          }
+          window.location.href = "../home/home.html";
         } else {
           alert(jsonData.message || "Login failed. Please try again.");
         }
