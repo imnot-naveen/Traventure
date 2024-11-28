@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Train number styling */
+td:nth-child(5) {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+td:nth-child(5):hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Departure time styling (first column) */
+td:first-child {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Type column styling */
+td:last-child {
+    color: #495057;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+    
+    th, td {
+        padding: 8px 10px;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    table {
+        font-size: 12px;
+    }
+    
+    th, td {
+        padding: 6px 8px;
+    }
+}
+
+/* Row hover effect */
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Duration and Ends At columns */
+td:nth-child(3),
+td:nth-child(4) {
+    color: #495057;
+}
+
+/* Even rows subtle background */
+tbody tr:nth-child(even) {
+    background-color: #fbfbfb;
+}
