@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
           if (data.success) {
             alert("Destination added successfully!");
             e.target.reset();
+            window.location.href =
+              "../manage destinations/managedestinations.php";
           } else {
             alert(`Error: ${data.message}`);
           }
