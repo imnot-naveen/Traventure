@@ -5,14 +5,15 @@
 }
 
 body {
-  background-image: url(../assets/content-writer.jpg);
-  background-size: cover; /* Ensure the image covers the entire screen */
-  background-position: center center; /* Position the image in the center */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-image: 
+    linear-gradient(rgba(17, 19, 79, 0.7), rgba(17, 19, 79, 0.7)), 
+    url(../assets/content-writer.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   position: relative; 
   min-height: 100vh;
-  background-blend-mode: overlay;
-  font-family: Arial, sans-serif; /* Add a font for better readability */
+  font-family: Arial, sans-serif;
 }
 
 main {

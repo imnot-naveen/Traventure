@@ -39,7 +39,7 @@
     <script>
         // Navbar and Footer loading scripts (similar to previous implementations)
         function loadNavbar() {
-            fetch('../Navbar/navbar.html')
+            fetch('../Navbar/navbar.php')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('navbar-placeholder').innerHTML = data;

@@ -14,7 +14,7 @@
     <main>
         <section>
             
-            <h1>Create New Post</h1>
+            <h1>Update Post</h1>
             <form action="addblogpost.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="title">Title:</label>
@@ -48,7 +48,7 @@
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../Navbar/navbar.html')
+      fetch('../Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;
