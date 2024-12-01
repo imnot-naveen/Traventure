@@ -1,11 +1,15 @@
-// manage.js
 document.addEventListener("DOMContentLoaded", () => {
+  // Add go back functionality
+  document.getElementById("go-back-btn").addEventListener("click", () => {
+    window.location.href = "../TSP dashboard/dashboard.php"; // Adjust the path as needed
+  });
+
   loadDestinations();
 
   document
     .getElementById("create-destination-btn")
     .addEventListener("click", () => {
-      window.location.href = "../add destination/addDestination.html"; // Redirect to create form
+      window.location.href = "../add destination/addDestination.php";
     });
 });
 
@@ -27,18 +31,13 @@ function renderDestinationList(destinations) {
         <h3>${destination.name}</h3>
         <p>${destination.description}</p>
         <div class="actions">
-          <button class="view-btn" data-id="${destination.id}">View</button>
-          <button class="edit-btn" data-id="${destination.id}">Edit</button>
-          <button class="delete-btn" data-id="${destination.id}">Delete</button>
+          <button class="btn edit-btn" data-id="${destination.id}">Edit</button>
+          <button class="btn delete-btn" data-id="${destination.id}">Delete</button>
         </div>
       `;
 
-    destinationItem.querySelector(".view-btn").addEventListener("click", () => {
-      window.location.href = `../view destination/viewDestination.html?id=${destination.id}`;
-    });
-
     destinationItem.querySelector(".edit-btn").addEventListener("click", () => {
-      window.location.href = `../edit destination/editDestination.html?id=${destination.id}`;
+      window.location.href = `../edit destination/editDestination.php?id=${destination.id}`;
     });
 
     destinationItem

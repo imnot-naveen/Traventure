@@ -82,7 +82,7 @@ document
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    fetch("../../Server/api/login.php", {
+    fetch("/traventure/server/api/login.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -101,7 +101,26 @@ document
       .then((jsonData) => {
         if (jsonData.success) {
           alert(jsonData.message || "Login successful!");
-          window.location.href = "../home/home.html";
+
+          // Redirect based on userType
+          switch (jsonData.userType) {
+            case "Admin":
+              window.location.href =
+                "../Admin/AdminDashboard/AdminDashboard.php";
+              break;
+            case "Traveller":
+              window.location.href = "../home/home.html";
+              break;
+            case "TSP":
+              window.location.href = "../TSP Dashboard/dashboard.php";
+              break;
+            case "CW":
+              window.location.href = "../CW Home/home.html";
+              break;
+            default:
+              alert("Unknown user type. Contact support.");
+              break;
+          }
         } else {
           alert(jsonData.message || "Login failed. Please try again.");
         }
@@ -118,6 +137,11 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
+    // Clear previous error messages
+    document
+      .querySelectorAll(".error-message")
+      .forEach((el) => (el.textContent = ""));
+
     const username = document.getElementById("new-username").value;
     const firstName = document.getElementById("new-firstName").value;
     const lastName = document.getElementById("new-lastName").value;
@@ -127,11 +151,38 @@ document
     const confirmPassword = document.getElementById("confirm-password").value;
     const userType = "Traveller";
 
+    let valid = true;
+
+    // Validate contact number (10 digits)
+    if (contactNumber.length !== 10) {
+      document.getElementById("contact-error").textContent =
+        "Contact number must be exactly 10 digits.";
+      valid = false;
+    } else if (!/^\d+$/.test(contactNumber)) {
+      document.getElementById("contact-error").textContent =
+        "Contact number must contain only digits.";
+      valid = false;
+    }
+
+    // Check if email is not empty
+    if (!email) {
+      document.getElementById("email-error").textContent = "Email is required.";
+      valid = false;
+    }
+
+    // Check if passwords match
     if (newPassword !== confirmPassword) {
-      alert("Passwords do not match. Please try again.");
+      document.getElementById("confirm-password-error").textContent =
+        "Passwords do not match. Please try again.";
+      valid = false;
+    }
+
+    // If validation fails, stop the submission
+    if (!valid) {
       return;
     }
 
+    // Proceed with form submission if valid
     fetch("/traventure/server/api/signup.php", {
       method: "POST",
       headers: {
@@ -147,11 +198,16 @@ document
         user_type: userType,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((jsonData) => {
         if (jsonData.success) {
-          alert("Signup successful! Please log in.");
-          switchTab("login");
+          alert(jsonData.message || "Signup successful!");
+          // Redirect or perform further actions as needed
         } else {
           alert(jsonData.message || "Signup failed. Please try again.");
         }
@@ -161,6 +217,36 @@ document
         alert("An error occurred. Please try again later.");
       });
   });
+
+// Real-time validation for contact number
+document.getElementById("new-contact").addEventListener("input", function () {
+  const contactNumber = this.value;
+  const contactError = document.getElementById("contact-error");
+
+  // Clear previous error message
+  contactError.textContent = "";
+
+  // Validate contact number
+  if (contactNumber.length > 10) {
+    contactError.textContent = "Contact number must be exactly 10 digits.";
+  } else if (!/^\d*$/.test(contactNumber)) {
+    contactError.textContent = "Contact number must contain only digits.";
+  }
+});
+
+// Real-time validation for email
+document.getElementById("email").addEventListener("input", function () {
+  const email = this.value;
+  const emailError = document.getElementById("email-error");
+
+  // Clear previous error message
+  emailError.textContent = "";
+
+  // Check if email is empty
+  if (!email) {
+    emailError.textContent = "Email is required.";
+  }
+});
 
 // Start the animation with initial texts
 animateAlternatingText("Welcome to Traventure", "Your adventure starts here");

@@ -22,8 +22,10 @@ class TrainAPI {
                 t.trainID, 
                 t.name, 
                 t.type, 
-                t.startStation, 
-                t.endStation, 
+                ts1.stationID AS startStationID, 
+                ts2.stationID AS endStationID, 
+                ts1.name AS startStationName,
+                ts2.name AS endStationName,
                 t.departureTime, 
                 t.arrivalTime, 
                 t.days,
@@ -37,21 +39,25 @@ class TrainAPI {
                 Trainstops ts ON t.trainID = ts.trainID
             LEFT JOIN 
                 Station s ON ts.stationID = s.stationID
+            LEFT JOIN 
+                Station ts1 ON t.startStation = ts1.stationID
+            LEFT JOIN 
+                Station ts2 ON t.endStation = ts2.stationID
             WHERE 
                 t.trainID = :trainNo
         ";
-    
+
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
         // Bind the parameter
         $stmt->bindParam(':trainNo', $trainNo);
         // Execute the statement
         $stmt->execute();
-    
+
         if ($stmt->rowCount() > 0) {
             $trainData = null;
             $stops = [];
-    
+
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Basic train details (only set once)
                 if ($trainData === null) {
@@ -59,14 +65,14 @@ class TrainAPI {
                         'trainID' => $row['trainID'],
                         'name' => $row['name'],
                         'type' => $row['type'],
-                        'startStation' => $row['startStation'],
-                        'endStation' => $row['endStation'],
+                        'startStation' => $row['startStationName'], // Set startStation name
+                        'endStation' => $row['endStationName'], // Set endStation name
                         'departureTime' => $row['departureTime'],
                         'arrivalTime' => $row['arrivalTime'],
                         'days' => $row['days']
                     ];
                 }
-    
+
                 // Add stops if station exists
                 if ($row['stationID']) {
                     $stops[] = [
@@ -77,7 +83,7 @@ class TrainAPI {
                     ];
                 }
             }
-    
+
             $trainData['stops'] = $stops;
             return $trainData;
         } else {
@@ -98,7 +104,6 @@ $trainDetails = $trainAPI->getTrainDetails($_GET['trainNo']);
 if ($trainDetails === null) {
     echo json_encode(['error' => 'No train found with the provided train number']);
 } else {
-    echo json_encode(value: $trainDetails);
+    echo json_encode($trainDetails); // Remove `value:` and directly return the array
 }
-
 ?>

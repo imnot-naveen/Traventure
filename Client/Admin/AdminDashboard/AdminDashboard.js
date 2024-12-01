@@ -10,76 +10,72 @@ closeBtn.addEventListener('click', ()=>{
   sideMenu.style.display = 'none';
 })
 
-// Define the API endpoints
-const sessionApiUrl = "http://yourdomain.com/api/get_session_adminid.php";
-const adminDetailsApiUrl = "http://yourdomain.com/api/get_admin_details.php";
 
-// Function to fetch admin ID from session
-async function fetchAdminIdFromSession() {
-    try {
-        // Fetch the admin ID from session
-        const response = await fetch(sessionApiUrl, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
+// // Function to extract query parameter by name
+// function getQueryParam(param) {
+//   const urlParams = new URLSearchParams(window.location.search);
+//   return urlParams.get(param);
+// }
 
-        // Check if the response is okay
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
+// // Fetch the admin ID from the URL
+// const adminId = getQueryParam('adminid');
 
-        // Parse the JSON response
-        const data = await response.json();
+// if (adminId) {
+//   // Fetch Admin details using the ID
+//   fetch(`../api/getAdminDetails.php?adminid=${adminId}`)
+//       .then(response => response.json())
+//       .then(data => {
+//           if (data.success) {
+//               // Populate the profile page with admin details
+//               document.getElementById('adminName').textContent = `${data.data.first_name} ${data.data.last_name}`;
+//               document.getElementById('adminRole').textContent = data.data.role || 'Admin';
+//               document.getElementById('adminStatus').textContent = data.data.active_status;
+//               document.getElementById('adminEmail').textContent = `Email: ${data.data.email}`;
+//               document.getElementById('adminPhone').textContent = `Phone: ${data.data.contact_number}`;
+//               document.getElementById('adminRoleDetail').textContent = `Role: ${data.data.role}`;
+//               document.getElementById('adminUsername').textContent = `Username: ${data.data.username}`;
 
-        if (data.success) {
-            console.log("Admin ID from Session:", data.adminid);
-            return data.adminid; // Return the admin ID
-        } else {
-            console.error("Error:", data.message);
-            return null;
-        }
-    } catch (error) {
-        console.error("Fetch Session Error:", error.message);
-        return null;
-    }
-}
+//               // Update status button
+//               const statusButton = document.getElementById('confirmDeactivateBtn');
+//               if (data.data.active_status.toLowerCase() === 'active') {
+//                   statusButton.textContent = 'Deactivate';
+//               } else {
+//                   statusButton.textContent = 'Activate';
+//               }
 
-// Function to fetch admin details using the admin ID
-async function fetchAdminDetails(adminId) {
-    try {
-        const response = await fetch(`${adminDetailsApiUrl}?adminid=${adminId}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
+//               // Add event listener to toggle status
+//               statusButton.addEventListener('click', function () {
+//                   const newStatus = (data.data.active_status.toLowerCase() === 'active') ? 'inactive' : 'active';
+//                   updateAdminStatus(adminId, newStatus);
+//               });
+//           } else {
+//               console.error('Admin not found:', data.message);
+//           }
+//       })
+//       .catch(error => console.error('Error fetching admin details:', error));
+// } else {
+//   console.error('No Admin ID provided in the URL');
+// }
 
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
+// // Function to update Admin status
+// function updateAdminStatus(adminId, newStatus) {
+//   fetch(`../api/updateAdminStatus.php`, {
+//       method: 'POST',
+//       headers: {
+//           'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ adminid: adminId, status: newStatus }),
+//   })
+//       .then(response => response.json())
+//       .then(data => {
+//           if (data.success) {
+//               alert(`Status updated to ${newStatus}`);
+//               // Refresh the page or update the status dynamically
+//               document.getElementById('adminStatus').textContent = newStatus;
+//           } else {
+//               console.error('Error updating status:', data.message);
+//           }
+//       })
+//       .catch(error => console.error('Error updating status:', error));
+// }
 
-        const data = await response.json();
-
-        if (data.success) {
-            console.log("Admin Details:", data.data);
-        } else {
-            console.error("Error:", data.message);
-        }
-    } catch (error) {
-        console.error("Fetch Admin Details Error:", error.message);
-    }
-}
-
-// Main function to fetch session-based admin details
-async function fetchSessionBasedAdminDetails() {
-    const adminId = await fetchAdminIdFromSession(); // Fetch admin ID from session
-
-    if (adminId) {
-        await fetchAdminDetails(adminId); // Fetch admin details if admin ID is retrieved
-    }
-}
-
-// Call the main function
-fetchSessionBasedAdminDetails();

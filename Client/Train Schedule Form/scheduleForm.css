@@ -1,36 +1,68 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+:root {
+    --primary-color: #1a73e8;
+    --secondary-color: #0d47a1;
+    --text-dark: #333;
+    --text-light: #666;
+    --background-light: #f4f7f9;
+    --background-dark: #e0e0e0;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+    --border-radius: 12px;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+/* Header Styling */
 header {
     text-align: center;
-    background-color: white;
+    background-color: var(--white);
     padding: 20px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 header img {
-    height: 80px; /* Placeholder for uploaded logo */
+    height: 80px;
+    transition: transform 0.3s ease;
+}
+
+header img:hover {
+    transform: scale(1.05);
 }
 
 header h1 {
-    margin: 10px 0 0 0;
+    margin: 10px 0 0;
     font-size: 28px;
-    color: #333;
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 header p {
     margin: 5px 0;
     font-size: 14px;
-    color: #666;
+    color: var(--text-light);
 }
 
+/* Container Styling */
 .container {
     text-align: center;
-    background-image: url('9 arch train.jpg'); /* Replace with your image */
+    background-image: url('9 arch train.jpg'); /* Corrected the image path */
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -38,53 +70,139 @@ header p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better contrast */
+    z-index: 1;
 }
 
 .form-box {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    z-index: 2; /* Ensure the form box is above the overlay */
+    transition: var(--transition);
+}
+
+.form-box:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 .form-box label {
     display: block;
-    margin: 10px 0 5px;
+    margin-bottom: 8px;
     font-size: 14px;
-    color: #333;
-    text-align: left;
+    color: var(--text-dark);
+    font-weight: 600;
 }
 
-.form-box select, .form-box input[type="date"], .form-box button {
+.form-box select, 
+.form-box input[type="date"], 
+.form-box button {
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+    padding: 12px;
+    margin-top: 8px;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.form-box select:focus, 
+.form-box input[type="date"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
 }
 
 .form-box button {
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.form-box button:hover {
-    background-color: #0056b3;
+.form-box button :hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Footer Styling */
 footer {
     text-align: center;
     padding: 20px;
-    background-color: white;
+    background-color: var(--white);
     font-size: 12px;
-    color: #666;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    color: var(--text-light);
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 15px 0;
+        position: relative;
+    }
+
+    header img {
+        height: 60px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .container {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 20px 20px;
+    }
+
+    .form-box {
+        padding: 30px;
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header h1 {
+        font-size: 20px;
+    }
+
+    .form-box {
+        padding: 20px;
+    }
+
+    .form-box select, 
+    .form-box input[type="date"], 
+    .form-box button {
+        font-size: 14px;
+        padding: 10px;
+    }
 }

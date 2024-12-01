@@ -275,18 +275,7 @@ main .insights > div span {
   color: #BDC8E8;
 }
 
-.status {
-  font-weight: bold;
-}
 
-.status.active {
-  display: inline-block; /* Makes it appear as a block for padding */
-  background-color: #007bff; /* Blue background */
-  color: white; /* White text color */
-  border-radius: 12px; /* Rounded corners */
-  padding: 4px 10px; /* Adds spacing inside the badge */
-  font-size: 12px;
-}
 
 .profile-details {
   display: flex;
@@ -309,7 +298,7 @@ main .insights > div span {
 }
 
 .right-details {
-  padding-left: 20rem;
+  padding-right: 20rem;
   text-align: left;
 }
 

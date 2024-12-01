@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2024 at 05:20 PM
+-- Generation Time: Nov 28, 2024 at 11:32 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `traventure`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogposts`
+--
+
+CREATE TABLE `blogposts` (
+  `blog_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `intro` text NOT NULL,
+  `content` text NOT NULL,
+  `imageURL` varchar(500) DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
+  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `blogposts`
+--
+
+INSERT INTO `blogposts` (`blog_id`, `title`, `city`, `intro`, `content`, `imageURL`, `createdAt`, `updatedAt`) VALUES
+(2, 'My first post ', 'Mount Lavinia ', 'Beach', 'This is a beach ', '../../Public/Uploads/mount-lavinia-beach.jpg', '2024-11-27 18:03:37', '2024-11-27 18:03:37');
 
 -- --------------------------------------------------------
 
@@ -46,6 +70,70 @@ CREATE TABLE `contentwriter` (
   `CWID` int(6) NOT NULL,
   `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `destination`
+--
+
+CREATE TABLE `destination` (
+  `destination_id` int(10) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `type` int(11) NOT NULL,
+  `nearestStation` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `destination`
+--
+
+INSERT INTO `destination` (`destination_id`, `name`, `description`, `type`, `nearestStation`) VALUES
+(1, 'Galle Fort ', 'Galle Fort (Sinhala: ගාලු කොටුව Galu Kotuwa; Tamil: காலிக் கோட்டை, romanized: Kālik Kōṭṭai), in the Bay of Galle on the southwest coast of Sri Lanka, was built first in 1588 by the Portuguese, then extensively fortified by the Dutch during the 17th century from 1649 onwards. It is a historical, archaeological and architectural heritage monument, which even after more than 432 years maintains a polished appearance, due to extensive reconstruction work done by the Archaeological Department of Sri Lanka.\r\n\r\nThe fort has a colourful history, and today has a multi-ethnic and multi-religious population.The Sri Lankan government and many Dutch people who still own some of the properties inside the fort are looking at making this one of the modern wonders of the world.The heritage value of the fort has been recognized by the UNESCO and the site has been inscribed as a cultural heritage UNESCO World Heritage Site under criteria iv, for its unique exposition of \"an urban ensemble which illustrates the interaction of European architecture and South Asian traditions from the 16th to the 19th centuries\".\r\n\r\nThe Galle Fort, also known as the Dutch Fort or the \"Ramparts of Galle\", withstood the Boxing Day tsunami which damaged part of coastal area Galle town. It has since been restored.', 5, 161),
+(3, 'Mount Lavinia Beach ', 'Mount Lavinia beach is Colombo’s beach retreat and one of the most famous sea-bathing spots in the country. This beach is located approximately an hour’s drive away from Colombo. Although the Dehiwala-Mount Lavinia area is a highly residential area, its beach strip is a popular spot for those looking for a quick getaway from the hustle and bustle of the city. Ideal for those on a short stay in Colombo and seeking a quick dip into the waters of the ocean, Mount Lavinia beach is the perfect escape with its sea breeze, spectacular sunsets and sandy shores lined with lively cafes and restaurants making it a place bustling with life.\r\nThis beach is suitable for swimming depending on the season, which is from October to April. The waters can be very rough during some seasons. Therefore visitors should take precaution and always swim near groups. The restaurants vary from little cafes to high end restaurants, where you can savour local street food and mouth watering seafood delicacies while enjoying the sea breeze and panoramic views of the ocean. Mount Lavinia beach is undoubtedly one of the best beaches located in the vicinity of Colombo.\r\n\r\n', 3, 109);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `destinationphotos`
+--
+
+CREATE TABLE `destinationphotos` (
+  `destination` int(11) NOT NULL,
+  `photoName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `destinationphotos`
+--
+
+INSERT INTO `destinationphotos` (`destination`, `photoName`) VALUES
+(1, 'Galle-Fort.jpg'),
+(3, 'mount-lavinia-beach.jpg'),
+(3, 'mount lavinia beach.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `destinationtypes`
+--
+
+CREATE TABLE `destinationtypes` (
+  `type_id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `destinationtypes`
+--
+
+INSERT INTO `destinationtypes` (`type_id`, `type`) VALUES
+(1, 'waterfall'),
+(2, 'mountain'),
+(3, 'beach'),
+(4, 'forest'),
+(5, 'historical site');
 
 -- --------------------------------------------------------
 
@@ -79,9 +167,10 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`username`, `email`, `password`, `userType`) VALUES
-('exampleUser', 'john@gmail.com', '$2y$10$WuC8oD2QqXqyiRC.4brkwOAADS.E4Vk6uNbYRirSBUl2Ru1N5m.dC', ''),
-('exampleUser2', 'jane@gmail.com', '$2y$10$v0uZ8cJkSpwcwQNuyf3KQ.JbK4xqMExt2YbAWCkjXZDBBjNkFQ/zy', ''),
-('imnot_naveen', 'naveenharinda2@gmail.com', '$2y$10$V1gFv0ZxZJIlaH/oOG/OAuQFJfhKwyovsC8Km87zUjcqwX4wuYjIe', '');
+('exampleUser', 'john@gmail.com', '$2y$10$WuC8oD2QqXqyiRC.4brkwOAADS.E4Vk6uNbYRirSBUl2Ru1N5m.dC', 'Traveller '),
+('exampleUser2', 'jane@gmail.com', '$2y$10$v0uZ8cJkSpwcwQNuyf3KQ.JbK4xqMExt2YbAWCkjXZDBBjNkFQ/zy', 'Traveller'),
+('imnot_naveen', 'naveenharinda2@gmail.com', '$2y$10$V1gFv0ZxZJIlaH/oOG/OAuQFJfhKwyovsC8Km87zUjcqwX4wuYjIe', 'Traveller'),
+('test_tsp', 'test@test.com', '$2y$10$XRcPo4XFfhroAoXk80iIQe3obfEmjLTxhH1ayW8dn8GSQrMstI6B2', 'TSP');
 
 -- --------------------------------------------------------
 
@@ -106,7 +195,8 @@ CREATE TABLE `person` (
 INSERT INTO `person` (`username`, `firstName`, `lastName`, `email`, `contactNo`, `userType`, `profile_picture`) VALUES
 ('exampleUser', 'John', 'Doe', 'john@gmail.com', 123456789, 'Traveller', ''),
 ('exampleUser2', 'Jane', 'Doe', 'jane@gmail.com', 123456789, 'Traveller', ''),
-('imnot_naveen', 'Naveen ', 'Harinda', 'naveenharinda2@gmail.com', 774554321, 'Traveller', '');
+('imnot_naveen', 'Naveen ', 'Harinda', 'naveenharinda2@gmail.com', 774554321, 'Traveller', ''),
+('test_tsp', 'test', 'tester', 'test@test.com', 1234567890, 'TSP', '');
 
 -- --------------------------------------------------------
 
@@ -118,6 +208,13 @@ CREATE TABLE `registereduser` (
   `userId` int(6) NOT NULL,
   `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `registereduser`
+--
+
+INSERT INTO `registereduser` (`userId`, `username`) VALUES
+(2, 'test_tsp');
 
 -- --------------------------------------------------------
 
@@ -273,6 +370,14 @@ CREATE TABLE `train` (
   `days` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `train`
+--
+
+INSERT INTO `train` (`trainID`, `name`, `type`, `startStation`, `endStation`, `departureTime`, `arrivalTime`, `days`) VALUES
+(1, 'Colombo Commuter ', 'Commuter', 101, 104, '21:24:00', '21:34:00', 'Weekdays'),
+(2, 'Colombo Commuter ', 'Express', 101, 103, '15:44:00', '15:55:00', 'Daily');
+
 -- --------------------------------------------------------
 
 --
@@ -281,8 +386,16 @@ CREATE TABLE `train` (
 
 CREATE TABLE `trainserviceprovider` (
   `TSPID` int(6) NOT NULL,
-  `username` varchar(255) NOT NULL
+  `username` varchar(255) NOT NULL,
+  `status` enum('active','inactive','','') NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `trainserviceprovider`
+--
+
+INSERT INTO `trainserviceprovider` (`TSPID`, `username`, `status`) VALUES
+(1, 'exampleUser2', 'active');
 
 -- --------------------------------------------------------
 
@@ -296,6 +409,19 @@ CREATE TABLE `trainstops` (
   `arrivaltime` time NOT NULL,
   `departuretime` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `trainstops`
+--
+
+INSERT INTO `trainstops` (`trainID`, `stationid`, `arrivaltime`, `departuretime`) VALUES
+(1, 101, '21:20:00', '21:24:00'),
+(1, 102, '21:26:00', '21:28:00'),
+(1, 103, '21:30:00', '21:31:00'),
+(1, 104, '21:32:00', '21:34:00'),
+(2, 101, '15:44:00', '15:46:00'),
+(2, 102, '15:47:00', '15:48:00'),
+(2, 103, '15:55:00', '15:56:00');
 
 -- --------------------------------------------------------
 
@@ -330,7 +456,7 @@ CREATE TABLE `trip` (
 
 CREATE TABLE `tripdestination` (
   `tripID` int(10) NOT NULL,
-  `destination` varchar(100) NOT NULL
+  `destination` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -341,12 +467,18 @@ CREATE TABLE `tripdestination` (
 
 CREATE TABLE `userdestination` (
   `userId` int(6) NOT NULL,
-  `prefferedDestination` varchar(255) NOT NULL
+  `prefferedDestination` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `blogposts`
+--
+ALTER TABLE `blogposts`
+  ADD PRIMARY KEY (`blog_id`);
 
 --
 -- Indexes for table `booking`
@@ -361,6 +493,26 @@ ALTER TABLE `booking`
 ALTER TABLE `contentwriter`
   ADD PRIMARY KEY (`CWID`),
   ADD KEY `cw_username` (`username`);
+
+--
+-- Indexes for table `destination`
+--
+ALTER TABLE `destination`
+  ADD PRIMARY KEY (`destination_id`),
+  ADD KEY `fk_destType` (`type`),
+  ADD KEY `fk_nearStation` (`nearestStation`);
+
+--
+-- Indexes for table `destinationphotos`
+--
+ALTER TABLE `destinationphotos`
+  ADD KEY `fk_destination` (`destination`);
+
+--
+-- Indexes for table `destinationtypes`
+--
+ALTER TABLE `destinationtypes`
+  ADD PRIMARY KEY (`type_id`);
 
 --
 -- Indexes for table `inactiveusers`
@@ -450,23 +602,43 @@ ALTER TABLE `trip`
 -- Indexes for table `tripdestination`
 --
 ALTER TABLE `tripdestination`
-  ADD KEY `tripdestination_tripid` (`tripID`);
+  ADD KEY `tripdestination_destID` (`destination`),
+  ADD KEY `tripdestination_tripID` (`tripID`);
 
 --
 -- Indexes for table `userdestination`
 --
 ALTER TABLE `userdestination`
-  ADD KEY `destination_userid` (`userId`);
+  ADD KEY `destination_userid` (`userId`),
+  ADD KEY `destination_prefdestID` (`prefferedDestination`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `blogposts`
+--
+ALTER TABLE `blogposts`
+  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `destination`
+--
+ALTER TABLE `destination`
+  MODIFY `destination_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `destinationtypes`
+--
+ALTER TABLE `destinationtypes`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `registereduser`
 --
 ALTER TABLE `registereduser`
-  MODIFY `userId` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `userId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -485,6 +657,19 @@ ALTER TABLE `contentwriter`
   ADD CONSTRAINT `cw_username` FOREIGN KEY (`username`) REFERENCES `person` (`username`);
 
 --
+-- Constraints for table `destination`
+--
+ALTER TABLE `destination`
+  ADD CONSTRAINT `fk_destType` FOREIGN KEY (`type`) REFERENCES `destinationtypes` (`type_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_nearStation` FOREIGN KEY (`nearestStation`) REFERENCES `station` (`stationID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `destinationphotos`
+--
+ALTER TABLE `destinationphotos`
+  ADD CONSTRAINT `fk_destination` FOREIGN KEY (`destination`) REFERENCES `destination` (`destination_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `login`
 --
 ALTER TABLE `login`
@@ -495,7 +680,7 @@ ALTER TABLE `login`
 -- Constraints for table `registereduser`
 --
 ALTER TABLE `registereduser`
-  ADD CONSTRAINT `registered_username` FOREIGN KEY (`username`) REFERENCES `person` (`username`);
+  ADD CONSTRAINT `registered_username` FOREIGN KEY (`username`) REFERENCES `person` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `routes`
@@ -541,12 +726,14 @@ ALTER TABLE `trip`
 -- Constraints for table `tripdestination`
 --
 ALTER TABLE `tripdestination`
-  ADD CONSTRAINT `tripdestination_tripid` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`);
+  ADD CONSTRAINT `tripdestination_destID` FOREIGN KEY (`destination`) REFERENCES `destination` (`destination_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tripdestination_tripID` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`);
 
 --
 -- Constraints for table `userdestination`
 --
 ALTER TABLE `userdestination`
+  ADD CONSTRAINT `destination_prefdestID` FOREIGN KEY (`prefferedDestination`) REFERENCES `destinationtypes` (`type_id`),
   ADD CONSTRAINT `destination_userid` FOREIGN KEY (`userId`) REFERENCES `registereduser` (`userId`);
 COMMIT;
 

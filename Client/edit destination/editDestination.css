@@ -1,0 +1,164 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #ecf0f1;
+    --text-color: #333;
+    --white: #ffffff;
+    --input-border: #bdc3c7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+#edit-destination {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+}
+
+#edit-destination h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+#edit-destination-form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+input, 
+select, 
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#photos-section {
+    margin-bottom: 20px;
+}
+
+#photos-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+#destinationPhotos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.photo-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.photo-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.delete-photo {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(231, 76, 60, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.delete-photo:hover {
+    background-color: #e74c3c;
+}
+
+#newPhotosInput {
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"] {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+button:last-child {
+    background-color: #95a5a6;
+    color: var(--white);
+}
+
+button:last-child:hover {
+    background-color: #7f8c8d;
+}
+
+@media (max-width: 600px) {
+    #edit-destination {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .photo-wrapper {
+        width: 80px;
+        height: 80px;
+    }
+}
