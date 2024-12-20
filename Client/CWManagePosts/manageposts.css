@@ -261,3 +261,20 @@ section h1 {
     align-items: center; /* Center align the cards */
     gap: 20px; /* Space between cards */
 }
+
+a.pill-link {
+    display: inline-block; /* Makes it behave like a button */
+    padding: 0.25rem 0.75rem; /* Adjusts size for a small pill shape */
+    border-radius: 9999px; /* Makes it pill-shaped */
+    background-color: #1e3a8a; /* Dark blue background color */
+    color: white; /* White text for contrast */
+    text-decoration: none; /* Removes underline */
+    font-size: 0.875rem; /* Small font size */
+    font-weight: 500; /* Slightly bold for better readability */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+a.pill-link:hover {
+    background-color: #1d4ed8; /* Slightly brighter blue on hover */
+    transform: scale(1.05); /* Subtle scaling effect */
+}
