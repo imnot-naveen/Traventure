@@ -100,26 +100,24 @@ $username = $_SESSION['username'];
             <h1>Admin Dashboard</h1>
             <div class="insights">
                 <div class="sales">
-                    <div class="profile-header">
-                        <img src="../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture">
-                        <div class="profile-info">
-                            <h2>Dimuthu Harshamal</h2>
-                            <h3>Admin</h3>
-                            <p>Status: <span class="status active">Active</span></p>
-                        </div>
-                    </div>
-                    <div class="profile-details">
-                        <div class="profile-details">
-                            <ul class="left-details">
-                                <li>Email: admin@example.com</li>
-                                <li>Phone: +94 71 234 5678</li>
-                            </ul>
-                            <ul class="right-details">
-                                <li>Role: Administrator</li>
-                                <li>Last Login: 2024-11-22</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="profile-header">
+            <img src="../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture" id="adminPicture">
+            <div class="profile-info">
+                <h2 id="adminName">Admin Name</h2>
+                <h3 id="adminRole">Admin Role</h3>
+            </div>
+        </div>
+        <div class="profile-details">
+            <ul class="left-details">
+                <li id="adminEmail">Email: admin@example.com</li>
+                <li id="adminPhone">Phone: +94 71 234 5678</li>
+            </ul>
+            <ul class="right-details">
+                <li id="adminRoleDetail">Role: Administrator</li>
+                <li id="adminUsername">Username: dimuthu</li>
+            </ul>
+        </div>
+                 
                 </div>
             </div>
 
