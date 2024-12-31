@@ -1,19 +1,5 @@
 <?php
-
-session_start();
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: ../../Login/LoginPage.html"); 
-    exit();
-}
-
-if ($_SESSION['userType'] !== "Admin") {
-    header("Location: ../../Home/home.html"); 
-    exit();
-}
-
-// Get the username from the session
-$username = $_SESSION['username'];
+    // include '../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,79 +10,12 @@ $username = $_SESSION['username'];
   <title>Admin Analytics</title>
   <link rel="stylesheet" href="AdminAnalytics.css">
   <link rel="stylesheet" href="../Common/Logout_Modal.css">
+  <link rel="stylesheet" href="../Sidebar/Sidebar.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body> 
   <div class="container">
-    <aside>
-    <div class="top">
-                <div class="logo">
-                    <img src="../../assets/logo/logo.png" alt="logo">
-                </div>
-                <div class="close" id="close-btn">
-                    <span class="material-symbols-outlined">
-                        close
-                    </span>
-                </div>
-            </div>
-            <div class="sidebar">
-                <a href="../AdminDashboard/AdminDashboard.php">
-                    <span class="material-symbols-outlined">
-                        grid_view
-                    </span>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="../AdminForum/AdminForum.php">
-                    <span class="material-symbols-outlined">
-                        forum
-                    </span>
-                    <h3>Forums</h3>
-                </a>
-                <a href="../AdminUsers/AdminUsers.php">
-                    <span class="material-symbols-outlined">
-                        manage_accounts
-                    </span>
-                    <h3>Users</h3>
-                </a>
-                <a href="../AdminTsp/AdminTsp.php">
-                    <span class="material-symbols-outlined">
-                        train
-                    </span>
-                    <h3>Train Service Providers</h3>
-                </a>
-                <a href="../AdminCW/AdminCW.php">
-                    <span class="material-symbols-outlined">
-                        smb_share
-                        </span>
-                    <h3>Content Writers</h3>
-                </a>
-                <a href="../AdminDriver/AdminDriver.php">
-                    <span class="material-symbols-outlined">
-                        directions_car
-                        </span>
-                    <h3>Drivers</h3>
-                </a>
-                <a href="#" class="active">
-                    <span class="material-symbols-outlined">
-                        monitoring
-                    </span>
-                    <h3>Analytics</h3>
-                </a>
-                <a href="../AdminBookings/AdminBookings.php">
-                    <span class="material-symbols-outlined">
-                        confirmation_number
-                        </span>
-                    <h3>Bookings</h3>
-                </a>
-                <a href="#" id="logoutButton">
-                    <span class="material-symbols-outlined">
-                        logout
-                    </span>
-                    <h3>Logout</h3>
-                </a>
-            </div>
-    </aside>
-
+  <?php include '../Sidebar/Sidebar.php'; ?>
     <main>
             <h1>Analytics</h1>
             <div class="insights">
