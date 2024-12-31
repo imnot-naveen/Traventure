@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.top-section {
+    background-image: url('steam-train-sri-lanka.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 40vh; /* Top part of the page */
+}
+
+.middle-section {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.form-container {
+    width: 60%;
+    display: flex;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: white;
+}
+
+.left-panel {
+    background: linear-gradient(to bottom, #2a5298, #1e3c72);
+    color: white;
+    padding: 20px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-panel h2 {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+.right-panel {
+    width: 70%;
+    padding: 20px;
+    background-color: white;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+select,
+input[type="text"],
+input[type="date"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #2a5298;
+    color: white;
+    border: none;
+}
+
+button.reset {
+    background-color: #ccc;
+    color: black;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-section {
+    background-color: white;
+    height: 20vh; /* Bottom part of the page */
+}
+
+input[type="number"],
+select,
+input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: inline-block;
+    font-size: 14px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}

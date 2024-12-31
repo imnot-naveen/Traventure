@@ -1,0 +1,80 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 24px;
+  color: #4CAF50;
+}
+
+/* Destination List */
+#destination-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Destination Item */
+.destination-item {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.destination-item:last-child {
+  border-bottom: none;
+}
+
+.destination-number {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-right: 10px;
+}
+
+.destination-title {
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.nearest-station {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #555;
+}
+
+.destination-description {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Submit Button */
+#submit-selections {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#submit-selections:hover {
+  background-color: #45a049;
+}
