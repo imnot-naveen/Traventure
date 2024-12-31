@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!blogId) {
     alert("No blog post ID provided.");
-    window.location.href = "../CWManageposts/manageposts.html";
+    window.location.href = "../CWManageposts/manageposts.php";
     return;
   }
 
@@ -25,12 +25,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("content").value = data.post.content;
     } else {
       alert(data.message || "Failed to load post data.");
-      window.location.href = "../CWManageposts/manageposts.html";
+      window.location.href = "../CWManageposts/manageposts.php";
     }
   } catch (error) {
     console.error("Error:", error);
     alert("An error occurred while fetching post data.");
-    window.location.href = "../CWManageposts/manageposts.html";
+    window.location.href = "../CWManageposts/manageposts.php";
   }
 });
 
@@ -85,7 +85,7 @@ document
 
       if (data.success) {
         alert("Post updated successfully.");
-        window.location.href = "../CWManageposts/manageposts.html";
+        window.location.href = "../CWManageposts/manageposts.php";
       } else {
         alert(data.message || "Failed to update post.");
       }

@@ -101,16 +101,22 @@ section h1 {
 
 .post-card-container {
     display: flex;
+    flex-direction: column; 
     align-items: center;
     background-color: var(--white);
     border-radius: var(--border-radius);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     width: 100%;
     max-width: 900px;
-    margin: 20px auto;
+    margin: 20px auto; /* Space between cards */
     padding: 20px;
     transition: transform 0.3s ease;
 }
+
+.post-card-container {
+    width: 100%; /* Make each post card take full width */
+}
+
 
 .post-card-container:hover {
     transform: translateY(-5px);
@@ -190,4 +196,85 @@ section h1 {
         max-width: 100%;
         margin: 10px 0;
     }
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.go-back {
+    width: 120px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.go-back:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-icon {
+    font-size: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .go-back {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .create {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.posts-wrapper {
+    display: flex;
+    flex-direction: column; /* Stack the post cards vertically */
+    align-items: center; /* Center align the cards */
+    gap: 20px; /* Space between cards */
+}
+
+a.pill-link {
+    display: inline-block; /* Makes it behave like a button */
+    padding: 0.25rem 0.75rem; /* Adjusts size for a small pill shape */
+    border-radius: 9999px; /* Makes it pill-shaped */
+    background-color: #1e3a8a; /* Dark blue background color */
+    color: white; /* White text for contrast */
+    text-decoration: none; /* Removes underline */
+    font-size: 0.875rem; /* Small font size */
+    font-weight: 500; /* Slightly bold for better readability */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+a.pill-link:hover {
+    background-color: #1d4ed8; /* Slightly brighter blue on hover */
+    transform: scale(1.05); /* Subtle scaling effect */
 }

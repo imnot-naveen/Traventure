@@ -23,8 +23,8 @@ session_start();
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="../Home/home.html">Home</a></li>
+                <li><a href="../Destinations/destinations.html">Destinations</a></li>
                 <li><a href="../Train Schedule Form/scheduleForm.html">Train Schedule</a></li>
-                <li><a href="../Destinations/destinations.html">Blog</a></li>
                 <li><a href="../About/About.html">About Us</a></li>
                 
                 <?php if (isset($_SESSION['username'])): ?>

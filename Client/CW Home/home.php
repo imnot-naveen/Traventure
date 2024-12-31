@@ -1,53 +1,57 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+if (trim($_SESSION['userType']) !== "CW") {
+    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traventure</title>
-    <link rel="stylesheet" href="manageposts.css">
+    <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="../Navbar/navbar.css">
   <link rel="stylesheet" href="../Footer/footer.css">
 </head>
-    <body>
-        <nav id="navbar-placeholder"></nav>
-       
-    <main>
-        <section>
-        <h1>All Posts</h1>
-        
-        <div class="create">
-            <a href="../CWCreate/create.html"><button class="crt">Create</button></a>
-        </div>
+<body>
+    
+    <nav id="navbar-placeholder"></nav>
 
-        <div class="search">
-          <input type="text" name="text" placeholder="Search by city"><a href="#"><button class="btn">Search</button></a>
-        </div>
-        </section>
-        <section>
-        <div class="post-card-container">
-            <img src="../assets/ninearch.jpg" alt="Nine Arch Bridge">
-            <div class="post-content">
-                <a href="../CWBlog/blog.html"><h2>Nine Arch Bridge  </h2></a>
-                <p>One of the worth seeing highlights in the Mountain village of Ella!</p>
-                <div class="post-actions">
-                    <span class="edit-icon">&#9998;</span>
-                    <span class="delete-icon">&#128465;</span>
-                </div>
+    <main>
+        
+            <div className="section">
+              
+                <button class="btn">
+                    <span class="circle">
+                        <span class="arrow"></span>
+                    </span>
+                    <span class="text"><a href="../CWManagePosts/manageposts.php"> Manage Posts</a></span>
+                </button>
+                <p class="intro"><i>Each time I look at the screen, I see a great advice helping to move forward...
+                                <br><br>I know how hard it is to work as a content marketer as you must always be creative, ready to adjust to new challenges and learn fast...
+                            </i></p>
+              
             </div>
-        </div>
         
-          
-        
-        
-      </div>
-      
-    </section>
     </main>
 
     <footer id="footer"></footer>
 
-    <script src="../Navbar/navbar.js"></script>
-  <script src="manageposts.js"></script>
+  <script src="../Navbar/navbar.js"></script>
+  <script src="home.js"></script>
+  <script src="../Footer/footer.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {
@@ -103,9 +107,8 @@
       }
     }
   </script>
-    </body>
+</body>
 </html>
 
-
-
-
+    
+    

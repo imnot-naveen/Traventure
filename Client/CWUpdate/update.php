@@ -1,40 +1,67 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+if (trim($_SESSION['userType']) !== "CW") {
+    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traventure</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="update.css">
     <link rel="stylesheet" href="../Navbar/navbar.css">
   <link rel="stylesheet" href="../Footer/footer.css">
 </head>
-<body>
-    
-    <nav id="navbar-placeholder"></nav>
-
+    <body>
+        <nav id="navbar-placeholder"></nav>
+        
     <main>
-        
-            <div className="section">
-              
-                <button class="btn">
-                    <span class="circle">
-                        <span class="arrow"></span>
-                    </span>
-                    <span class="text"><a href="../CWManagePosts/manageposts.html"> Manage Posts</a></span>
-                </button>
-                <p class="intro"><i>Each time I look at the screen, I see a great advice helping to move forward...
-                                <br><br>I know how hard it is to work as a content marketer as you must always be creative, ready to adjust to new challenges and learn fast...
-                            </i></p>
-              
-            </div>
-        
+        <section>
+            
+            <h1>Update Post</h1>
+            <form action="addblogpost.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title">
+                </div>
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" id="city" name="city">
+                </div>
+                <div class="form-group">
+                  <label for="intro">Introduction</label>
+                  <input type="text" id="intro" name="intro">
+                </div>
+                <div class="form-group">
+                    <label for="content">Content:</label>
+                    <textarea id="content" name="content" rows="6"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="photos">Add Photos:</label>
+                    <input type="file" id="photos" name="photos" multiple accept="image/*">
+                </div>
+                <button type="submit" class="post-button">Post</button>
+            </form>
+            
+        </section>
     </main>
-
     <footer id="footer"></footer>
 
-  <script src="../Navbar/navbar.js"></script>
-  <script src="home.js"></script>
-  <script src="../Footer/footer.js"></script>
+    <script src="../Navbar/navbar.js"></script>
+  <script src="update.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {
@@ -92,6 +119,3 @@
   </script>
 </body>
 </html>
-
-    
-    
