@@ -8,6 +8,8 @@
     --white: #ffffff;
     --transition: all 0.3s ease;
     --border-radius: 12px;
+    --header-background: rgba(13, 71, 161, 0.8); /* Dark blue with transparency */
+    --header-height: 100px; /* Restored original header height */
 }
 
 * {
@@ -21,12 +23,13 @@ body {
     line-height: 1.6;
     background-color: var(--background-light);
     color: var(--text-dark);
+    padding-top: var(--header-height); /* Ensure content starts below header */
 }
 
 /* Header Styling */
 header {
     text-align: center;
-    background-color: var(--white);
+    background-color: var(--header-background);
     padding: 20px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: fixed;
@@ -49,23 +52,23 @@ header img:hover {
 header h1 {
     margin: 10px 0 0;
     font-size: 28px;
-    color: var(--primary-color);
+    color: var(--white);
     font-weight: 700;
 }
 
 header p {
     margin: 5px 0;
     font-size: 14px;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* Container Styling */
 .container {
     text-align: center;
-    background-image: url('9 arch train.jpg'); /* Corrected the image path */
+    background-image: url('9 arch train.jpg');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    min-height: calc(100vh - var(--header-height)); /* Adjust container height */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -146,7 +149,7 @@ header p {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.form-box button :hover {
+.form-box button:hover {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -164,9 +167,12 @@ footer {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
+    :root {
+        --header-height: 90px;
+    }
+
     header {
         padding: 15px 0;
-        position: relative;
     }
 
     header img {
@@ -178,9 +184,8 @@ footer {
     }
 
     .container {
-        height: auto;
-        min-height: 100vh;
-        padding: 100px 20px 20px;
+        min-height: calc(100vh - var(--header-height));
+        padding: 20px;
     }
 
     .form-box {
@@ -191,6 +196,10 @@ footer {
 }
 
 @media screen and (max-width: 480px) {
+    :root {
+        --header-height: 80px;
+    }
+
     header h1 {
         font-size: 20px;
     }

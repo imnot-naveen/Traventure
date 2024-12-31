@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function renderDestinations(destinations) {
   const destinationList = document.getElementById("destination-list");
+  destinationList.innerHTML = ""; // Clear previous content
 
   destinations.forEach((destination, index) => {
     const destinationItem = document.createElement("div");
@@ -42,7 +43,9 @@ function renderDestinations(destinations) {
 
     let currentSlide = 0;
     const slides = slideshow.querySelectorAll(".slideshow-image");
-    slides[currentSlide].style.display = "block";
+    if (slides.length > 0) {
+      slides[currentSlide].style.display = "block"; // Show the first slide
+    }
 
     slideshow.querySelector(".arrow.left").addEventListener("click", () => {
       slides[currentSlide].style.display = "none";

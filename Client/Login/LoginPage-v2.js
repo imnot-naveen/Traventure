@@ -115,7 +115,7 @@ document
               window.location.href = "../TSP Dashboard/dashboard.php";
               break;
             case "CW":
-              window.location.href = "../CW Home/home.html";
+              window.location.href = "../CW Home/home.php";
               break;
             default:
               alert("Unknown user type. Contact support.");

@@ -1,3 +1,20 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+if (trim($_SESSION['userType']) !== "CW") {
+    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    exit();
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

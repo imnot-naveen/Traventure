@@ -57,12 +57,12 @@ function searchByCity() {
 
 // Function to view a post
 function viewPost(id) {
-  window.location.href = `../CWBlog/blog.html?post_id=${id}`;
+  window.location.href = `../CWBlog/blog.php?post_id=${id}`;
 }
 
 // Function to edit a post
 function editPost(id) {
-  window.location.href = `../CWUpdate/update.html?edit_id=${id}`;
+  window.location.href = `../CWUpdate/update.php?edit_id=${id}`;
 }
 
 // Function to delete a post by ID
