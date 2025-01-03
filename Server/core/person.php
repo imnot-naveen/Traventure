@@ -79,7 +79,7 @@ class Person {
         }
     }
 
-    public function getAllPersons() {
+    public function getAllPersons1() {
         $query = 'SELECT username, firstName AS first_name, lastName AS last_name, email, contactNo AS contact_number 
                   FROM ' . $this->person_table;
         $stmt = $this->conn->prepare($query);

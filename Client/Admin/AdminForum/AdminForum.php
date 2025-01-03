@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="AdminForum.css">
   <link rel="stylesheet" href="../Common/Logout_Modal.css">
   <link rel="stylesheet" href="../Sidebar/Sidebar.css">
+  <link rel="stylesheet" href="../Recent_updates/Recent.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
@@ -26,33 +27,9 @@
         </main>
 
         <div class="right">
-            <div class="top">
-                <button id="menu-btn">
-                    <span class="material-symbols-outlined">
-                        menu
-                        </span>
-                </button>
-                <div class="profile">
-                    <div class="info">
-                        <p>Hey, <b>Dimuthu</b></p>
-                        <small class="text-muted">Admin</small>
-                    </div>
-                    <div class="profile-photo">
-                        <span class="material-symbols-outlined">
-                            account_circle
-                            </span>
-                    </div>
-                </div>
-            </div>
-
-             <div class="recent-updates">
-
-             </div>
-             <div class="sales-analytics">
-
-
-             </div>
+            <?php include '../Recent_updates/Recent.php'; ?>
         </div>
+
   </div>
  
         <!-- Dialog Box -->

@@ -109,29 +109,3 @@ p{
 b{
   color: var(--color-black);
 }
-
-/*=======MAIN=======*/
-main{
-  margin-top: 1.4rem;
-}
-
-/* Media Queries */
-@media screen and (max-width: 1200px){
-  .container{
-    width: 94%;
-    grid-template-columns: 7rem auto 23rem;
-  }
-}
-
-@media screen and (max-width: 768px){
-  .container{
-    width: 100%;
-    grid-template-columns: 1fr;
-  }
-
-  main{
-    margin-top: 8rem;
-    padding: 0 1rem;
-  }
-
-}
