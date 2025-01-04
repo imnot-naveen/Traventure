@@ -1,5 +1,5 @@
 <?php
-// include '../Session_check.php';
+    // include '../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,29 +18,28 @@
   <div class="container">
   <?php include '../Sidebar/Sidebar.php'; ?>
     <main>
-            <h1>Admin Dashboard</h1>
-            <div class="insights">
-                <div class="sales">
-                <div class="profile-header">
-            <img src="../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture" id="adminPicture">
-            <div class="profile-info">
-                <h2 id="adminName">Admin Name</h2>
-                <h3 id="adminRole">Admin Role</h3>
-            </div>
-        </div>
-        <div class="profile-details">
-            <ul class="left-details">
-                <li id="adminEmail">Email: admin@example.com</li>
-                <li id="adminPhone">Phone: +94 71 234 5678</li>
-            </ul>
-            <ul class="right-details">
-                <li id="adminRoleDetail">Role: Administrator</li>
-                <li id="adminUsername">Username: dimuthu</li>
-            </ul>
-        </div>
-                 
+    <h1>Admin Dashboard</h1>
+    <div class="insights">
+        <div class="sales">
+            <div class="profile-header">
+                <img src="../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture" id="adminPicture">
+                <div class="profile-info">
+                    <h2 id="adminName">Loading...</h2>
+                    <h3 id="adminRole">Loading...</h3>
                 </div>
             </div>
+            <div class="profile-details">
+                <ul class="left-details">
+                    <li id="adminEmail">Email: Loading...</li>
+                    <li id="adminPhone">Phone: Loading...</li>
+                </ul>
+                <ul class="right-details">
+                    <li id="adminRoleDetail">Role: Admin</li>
+                    <li id="adminUsername">Username: Loading...</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
             <!-- END OF INSIGHTS -->
              <div class="recent-orders">

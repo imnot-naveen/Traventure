@@ -1,0 +1,9 @@
+.reservation-container{
+  background: url('../../assets/img/slide-1.jpg') no-repeat center center/cover;
+  background-blend-mode: overlay;
+  text-align: left;
+  padding: 220px 20px; 
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}

@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SESSION['userType'] !== "Admin") {
-    header("Location: ../../Home/home.html"); 
+    header("Location: ../../Admin/AdminDashboard/AdminDashboard.php"); 
     exit();
 }
 
