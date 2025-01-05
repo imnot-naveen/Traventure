@@ -11,25 +11,33 @@
 <body>
   <!-- Navbar component -->
   <nav id="navbar-placeholder"></nav>
-  <div class="reservation-container">
-    <h1>Seat Reservtion</h1>
-    <h3>Online Advance Train Seats Reservation</h3>
-    <button>Book Your Seat</button>
+  <div class="booking-container">
+    <h1>Train Ticket Booking</h1>
+    <form id="booking-form">
+      <label for="num-tickets">Number of Tickets</label>
+      <input type="number" id="num-tickets" min="1" required>
+
+      <button type="button" id="generate-passenger-btn">Generate Passenger Inputs</button>
+
+      <div id="passenger-details-container"></div>
+
+      <button type="button" id="book-ticket-btn" >Book Ticket</button>
+    </form>
+    <div id="booking-summary" class="hidden">
+      <h2>Booking Summary</h2>
+      <p id="summary-details"></p>
+      <p>Total Fare: <span id="total-fare"></span></p>
+    </div>
   </div>
-  <div class="reserve-form">
-    <div class="title">
-      <h1>Book Your Seat</h1>
-      <p>You can book more than one ticket</p>
-    </div>
-    <div class="form">
-      
-    </div>
+  
+
   </div>
   <!-- Footer HTML -->
   <footer id="footer"></footer>
 
   <script src="../Navbar/navbar.js"></script>
   <script src="home.js"></script>
+  <script src="ticket_booking.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {

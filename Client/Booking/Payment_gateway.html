@@ -1,38 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traventure - Payment</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
-        .container { max-width: 700px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
-        h1 { text-align: center; color: #333; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; }
-        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
-        .btn { display: block; width: 100%; padding: 10px; background: #007bff; color: #fff; text-align: center; text-decoration: none; border-radius: 5px; margin-top: 20px; }
-        .btn:hover { background: #0056b3; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../Navbar/navbar.css">
+  <link rel="stylesheet" href="../Footer/footer.css">
+  <link rel="stylesheet" href="Payment.css">
+  <title>Payment Page</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Enter Payment Details</h1>
-        <form action="Payment_confirm.html" method="POST">
-            <div class="form-group">
-                <label for="card-number">Card Number</label>
-                <input type="text" id="card-number" name="card-number" required>
-            </div>
-            <div class="form-group">
-                <label for="expiry-date">Expiry Date</label>
-                <input type="month" id="expiry-date" name="expiry-date" required>
-            </div>
-            <div class="form-group">
-                <label for="cvv">CVV</label>
-                <input type="password" id="cvv" name="cvv" required>
-            </div>
-            <button type="submit" class="btn">Pay Now</button>
-        </form>
+  <!-- Navbar Component -->
+  <nav id="navbar-placeholder"></nav>
+
+  <!-- Main Content -->
+  <div class="payment-container">
+    <h1>Payment</h1>
+    <form id="payment-form">
+      <label for="payment-method">Payment Method</label>
+      <select id="payment-method" required>
+        <option value="">Select a Payment Method</option>
+        <option value="credit-card">Credit Card</option>
+        <option value="mobile-payment">Mobile Payment</option>
+        <option value="payhere">PayHere</option>
+        <option value="stripe">Stripe</option>
+      </select>
+
+      <div id="payment-details">
+        <!-- Credit Card Payment Details -->
+        <div id="credit-card-details" class="hidden">
+          <label for="card-number">Card Number</label>
+          <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+          
+          <label for="expiry-date">Expiry Date</label>
+          <input type="month" id="expiry-date" required>
+          
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" placeholder="123" required>
+        </div>
+
+        <!-- Other Payment Methods -->
+        <div id="gateway-integration" class="hidden">
+          <p>You will be redirected to the payment gateway for secure processing.</p>
+        </div>
+      </div>
+
+      <button type="button" id="pay-btn">Proceed to Payment</button>
+    </form>
+
+    <!-- Payment Result -->
+    <div id="payment-result" class="hidden">
+      <h2>Payment Status</h2>
+      <p id="payment-message"></p>
+      <button id="retry-btn" class="hidden">Retry Payment</button>
+      <button id="cancel-btn" class="hidden">Cancel Booking</button>
     </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="footer"></footer>
+
+  <script src="../Navbar/navbar.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      loadNavbar();
+      loadFooter();
+
+      const paymentMethod = document.getElementById('payment-method');
+      const paymentDetails = document.getElementById('payment-details');
+      const payBtn = document.getElementById('pay-btn');
+      const paymentResult = document.getElementById('payment-result');
+      const paymentMessage = document.getElementById('payment-message');
+      const retryBtn = document.getElementById('retry-btn');
+      const cancelBtn = document.getElementById('cancel-btn');
+
+      paymentMethod.addEventListener('change', function () {
+        const method = paymentMethod.value;
+
+        // Show/hide payment details based on selected method
+        document.getElementById('credit-card-details').classList.add('hidden');
+        document.getElementById('gateway-integration').classList.add('hidden');
+
+        if (method === 'credit-card') {
+          document.getElementById('credit-card-details').classList.remove('hidden');
+        } else if (method === 'payhere' || method === 'stripe') {
+          document.getElementById('gateway-integration').classList.remove('hidden');
+        }
+      });
+
+      payBtn.addEventListener('click', function () {
+        const selectedMethod = paymentMethod.value;
+
+        if (!selectedMethod) {
+          alert('Please select a payment method.');
+          return;
+        }
+
+        if (selectedMethod === 'credit-card') {
+          const cardNumber = document.getElementById('card-number').value;
+          const expiryDate = document.getElementById('expiry-date').value;
+          const cvv = document.getElementById('cvv').value;
+
+          if (!cardNumber || !expiryDate || !cvv) {
+            alert('Please fill in all card details.');
+            return;
+          }
+
+          // Simulate payment success
+          processPayment(true, 'Credit Card payment processed successfully.');
+        } else if (selectedMethod === 'payhere' || selectedMethod === 'stripe') {
+          // Redirect to respective payment gateway
+          if (selectedMethod === 'payhere') {
+            window.location.href = 'https://sandbox.payhere.lk/pay'; // PayHere Sandbox
+          } else if (selectedMethod === 'stripe') {
+            window.location.href = 'https://checkout.stripe.com/pay'; // Stripe Checkout
+          }
+        }
+      });
+
+      retryBtn.addEventListener('click', function () {
+        // Reset payment process
+        paymentResult.classList.add('hidden');
+        document.getElementById('payment-form').reset();
+      });
+
+      cancelBtn.addEventListener('click', function () {
+        // Cancel booking action
+        alert('Your booking has been canceled.');
+        window.location.href = 'Reservation.html'; // Redirect back to booking page
+      });
+
+      function processPayment(success, message) {
+        paymentResult.classList.remove('hidden');
+        paymentMessage.textContent = message;
+
+        if (success) {
+          retryBtn.classList.add('hidden');
+          cancelBtn.textContent = 'Return to Home';
+        } else {
+          retryBtn.classList.remove('hidden');
+          cancelBtn.textContent = 'Cancel Booking';
+        }
+      }
+    });
+
+    function loadNavbar() {
+      fetch('../Navbar/navbar.php')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('navbar-placeholder').innerHTML = data;
+        });
+    }
+
+    function loadFooter() {
+      fetch('../Footer/footer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('footer').innerHTML = data;
+        });
+    }
+  </script>
 </body>
 </html>
