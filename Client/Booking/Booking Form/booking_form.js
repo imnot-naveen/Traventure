@@ -1,53 +1,47 @@
-const bookingForm = document.getElementById('bookingForm');
+document.getElementById("bookingForm").addEventListener("submit", async function(event){
+  event.preventDefault();
 
-bookingForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+  const no_of_passengers = document.getElementById("no_of_passengers").value.trim();
+  const payment_method = document.getElementById("payment_method").value;
 
-  const passengers = document.getElementById('passengers').value;
-  const paymentMethod = document.getElementById('paymentMethod').value;
-  const paymentStatus = document.getElementById('paymentStatus').value;
-
-  if (!passengers || !paymentMethod || !paymentStatus) {
-    alert("Please fill out all fields correctly.");
-    return;
+  if (!no_of_passengers || !payment_method) {
+      document.getElementById("response").innerHTML = "<p style='color: red;'>All fields are required!</p>";
+      return;
   }
 
-  const bookingData = {
-    no_of_passengers: passengers,
-    paymentMethod,
-    paymentStatus
+  const apiUrl = `http://localhost/Traventure/Server/api/createBooking.php?user_id=2`;
+
+  const requestBody = {
+      no_of_passengers: parseInt(no_of_passengers),
+      payment_method: payment_method
   };
 
-  const submitButton = document.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
-  submitButton.textContent = 'Submitting...';
-
   try {
-    const userId = sessionStorage.getItem('user_id') || 2; // Default to 2 for testing
-    const response = await fetch(`http://localhost/Traventure/Server/api/createBooking.php?user_id=${userId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(bookingData),
-    });
+      const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(requestBody)
+      });
 
-    const result = await response.json();
-    if (result.success) {
-      alert('Booking created successfully!');
-      bookingForm.reset();
-      if (paymentMethod === 'Card') {
-        console.log('Redirecting to Gateway.html...');
-        window.location.href = "../Gateway/Gateway.html";
+      const data = await response.json();
+
+      if (response.ok) {
+          document.getElementById("response").innerHTML = `<p style='color: green;'>Success: ${data.message}</p>`;
+
+          // Redirect based on payment method
+          if (payment_method === "card") {
+            window.location.href = "../Gateway/Gateway.html";  
+          }else if (payment_method === "cash") {
+            window.location.href = "qr.html";  
+          }
+
+      } else {
+          document.getElementById("response").innerHTML = `<p style='color: red;'>Error: ${data.message}</p>`;
       }
-    } else {
-      alert(result.message);
-    }
   } catch (error) {
-    console.error('Error:', error);
-    alert('Something went wrong. Please try again later.');
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = 'Submit';
+      document.getElementById("response").innerHTML = `<p style='color: red;'>Request failed. Check console.</p>`;
+      console.error("Fetch error:", error);
   }
 });
