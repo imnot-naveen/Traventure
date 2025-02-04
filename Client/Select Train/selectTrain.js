@@ -1,20 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Fetch train data from localStorage
-  const trainData = JSON.parse(localStorage.getItem("trainData"));
-
+  const trainData = JSON.parse(localStorage.getItem("trainData")) || [];
   const trainResultsContainer = document.getElementById("train-results");
 
-  if (!trainData || trainData.length === 0) {
-    trainResultsContainer.innerHTML =
-      "<tr><td colspan='7'>No trains available.</td></tr>";
-    return;
-  }
+  const renderTrains = (data) => {
+    trainResultsContainer.innerHTML = ""; // Clear existing rows
 
-  // Loop through the train data and populate the table
-  trainData.forEach((train) => {
-    const row = document.createElement("tr");
+    if (data.length === 0) {
+      trainResultsContainer.innerHTML =
+        "<tr><td colspan='7'>No trains available.</td></tr>";
+      return;
+    }
 
-    row.innerHTML = `
+    // Loop through the train data and populate the table
+    data.forEach((train) => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
         <td>${train.departureTime}</td>
         <td>${train.arrivalTime}</td>
         <td>${train.duration}</td>
@@ -28,23 +30,54 @@ document.addEventListener("DOMContentLoaded", () => {
         </td>
       `;
 
-    trainResultsContainer.appendChild(row);
+      trainResultsContainer.appendChild(row);
+    });
+
+    // Add event listeners for "Select" buttons
+    const selectButtons = document.querySelectorAll(".select-train-btn");
+    selectButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const trainID = e.target.getAttribute("data-trainid");
+        if (trainID) {
+          // Save selected train to localStorage
+          const tripData = JSON.parse(localStorage.getItem("tripData")) || {};
+          tripData.trainID = trainID;
+          localStorage.setItem("tripData", JSON.stringify(tripData));
+
+          // Redirect to destinations page
+          window.location.href =
+            "../select destinations/selectdestinations.html";
+        }
+      });
+    });
+  };
+
+  // Initial render
+  renderTrains(trainData);
+
+  // Filter by train type
+  const filterSelect = document.getElementById("train-type-filter");
+  filterSelect.addEventListener("change", () => {
+    const selectedType = filterSelect.value;
+    const filteredTrains = selectedType
+      ? trainData.filter((train) => train.type === selectedType)
+      : trainData;
+    renderTrains(filteredTrains);
   });
 
-  // Add event listeners for "Select" buttons
-  const selectButtons = document.querySelectorAll(".select-train-btn");
-  selectButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const trainID = e.target.getAttribute("data-trainid");
-      if (trainID) {
-        // Save selected train to localStorage
-        const tripData = JSON.parse(localStorage.getItem("tripData")) || {};
-        tripData.trainID = trainID;
-        localStorage.setItem("tripData", JSON.stringify(tripData));
+  // Sort by departure time
+  document.getElementById("sort-departure").addEventListener("click", () => {
+    const sortedTrains = [...trainData].sort(
+      (a, b) => new Date(a.departureTime) - new Date(b.departureTime)
+    );
+    renderTrains(sortedTrains);
+  });
 
-        // Redirect to destinations page
-        window.location.href = "../select destinations/selectdestinations.html";
-      }
-    });
+  // Sort by arrival time
+  document.getElementById("sort-arrival").addEventListener("click", () => {
+    const sortedTrains = [...trainData].sort(
+      (a, b) => new Date(a.arrivalTime) - new Date(b.arrivalTime)
+    );
+    renderTrains(sortedTrains);
   });
 });

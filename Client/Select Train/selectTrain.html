@@ -1,30 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Train Schedule with Selection</title>
-    <link rel="stylesheet" href="selectTrain.css">
-</head>
-<body>
+    <link rel="stylesheet" href="selectTrain.css" />
+  </head>
+  <body>
     <h1>Select Your Train</h1>
+
+    <div>
+      <label for="train-type-filter">Filter by Train Type:</label>
+      <select id="train-type-filter">
+        <option value="">All</option>
+        <option value="Express">Express</option>
+        <option value="Local">Local</option>
+        <option value="Intercity">Intercity</option>
+        <!-- Add more train types as needed -->
+      </select>
+
+      <button id="sort-departure">Sort by Departure Time</button>
+      <button id="sort-arrival">Sort by Arrival Time</button>
+    </div>
+
     <table>
-        <thead>
-            <tr>
-                <th>Departure</th>
-                <th>Arrival</th>
-                <th>Duration</th>
-                <th>Ends At</th>
-                <th>Train No</th>
-                <th>Type</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="train-results">
-            <!-- Train rows with select options will be added here -->
-        </tbody>
+      <thead>
+        <tr>
+          <th>Departure</th>
+          <th>Arrival</th>
+          <th>Duration</th>
+          <th>Ends At</th>
+          <th>Train No</th>
+          <th>Type</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="train-results">
+        <!-- Train rows with select options will be added here -->
+      </tbody>
     </table>
 
     <script src="selectTrain.js"></script>
-</body>
+  </body>
 </html>
