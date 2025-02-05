@@ -123,6 +123,27 @@ class contentWriter extends person{
         return 0; // Handle exception and return 0 as a fallback
     }
   }
+
+  public function getCWDetails($cwid) {
+    try {
+        $query = 'SELECT c.username, p.firstName AS first_name, p.lastName AS last_name, 
+                         p.email, p.contactNo AS contact_number,c.status AS Active_status, c.CWID AS cwid
+                  FROM ' . $this->cw_table . ' c
+                  INNER JOIN ' . $this->person_table . ' p ON c.username = p.username
+                  WHERE c.CWID = :cwid LIMIT 1';
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':cwid', $cwid, PDO::PARAM_STR);
+
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
+            return $stmt->fetch(PDO::FETCH_ASSOC); // Fetch CW details
+        }
+
+        return null; // Return null if no record is found
+    } catch (PDOException $e) {
+        return null; // Handle any errors (optionally log them)
+    }
+  }
   
 }
 ?>
