@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2024 at 09:20 AM
+-- Generation Time: Feb 05, 2025 at 07:59 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -182,6 +182,7 @@ INSERT INTO `login` (`username`, `email`, `password`, `userType`) VALUES
 ('exampleUser2', 'jane@gmail.com', '$2y$10$v0uZ8cJkSpwcwQNuyf3KQ.JbK4xqMExt2YbAWCkjXZDBBjNkFQ/zy', 'Traveller'),
 ('imnot_naveen', 'naveenharinda2@gmail.com', '$2y$10$V1gFv0ZxZJIlaH/oOG/OAuQFJfhKwyovsC8Km87zUjcqwX4wuYjIe', 'Traveller'),
 ('SteveSmith', 'stevesmith@gmail.com', '$2y$10$TjsKaQNYp4bjFckC2t9tWOvIbRmxGgeUiHu8.r1trZEV8d6ufr6Oe', 'Traveller'),
+('testUser', 'testuser@gmail.com', '$2y$10$cFHboCuAq/34MhiakwRMmOU5t3.ksXcT1/qRQ7NpJp15UgkdK6bYW', 'Traveller'),
 ('test_admin', 'test@admin.com', '$2y$10$8sQmIRWfrcLtfGiZ0Jd2teXyp4K79GE9xBJjtwqc1Op9ZbVR.TrdK', 'Admin'),
 ('test_cw', 'test@cw.com', '$2y$10$4OjWaZptycct9o8WjrS41.OF99Donbx9bPJSgGfdnO4qi36BqEfTa', 'CW'),
 ('test_dimuthu', 'test11@test.com', '$2y$10$A/xGxEByWbOJDVe6Q5zWlee2yIFRuDynY.5YuAjtvXAkFm916Hda.', 'Traveller'),
@@ -216,6 +217,7 @@ INSERT INTO `person` (`username`, `firstName`, `lastName`, `email`, `contactNo`,
 ('exampleUser2', 'Janaa', 'Doe', 'jane@gmail.com', 771111112, 'Traveller', ''),
 ('imnot_naveen', 'Naveen ', 'Harinda', 'naveenharinda2@gmail.com', 774554321, 'Traveller', ''),
 ('SteveSmith', 'Smith ', 'Smith ', 'stevesmith@gmail.com', 2147483647, 'Traveller', ''),
+('testUser', 'Test', 'User', 'testuser@gmail.com', 1233456789, 'Traveller', ''),
 ('test_admin', 'test', 'tester', 'test@admin.com', 1234567890, 'Admin', ''),
 ('test_cw', 'test', 'tester', 'test@cw.com', 123456789, 'CW', ''),
 ('test_dimuthu', 'Dimuthuhh', 'Perera', 'test11@test.com', 773322111, 'Traveller', ''),
@@ -697,9 +699,18 @@ CREATE TABLE `tripdestination` (
 --
 
 CREATE TABLE `userdestination` (
-  `userId` int(6) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `prefferedDestination` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `userdestination`
+--
+
+INSERT INTO `userdestination` (`username`, `prefferedDestination`) VALUES
+('testUser', 4),
+('testUser', 5),
+('testUser', 3);
 
 --
 -- Indexes for dumped tables
@@ -840,8 +851,8 @@ ALTER TABLE `tripdestination`
 -- Indexes for table `userdestination`
 --
 ALTER TABLE `userdestination`
-  ADD KEY `destination_userid` (`userId`),
-  ADD KEY `destination_prefdestID` (`prefferedDestination`);
+  ADD KEY `destination_prefdestID` (`prefferedDestination`),
+  ADD KEY `destination_username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -965,7 +976,7 @@ ALTER TABLE `tripdestination`
 --
 ALTER TABLE `userdestination`
   ADD CONSTRAINT `destination_prefdestID` FOREIGN KEY (`prefferedDestination`) REFERENCES `destinationtypes` (`type_id`),
-  ADD CONSTRAINT `destination_userid` FOREIGN KEY (`userId`) REFERENCES `registereduser` (`userId`);
+  ADD CONSTRAINT `destination_username` FOREIGN KEY (`username`) REFERENCES `person` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
