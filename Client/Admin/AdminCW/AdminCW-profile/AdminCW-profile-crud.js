@@ -50,8 +50,8 @@ if (cwId) {
 
 // Function to update cw status
 function updatecwStatus(cwId, newStatus) {
-  fetch('../../../../Server/api/admincw_Deactivate.php', {
-      method: 'POST',
+  fetch('../../../../Server/api/deactivateCw.php', {
+      method: 'PUT',
       headers: {
           'Content-Type': 'application/json',
       },
@@ -64,7 +64,7 @@ function updatecwStatus(cwId, newStatus) {
   .then(data => {
       if (data.success) {
           alert(`cw status has been updated to ${newStatus}`);
-          document.getElementById('cwStatus').textContent = newStatus; // Update the status on the page
+          document.getElementById('cwStatus').textContent = newStatus; 
           document.getElementById('updateStatusButton').textContent = (newStatus === 'active') ? 'Deactivate' : 'Activate'; // Update the button text
       } else {
           console.error('Failed to update cw status:', data.message);

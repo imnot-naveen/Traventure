@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Users | Admin</title>
+  <title>Drivers | Admin</title>
   <link rel="stylesheet" href="AdminDriver.css">
   <link rel="stylesheet" href="AdminDriverAdd.css">
   <link rel="stylesheet" href="../Common/Logout_Modal.css">
@@ -27,8 +27,8 @@
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Users</h3>
-                            <h1>5,056</h1>
+                            <h3>Total TSPs</h3>
+                            <h1 id="tspCount">Loading..</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -46,11 +46,11 @@
 
                 <div class="expenses">
                     <span class="material-symbols-outlined">
-                        bar_chart
+                        train
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>User Accounts</h3>
+                            <h3>Trains Added</h3>
                             <h1>43</h1>
                         </div>
                         <div class="progress">
@@ -69,11 +69,11 @@
 
                 <div class="income">
                     <span class="material-symbols-outlined">
-                        psychology
+                        cancel
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>User Preferences</h3>
+                            <h3>Trains Cancalled</h3>
                             <h1>123</h1>
                         </div>
                         <div class="progress">
@@ -89,7 +89,6 @@
                         Last 24 Hours
                     </small>
                 </div>
-                <!-- END OF INCOME -->
 
             </div>
             <!-- END OF INSIGHTS -->
@@ -109,40 +108,61 @@
                   </div>
                   <div id="userModal" class="modal">
                     <div class="modal-content">
-                      <span class="close">&times;</span>
-                      <h2>Add New Driver</h2>
-                      <form id="addUserForm">
+                      <span class="close-m">&times;</span>
+                      <h2>Add New Drivers</h2>
+                      <form id="addDriverForm">
+                        <div class="form-group">
+                          <label for="driverid">Driver ID</label>
+                          <input type="number" id="driverid" name="driverid" required autocomplete="off">
+                        </div>
+                        
                         <div class="form-group">
                           <label for="username">Username</label>
-                          <input type="text" id="username" name="username" required>
+                          <input type="text" id="username" name="username" required autocomplete="username">
                         </div>
+                        
                         <div class="form-group">
                           <label for="firstName">First Name</label>
-                          <input type="text" id="firstName" name="firstName" required>
+                          <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
                         </div>
+                        
                         <div class="form-group">
                           <label for="lastName">Last Name</label>
-                          <input type="text" id="lastName" name="lastName" required>
+                          <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
                         </div>
+                        
                         <div class="form-group">
                           <label for="email">Email</label>
-                          <input type="email" id="email" name="email" required>
+                          <input type="email" id="email" name="email" required autocomplete="email">
                         </div>
+                        
                         <div class="form-group">
                           <label for="contactNumber">Contact Number</label>
-                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
+                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required autocomplete="tel">
                         </div>
+                        
+                        <div class="form-group">
+                          <label for="new-password">Password</label>
+                          <input type="password" id="new-password" name="new-password" required autocomplete="new-password">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="confirm-password">Confirm Password</label>
+                          <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password">
+                        </div>
+                        
                         <div class="modal-buttons">
                           <button type="submit" class="btn-save">Save</button>
                           <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
                         </div>
-                      </form>
+                      </form>                      
                     </div>
                   </div>
                 <table id="userTable">
                     <thead>
                         <tr>
                             <th>Username</th>
+                            <th>Driver ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
@@ -163,19 +183,20 @@
         <div class="right">
             <?php include '../Recent_updates/Recent.php'; ?>
         </div>
+  </div>
 
-            <!-- Dialog Box -->
-            <div id="logoutDialog" class="modal-lo">
-                <div class="modal-content-lo">
-                    <h2>Logout</h2>
-                    <p>Are you sure you want to logout?</p>
-                    <div class="button-group">
-                        <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                        <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-                    </div>
+          <!-- Dialog Box -->
+          <div id="logoutDialog" class="modal-lo">
+            <div class="modal-content-lo">
+                <h2>Logout</h2>
+                <p>Are you sure you want to logout?</p>
+                <div class="button-group">
+                    <button id="confirmLogout" class="btn btn-confirm">Yes</button>
+                    <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
                 </div>
             </div>
-               
+        </div>
+
  <script src="../Common/Logout_Modal.js"></script>
  <script src="AdminDriver-crud-v3.js"></script>
  <script src="AdminDriver.js"></script>

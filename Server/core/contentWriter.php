@@ -144,6 +144,70 @@ class contentWriter extends person{
         return null; // Handle any errors (optionally log them)
     }
   }
+
+  public function updateCw(){
+    try{
+        //Initilize query parts
+        $setParts = [];
+        $params = [];
+
+        //Dynamically build query parts for provided fields
+        if(!empty($this->first_name)){
+            $setParts[] = 'p.firstName = :first_name';
+            $params[':first_name'] = $this->first_name;
+        }
+        if (!empty($this->last_name)) {
+            $setParts[] = 'p.lastName = :last_name';
+            $params[':last_name'] = $this->last_name;
+        }
+        if (!empty($this->contact_number)) {
+            $setParts[] = 'p.contactNo = :contact_number';
+            $params[':contact_number'] = $this->contact_number;
+        }
+
+        //Ensure atleast one field is being updated
+        if(empty($setParts)){
+            return ['success' => false, 'message' => 'No fields provided for update.'];
+        }
+
+        //Finalize query
+        $query = 'UPDATE '. $this->cw_table . ' c INNER JOIN ' . $this->person_table . ' p ON c.username = p.username SET '. implode(', ', $setParts) . ' WHERE c.CWID = :cwid';
+
+        $params[':cwid'] = $this->cwid;
+
+        //prepare and execute
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute($params)){
+            return ['success' => true, 'message' => 'CW updated successfully.'];
+        }
+
+        return ['success' => false, 'message' => 'Failed to update CW.'];
+
+    }catch(PDOException $e){
+        return ['success' => false, 'message' => $e->getMessage()];
+    }       
+  } 
+
+    public function updateStatus($cwid, $status) {
+    try {
+        // Corrected query with consistent placeholder naming
+        $query = 'UPDATE ' . $this->cw_table . ' SET status = :status WHERE CWID = :cwid';
+        $stmt = $this->conn->prepare($query);
+
+        // Correct parameter binding
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt->bindParam(':cwid', $cwid, PDO::PARAM_STR);
+
+        // Execute the statement and check success
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    } catch (PDOException $e) {
+        error_log("Error updating status: " . $e->getMessage());
+        return false;
+    }
+}
   
 }
 ?>

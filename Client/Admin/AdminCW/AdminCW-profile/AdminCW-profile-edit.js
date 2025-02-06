@@ -6,7 +6,7 @@ const updateForm = document.getElementById("updatecwForm");
 
 // Function to fetch cw details and populate the modal
 function fetchcwDetails(cwId) {
-  fetch(`../../../../Server/api/admincwUpdate.php?cwid=${cwId}`)
+  fetch(`../../../../Server/api/updateCW.php?cwid=${cwId}`)
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
