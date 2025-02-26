@@ -161,4 +161,18 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
   });
+
+  let searchDate = document.getElementById("search-date");
+
+  // Set the minimum date to today
+  let todayy = new Date().toISOString().split("T")[0];
+  searchDate.setAttribute("min", todayy);
+
+  // Validate the date on change
+  searchDate.addEventListener("change", function () {
+    if (searchDate.value < todayy) {
+      alert("You cannot select a past date.");
+      searchDate.value = todayy;
+    }
+  });
 });

@@ -8,7 +8,7 @@ include_once('../core/initialize.php');
 
 try {
     // Query to fetch station details
-    $query = 'SELECT StationID, city, name FROM Station';
+    $query = 'SELECT StationID, city, name FROM Station ORDER BY name ASC';
     $stmt = $db->prepare($query);
     $stmt->execute();
 
