@@ -22,4 +22,5 @@ require_once(CORE_PATH.DS. "train.php");
 require_once(CORE_PATH.DS. "booking.php");
 require_once(CORE_PATH.DS. "contentWriter.php");
 require_once(CORE_PATH.DS. "bookings.php");
+require_once(CORE_PATH.DS. "station.php");
 ?>

@@ -23,8 +23,8 @@ class Bookings {
     public function createBooking($userID, $start_station, $destination_station, $class, $no_of_passengers, $total_fare, $paymentMethod) {
         try {
             $query = "INSERT INTO " . $this->booking_table . " 
-                    (userID, routeID, start_station, destination_station, class, no_of_passengers, total_fare, paymentMethod)
-                    VALUES (:userID, :routeID, :start_station, :destination_station, :class, :no_of_passengers, :total_fare, :paymentMethod)";
+                    (userID, start_station, destination_station, class, no_of_passengers, total_fare, paymentMethod)
+                    VALUES (:userID, :start_station, :destination_station, :class, :no_of_passengers, :total_fare, :paymentMethod)";
     
             $stmt = $this->conn->prepare($query);
     

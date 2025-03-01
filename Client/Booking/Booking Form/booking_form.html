@@ -7,22 +7,33 @@
     <link rel="stylesheet" href="booking_form.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Book Your Trip</h2>
-        <form id="bookingForm">
-            <label for="no_of_passengers">Number of Passengers:</label>
-            <input type="number" id="no_of_passengers" name="no_of_passengers" required min="1">
+    <h1>Booking Form</h1>
 
-            <label for="payment_method">Payment Method:</label>
-            <select id="payment_method" name="payment_method" required>
-                <option value="card">Card</option>
-                <option value="cash">Cash</option>
-            </select>
-
-            <button type="submit">Submit</button>
-        </form>
-        <div id="response"></div>
+    <div id="train-details">
+        <!-- Selected train details will be displayed here -->
     </div>
+
+    <form id="booking-form">
+        <label for="passenger-count">Number of Passengers:</label>
+        <input type="number" id="passenger-count" name="passenger-count" min="1" required>
+
+        <label for="class">Select Class:</label>
+        <select id="class" name="class" required>
+            <option value="firstClass">First Class</option>
+            <option value="secondClass">Second Class</option>
+            <option value="thirdClass">Third Class</option>
+        </select>
+
+        <label for="payment-option">Payment Option:</label>
+        <select id="payment-option" name="payment-option" required>
+            <option value="card">Card</option>
+            <option value="cash">Cash</option>
+        </select>
+
+        <p>Total Amount: <span id="total-amount">0</span></p>
+
+        <button type="submit">Proceed to Payment</button>
+    </form>
 
     <script src="booking_form.js"></script>
 </body>
