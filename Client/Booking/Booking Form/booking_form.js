@@ -19,26 +19,41 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Ends At:</strong> ${selectedTrain.endStation}</p>
     `;
 
-    // Prices for different classes
-    const classPrices = {
-        firstClass: 100,  // Example price for First Class
-        secondClass: 60,  // Example price for Second Class
-        thirdClass: 30    // Example price for Third Class
-    };
-
     // Get references to form elements
     const passengerCountInput = document.getElementById("passenger-count");
     const classSelect = document.getElementById("class");
     const totalAmountDisplay = document.getElementById("total-amount");
 
     // Function to calculate the total amount based on the selected class and number of passengers
-    function calculateTotalAmount() {
+    async function calculateTotalAmount() {
         const passengerCount = parseInt(passengerCountInput.value) || 1;  // Default to 1 if empty
         const selectedClass = classSelect.value;
-        const pricePerPassenger = classPrices[selectedClass];
 
-        const totalAmount = pricePerPassenger * passengerCount;
-        totalAmountDisplay.textContent = `$${totalAmount}`;
+        const fromStationId = selectedTrain.startStationId;  // Assuming `selectedTrain` has startStationId
+        const toStationId = selectedTrain.endStationId;      // Assuming `selectedTrain` has endStationId
+
+        try {
+            // Make the API call to the PHP backend to calculate fare
+            const response = await fetch(`http://localhost/Traventure/Server/api/calculateFare.php?from=${fromStationId}&to=${toStationId}&class=${selectedClass}`);
+            
+            if (response.ok) {
+                const data = await response.json();
+
+                // Handle the data returned by the API
+                if (data.total_fare) {
+                    const totalFare = data.total_fare * passengerCount; // Multiply by passenger count
+                    totalAmountDisplay.textContent = `$${totalFare.toFixed(2)}`;  // Display total fare
+                } else {
+                    alert('Error: No fare details returned.');
+                }
+            } else {
+                const error = await response.json();
+                alert(error.message || 'Error calculating fare.');
+            }
+        } catch (error) {
+            alert("An error occurred while calculating the fare.");
+            console.error("Error:", error);
+        }
     }
 
     // Recalculate the total amount whenever the passenger count or class selection changes
@@ -50,11 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Handle form submission
     const bookingForm = document.getElementById("booking-form");
-    bookingForm.addEventListener("submit", (event) => {
+    bookingForm.addEventListener("submit", async (event) => {
         event.preventDefault();  // Prevent form from submitting
 
-        // Get selected payment option
         const paymentOption = document.getElementById("payment-option").value;
+
+        // Get the final calculated amount
+        const finalAmount = totalAmountDisplay.textContent;
 
         // Store booking details in localStorage before redirecting to the payment page
         const bookingDetails = {
@@ -62,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             passengerCount: parseInt(passengerCountInput.value),
             selectedClass: classSelect.value,
             paymentOption,
-            totalAmount: totalAmountDisplay.textContent
+            totalAmount: finalAmount
         };
 
         localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));

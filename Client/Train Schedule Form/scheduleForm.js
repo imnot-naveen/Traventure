@@ -5,12 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchButton = document.querySelector("button[type='button']");
 
   // Ensure elements are properly fetched
-  if (
-    !startStationSelect ||
-    !endStationSelect ||
-    !searchDateInput ||
-    !searchButton
-  ) {
+  if (!startStationSelect || !endStationSelect || !searchDateInput || !searchButton) {
     console.error("One or more required elements are missing from the DOM.");
     return;
   }
@@ -19,6 +14,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const today = new Date();
   const formattedDate = today.toISOString().split("T")[0]; // Format to YYYY-MM-DD
   searchDateInput.value = formattedDate;
+
+  // Retrieve saved stations from localStorage (if any)
+  const savedStartStation = localStorage.getItem("startStation");
+  const savedEndStation = localStorage.getItem("endStation");
+
+  // Set saved station values to dropdowns if they exist
+  if (savedStartStation) {
+    startStationSelect.value = savedStartStation;
+  }
+
+  if (savedEndStation) {
+    endStationSelect.value = savedEndStation;
+  }
 
   // Fetch stations from the backend
   const fetchStations = async () => {
@@ -61,10 +69,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startStationSelect.addEventListener("change", () => {
     handleStationSelection(startStationSelect, endStationSelect);
+    // Save the selected start station
+    localStorage.setItem("startStation", startStationSelect.value);
+    // Optionally clear the end station if start station is changed
+    localStorage.removeItem("endStation");
   });
 
   endStationSelect.addEventListener("change", () => {
     handleStationSelection(endStationSelect, startStationSelect);
+    // Save the selected end station
+    localStorage.setItem("endStation", endStationSelect.value);
+    // Optionally clear the start station if end station is changed
+    localStorage.removeItem("startStation");
   });
 
   // Handle button click for fetching train schedules
@@ -73,12 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const endStation = endStationSelect.value;
     const searchDate = searchDateInput.value;
 
+    // Log the values being used in the request for debugging
+    console.log("Start Station:", startStation);
+    console.log("End Station:", endStation);
+    console.log("Search Date:", searchDate);
+
     // Validate inputs
-    if (
-      startStation === "--Select--" ||
-      endStation === "--Select--" ||
-      !searchDate
-    ) {
+    if (!startStation || !endStation || startStation === "--Select--" || endStation === "--Select--" || !searchDate) {
       alert("Please select a valid start station, end station, and date.");
       return;
     }
@@ -115,9 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (error) {
       console.error("Error fetching trains:", error);
-      alert(
-        "An error occurred while fetching train schedules. Please try again."
-      );
+      alert("An error occurred while fetching train schedules. Please try again.");
     }
   });
 });
