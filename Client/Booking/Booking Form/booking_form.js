@@ -1,22 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Retrieve the selected train data from localStorage
+    // Retrieve all necessary data from localStorage
     const selectedTrain = JSON.parse(localStorage.getItem("selectedTrain"));
+    const startStation = localStorage.getItem("startStation");
+    const endStation = localStorage.getItem("endStation");
+    
+    console.log("Retrieved Train Data:", selectedTrain);
+    console.log("Retrieved Start Station:", startStation);
+    console.log("Retrieved End Station:", endStation);
 
     // If no train is selected, redirect back to the train schedule page
     if (!selectedTrain) {
-        window.location.href = "../TrainSchedule/trainschedule.html";
+        alert("No train selected. Redirecting to train schedule.");
+        window.location.href = "../train schedule/trainschedule.html";
         return;
     }
+
+    // Get station information
+    let fromStationId = startStation || selectedTrain.startStationId;
+    let toStationId = endStation || selectedTrain.endStationId;
+    
+    console.log("Using Start Station ID:", fromStationId);
+    console.log("Using End Station ID:", toStationId);
 
     // Display the selected train's details
     const trainDetailsDiv = document.getElementById("train-details");
     trainDetailsDiv.innerHTML = `
         <h3>Selected Train</h3>
         <p><strong>Train No:</strong> ${selectedTrain.trainID}</p>
-        <p><strong>Departure:</strong> ${selectedTrain.departureTime}</p>
-        <p><strong>Arrival:</strong> ${selectedTrain.arrivalTime}</p>
+        <p><strong>Departure:</strong> ${new Date(selectedTrain.departureTime).toLocaleTimeString()}</p>
+        <p><strong>Arrival:</strong> ${new Date(selectedTrain.arrivalTime).toLocaleTimeString()}</p>
         <p><strong>Duration:</strong> ${selectedTrain.duration}</p>
-        <p><strong>Ends At:</strong> ${selectedTrain.endStation}</p>
+        <p><strong>From:</strong> Station ${fromStationId}</p>
+        <p><strong>To:</strong> Station ${toStationId}</p>
     `;
 
     // Get references to form elements
@@ -29,8 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const passengerCount = parseInt(passengerCountInput.value) || 1;  // Default to 1 if empty
         const selectedClass = classSelect.value;
 
-        const fromStationId = selectedTrain.startStationId;  // Assuming `selectedTrain` has startStationId
-        const toStationId = selectedTrain.endStationId;      // Assuming `selectedTrain` has endStationId
+        // Ensure we have the station IDs
+        if (!fromStationId || !toStationId) {
+            console.error("Missing station IDs for fare calculation");
+            totalAmountDisplay.textContent = "Error: Missing station information";
+            return;
+        }
 
         try {
             // Make the API call to the PHP backend to calculate fare
@@ -44,15 +63,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     const totalFare = data.total_fare * passengerCount; // Multiply by passenger count
                     totalAmountDisplay.textContent = `$${totalFare.toFixed(2)}`;  // Display total fare
                 } else {
-                    alert('Error: No fare details returned.');
+                    console.error('Error: No fare details returned.');
+                    totalAmountDisplay.textContent = "Error calculating fare";
                 }
             } else {
-                const error = await response.json();
-                alert(error.message || 'Error calculating fare.');
+                try {
+                    const error = await response.json();
+                    console.error("API Error:", error.message || 'Error calculating fare.');
+                    totalAmountDisplay.textContent = "Error calculating fare";
+                } catch (e) {
+                    console.error("Could not parse error response:", e);
+                    totalAmountDisplay.textContent = "Error calculating fare";
+                }
             }
         } catch (error) {
-            alert("An error occurred while calculating the fare.");
             console.error("Error:", error);
+            totalAmountDisplay.textContent = "Error calculating fare";
         }
     }
 
@@ -70,12 +96,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const paymentOption = document.getElementById("payment-option").value;
 
-        // Get the final calculated amount
-        const finalAmount = totalAmountDisplay.textContent;
+        // Get the final calculated amount (remove $ sign if needed)
+        const finalAmount = totalAmountDisplay.textContent.replace('$', '');
 
         // Store booking details in localStorage before redirecting to the payment page
         const bookingDetails = {
             selectedTrain,
+            fromStationId,
+            toStationId,
             passengerCount: parseInt(passengerCountInput.value),
             selectedClass: classSelect.value,
             paymentOption,

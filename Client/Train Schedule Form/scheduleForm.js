@@ -19,14 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedStartStation = localStorage.getItem("startStation");
   const savedEndStation = localStorage.getItem("endStation");
 
-  // Set saved station values to dropdowns if they exist
-  if (savedStartStation) {
-    startStationSelect.value = savedStartStation;
-  }
-
-  if (savedEndStation) {
-    endStationSelect.value = savedEndStation;
-  }
+  console.log("Saved End Station:", savedEndStation);
+  console.log("Saved Start Station:", savedStartStation);
 
   // Fetch stations from the backend
   const fetchStations = async () => {
@@ -48,6 +42,25 @@ document.addEventListener("DOMContentLoaded", () => {
           startStationSelect.appendChild(optionStart);
           endStationSelect.appendChild(optionEnd);
         });
+        
+        // Set saved station values to dropdowns if they exist
+        if (savedStartStation) {
+          startStationSelect.value = savedStartStation;
+        }
+        
+        if (savedEndStation) {
+          endStationSelect.value = savedEndStation;
+        }
+        
+        // After populating options, handle station selection to disable the same station in other dropdown
+        if (savedStartStation) {
+          handleStationSelection(startStationSelect, endStationSelect);
+        }
+        
+        if (savedEndStation) {
+          handleStationSelection(endStationSelect, startStationSelect);
+        }
+        
       } else {
         console.error("Unexpected data format from the API:", stations);
       }
@@ -69,18 +82,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startStationSelect.addEventListener("change", () => {
     handleStationSelection(startStationSelect, endStationSelect);
-    // Save the selected start station
+    // Save the selected start station WITHOUT removing end station
     localStorage.setItem("startStation", startStationSelect.value);
-    // Optionally clear the end station if start station is changed
-    localStorage.removeItem("endStation");
+    console.log("Start station saved:", startStationSelect.value);
   });
 
   endStationSelect.addEventListener("change", () => {
     handleStationSelection(endStationSelect, startStationSelect);
-    // Save the selected end station
+    // Save the selected end station WITHOUT removing start station
     localStorage.setItem("endStation", endStationSelect.value);
-    // Optionally clear the start station if end station is changed
-    localStorage.removeItem("startStation");
+    console.log("End station saved:", endStationSelect.value);
   });
 
   // Handle button click for fetching train schedules
@@ -122,8 +133,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const trains = await response.json();
 
       if (trains && Array.isArray(trains)) {
-        // Store the train data in localStorage and redirect
-        localStorage.setItem("trainData", JSON.stringify(trains));
+        // Add start and end station IDs to each train object
+        const trainsWithStations = trains.map(train => ({
+          ...train,
+          startStationId: startStation,
+          endStationId: endStation
+        }));
+        
+        // Store the train data in localStorage with station IDs included
+        localStorage.setItem("trainData", JSON.stringify(trainsWithStations));
 
         // Redirect to the results page
         window.location.href = "../train schedule/trainschedule.html";
