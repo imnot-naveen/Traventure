@@ -49,17 +49,19 @@ $username = $_SESSION['username'];
                         <input type="date" id="search-date" name="search-date">
                     </div>
                     <div class="form-group">
-                        <label for="total-passengers">Total No. of Passengers</label>
-                        <input type="number" id="total-passengers" name="total-passengers" min="1" max="10" placeholder="Enter total passengers">
+                        <label for="adults">No. of Adults</label>
+                        <input type="number" id="adults" name="adults" min="0" max="10" placeholder="Enter no. of adults">
                     </div>
                     <div class="form-group">
                         <label for="children">No. of Children</label>
                         <input type="number" id="children" name="children" min="0" max="10" placeholder="Enter no. of children">
                     </div>
                     <div class="form-group">
-                        <label for="adults">No. of Adults</label>
-                        <input type="number" id="adults" name="adults" readonly placeholder="Will be auto-filled">
+                        <label for="total-passengers">Total No. of Passengers</label>
+                        <input type="number" id="total-passengers" name="total-passengers" min="1" max="10" placeholder="Enter total passengers">
                     </div>
+                    
+                    
                     <div class="buttons">
                         <button type="button">Search</button>
                         <button type="reset" class="reset">Reset</button>

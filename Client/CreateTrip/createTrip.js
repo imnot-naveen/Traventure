@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchDateInput = document.getElementById("search-date");
   const searchButton = document.querySelector("button[type='button']");
 
-  // Ensure elements are properly fetched
   if (
     !startStationSelect ||
     !endStationSelect ||
@@ -21,20 +20,26 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Set the current date as the default value for the date input
-  const today = new Date();
-  const formattedDate = today.toISOString().split("T")[0];
-  searchDateInput.value = formattedDate;
+  // Set the current date as default and prevent past dates
+  const today = new Date().toISOString().split("T")[0];
+  searchDateInput.setAttribute("min", today);
+  searchDateInput.value = today;
 
-  // Fetch stations from the backend
+  searchDateInput.addEventListener("change", function () {
+    if (searchDateInput.value < today) {
+      alert("You cannot select a past date.");
+      searchDateInput.value = today;
+    }
+  });
+
+  // Fetch stations dynamically
   const fetchStations = async () => {
     try {
       const response = await fetch("../../server/api/getstations.php");
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const stations = await response.json();
 
+      const stations = await response.json();
       if (stations && Array.isArray(stations)) {
         stations.forEach((station) => {
           const optionStart = document.createElement("option");
@@ -59,55 +64,59 @@ document.addEventListener("DOMContentLoaded", () => {
   // Disable selected station in the other dropdown
   const handleStationSelection = (changedSelect, otherSelect) => {
     const selectedValue = changedSelect.value;
-
     Array.from(otherSelect.options).forEach((option) => {
       option.disabled = option.value === selectedValue;
     });
   };
 
-  startStationSelect.addEventListener("change", () => {
-    handleStationSelection(startStationSelect, endStationSelect);
-  });
+  startStationSelect.addEventListener("change", () =>
+    handleStationSelection(startStationSelect, endStationSelect)
+  );
+  endStationSelect.addEventListener("change", () =>
+    handleStationSelection(endStationSelect, startStationSelect)
+  );
 
-  endStationSelect.addEventListener("change", () => {
-    handleStationSelection(endStationSelect, startStationSelect);
-  });
-
-  // Autofill logic for adults
-  const autofillAdults = () => {
-    const totalPassengers = parseInt(totalPassengersInput.value) || 0;
+  // Update total passengers based on adults and children
+  const updateTotalPassengers = () => {
+    const adults = parseInt(adultsInput.value) || 0;
     const children = parseInt(childrenInput.value) || 0;
-
-    if (children > totalPassengers) {
-      alert("Number of children cannot exceed total passengers.");
-      childrenInput.value = totalPassengers;
-    }
-
-    const adults = totalPassengers - (parseInt(childrenInput.value) || 0);
-    adultsInput.value = adults >= 0 ? adults : 0;
+    totalPassengersInput.value = adults + children;
   };
 
-  // Add event listeners for inputs
+  // Adjust adults/children when total passengers change
   totalPassengersInput.addEventListener("input", () => {
-    if (totalPassengersInput.value > 10) {
+    let totalPassengers = parseInt(totalPassengersInput.value) || 0;
+    if (totalPassengers > 10) {
       alert("Total passengers cannot exceed 10.");
+      totalPassengers = 10;
       totalPassengersInput.value = 10;
     }
-    autofillAdults();
+
+    if (
+      totalPassengers <
+      (parseInt(adultsInput.value) || 0) + (parseInt(childrenInput.value) || 0)
+    ) {
+      alert(
+        "Total passengers cannot be less than the sum of adults and children."
+      );
+      totalPassengersInput.value =
+        (parseInt(adultsInput.value) || 0) +
+        (parseInt(childrenInput.value) || 0);
+    }
   });
 
-  childrenInput.addEventListener("input", autofillAdults);
+  adultsInput.addEventListener("input", updateTotalPassengers);
+  childrenInput.addEventListener("input", updateTotalPassengers);
 
   // Handle button click for fetching train schedules
   searchButton.addEventListener("click", async () => {
     const startStation = startStationSelect.value;
     const endStation = endStationSelect.value;
     const searchDate = searchDateInput.value;
-    const totalPassengers = totalPassengersInput.value;
-    const children = childrenInput.value;
-    const adults = adultsInput.value;
+    const totalPassengers = parseInt(totalPassengersInput.value) || 0;
+    const children = parseInt(childrenInput.value) || 0;
+    const adults = parseInt(adultsInput.value) || 0;
 
-    // Validate inputs
     if (
       startStation === "--Select--" ||
       endStation === "--Select--" ||
@@ -122,7 +131,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Save trip details to localStorage
+    if (totalPassengers > 10) {
+      alert("Total passengers cannot exceed 10.");
+      return;
+    }
+
+    if (totalPassengers !== adults + children) {
+      alert("Total passengers must match the sum of adults and children.");
+      return;
+    }
+
     const tripData = {
       startStation,
       endStation,
@@ -134,21 +152,17 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("tripData", JSON.stringify(tripData));
 
     try {
-      // Fetch train details dynamically
       const response = await fetch("../../server/api/gettrains.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ startStation, endStation, searchDate }),
       });
 
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error(`HTTP error! Status: ${response.status}`);
-      }
 
       const trains = await response.json();
-
       if (trains && Array.isArray(trains)) {
-        // Save train data in localStorage and redirect
         localStorage.setItem("trainData", JSON.stringify(trains));
         window.location.href = "../select train/selecttrain.html";
       } else {
@@ -159,20 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
       alert(
         "An error occurred while fetching train schedules. Please try again."
       );
-    }
-  });
-
-  let searchDate = document.getElementById("search-date");
-
-  // Set the minimum date to today
-  let todayy = new Date().toISOString().split("T")[0];
-  searchDate.setAttribute("min", todayy);
-
-  // Validate the date on change
-  searchDate.addEventListener("change", function () {
-    if (searchDate.value < todayy) {
-      alert("You cannot select a past date.");
-      searchDate.value = todayy;
     }
   });
 });
