@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Get the final calculated amount (remove $ sign if needed)
         const finalAmount = totalAmountDisplay.textContent.replace('$', '');
+        const finalAmountInNum = parseFloat(finalAmount);
 
         // Store booking details in localStorage before redirecting to the payment page
         const bookingDetails = {
@@ -107,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
             passengerCount: parseInt(passengerCountInput.value),
             selectedClass: classSelect.value,
             paymentOption,
-            totalAmount: finalAmount
+            totalAmount: finalAmountInNum
         };
 
         localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
