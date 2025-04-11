@@ -25,7 +25,7 @@
                 <img src="../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture" id="adminPicture">
                 <div class="profile-info">
                     <h2 id="adminName">Loading...</h2>
-                    <h3 id="adminRole">Loading...</h3>
+                    <h3 id="adminRole">Admin</h3>
                 </div>
             </div>
             <div class="profile-details">
@@ -50,47 +50,40 @@
                             <th>Booking ID</th>
                             <th>User</th>
                             <th>Starting Station</th>
-                            <th>Destination</th>
-                            <th>Amount</th>
+                            <th>Total Fare</th>
+                            <th>Booking Date</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>10002</td>
-                            <td>Dimuthu Harshamal</td>
-                            <td>Fort</td>
-                            <td>Kandy</td>
-                            <td>$20.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10003</td>
-                            <td>John Doe</td>
-                            <td>Fort</td>
-                            <td>Galle</td>
-                            <td>$13.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10004</td>
-                            <td>Kavindu Perera</td>
-                            <td>Maradana</td>
-                            <td>Badulla</td>
-                            <td>$220.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10005</td>
-                            <td>Kamal Gunarathne</td>
-                            <td>Kalutara</td>
-                            <td>Beliatta</td>
-                            <td>$30.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10006</td>
-                            <td>Tharushi Senarathne</td>
-                            <td>Maho</td>
-                            <td>Ambewela</td>
-                            <td>$22.00</td>   
-                        </tr>
-                    </tbody>
+                    <tbody id="booking-table-body">
+                    </tbody> 
+                        <script>
+                        fetch('http://localhost/Traventure/Server/api/getAllBookings.php') 
+                        .then(res => res.json())
+                        .then(data => {
+                            const tbody = document.getElementById('booking-table-body');
+                            if (data.success) {
+                                data.data.forEach(booking => {
+                                    const row = document.createElement('tr');
+                                    row.innerHTML = `
+                                        <td>${booking.bookingID}</td>
+                                        <td>${booking.userID}</td>
+                                        <td>${booking.start_station}</td>
+                                        <td>${booking.total_fare}</td>
+                                        <td>$${booking.bookingDate}</td>
+                                    `;
+                                    tbody.appendChild(row);
+                                });
+                            } else {
+                                tbody.innerHTML = `<tr><td colspan="5">${data.message}</td></tr>`;
+                            }
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            document.getElementById('booking-table-body').innerHTML =
+                                `<tr><td colspan="5">Failed to load bookings.</td></tr>`;
+                        });
+                    </script>
+                
                 </table>
                 <a href="../AdminBookings/AdminBookings.php">Show All</a>
              </div>

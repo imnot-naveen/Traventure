@@ -1,31 +1,31 @@
 <?php
-// Enable error reporting
+// Enable error reporting (for development only)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Headers
-header('Access-Control-Allow-Origin: *'); //CORS
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Origin: *'); 
+header('Access-Control-Allow-Methods: GET');
 header('Content-Type: application/json');
 
-// Include database and person class
+// Include core initialization 
 include_once('../core/initialize.php');
 
-// Instantiate person object
-$person = new Person($db);
-$booking = new Booking($db);
+// Instantiate Bookings object
+$booking = new Bookings($db);
 
-// Fetch all persons
-$result = $booking->getAllbookings();
+// Fetch all bookings
+$result = $booking->getAllBookings();
 
-// Check if records are found
-if ($result) {
-    http_response_code(200); // Success
-    echo json_encode(['success' => true, 'data' => $result]);
+// Return response
+if ($result['success'] && !empty($result['data'])) {
+    http_response_code(200);
+    echo json_encode(['success' => true, 'data' => $result['data']]);
 } else {
-    http_response_code(404); // No data found
-    echo json_encode(['success' => false, 'message' => 'No persons found.']);
+    http_response_code(404);
+    echo json_encode([
+        'success' => false,
+        'message' => $result['message'] ?? 'No bookings found.'
+    ]);
 }
-
-?>

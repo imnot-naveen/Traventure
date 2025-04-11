@@ -53,13 +53,11 @@ class Bookings {
     public function getAllBookings() {
         try {
             $query = 'SELECT b.*, 
-                        s1.station_name as start_station_name, 
-                        s2.station_name as destination_station_name,
-                        tr.route_name
+                        s1.name as start_station_name, 
+                        s2.name as destination_station_name
                      FROM ' . $this->booking_table . ' b
-                     JOIN stations s1 ON b.start_station = s1.stationID
-                     JOIN stations s2 ON b.destination_station = s2.stationID
-                     LEFT JOIN train_routes tr ON b.routeID = tr.routeID
+                     JOIN station s1 ON b.start_station = s1.stationID
+                     JOIN station s2 ON b.destination_station = s2.stationID
                      ORDER BY b.bookingDate DESC';
             
             $stmt = $this->conn->prepare($query);
@@ -81,8 +79,8 @@ class Bookings {
                         s2.station_name as destination_station_name,
                         tr.route_name
                      FROM ' . $this->booking_table . ' b
-                     JOIN stations s1 ON b.start_station = s1.stationID
-                     JOIN stations s2 ON b.destination_station = s2.stationID
+                     JOIN station s1 ON b.start_station = s1.stationID
+                     JOIN station s2 ON b.destination_station = s2.stationID
                      LEFT JOIN train_routes tr ON b.routeID = tr.routeID
                      WHERE b.userID = :userID
                      ORDER BY b.bookingDate DESC';
