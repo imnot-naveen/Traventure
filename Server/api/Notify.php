@@ -3,45 +3,33 @@
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 
-// Connect to your database
-require_once("../includes/config.php");
-
-// Get the JSON input
+// Get the JSON input (from Postman or PayHere webhook)
 $data = json_decode(file_get_contents("php://input"), true);
 
-if (!$data) {
-    echo json_encode(["status" => "error", "message" => "Invalid JSON"]);
+// Check if the necessary fields exist in the JSON
+if (!isset($data['merchant_id'], $data['order_id'], $data['amount'], $data['status_code'], $data['md5sig'])) {
+    http_response_code(400);  // Bad request
+    echo json_encode(["status" => "error", "message" => "Invalid PayHere JSON data"]);
     exit;
 }
 
-// Extract data
-$trainID = $data['selectedTrain']['trainID'] ?? null;
-$fromStation = $data['fromStationId'] ?? null;
-$toStation = $data['toStationId'] ?? null;
-$class = $data['selectedClass'] ?? null;
-$passengerCount = $data['passengerCount'] ?? 1;
-$paymentOption = $data['paymentOption'] ?? 'unknown';
-$totalAmount = $data['totalAmount'] ?? 0;
+// Extract values from the JSON data
+$merchant_id = $data['merchant_id'];
+$order_id = $data['order_id'];
+$amount = $data['amount'];
+$status_code = $data['status_code'];
+$md5sig = $data['md5sig'];  // To verify the signature
 
-// Basic validation
-if (!$trainID || !$fromStation || !$toStation || !$class) {
-    echo json_encode(["status" => "error", "message" => "Missing required booking details"]);
-    exit;
-}
 
-// Insert into your `bookings` table
-$sql = "INSERT INTO bookings (train_id, from_station, to_station, class, passenger_count, payment_option, total_amount)
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssssisd", $trainID, $fromStation, $toStation, $class, $passengerCount, $paymentOption, $totalAmount);
-
-if ($stmt->execute()) {
-    echo json_encode(["status" => "success", "message" => "Booking recorded successfully"]);
+// Process the payment response based on the status_code
+if ($status_code == 2) {
+    // Payment was successful
+    file_put_contents("log.txt", "Payment successful for Order ID: $order_id\n", FILE_APPEND);
+    echo json_encode(["status" => "success", "message" => "Payment successful"]);
 } else {
-    echo json_encode(["status" => "error", "message" => "Failed to record booking"]);
+    // Payment failed or cancelled
+    file_put_contents("log.txt", "Payment failed or cancelled for Order ID: $order_id\n", FILE_APPEND);
+    echo json_encode(["status" => "error", "message" => "Payment failed or cancelled"]);
 }
 
-$stmt->close();
-$conn->close();
 ?>
