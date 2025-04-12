@@ -181,5 +181,6 @@
  <script src="AdminUsers-crud-v3.js"></script>
  <script src="AdminUserAdd.js"></script>
  <script src="AdminUsers-v2.js"></script>
+ <script src="../Recent_updates/Recent.js"></script>
 </body>
 </html>

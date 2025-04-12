@@ -18,6 +18,7 @@ class Bookings {
     public $paymentMethod;
     public $paymentStatus;
     public $bookingDate;
+    public $trainID;
 
     // Create a new booking
     public function createBooking($userID, $start_station, $destination_station, $class, $no_of_passengers, $total_fare, $paymentMethod) {
@@ -53,13 +54,13 @@ class Bookings {
     public function getAllBookings() {
         try {
             $query = 'SELECT b.*, 
-                        s1.name as start_station_name, 
-                        s2.name as destination_station_name
-                     FROM ' . $this->booking_table . ' b
-                     JOIN station s1 ON b.start_station = s1.stationID
-                     JOIN station s2 ON b.destination_station = s2.stationID
-                     ORDER BY b.bookingDate DESC';
-            
+                u.username AS user_name,
+                t.name AS train_name
+                FROM ' . $this->booking_table . ' b
+                JOIN registereduser u ON b.userID = u.userID
+                JOIN train t ON b.trainID = t.trainID
+                ORDER BY b.bookingDate DESC';
+
             $stmt = $this->conn->prepare($query);
 
             $stmt->execute();
@@ -105,13 +106,11 @@ class Bookings {
     public function getBookingByID($bookingID) {
         try {
             $query = 'SELECT b.*, 
-                        s1.station_name as start_station_name, 
-                        s2.station_name as destination_station_name,
-                        tr.route_name
-                     FROM ' . $this->booking_table . ' b
-                     JOIN stations s1 ON b.start_station = s1.stationID
-                     JOIN stations s2 ON b.destination_station = s2.stationID
-                     LEFT JOIN train_routes tr ON b.routeID = tr.routeID
+                     s1.name as start_station_name, 
+                    s2.name as destination_station_name
+                    FROM ' . $this->booking_table . ' b
+                     JOIN station s1 ON b.start_station = s1.stationID
+                     JOIN station s2 ON b.destination_station = s2.stationID
                      WHERE b.bookingID = :bookingID';
             
             $stmt = $this->conn->prepare($query);
@@ -167,6 +166,61 @@ class Bookings {
             }
         } catch (Exception $e) {
             return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
+    }
+
+    // Get recent bookings
+    public function getRecentBookings() {
+        try {
+            $query = "SELECT CONCAT(p.firstName, ' ', p.lastName) AS FullName, 
+                        s1.name AS startStation, 
+                        s2.name AS endStation, 
+                        b.bookingDate 
+                    FROM bookings b
+                    JOIN registereduser r ON r.userID = b.userID
+                    JOIN station s1 ON b.start_station = s1.stationID
+                    JOIN station s2 ON b.destination_station = s2.stationID
+                    JOIN person p ON p.username = r.username 
+                    ORDER BY b.bookingDate DESC 
+                    LIMIT 3";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            if ($results) {
+                $recentBookings = [];
+                foreach ($results as $row) {
+                    // Add the booking to the result array with timeAgo formatting
+                    $recentBookings[] = [
+                        'userName' => $row['FullName'],
+                        'startStation' => $row['startStation'],
+                        'endStation' => $row['endStation'],
+                        'timeAgo' => $this->timeAgo($row['bookingDate']),
+                    ];
+                }
+                return ['success' => true, 'data' => $recentBookings];
+            } else {
+                return ['success' => false, 'message' => 'No recent bookings found.'];
+            }
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
+    }
+
+    // Helper function to calculate time ago
+    public function timeAgo($timestamp) {
+        $time = strtotime($timestamp);
+        $timeDiff = time() - $time;
+        
+        if ($timeDiff < 60) {
+            return "$timeDiff seconds ago";
+        } elseif ($timeDiff < 3600) {
+            return floor($timeDiff / 60) . " minutes ago";
+        } elseif ($timeDiff < 86400) {
+            return floor($timeDiff / 3600) . " hours ago";
+        } else {
+            return floor($timeDiff / 86400) . " days ago";
         }
     }
 }

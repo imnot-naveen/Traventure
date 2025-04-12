@@ -124,6 +124,6 @@
  <script src="AdminAnalytics.js"></script>
  <script src="AdminAnalytics-lineChart.js"></script>
  <script src="AdminAnalytics-lineChart2.js"></script>
-
+ <script src="../Recent_updates/Recent.js"></script>
 </body>
 </html>

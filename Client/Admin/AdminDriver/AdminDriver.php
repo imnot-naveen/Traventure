@@ -201,5 +201,6 @@
  <script src="AdminDriver-crud-v3.js"></script>
  <script src="AdminDriver.js"></script>
  <script src="AdminDriverAdd.js"></script>
+ <script src="../Recent_updates/Recent.js"></script>
 </body>
 </html>

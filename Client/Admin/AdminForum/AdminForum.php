@@ -46,5 +46,6 @@
 
   <script src="../Common/Logout_Modal.js"></script>
   <script src="AdminForum.js"></script>
+  <script src="../Recent_updates/Recent.js"></script>
 </body>
 </html>

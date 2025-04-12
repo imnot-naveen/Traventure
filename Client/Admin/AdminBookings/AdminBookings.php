@@ -24,8 +24,8 @@
                     <span class="material-symbols-outlined">analytics</span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Booking Sales</h3>
-                            <h1>$25,056</h1>
+                            <h3>Total Revenue</h3>
+                            <h1 id="totalRevenue">Loading</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -47,8 +47,8 @@
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>User Accounts</h3>
-                            <h1>43</h1>
+                            <h3>Total Bookings</h3>
+                            <h1 id="totalBookings">Loading..</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -70,8 +70,8 @@
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Income</h3>
-                            <h1>$10,123</h1>
+                            <h3>Monthly Revenue</h3>
+                            <h1 id="lastMonthRevenue">Loading..</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -106,61 +106,15 @@
                         <tr>
                             <th>Booking ID</th>
                             <th>User</th>
-                            <th>Starting Station</th>
-                            <th>Destination</th>
-                            <th>No of Passengers</th>
+                            <th>Train</th>
+                            <th>No of passengers</th>
+                            <th>Payment Status</th>
+                            <th>Booking Date</th>
                             <th>Amount</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>10002</td>
-                            <td>Dimuthu Harshamal</td>
-                            <td>Fort</td>
-                            <td>Kandy</td>
-                            <td>3</td>
-                            <td>$20.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10003</td>
-                            <td>John Doe</td>
-                            <td>Fort</td>
-                            <td>Galle</td>
-                            <td>3</td>
-                            <td>$13.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10004</td>
-                            <td>Kavindu Perera</td>
-                            <td>Maradana</td>
-                            <td>Badulla</td>
-                            <td>3</td>
-                            <td>$220.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10005</td>
-                            <td>Kamal Gunarathne</td>
-                            <td>Kalutara</td>
-                            <td>Beliatta</td>
-                            <td>3</td>
-                            <td>$30.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10006</td>
-                            <td>Tharushi Senarathne</td>
-                            <td>Maho</td>
-                            <td>Ambewela</td>
-                            <td>3</td>
-                            <td>$22.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10007</td>
-                            <td>Sandya Perera</td>
-                            <td>Panadura</td>
-                            <td>Galle</td>
-                            <td>3</td>
-                            <td>$12.00</td>   
-                        </tr>
+                    <tbody id="BookingTableBody">
+                        
                     </tbody>
                 </table>
                 <div class="pagination">
@@ -190,5 +144,6 @@
                
   <script src="../Common/Logout_Modal.js"></script>
   <script src="AdminBookings.js"></script>
+  <script src="../Recent_updates/Recent.js"></script>
 </body>
 </html>

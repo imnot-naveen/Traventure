@@ -201,5 +201,6 @@
  <script src="AdminCW-crud.js"></script>
  <script src="AdminCW.js"></script>
  <script src="AdminCWAdd.js"></script>
+ <script src="../Recent_updates/Recent.js"></script>
 </body>
 </html>
