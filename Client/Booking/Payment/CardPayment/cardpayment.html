@@ -2,109 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Card Payment - Traventure</title>
-    <script src="https://www.payhere.lk/lib/payhere.js"></script>
-    <style>
-        body {
-            background-color: #f4f4f4;
-            font-family: Arial, sans-serif;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            display: inline-block;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        button {
-            background-color: #0057D9;
-            color: white;
-            padding: 12px 25px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        button:hover {
-            background-color: #003f9a;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
     <div class="container">
-        <h2>Card Payment</h2>
-        <p>Click the button below to proceed with payment via PayHere.</p>
-        <button id="pay-now">Pay Now</button>
+        <h2>Payment Details</h2>
+        <form id="payment-form">
+            <div id="card-element"></div> 
+            <button id="submit" type="submit">Pay</button>
+            <div id="payment-status"></div> 
+        </form>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const bookingDetails = JSON.parse(localStorage.getItem("bookingDetails"));
-
-            if (!bookingDetails) {
-                alert("No booking data found. Redirecting...");
-                window.location.href = "../../booking/booking.html";
-                return;
-            }
-
-            document.getElementById("pay-now").addEventListener("click", () => {
-                startPayHerePayment(bookingDetails);
-            });
-        });
-
-        function startPayHerePayment(details) {
-            const orderId = "ORDER_" + new Date().getTime();
-
-            payhere.onCompleted = function onCompleted(orderId) {
-                console.log("Payment completed. OrderID:", orderId);
-                alert("Payment successful!");
-
-                // Redirect or show thank you
-                window.location.href = "../../ThankYou/thankyou.html";
-            };
-
-            payhere.onDismissed = function onDismissed() {
-                console.log("Payment dismissed");
-                alert("Payment cancelled.");
-            };
-
-            payhere.onError = function onError(error) {
-                console.error("PayHere error:", error);
-                alert("An error occurred during payment.");
-            };
-
-            // Trigger payment
-            payhere.startPayment({
-                sandbox: true, 
-                merchant_id: "1230057", 
-                return_url: undefined,
-                cancel_url: undefined,
-                notify_url: "https://522e-2402-4000-2081-654f-1c89-f023-7fdd-34eb.ngrok-free.app/Traventure/Server/api/Notify.php",
-                order_id: orderId,
-                items: `Train Ticket - ${details.selectedTrain.trainID}`,
-                amount: parseFloat(details.totalAmount),
-                currency: "LKR",
-
-                first_name: "Test",
-                last_name: "User",
-                email: "testuser@example.com",
-                phone: "0771234567",
-                address: "123 Test Street",
-                city: "Colombo",
-                country: "Sri Lanka",
-
-                delivery_address: "123 Test Street",
-                delivery_city: "Colombo",
-                delivery_country: "Sri Lanka",
-            });
-        }
-    </script>
+    <script src="cardpayment.js"></script>
 </body>
 </html>
