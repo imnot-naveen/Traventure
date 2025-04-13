@@ -1,9 +1,11 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
+    background-color: #f3f7ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
@@ -13,48 +15,119 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* Table styles */
+.table-container {
+    padding: 20px;
+    width: 90%;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+  
+.table-container > div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+  
+  label {
+    font-weight: 500;
+    color: #2a5298;
+    margin-right: 8px;
+  }
+  
+  select {
+    padding: 8px 12px;
+    border: 1px solid #2a5298;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #2a5298;
+    font-weight: 500;
+    transition: border-color 0.3s;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: #2a5298;
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: rgb(10, 80, 186);
+  }
+
+.select-train-btn {
+    background-color: #ECFDF3;
+    border: solid 1px #037847;
+    color: #037847;
+}
+
+.select-train-btn:hover {
+    background-color: #f3feff;
+    
+}
+
+#sort-arrival {
+    background-color: #ccc;
+    color: #333;
+}
+
+th i {
+    margin-right: 6px;
+    color: #6c757d;
+}
+  
+  
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
 }
-
+  
 th, td {
-    padding: 12px 15px;
+    padding: 14px 18px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e2e6ea;
 }
-
+  
 th {
-    background-color: #f8f9fa;
-    color: #333;
-    font-weight: bold;
+    background-color: #e9f2ff;
+    color: #2a5298;
+    font-weight: 600;
 }
-
-/* Train number styling */
-td:nth-child(5) {
-    color: #0d6efd;
-    text-decoration: none;
-}
-
-td:nth-child(5):hover {
-    text-decoration: underline;
+  
+  td:nth-child(5) {
+    color: #2a5298;
+    font-weight: 500;
     cursor: pointer;
-}
-
-/* Departure time styling (first column) */
-td:first-child {
+  }
+  
+  td:nth-child(5):hover {
+    text-decoration: underline;
+  }
+  
+  td:first-child {
     color: #dc3545;
-    font-weight: bold;
-}
-
-/* Type column styling */
-td:last-child {
+    
+  }
+  
+  td:last-child {
     color: #495057;
-}
-
+  }
+  
 /* Responsive design */
 @media screen and (max-width: 768px) {
     table {

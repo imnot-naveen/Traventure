@@ -22,7 +22,7 @@ document
 
       if (result.status === "success") {
         alert(result.message);
-        window.location.href = "LoginPage.html";
+        window.location.href = "../Login/LoginPage.html";
       } else {
         alert(result.message);
       }

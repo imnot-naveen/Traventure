@@ -4,7 +4,9 @@ session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../../vendor/autoload.php';
+require '../phpmailer/src/Exception.php';
+require '../phpmailer/src/PHPMailer.php';
+require '../phpmailer/src/SMTP.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
@@ -28,18 +30,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // SMTP settings
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Use Gmail SMTP
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'your_email@gmail.com'; // Your Gmail address
-        $mail->Password = 'your_app_password'; // Your Gmail App Password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Username = 'traventurecorp@gmail.com'; 
+        $mail->Password = 'jtgg ofoj obwp ftfs'; 
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
 
         // Email content
-        $mail->setFrom('your_email@gmail.com', 'Traventure'); // Sender's email and name
+        $mail->setFrom('traventure@gmail.com', 'Traventure'); // Sender's email and name
         $mail->addAddress($email); // Recipient's email
         $mail->Subject = 'Password Reset Code';
-        $mail->Body = "Your password reset code is: $reset_code";
+        $mail->Body = "Your Traventure password reset code is: $reset_code";
 
         // Send email
         $mail->send();

@@ -18,7 +18,7 @@ document
 
       if (result.status === "success") {
         alert(result.message);
-        window.location.href = "resetpassword.html";
+        window.location.href = "../reset password/resetpassword.html";
       } else {
         alert(result.message);
       }

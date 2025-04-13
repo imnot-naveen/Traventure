@@ -1,36 +1,43 @@
 <?php
 session_start();
+include_once('../core/initialize.php');
+header('Content-Type: application/json');
 
-// resetpassword.php
+// Read and decode JSON input
+$data = json_decode(file_get_contents("php://input"));
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $new_password = $_POST['new_password'];
-    $confirm_password = $_POST['confirm_password'];
+    $new_password = $data->new_password ?? '';
+    $confirm_password = $data->confirm_password ?? '';
 
+    // Validate matching passwords
     if ($new_password !== $confirm_password) {
         echo json_encode(['status' => 'error', 'message' => 'Passwords do not match.']);
         exit;
     }
 
-    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+    // Check session email
+    if (!isset($_SESSION['email'])) {
+        echo json_encode(['status' => 'error', 'message' => 'User email not found in session.']);
+        exit;
+    }
 
     $email = $_SESSION['email'];
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
-    // Update password in the database
-    $conn = new mysqli("localhost", "username", "password", "database");
+    try {
+        $query = "UPDATE login SET password = :password WHERE email = :email";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':password', $hashed_password);
+        $stmt->bindParam(':email', $email);
 
-    if ($conn->connect_error) {
-        die(json_encode(['status' => 'error', 'message' => 'Database connection failed.']));
+        if ($stmt->execute()) {
+            echo json_encode(['status' => 'success', 'message' => 'Password reset successfully.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to reset password.']);
+        }
+    } catch (Exception $e) {
+        echo json_encode(['status' => 'error', 'message' => 'Error: ' . $e->getMessage()]);
     }
-
-    $stmt = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
-    $stmt->bind_param("ss", $hashed_password, $email);
-
-    if ($stmt->execute()) {
-        echo json_encode(['status' => 'success', 'message' => 'Password reset successfully.']);
-    } else {
-        echo json_encode(['status' => 'error', 'message' => 'Failed to reset password.']);
-    }
-
-    $stmt->close();
-    $conn->close();
 }
+?>
