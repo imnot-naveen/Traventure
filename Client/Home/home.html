@@ -1,153 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="home.css">
-  <link rel="stylesheet" href="../Navbar/navbar.css">
-  <link rel="stylesheet" href="../Footer/footer.css">
-  <title>Traventure</title>
-</head>
-<body>
-  <!-- Navbar component -->
-  <nav id="navbar-placeholder"></nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="../Navbar/navbar.css" />
+    <link rel="stylesheet" href="../Footer/footer.css" />
+    <title>Traventure</title>
+  </head>
+  <body>
+    <!-- Navbar component -->
+    <nav id="navbar-placeholder"></nav>
 
-  <!-- Hero Section -->
-  <div class="hero-container">
-    <h1>Effortless Journeys Begin with Traventure</h1>
-    <p>Plan, explore, and embark on your perfect adventure with ease. Traventure brings you tailored itineraries, up-to-date train schedules, and handpicked destination gems—all in one place. Your next trip just got a lot simpler.</p>
-    <button id="cta">Plan your trip!</button>
-  </div>
+    <!-- Hero Section -->
+    <div class="hero-container">
+      <h1>Effortless Journeys Begin with Traventure</h1>
+      <p>
+        Plan, explore, and embark on your perfect adventure with ease.
+        Traventure brings you tailored itineraries, up-to-date train schedules,
+        and handpicked destination gems—all in one place. Your next trip just
+        got a lot simpler.
+      </p>
 
-  <!-- Why Traventure -->
-  <div class="problem-section">
-    <div class="text-content">
-      <h2>Why Traventure?</h2>
-      <p>Traventure addresses train schedules and trip planning tools into a single web platform. It automates the process for a stress-free experience, empowering you to manage everything in one place. No more juggling multiple websites—Traventure ensures you have all the necessary information at your fingertips, streamlining and enhancing your travel planning.</p>
+      <a id="cta" href="../CreateTrip/createTrip.php"
+        ><button>Plan your trip!</button></a
+      >
     </div>
-    <div class="prob-imgs">
-      <img src="../assets/img/problem.png" alt="Train">
-    </div>
-  </div>
 
-  <!-- Features Section -->
-  <div class="features-section">
-    <h2>Traventure helps you plan your trip and have a better experience</h2>
-    <div class="features">
-      <div class="feature">
-        <img src="../assets/icons/train.png" alt="icon 1">
-        <p>Trains</p>
+    <!-- Why Traventure -->
+    <div class="problem-section">
+      <div class="text-content">
+        <h2>Why Traventure?</h2>
+        <p>
+          Traventure addresses train schedules and trip planning tools into a
+          single web platform. It automates the process for a stress-free
+          experience, empowering you to manage everything in one place. No more
+          juggling multiple websites—Traventure ensures you have all the
+          necessary information at your fingertips, streamlining and enhancing
+          your travel planning.
+        </p>
       </div>
-      <div class="feature">
-        <img src="../assets/icons/iternary.png" alt="icon 2">
-        <p>Itinerary</p>
-      </div>
-      <div class="feature">
-        <img src="../assets/icons/hotel.png" alt="icon 3">
-        <p>Accommodation Search</p>
+      <div class="prob-imgs">
+        <img src="../assets/img/problem.png" alt="Train" />
       </div>
     </div>
-  </div>
 
-  <!-- Popular Attractions -->
-  <div class="popular-attractions-section">
-    <h2>Most Popular Attractions</h2>
-    <p>Traventure will help you to plan your trip with these popular attractions. Each trip can be booked as a standard way or you can customize it and request a quote using our route planner.</p>
-    <div class="carousel-container">
-      <button class="prev" onclick="moveAttractionSlide(-1)"><img src="../assets/icons/angle-left.png" alt="left"></button>
-      <div class="carousel-inner">
-        <div class="popular-attraction">
-          <img src="../assets/img/ella.png" alt="location1">
-          <p>Nine Arch Bridge</p>
+    <!-- Features Section -->
+    <div class="features-section">
+      <h2>Traventure helps you plan your trip and have a better experience</h2>
+      <div class="features">
+        <div class="feature">
+          <img src="../assets/icons/train.png" alt="icon 1" />
+          <p>Trains</p>
         </div>
-        <div class="popular-attraction">
-          <img src="../assets/img/mirissa.png" alt="location2">
-          <p>Mirissa</p>
+        <div class="feature">
+          <img src="../assets/icons/iternary.png" alt="icon 2" />
+          <p>Itinerary</p>
         </div>
-        <div class="popular-attraction">
-          <img src="../assets/img/hortain.png" alt="location3">
-          <p>Horton Plains</p>
-        </div>
-        <div class="popular-attraction">
-          <img src="../assets/img/tot.jpg" alt="location4">
-          <p>Temple of Tooth</p>
-        </div>
-        <div class="popular-attraction">
-          <img src="../assets/img/fort.jpg" alt="location5">
-          <p>Galle Fort</p>
+        <div class="feature">
+          <img src="../assets/icons/hotel.png" alt="icon 3" />
+          <p>Accommodation Search</p>
         </div>
       </div>
-      <button class="next" onclick="moveAttractionSlide(1)"><img src="../assets/icons/angle-right.png" alt="right"></button>
     </div>
-    
-    <div class="action">
-      <h4>Ready to plan your Train trip?</h4>
-      <button>Plan your Trip!</button>
+
+    <!-- Popular Attractions -->
+    <div class="popular-attractions-section">
+      <h2>Most Popular Attractions</h2>
+      <p>
+        Traventure will help you to plan your trip with these popular
+        attractions. Each trip can be booked as a standard way or you can
+        customize it and request a quote using our route planner.
+      </p>
+      <div class="carousel-container">
+        <button class="prev" onclick="moveAttractionSlide(-1)">
+          <img src="../assets/icons/angle-left.png" alt="left" />
+        </button>
+        <div class="carousel-inner">
+          <div class="popular-attraction">
+            <img src="../assets/img/ella.png" alt="location1" />
+            <p>Nine Arch Bridge</p>
+          </div>
+          <div class="popular-attraction">
+            <img src="../assets/img/mirissa.png" alt="location2" />
+            <p>Mirissa</p>
+          </div>
+          <div class="popular-attraction">
+            <img src="../assets/img/hortain.png" alt="location3" />
+            <p>Horton Plains</p>
+          </div>
+          <div class="popular-attraction">
+            <img src="../assets/img/tot.jpg" alt="location4" />
+            <p>Temple of Tooth</p>
+          </div>
+          <div class="popular-attraction">
+            <img src="../assets/img/fort.jpg" alt="location5" />
+            <p>Galle Fort</p>
+          </div>
+        </div>
+        <button class="next" onclick="moveAttractionSlide(1)">
+          <img src="../assets/icons/angle-right.png" alt="right" />
+        </button>
+      </div>
+
+      <div class="action">
+        <h4>Ready to plan your Train trip?</h4>
+        <a id="cta" href="../CreateTrip/createTrip.php"
+          ><button>Plan your trip!</button></a
+        >
+      </div>
     </div>
-  </div>
 
-  <!-- Last Section -->
-  <div class="last-section"></div>
+    <!-- Last Section -->
+    <div class="last-section"></div>
 
-  <!-- Footer HTML -->
-  <footer id="footer"></footer>
+    <!-- Footer HTML -->
+    <footer id="footer"></footer>
 
-  <script src="../Navbar/navbar.js"></script>
-  <script src="home.js"></script>
-  <script>
-    // Function to load the Navbar
-    function loadNavbar() {
-      fetch('../Navbar/navbar.php')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('navbar-placeholder').innerHTML = data;
-          // Initialize the navbar functionalities
-          document.getElementById('menu-toggle').addEventListener('click', function() {
-            const navMenu = document.getElementById('nav-menu');
-            navMenu.classList.toggle('active');
+    <script src="../Navbar/navbar.js"></script>
+    <script src="home.js"></script>
+    <script>
+      // Function to load the Navbar
+      function loadNavbar() {
+        fetch("../Navbar/navbar.php")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+            // Initialize the navbar functionalities
+            document
+              .getElementById("menu-toggle")
+              .addEventListener("click", function () {
+                const navMenu = document.getElementById("nav-menu");
+                navMenu.classList.toggle("active");
+              });
+
+            // Set the initial state
+            updateNavbarState(false); // Set initial state (false means not logged in)
           });
-
-          // Set the initial state
-          updateNavbarState(false); // Set initial state (false means not logged in)
-        });
-    }
-
-    // Function to load the Footer
-    function loadFooter() {
-      fetch('../Footer/footer.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('footer').innerHTML = data;
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      loadNavbar();
-      loadFooter();
-    });
-
-    // Handle login state (optional)
-    function handleLogin(event) {
-      event.preventDefault();
-      // Simulate login action
-      updateNavbarState(true); // Set state to logged in
-    }
-
-    function handleLogout(event) {
-      event.preventDefault();
-      // Simulate logout action
-      updateNavbarState(false); // Set state to logged out
-    }
-
-    function updateNavbarState(isLoggedIn) {
-      if (isLoggedIn) {
-        document.getElementById('login-link').classList.add('hidden');
-        document.getElementById('user-icon').classList.remove('hidden');
-      } else {
-        document.getElementById('login-link').classList.remove('hidden');
-        document.getElementById('user-icon').classList.add('hidden');
       }
-    }
-  </script>
-</body>
+
+      // Function to load the Footer
+      function loadFooter() {
+        fetch("../Footer/footer.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("footer").innerHTML = data;
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadNavbar();
+        loadFooter();
+      });
+
+      // Handle login state (optional)
+      function handleLogin(event) {
+        event.preventDefault();
+        // Simulate login action
+        updateNavbarState(true); // Set state to logged in
+      }
+
+      function handleLogout(event) {
+        event.preventDefault();
+        // Simulate logout action
+        updateNavbarState(false); // Set state to logged out
+      }
+
+      function updateNavbarState(isLoggedIn) {
+        if (isLoggedIn) {
+          document.getElementById("login-link").classList.add("hidden");
+          document.getElementById("user-icon").classList.remove("hidden");
+        } else {
+          document.getElementById("login-link").classList.remove("hidden");
+          document.getElementById("user-icon").classList.add("hidden");
+        }
+      }
+    </script>
+  </body>
 </html>

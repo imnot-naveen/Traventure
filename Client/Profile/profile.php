@@ -47,6 +47,12 @@ $username = $_SESSION['username'];
                 <label for="contact-number">Contact Number</label>
                 <input type="text" id="contact-number" placeholder="Contact Number" disabled>
             </div>
+            <div class="form-group">
+                <label>Preferred Destinations</label>
+                <div class="destinations-container">
+                    <!-- Destinations will be populated here dynamically -->
+                </div>
+            </div>
             <div class="links">
                 <a href="#" class="trip-history">View Trip History...</a>
                 <a href="#" class="edit-profile">Edit profile..</a>

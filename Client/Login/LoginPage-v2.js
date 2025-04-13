@@ -206,8 +206,10 @@ document
       })
       .then((jsonData) => {
         if (jsonData.success) {
-          alert(jsonData.message || "Signup successful!");
-          // Redirect or perform further actions as needed
+          alert(jsonData.message || "Signup successful! User logged In..");
+          // Redirect to preffered destinations page
+          window.location.href =
+            "../DestinationPreferecne/destPreferences.html";
         } else {
           alert(jsonData.message || "Signup failed. Please try again.");
         }
