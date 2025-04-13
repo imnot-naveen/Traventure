@@ -9,10 +9,10 @@ class User extends Person{
   public $password; // Only for use in login table
   public $userType;
 
-  // Constructor to initialize db connection and parent class
+
   public function __construct($db) {
-    parent::__construct($db); // Call the parent class constructor
-    $this->conn = $db; // Assign the database connection
+    parent::__construct($db); 
+    $this->conn = $db; 
   }
 
   public function getUserDetails($userid) {
@@ -37,5 +37,25 @@ class User extends Person{
     }
   }
 
+  // Get monthly user registration counts
+  public function getUserGrowthByMonth() {
+    try {
+        $query = "
+        SELECT DATE_FORMAT(p.created_at, '%Y-%m') AS month, COUNT(*) AS user_count
+        FROM {$this->user_table} u
+        INNER JOIN {$this->person_table} p ON u.username = p.username
+        GROUP BY month
+        ORDER BY month ASC
+    ";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("User Growth Fetch Error: " . $e->getMessage());
+        return [];
+    }
+  }
 }
  ?>

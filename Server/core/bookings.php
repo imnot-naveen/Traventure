@@ -223,5 +223,27 @@ class Bookings {
             return floor($timeDiff / 86400) . " days ago";
         }
     }
+
+    public function getBookingCountByMonth() {
+        try {
+            // Query to get booking count grouped by month and year
+            $query = "SELECT YEAR(bookingDate) AS year, MONTH(bookingDate) AS month, COUNT(*) AS booking_count
+                      FROM " . $this->booking_table . "
+                      GROUP BY YEAR(bookingDate), MONTH(bookingDate)
+                      ORDER BY year DESC, month DESC";
+    
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            if ($results) {
+                return ['success' => true, 'data' => $results];
+            } else {
+                return ['success' => false, 'message' => 'No bookings found.'];
+            }
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
+    }    
 }
 ?>

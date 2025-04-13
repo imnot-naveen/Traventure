@@ -23,4 +23,5 @@ require_once(CORE_PATH.DS. "contentWriter.php");
 require_once(CORE_PATH.DS. "bookings.php");
 require_once(CORE_PATH.DS. "station.php");
 require_once(CORE_PATH.DS. "fare.php");
+require_once(CORE_PATH.DS. "user.php");
 ?>
