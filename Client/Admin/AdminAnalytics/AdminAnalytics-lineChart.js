@@ -1,27 +1,51 @@
-// Sample Data
-const data = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-  values: [10, 20, 15, 25, 30, 40],
-};
-
-// Select the canvas element
 const canvas = document.getElementById("lineChart");
 const ctx = canvas.getContext("2d");
 
-// Chart Config (responsive dimensions)
 const config = {
   padding: 50,
   pointRadius: 5,
 };
 
-// Redraw the chart on window resize
+let data = {
+  labels: [],
+  values: [],
+};
+
+// Fetch data from PHP API
+async function fetchUserGrowthData() {
+    try {
+    const response = await fetch("http://localhost/Traventure/Server/api/getUserGrowthByMonth.php");
+    const result = await response.json();
+    console.log("Fetched data:", result);
+
+
+    if (result.success && result.data) {
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    
+      data.labels = result.data.map(entry => {
+        const monthIndex = parseInt(entry.month.split('-')[1], 10) - 1;
+        return monthNames[monthIndex];
+      });
+    
+      data.values = result.data.map(entry => Number(entry.user_count));
+    
+      resizeCanvas(); // Draw chart
+    }else {
+      console.error("No data found");
+    }
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+}
+
+
+
 function resizeCanvas() {
   canvas.width = canvas.offsetWidth;
   canvas.height = canvas.offsetHeight;
-  drawChart(); // Redraw the chart
+  drawChart();
 }
 
-// Calculate Scaling Factors
 function getScalingFactors() {
   const maxValue = Math.max(...data.values);
   const scaleY = (canvas.height - 2 * config.padding) / maxValue;
@@ -29,7 +53,6 @@ function getScalingFactors() {
   return { scaleX, scaleY };
 }
 
-// Draw Axes
 function drawAxes() {
   ctx.beginPath();
   ctx.moveTo(config.padding, config.padding);
@@ -40,7 +63,6 @@ function drawAxes() {
   ctx.stroke();
 }
 
-// Draw Grid
 function drawGrid() {
   const numGridLines = 5;
   const gridSpacing = (canvas.height - 2 * config.padding) / numGridLines;
@@ -54,38 +76,33 @@ function drawGrid() {
   }
 }
 
-// Draw Y-axis Numbers
 function drawYAxisNumbers() {
-  const numGridLines = 5; // Number of grid lines
-  const maxValue = Math.max(...data.values); // Maximum value
-  const gridSpacing = (canvas.height - 2 * config.padding) / numGridLines; // Space between grid lines
-  const stepValue = maxValue / numGridLines; // Value increment per grid line
+  const numGridLines = 5;
+  const maxValue = Math.max(...data.values);
+  const gridSpacing = (canvas.height - 2 * config.padding) / numGridLines;
+  const stepValue = maxValue / numGridLines;
 
   for (let i = 0; i <= numGridLines; i++) {
     const y = canvas.height - config.padding - i * gridSpacing;
-    const value = Math.round(i * stepValue); // Calculate the corresponding value
+    const value = (i * stepValue).toFixed(1);
 
-    // Draw the Y-axis label
     ctx.font = "12px Arial";
     ctx.fillStyle = "#333";
     ctx.textAlign = "right";
-    ctx.fillText(value, config.padding - 10, y + 4); // Adjusted for alignment
+    ctx.fillText(value, config.padding - 10, y + 4);
   }
 }
 
-// Plot Points
 function drawPoints(scaleX, scaleY) {
   data.values.forEach((value, index) => {
     const x = config.padding + index * scaleX;
     const y = canvas.height - config.padding - value * scaleY;
 
-    // Draw Point
     ctx.beginPath();
     ctx.arc(x, y, config.pointRadius, 0, Math.PI * 2);
     ctx.fillStyle = "#007bff";
     ctx.fill();
 
-    // Draw Label
     ctx.font = "12px Arial";
     ctx.fillStyle = "#333";
     ctx.textAlign = "center";
@@ -93,7 +110,6 @@ function drawPoints(scaleX, scaleY) {
   });
 }
 
-// Draw Line
 function drawLine(scaleX, scaleY) {
   ctx.beginPath();
   data.values.forEach((value, index) => {
@@ -112,17 +128,18 @@ function drawLine(scaleX, scaleY) {
   ctx.stroke();
 }
 
-// Draw Chart
 function drawChart() {
   const { scaleX, scaleY } = getScalingFactors();
-  ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawAxes();
   drawGrid();
-  drawYAxisNumbers(); // Draw Y-axis numbers
+  drawYAxisNumbers();
   drawLine(scaleX, scaleY);
   drawPoints(scaleX, scaleY);
 }
 
-// Initialize and Add Event Listener
-resizeCanvas();
+// Event Listener
 window.addEventListener("resize", resizeCanvas);
+
+  // Start it off
+fetchUserGrowthData();

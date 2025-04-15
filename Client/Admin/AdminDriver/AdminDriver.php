@@ -1,19 +1,5 @@
 <?php
-
-session_start();
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: ../../Login/LoginPage.html"); 
-    exit();
-}
-
-if ($_SESSION['userType'] !== "Admin") {
-    header("Location: ../../Home/home.html"); 
-    exit();
-}
-
-// Get the username from the session
-$username = $_SESSION['username'];
+    // include '../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -21,83 +7,17 @@ $username = $_SESSION['username'];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Users | Admin</title>
+  <title>Drivers | Admin</title>
   <link rel="stylesheet" href="AdminDriver.css">
   <link rel="stylesheet" href="AdminDriverAdd.css">
   <link rel="stylesheet" href="../Common/Logout_Modal.css">
+  <link rel="stylesheet" href="../Sidebar/Sidebar.css">
+  <link rel="stylesheet" href="../Recent_updates/Recent.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
   <div class="container">
-    <aside>
-    <div class="top">
-                <div class="logo">
-                    <img src="../../assets/logo/logo.png" alt="logo">
-                </div>
-                <div class="close" id="close-btn">
-                    <span class="material-symbols-outlined">
-                        close
-                    </span>
-                </div>
-            </div>
-            <div class="sidebar">
-                <a href="../AdminDashboard/AdminDashboard.php">
-                    <span class="material-symbols-outlined">
-                        grid_view
-                    </span>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="../AdminForum/AdminForum.php">
-                    <span class="material-symbols-outlined">
-                        forum
-                    </span>
-                    <h3>Forums</h3>
-                </a>
-                <a href="../AdminUsers/AdminUsers.php" >
-                    <span class="material-symbols-outlined">
-                        manage_accounts
-                    </span>
-                    <h3>Users</h3>
-                </a>
-                <a href="../AdminTsp/AdminTsp.php">
-                    <span class="material-symbols-outlined">
-                        train
-                    </span>
-                    <h3>Train Service Providers</h3>
-                </a>
-                <a href="../AdminCW/AdminCW.php">
-                    <span class="material-symbols-outlined">
-                        smb_share
-                        </span>
-                    <h3>Content Writers</h3>
-                </a>
-                <a href="#" class="active">
-                    <span class="material-symbols-outlined">
-                        directions_car
-                        </span>
-                    <h3>Drivers</h3>
-                </a>
-                <a href="../AdminAnalytics/AdminAnalytics.php">
-                    <span class="material-symbols-outlined">
-                        monitoring
-                    </span>
-                    <h3>Analytics</h3>
-                </a>
-                <a href="../AdminBookings/AdminBookings.php">
-                    <span class="material-symbols-outlined">
-                        confirmation_number
-                        </span>
-                    <h3>Bookings</h3>
-                </a>
-                <a id="logoutButton">
-                    <span class="material-symbols-outlined">
-                        logout
-                    </span>
-                    <h3>Logout</h3>
-                </a>
-            </div>
-    </aside>
-
+  <?php include '../Sidebar/Sidebar.php'; ?>
     <main>
             <h1>Drivers</h1>
             <div class="insights">
@@ -107,8 +27,8 @@ $username = $_SESSION['username'];
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Users</h3>
-                            <h1>5,056</h1>
+                            <h3>Total TSPs</h3>
+                            <h1 id="tspCount">Loading..</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -126,11 +46,11 @@ $username = $_SESSION['username'];
 
                 <div class="expenses">
                     <span class="material-symbols-outlined">
-                        bar_chart
+                        train
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>User Accounts</h3>
+                            <h3>Trains Added</h3>
                             <h1>43</h1>
                         </div>
                         <div class="progress">
@@ -149,11 +69,11 @@ $username = $_SESSION['username'];
 
                 <div class="income">
                     <span class="material-symbols-outlined">
-                        psychology
+                        cancel
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>User Preferences</h3>
+                            <h3>Trains Cancalled</h3>
                             <h1>123</h1>
                         </div>
                         <div class="progress">
@@ -169,7 +89,6 @@ $username = $_SESSION['username'];
                         Last 24 Hours
                     </small>
                 </div>
-                <!-- END OF INCOME -->
 
             </div>
             <!-- END OF INSIGHTS -->
@@ -189,40 +108,61 @@ $username = $_SESSION['username'];
                   </div>
                   <div id="userModal" class="modal">
                     <div class="modal-content">
-                      <span class="close">&times;</span>
-                      <h2>Add New Driver</h2>
-                      <form id="addUserForm">
+                      <span class="close-m">&times;</span>
+                      <h2>Add New Drivers</h2>
+                      <form id="addDriverForm">
+                        <div class="form-group">
+                          <label for="driverid">Driver ID</label>
+                          <input type="number" id="driverid" name="driverid" required autocomplete="off">
+                        </div>
+                        
                         <div class="form-group">
                           <label for="username">Username</label>
-                          <input type="text" id="username" name="username" required>
+                          <input type="text" id="username" name="username" required autocomplete="username">
                         </div>
+                        
                         <div class="form-group">
                           <label for="firstName">First Name</label>
-                          <input type="text" id="firstName" name="firstName" required>
+                          <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
                         </div>
+                        
                         <div class="form-group">
                           <label for="lastName">Last Name</label>
-                          <input type="text" id="lastName" name="lastName" required>
+                          <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
                         </div>
+                        
                         <div class="form-group">
                           <label for="email">Email</label>
-                          <input type="email" id="email" name="email" required>
+                          <input type="email" id="email" name="email" required autocomplete="email">
                         </div>
+                        
                         <div class="form-group">
                           <label for="contactNumber">Contact Number</label>
-                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
+                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required autocomplete="tel">
                         </div>
+                        
+                        <div class="form-group">
+                          <label for="new-password">Password</label>
+                          <input type="password" id="new-password" name="new-password" required autocomplete="new-password">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="confirm-password">Confirm Password</label>
+                          <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password">
+                        </div>
+                        
                         <div class="modal-buttons">
                           <button type="submit" class="btn-save">Save</button>
                           <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
                         </div>
-                      </form>
+                      </form>                      
                     </div>
                   </div>
                 <table id="userTable">
                     <thead>
                         <tr>
                             <th>Username</th>
+                            <th>Driver ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
@@ -241,130 +181,26 @@ $username = $_SESSION['username'];
         </main>
 
         <div class="right">
-            <div class="top">
-                <button id="menu-btn">
-                    <span class="material-symbols-outlined">
-                        menu
-                        </span>
-                </button>
-                <div class="profile">
-                    <div class="info">
-                        <p>Hey, <b>Dimuthu</b></p>
-                        <small class="text-muted">Admin</small>
-                    </div>
-                    <div class="profile-photo">
-                        <span class="material-symbols-outlined">
-                            account_circle
-                            </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- END OF TOP --> 
-            <div class="recent-updates">
-                <h2>Recent Updates</h2>
-                <div class="updates">
-                    <div class="update">
-                        <div class="profile-photo">
-                            <span class="material-symbols-outlined">
-                                account_circle
-                                </span>
-                        </div>
-                        <div class="message">
-                            <p><b>John Doe</b> booked a train Maradana to Kandy.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <span class="material-symbols-outlined">
-                                account_circle
-                                </span>
-                        </div>
-                        <div class="message">
-                            <p><b>Virat Kohli</b> booked a train Kalutara to Panadura.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <span class="material-symbols-outlined">
-                                account_circle
-                                </span>
-                        </div>
-                        <div class="message">
-                            <p><b>Kylian Mbappe</b> booked a train Maradana to Galle.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                </div>
-             </div>
-             <div class="sales-analytics">
-                <h2>Analytics</h2>
-                <div class="item online">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">
-                            local_mall
-                            </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>ONLINE BOOKINGS</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">-17%</h5>
-                        <h3>1100</h3>
-                    </div>
-                </div>
-                <div class="item online">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">
-                            shopping_cart
-                            </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>TOTAL TRIPS</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">+39%</h5>
-                        <h3>3849</h3>
-                    </div>
-                </div>
-                <div class="item customers">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">
-                            person
-                            </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>NEW USERS</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">+25%</h5>
-                        <h3>849</h3>
-                    </div>
-                </div>
-             </div>
+            <?php include '../Recent_updates/Recent.php'; ?>
         </div>
   </div>
 
-            <!-- Dialog Box -->
-            <div id="logoutDialog" class="modal-lo">
-                <div class="modal-content-lo">
-                    <h2>Logout</h2>
-                    <p>Are you sure you want to logout?</p>
-                    <div class="button-group">
-                        <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                        <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-                    </div>
+          <!-- Dialog Box -->
+          <div id="logoutDialog" class="modal-lo">
+            <div class="modal-content-lo">
+                <h2>Logout</h2>
+                <p>Are you sure you want to logout?</p>
+                <div class="button-group">
+                    <button id="confirmLogout" class="btn btn-confirm">Yes</button>
+                    <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
                 </div>
             </div>
-               
+        </div>
+
  <script src="../Common/Logout_Modal.js"></script>
  <script src="AdminDriver-crud-v3.js"></script>
  <script src="AdminDriver.js"></script>
  <script src="AdminDriverAdd.js"></script>
+ <script src="../Recent_updates/Recent.js"></script>
 </body>
 </html>

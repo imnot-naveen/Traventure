@@ -19,4 +19,9 @@ require_once(CORE_PATH.DS. "login.php");
 require_once(CORE_PATH.DS. "blogpost.php");
 require_once(CORE_PATH.DS. "tsp.php");
 require_once(CORE_PATH.DS. "train.php");
+require_once(CORE_PATH.DS. "contentWriter.php");
+require_once(CORE_PATH.DS. "bookings.php");
+require_once(CORE_PATH.DS. "station.php");
+require_once(CORE_PATH.DS. "fare.php");
+require_once(CORE_PATH.DS. "user.php");
 ?>
