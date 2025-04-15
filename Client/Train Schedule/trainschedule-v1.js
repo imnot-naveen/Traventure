@@ -43,32 +43,32 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("Journey Details:", journeyDetails);
   
   // Display station information at the top if available
-  if (startStation && endStation) {
-    // Create and prepend a header section showing the journey details
-    const headerSection = document.createElement("div");
-    headerSection.className = "journey-header";
-    headerSection.innerHTML = `
-      <h2>Journey Details</h2>
-      <p>From: ${startStation}</p>
-      <p>To: ${endStation}</p>
-    `;
+  // if (startStation && endStation) {
+  //   // Create and prepend a header section showing the journey details
+  //   const headerSection = document.createElement("div");
+  //   headerSection.className = "journey-header";
+  //   headerSection.innerHTML = `
+  //     <h2>Journey Details</h2>
+  //     <p>From: ${startStation}</p>
+  //     <p>To: ${endStation}</p>
+  //   `;
     
-    // Insert before the table
-    document.querySelector("h1").insertAdjacentElement("afterend", headerSection);
-  } else if (journeyDetails) {
-    // Use the comprehensive journeyDetails object if available
-    const headerSection = document.createElement("div");
-    headerSection.className = "journey-header";
-    headerSection.innerHTML = `
-      <h2>Journey Details</h2>
-      <p>From: ${journeyDetails.startStation}</p>
-      <p>To: ${journeyDetails.endStation}</p>
-      <p>Date: ${journeyDetails.searchDate}</p>
-    `;
+  //   // Insert before the table
+  //   document.querySelector("h1").insertAdjacentElement("afterend", headerSection);
+  // } else if (journeyDetails) {
+  //   // Use the comprehensive journeyDetails object if available
+  //   const headerSection = document.createElement("div");
+  //   headerSection.className = "journey-header";
+  //   headerSection.innerHTML = `
+  //     <h2>Journey Details</h2>
+  //     <p>From: ${journeyDetails.startStation}</p>
+  //     <p>To: ${journeyDetails.endStation}</p>
+  //     <p>Date: ${journeyDetails.searchDate}</p>
+  //   `;
     
-    // Insert before the table
-    document.querySelector("h1").insertAdjacentElement("afterend", headerSection);
-  }
+  //   // Insert before the table
+  //   document.querySelector("h1").insertAdjacentElement("afterend", headerSection);
+  // }
 
   // If no train data is available
   if (!trainData || trainData.length === 0) {
@@ -80,12 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const row = document.createElement("tr");
     
     // Formatting times (if not in the desired format, add logic for time formatting)
-    const formattedDepartureTime = new Date(train.departureTime).toLocaleTimeString();
-    const formattedArrivalTime = new Date(train.arrivalTime).toLocaleTimeString();
+    // const formattedDepartureTime = new Date(train.departureTime).toLocaleTimeString();
+    // const formattedArrivalTime = new Date(train.arrivalTime).toLocaleTimeString();
     
     row.innerHTML = `
-      <td>${formattedDepartureTime}</td>
-      <td>${formattedArrivalTime}</td>
+      <td>${train.departureTime}</td>
+      <td>${train.arrivalTime}</td>
       <td>${train.duration}</td>
       <td>${train.endStation}</td>
       <td>${train.trainID}</td>

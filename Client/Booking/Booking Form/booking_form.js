@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Retrieved Start Station:", startStation);
     console.log("Retrieved End Station:", endStation);
 
+    console.log("Departure:", selectedTrain.departureTime);
+    console.log("Arrival:", selectedTrain.arrivalTime);
+
+
     if (!selectedTrain) {
         alert("No train selected. Redirecting to train schedule.");
         window.location.href = "../train schedule/trainschedule.html";
@@ -121,7 +125,27 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
 
         if (paymentOption === "card") {
-            window.location.href = "../Payment/CardPayment/cardpayment.html";
+            const stripe = Stripe('pk_test_51RCy68QwgaoFWhBRVwTGwX9QkMDGiSKTNE1QGHYnM4YqSSTeIgdIlCTw34rqwYcIJxKT1jfXr6fkl5SM3ABac2mY00iwkPeUmO'); 
+
+            try {
+                const response = await fetch('http://localhost/Traventure/Server/api/create_checkout_session.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount: finalAmountInNum }) 
+                });
+
+                const data = await response.json();
+
+                if (data.id) {
+                    stripe.redirectToCheckout({ sessionId: data.id });
+                } else {
+                    alert("Payment session creation failed. Try again.");
+                    console.error("Stripe session creation failed", data);
+                }
+            } catch (error) {
+                console.error("Stripe Checkout error:", error);
+                alert("Something went wrong with the payment.");
+            }
         } else if (paymentOption === "cash") {
             window.location.href = "../Payment/CashPayment/cashpayment.html";
         }
