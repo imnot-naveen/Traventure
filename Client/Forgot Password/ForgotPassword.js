@@ -21,7 +21,7 @@ document
 
       if (result.status === "success") {
         alert(result.message);
-        window.location.href = "verifycode.html";
+        window.location.href = "../Verify Code/VerifyCode.html";
       } else {
         alert(result.message);
       }

@@ -6,6 +6,7 @@
     --white: #ffffff;
     --text-color: #333;
     --border-radius: 12px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -72,10 +73,23 @@ main {
 
 .form-wrapper {
     width: 100%;
+    max-width: 800px;
     background-color: var(--white);
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow);
     padding: 40px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .form-header {
@@ -174,6 +188,7 @@ main {
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 20px;
+    width: 100%;
 }
 
 .btn:hover {
@@ -191,6 +206,12 @@ main {
     border-radius: 30px;
     padding: 10px 15px;
     margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.train-stop:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .train-stop-label {

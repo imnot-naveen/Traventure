@@ -7,9 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $code = $data['verification_code'] ?? '';
 
     // Verify the code
-    if ($code === $_SESSION['reset_code']) {
+    if ($code == $_SESSION['reset_code']) {
         echo json_encode(['status' => 'success', 'message' => 'Code verified.']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Invalid code.']);
+        echo $_SESSION['reset_code'];
     }
 }

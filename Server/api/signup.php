@@ -35,6 +35,26 @@ $person->password = $data->password;
 $person->user_type = $data->user_type;
 // Execute signup
 $result = $person->signup();
-http_response_code($result['success'] ? 200 : 400); // Set appropriate HTTP status code
-echo json_encode($result);
+
+if ($result['success']) {
+    $login = new Login($db);
+    $login->username = $data->username;
+    $login->password = $data->password;
+
+    // Execute login
+    $loginResult = $login->loginUser();
+
+    if ($loginResult['success']) {
+        http_response_code(200);
+        echo json_encode($loginResult); // Login successful, return response
+    } else {
+        http_response_code(400);
+        echo json_encode(['message' => 'Signup successful, but login failed. Please log in manually.']);
+    }
+} else {
+    http_response_code(400);
+    echo json_encode($result);
+}
+
+
 ?>

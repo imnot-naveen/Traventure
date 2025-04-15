@@ -8,8 +8,9 @@
     --white: #ffffff;
     --transition: all 0.3s ease;
     --border-radius: 12px;
-    --header-background: rgba(13, 71, 161, 0.8); /* Dark blue with transparency */
-    --header-height: 100px; /* Restored original header height */
+    --header-background: rgba(13, 71, 161, 0.8);
+    --header-height: 100px;
+    --divider-color: #c4c4c4;
 }
 
 * {
@@ -20,10 +21,11 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
     line-height: 1.6;
     background-color: var(--background-light);
     color: var(--text-dark);
-    padding-top: var(--header-height); /* Ensure content starts below header */
+    padding-top: var(--header-height);
 }
 
 /* Header Styling */
@@ -65,10 +67,8 @@ header p {
 /* Container Styling */
 .container {
     text-align: center;
-    background-image: url('9 arch train.jpg');
-    background-size: cover;
-    background-position: center;
-    min-height: calc(100vh - var(--header-height)); /* Adjust container height */
+    background: var(--background-light) url('9 arch train.jpg') no-repeat center/cover;
+    min-height: calc(100vh - var(--header-height));
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,7 +85,7 @@ header p {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better contrast */
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -97,13 +97,70 @@ header p {
     width: 100%;
     max-width: 500px;
     position: relative;
-    z-index: 2; /* Ensure the form box is above the overlay */
+    z-index: 2;
     transition: var(--transition);
 }
 
 .form-box:hover {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     transform: translateY(-5px);
+}
+
+.form-box h2 {
+    margin-bottom: 24px;
+    color: var(--secondary-color);
+    text-align: center;
+    font-weight: 700;
+}
+
+.form-box h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--primary-color);
+    text-align: left;
+    font-weight: 600;
+}
+
+.search-method {
+    padding: 20px;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+}
+
+.station-search {
+    border-left: 4px solid var(--primary-color);
+}
+
+.name-search {
+    border-left: 4px solid var(--secondary-color);
+}
+
+.search-divider {
+    position: relative;
+    text-align: center;
+    margin: 25px 0;
+}
+
+.search-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--divider-color);
+    z-index: 1;
+}
+
+.search-divider span {
+    position: relative;
+    background-color: white;
+    padding: 0 15px;
+    font-weight: 700;
+    color: var(--text-light);
+    font-size: 14px;
+    z-index: 2;
 }
 
 .form-group {
@@ -119,12 +176,14 @@ header p {
     font-weight: 600;
 }
 
-.form-box select, 
-.form-box input[type="date"], 
+.form-box select,
+.form-box input[type="date"],
+.form-box input[type="text"],
 .form-box button {
     width: 100%;
     padding: 12px;
     margin-top: 8px;
+    margin-bottom: 16px;
     border: 2px solid #e0e0e0;
     border-radius: var(--border-radius);
     font-size: 16px;
@@ -132,8 +191,9 @@ header p {
     outline: none;
 }
 
-.form-box select:focus, 
-.form-box input[type="date"]:focus {
+.form-box select:focus,
+.form-box input[type="date"]:focus,
+.form-box input[type="text"]:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
 }
@@ -147,12 +207,24 @@ header p {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
 }
 
 .form-box button:hover {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-box button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.form-box button:focus-visible {
+    outline: 3px dashed var(--primary-color);
+    outline-offset: 4px;
 }
 
 /* Footer Styling */
@@ -190,8 +262,11 @@ footer {
 
     .form-box {
         padding: 30px;
-        width: 100%;
         max-width: 400px;
+    }
+    
+    .search-method {
+        padding: 15px;
     }
 }
 
@@ -207,9 +282,14 @@ footer {
     .form-box {
         padding: 20px;
     }
+    
+    .search-method {
+        padding: 12px;
+    }
 
-    .form-box select, 
-    .form-box input[type="date"], 
+    .form-box select,
+    .form-box input[type="date"],
+    .form-box input[type="text"],
     .form-box button {
         font-size: 14px;
         padding: 10px;
