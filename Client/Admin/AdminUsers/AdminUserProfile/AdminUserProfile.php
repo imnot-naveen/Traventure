@@ -9,8 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Profile | Admin</title>
   <link rel="stylesheet" href="AdminUserProfile-v2.css">
-  <link rel="stylesheet" href="AdminTsp-updateModal.css">
-  <link rel="stylesheet" href="AdminTsp-Deactivate-Modal.css">
+  <!-- <link rel="stylesheet" href="AdminTsp-updateModal.css"> -->
+  <!-- <link rel="stylesheet" href="AdminTsp-Deactivate-Modal.css"> -->
   <link rel="stylesheet" href="../../Common/Logout_Modal.css">
   <link rel="stylesheet" href="../../Sidebar/Sidebar.css">
   <link rel="stylesheet" href="../../Recent_updates/Recent.css">
@@ -26,20 +26,19 @@
                     <div class="profile-header">
                         <img src="../../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture">
                         <div class="profile-info">
-                            <h2 id="tspName">TSP Not found</h2>
-                            <h3>Train Service Provider</h3>
-                            <p>Status: <span id="tspStatus" class="status active">Acti</span></p>
+                            <h2 id="userName">User Not found</h2>
+                            <h3>User</h3>
+                            <p>Status: <span id="userStatus" class="status active">Active</span></p>
                         </div>
                     </div>
                     <div class="profile-details">
-                        <div class="profile-details">
                             <ul class="left-details">
-                                <li>Email: <span id="tspEmail">email not found</span></li>
-                                <li>Phone: <span id="tspContact">Contact no: Not found</span></li>
+                                <li>Email: <span id="userEmail">email not found</span></li>
+                                <li>Phone: <span id="userContact">Contact no: Not found</span></li>
                             </ul>
                             <ul class="right-details">
-                                <li>Role: TSP</li>
-                                <li>TSP ID: <span id="tspid">Tsp: Not found</span></li>
+                                <li>Role: User</li>
+                                <li>User ID: <span id="userid">User: Not found</span></li>
                             </ul>
                         </div>
                         <div class="action-buttons">
@@ -49,7 +48,6 @@
                           </button>
                       </div>
                     </div>
-                </div>
             </div>
 
             <!-- END OF INSIGHTS -->
@@ -69,21 +67,6 @@
                             <td>Blue Express</td>
                             <td>Intercity</td>   
                         </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
                         
                     </tbody>
                 </table>
@@ -91,7 +74,7 @@
              </div>
 
             <!-- Modal Structure -->
-            <div id="updateTspModal" class="modal">
+            <!-- <div id="updateTspModal" class="modal">
                 <div class="modal-content">
                     <span class="close-u">&times;</span>
                     <h2>Update Travel Service Provider</h2>
@@ -120,10 +103,10 @@
                         <button type="submit">Update</button>
                     </form>
                 </div>
-            </div>
+            </div> -->
 
             <!--Deactivate Modal -->
-            <div id="deactivateModal" class="modal-d">
+            <!-- <div id="deactivateModal" class="modal-d">
                 <div class="modal-d-content">
                     <span class="close-btn" id="closeModal-d">&times;</span>
                     <h3>Are you sure you want to deactivate this TSP?</h3>
@@ -131,7 +114,7 @@
                     <button id="cancelDeactivateBtn">Cancel</button>
                 </div>
             </div>
-            <a href=""></a>            
+            <a href=""></a>             -->
 
         </main>
 
@@ -154,8 +137,8 @@
     
      <script src="../../Common/Logout_Modal.js"></script>
 
- <script src="AdminTsp-profile.js"></script>
- <script src="AdminTsp-profile-crud.js"></script>
- <script src="AdminTsp-profile-edit.js"></script>
+ <script src="AdminUserProfile.js"></script>
+ <!-- <script src="AdminTsp-profile-edit.js"></script> -->
+ <script src="AdminUserProfile-crud.js"></script>
 </body>
 </html>

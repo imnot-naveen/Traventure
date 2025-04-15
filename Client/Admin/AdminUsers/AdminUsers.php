@@ -28,16 +28,16 @@
                     <div class="middle">
                         <div class="left">
                             <h3>Total Users</h3>
-                            <h1>5,056</h1>
+                            <h1>Loading...</h1>
                         </div>
-                        <div class="progress">
+                        <!-- <div class="progress">
                             <svg>
                                 <circle cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="number">
                                 <p>81%</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <small class="text-muted">
                         Total
