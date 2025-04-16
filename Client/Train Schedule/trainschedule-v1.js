@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Redirect to the booking form page
-      window.location.href = "../Booking/Booking Form/booking_form.html";
+      window.location.href = "../Booking/Booking Form/booking_form.php";
     });
 
     document.getElementById("train-results").appendChild(row);

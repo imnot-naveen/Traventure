@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+// Not logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/LoginPage.html"); 
+    exit();
+}
+
+// Only allow users with userType = 'User'
+if ($_SESSION['userType'] !== "Travellr") {
+    header("Location: ../../Unauthorized/unauthorized.php"); 
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
