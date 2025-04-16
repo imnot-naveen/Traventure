@@ -68,23 +68,7 @@
                             <td>T001</td>
                             <td>Blue Express</td>
                             <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        
+                        </tr>       
                     </tbody>
                 </table>
                 <a href="../AdminBookings/AdminBookings.php">Show All</a>

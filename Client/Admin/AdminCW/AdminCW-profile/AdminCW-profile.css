@@ -110,109 +110,6 @@ b{
   color: var(--color-black);
 }
 
-/* aside-bar styling */
-aside{
-  height: 100vh;
-  background-color: #fff;
-}
-
-aside .top{
-  background-color: var(--color-light-blue); 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  border-radius: var(--boarder-radius-2); /* Rounded corners */
-  margin: 1rem 1rem 0 1rem; /* Spacing from the top */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-aside .logo{
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-aside .logo img{
-  width: 2rem;
-  height: auto;
-  border-radius: 0.3rem;
-}
-
-aside .close{
-  display: none;
-  font-size: 1.5rem;
-  color: var(--color-text-secondary);
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-aside .close:hover{
-  color: var(--color-hover-blue);
-}
-
-
-aside .sidebar{
-  background: white;
-  display: flex;
-  flex-direction: column;
-  height: 86vh;
-  position: relative;
-  top: 3rem;
-}
-
-aside h3{
-  font-weight: 500;
-}
-
-aside .sidebar a{
-  display: flex;
-  color: var(--color-black);
-  margin-left: 2rem;
-  gap: 1rem;
-  align-items: center;
-  position: relative;
-  height: 3.7rem;
-  transition: all 300ms ease;
-}
-
-aside .sidebar a span{
-  font-size: 1.6rem;
-  transition: all 300ms ease;
-}
-
-aside .sidebar a:last-child{
-  position: absolute;
-  bottom: 2rem;
-  width: 100%;
-}
-
-aside .sidebar a.active{
-  background: var(--color-light-blue) ;
-  color: var(--color-primary);
-  margin-left: 0;
-}
-
-aside .sidebar a.active:before{
-  content: '';
-  width: 6px;
-  height: 100%;
-  background: var(--color-primary);
-}
-
-aside .sidebar a.active span{
-  color: var(--color-primary);
-  margin-left: calc(1rem - 6px);
-}
-
-aside .sidebar a:hover{
-  color: var(--color-primary);
-}
-
-aside .sidebar a:hover span{
-  margin-left: 1rem;
-}
-
 /*=======MAIN=======*/
 main{
   margin-top: 1.4rem;
@@ -380,53 +277,12 @@ main .recent-orders a{
   color: var(--color-primary);
 }
 
-/* RIGHT */
-.right{
-  margin-top: -50rem;
-  margin-right: 4.5rem;
-}
-
-.right .top{
-  display: flex;
-  justify-content: end;
-  gap: 2rem;
-  background-color: #3ac015;
-}
-
-.right .top button{
-  display: none;
-}
-
-.right .top .profile{
-  display: flex;
-  gap: 2rem;
-  text-align: right;
-  z-index: 100;
-}
-
 /* Media Queries */
 
 @media screen and (max-width: 1200px){
   .container{
     width: 94%;
     grid-template-columns: 7rem auto 23rem;
-  }
-
-  aside .logo h2{
-    display: none;
-  }
-
-  aside .sidebar h3{
-    display: none;
-  }
-
-  aside .sidebar a{
-    width: 5.6rem;
-  }
-
-  aside .sidebar a:last-child{
-    position: relative;
-    margin-top: 1.8rem;
   }
 
   main .insights {
@@ -474,18 +330,6 @@ main .recent-orders a{
     grid-template-columns: 1fr;
   }
 
-  aside{
-    position: fixed;
-    left: -100%;
-    background: #fff;
-    width: 18rem;
-    z-index: 3;
-    box-shadow: 1rem 3rem 4rem var(--color-light-blue);
-    height: 100vh;
-    padding-right: var(--card-padding);
-    display: none;
-    animation: showMenu 400ms ease forwards;
-  }
 
   @keyframes showMenu {
     to{
@@ -576,41 +420,5 @@ main .recent-orders a{
 
   main .recent-orders{
     display: none;
-  }
-
-  .right{
-    width: 94%;
-    margin: 0 auto 4rem;
-  }
-
-  .right .top{
-    position: fixed;
-    top: 0;
-    left: 0;
-    align-items: center;
-    padding: 0 0 0.8rem;
-    height: 4.6rem;
-    background: #fff;
-    width: 100%;
-    margin: 0;
-    z-index: 2;
-    box-shadow: 0 1rem 1rem var(--color-light-blue);
-  }
-
-  .right .profile .info{
-    display: none;
-  }
-
-  .right .top button{
-    display: inline-block;
-    background: transparent;
-    cursor: pointer;
-    color: var(--color-black);
-    position: absolute;
-    left: 1rem;
-  }
-
-  .right .top button span{
-    font-size: 2rem;
   }
 }
