@@ -244,6 +244,29 @@ class Bookings {
         } catch (Exception $e) {
             return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
+    } 
+    
+    public function getBookingsByMonth($year, $month) {
+        try {
+            $query = "SELECT b.*, 
+                             u.username AS user_name,
+                             t.name AS train_name
+                      FROM " . $this->booking_table . " b
+                      JOIN registereduser u ON b.userID = u.userID
+                      JOIN train t ON b.trainID = t.trainID
+                      WHERE YEAR(b.bookingDate) = :year AND MONTH(b.bookingDate) = :month
+                      ORDER BY b.bookingDate DESC";
+    
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':year', $year);
+            $stmt->bindParam(':month', $month);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            return ['success' => true, 'data' => $results];
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
     }    
 }
 ?>

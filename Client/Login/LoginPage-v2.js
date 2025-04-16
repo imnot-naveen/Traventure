@@ -209,7 +209,7 @@ document
           alert(jsonData.message || "Signup successful! User logged In..");
           // Redirect to preffered destinations page
           window.location.href =
-            "../DestinationPreferecne/destPreferences.html";
+            "../DestinationPreference/destPreferences.html";
         } else {
           alert(jsonData.message || "Signup failed. Please try again.");
         }

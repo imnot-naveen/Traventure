@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 // Only allow users with userType = 'User'
-if ($_SESSION['userType'] !== "Travellr") {
+if ($_SESSION['userType'] !== "Traveller") {
     header("Location: ../../Unauthorized/unauthorized.php"); 
     exit();
 }

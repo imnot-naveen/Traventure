@@ -113,5 +113,26 @@ class User extends Person{
     }
   }
 
+  public function countUsersLast24Hours() {
+    try {
+        $query = "
+            SELECT COUNT(*) AS recent_users 
+            FROM {$this->user_table} u
+            INNER JOIN {$this->person_table} p ON u.username = p.username
+            WHERE p.created_at >= NOW() - INTERVAL 1 DAY
+        ";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['recent_users'] ?? 0;
+
+    } catch (PDOException $e) {
+        error_log("Count Users Last 24h Error: " . $e->getMessage());
+        return 0;
+    }
+  }
+
 }
  ?>

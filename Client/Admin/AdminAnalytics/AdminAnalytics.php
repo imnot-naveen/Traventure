@@ -100,6 +100,9 @@
                  </div>
              </div> 
              <div class="Downloads">
+                <label for="monthSelect">Select Month: </label>
+                <input type="month" id="monthSelect" name="monthSelect">
+
                 <button class="Download" id="Booking">Download Bookings</button>
                 <button class="Download" id="Users">Download User Growth</button>
               </div>              
@@ -125,5 +128,6 @@
  <script src="AdminAnalytics-lineChart.js"></script>
  <script src="AdminAnalytics-lineChart2.js"></script>
  <script src="../Recent_updates/Recent.js"></script>
+ <script src="DownloadCSV.js"></script>
 </body>
 </html>
