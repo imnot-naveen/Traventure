@@ -9,6 +9,20 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("One or more required elements are missing from the DOM.");
     return;
   }
+  
+  searchButton.addEventListener("click", () => {
+    const startStationName = startStationSelect.options[startStationSelect.selectedIndex].text;
+    const endStationName = endStationSelect.options[endStationSelect.selectedIndex].text;
+
+    if (startStationName !== "--Select--" && endStationName !== "--Select--") {
+      localStorage.setItem("startStationName", startStationName);
+      localStorage.setItem("endStationName", endStationName);
+      console.log("Start Station:", startStationName);
+      console.log("End Station:", endStationName);
+    } else {
+      console.log("Please select both start and end stations");
+    }
+  });
 
   // Set current date
   const today = new Date();

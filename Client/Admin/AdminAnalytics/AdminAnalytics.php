@@ -1,5 +1,5 @@
 <?php
-    include '../Session_check.php';
+    // include '../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +24,8 @@
                     <span class="material-symbols-outlined">analytics</span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Booking Sales</h3>
-                            <h1>$25,056</h1>
+                            <h3>Total Trips</h3>
+                            <h1>4</h1>
                         </div>
                         <div class="progress">
                             <svg>

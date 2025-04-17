@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const startStation = localStorage.getItem("startStation");
     const endStation = localStorage.getItem("endStation");
 
-    console.log("Retrieved Train Data:", selectedTrain);
-    console.log("Retrieved Start Station:", startStation);
-    console.log("Retrieved End Station:", endStation);
+    // console.log("Retrieved Train Data:", selectedTrain);
+    // console.log("Retrieved Start Station:", startStation);
+    // console.log("Retrieved End Station:", endStation);
 
-    console.log("Departure:", selectedTrain.departureTime);
-    console.log("Arrival:", selectedTrain.arrivalTime);
+    // console.log("Departure:", selectedTrain.departureTime);
+    // console.log("Arrival:", selectedTrain.arrivalTime);
 
 
     if (!selectedTrain) {
@@ -20,18 +20,21 @@ document.addEventListener("DOMContentLoaded", () => {
     let fromStationId = startStation || selectedTrain.startStationId;
     let toStationId = endStation || selectedTrain.endStationId;
 
-    console.log("Using Start Station ID:", fromStationId);
-    console.log("Using End Station ID:", toStationId);
+    let startStationName = localStorage.getItem("startStationName");
+    let endStationName = localStorage.getItem("endStationName");
+
+    // console.log("Using Start Station ID:", fromStationId);
+    // console.log("Using End Station ID:", toStationId);
 
     const trainDetailsDiv = document.getElementById("train-details");
     trainDetailsDiv.innerHTML = `
         <h3>Selected Train</h3>
         <p><strong>Train No:</strong> ${selectedTrain.trainID}</p>
-        <p><strong>Departure:</strong> ${new Date(selectedTrain.departureTime).toLocaleTimeString()}</p>
-        <p><strong>Arrival:</strong> ${new Date(selectedTrain.arrivalTime).toLocaleTimeString()}</p>
-        <p><strong>Duration:</strong> ${selectedTrain.duration}</p>
-        <p><strong>From:</strong> Station ${fromStationId}</p>
-        <p><strong>To:</strong> Station ${toStationId}</p>
+        <p><strong>Departure:</strong> ${(selectedTrain.departureTime).slice(0, 5)}</p>
+        <p><strong>Arrival:</strong> ${(selectedTrain.arrivalTime).slice(0, 5)}</p>
+        <p><strong>Duration:</strong> ${(selectedTrain.duration).slice(0, 5)}</p>
+        <p><strong>From:</strong> Station ${startStationName}</p>
+        <p><strong>To:</strong> Station ${endStationName}</p>
     `;
 
     const passengerCountInput = document.getElementById("passenger-count");
@@ -147,7 +150,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Something went wrong with the payment.");
             }
         } else if (paymentOption === "cash") {
-            window.location.href = "../Payment/CashPayment/cashpayment.html";
+            window.location.href = "../CashPayment/cashpayment.php";
         }
     });
 });
+train-details
