@@ -1,5 +1,5 @@
 <?php
-    // include '../../Session_check.php';
+    include '../../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
                         <div class="profile-info">
                             <h2 id="tspName">TSP Not found</h2>
                             <h3>Train Service Provider</h3>
-                            <p>Status: <span id="tspStatus" class="status active">Acti</span></p>
+                            <p>Status: <span id="tspStatuss" class="status active">Acti</span></p>
                         </div>
                     </div>
                     <div class="profile-details">

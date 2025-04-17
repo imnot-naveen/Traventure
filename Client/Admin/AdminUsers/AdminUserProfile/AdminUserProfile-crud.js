@@ -21,7 +21,7 @@ if (userId) {
         document.getElementById('userEmail').textContent = userData.email;
         document.getElementById('userContact').textContent = userData.contact_number;
         document.getElementById('userid').textContent = userData.userid;
-        document.getElementById('userStatus').textContent = userData.Active_status;
+        document.getElementById('userStatus').textContent = userData.status;
 
         // const statusButton = document.getElementById('confirmDeactivateBtn');
         // const activeBtn = document.getElementById('deactivateBtn');

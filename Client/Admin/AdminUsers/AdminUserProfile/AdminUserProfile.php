@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Profile | Admin</title>
   <link rel="stylesheet" href="AdminUserProfile-v2.css">
-  <!-- <link rel="stylesheet" href="AdminTsp-updateModal.css"> -->
+  <link rel="stylesheet" href="AdminUser-updateModal.css">
   <!-- <link rel="stylesheet" href="AdminTsp-Deactivate-Modal.css"> -->
   <link rel="stylesheet" href="../../Common/Logout_Modal.css">
   <link rel="stylesheet" href="../../Sidebar/Sidebar.css">
@@ -28,7 +28,7 @@
                         <div class="profile-info">
                             <h2 id="userName">User Not found</h2>
                             <h3>User</h3>
-                            <p>Status: <span id="userStatus" class="status active">Active</span></p>
+                            <p>Status: <span id="userStatus" class="status active">Acti</span></p>
                         </div>
                     </div>
                     <div class="profile-details">
@@ -74,7 +74,7 @@
              </div>
 
             <!-- Modal Structure -->
-            <!-- <div id="updateTspModal" class="modal">
+             <div id="updateTspModal" class="modal">
                 <div class="modal-content">
                     <span class="close-u">&times;</span>
                     <h2>Update Travel Service Provider</h2>
@@ -103,7 +103,7 @@
                         <button type="submit">Update</button>
                     </form>
                 </div>
-            </div> -->
+            </div> 
 
             <!--Deactivate Modal -->
             <!-- <div id="deactivateModal" class="modal-d">
