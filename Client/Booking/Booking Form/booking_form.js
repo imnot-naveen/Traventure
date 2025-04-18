@@ -1,30 +1,46 @@
-document.addEventListener("DOMContentLoaded", () => {
+async function getUserIDFromSession() {
+    try {
+        const response = await fetch('http://localhost/Traventure/Server/api/getUserId.php', {
+            method: 'GET',
+            credentials: 'include' 
+        });
+  
+        const data = await response.json();
+  
+        if (response.ok && data.success) {
+            return data.userID;
+        } else {
+            throw new Error(data.message || "Not logged in");
+        }
+    } catch (error) {
+        console.error("Error fetching user ID:", error);
+        return null;
+    }
+}
+
+// Function to check if the train is selected
+function checkTrainSelection() {
     const selectedTrain = JSON.parse(localStorage.getItem("selectedTrain"));
-    const startStation = localStorage.getItem("startStation");
-    const endStation = localStorage.getItem("endStation");
-
-    // console.log("Retrieved Train Data:", selectedTrain);
-    // console.log("Retrieved Start Station:", startStation);
-    // console.log("Retrieved End Station:", endStation);
-
-    // console.log("Departure:", selectedTrain.departureTime);
-    // console.log("Arrival:", selectedTrain.arrivalTime);
-
-
     if (!selectedTrain) {
         alert("No train selected. Redirecting to train schedule.");
         window.location.href = "../train schedule/trainschedule.html";
-        return;
+        return false;
     }
+    return selectedTrain;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const selectedTrain = checkTrainSelection(); // Check if train is selected
+    if (!selectedTrain) return; // If no train is selected, exit the function
+
+    const startStation = localStorage.getItem("startStation");
+    const endStation = localStorage.getItem("endStation");
 
     let fromStationId = startStation || selectedTrain.startStationId;
     let toStationId = endStation || selectedTrain.endStationId;
 
     let startStationName = localStorage.getItem("startStationName");
     let endStationName = localStorage.getItem("endStationName");
-
-    // console.log("Using Start Station ID:", fromStationId);
-    // console.log("Using End Station ID:", toStationId);
 
     const trainDetailsDiv = document.getElementById("train-details");
     trainDetailsDiv.innerHTML = `
@@ -111,8 +127,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const finalAmountInNum = parseFloat(finalAmount);
         const kidsCount = parseInt(kidsCountInput.value) || 0;
 
+
+
         const bookingDetails = {
-            userID: localStorage.getItem("userID"),
+            userID: await getUserIDFromSession(),
             trainID: selectedTrain.trainID,
             start_station: fromStationId,
             destination_station: toStationId,
@@ -121,13 +139,13 @@ document.addEventListener("DOMContentLoaded", () => {
             kidsCount: kidsCount,
             total_fare: finalAmountInNum,
             paymentMethod: paymentOption,
-            paymentStatus: paymentOption === "cash" ? "Pending" : "Processing",
+            paymentStatus: paymentOption === "Cash" ? "Pending" : "Paid",
             bookingDate: new Date().toISOString().split("T")[0]
         };
 
         localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
 
-        if (paymentOption === "card") {
+        if (paymentOption === "Card") {
             const stripe = Stripe('pk_test_51RCy68QwgaoFWhBRVwTGwX9QkMDGiSKTNE1QGHYnM4YqSSTeIgdIlCTw34rqwYcIJxKT1jfXr6fkl5SM3ABac2mY00iwkPeUmO'); 
 
             try {
@@ -149,9 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("Stripe Checkout error:", error);
                 alert("Something went wrong with the payment.");
             }
-        } else if (paymentOption === "cash") {
+        } else if (paymentOption === "Cash") {
             window.location.href = "../CashPayment/cashpayment.php";
         }
     });
 });
-train-details

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const data = await response.json();
 
       if (data.success) {
-          alert("✅ Booking successful! Booking ID: " + data.booking_id);
+          alert("✅ Booking successful!");
           localStorage.removeItem("bookingDetails"); 
       } else {
           alert("❌ Booking failed: " + data.message);

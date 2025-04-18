@@ -16,11 +16,17 @@ class Login {
         session_start();
     
         if (!empty($this->username)) {
-            $query = 'SELECT * FROM ' . $this->login_table . ' WHERE username = :username LIMIT 1';
+            $query = 'SELECT login.*, registereduser.userId 
+                      FROM ' . $this->login_table . ' 
+                      JOIN registereduser ON login.username = registereduser.username 
+                      WHERE login.username = :username LIMIT 1';
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':username', $this->username);
         } elseif (!empty($this->email)) {
-            $query = 'SELECT * FROM ' . $this->login_table . ' WHERE email = :email LIMIT 1';
+            $query = 'SELECT login.*, registereduser.userId 
+                      FROM ' . $this->login_table . ' 
+                      JOIN registereduser ON login.username = registereduser.username 
+                      WHERE login.email = :email LIMIT 1';
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':email', $this->email);
         } else {
@@ -36,15 +42,22 @@ class Login {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
             if (password_verify($this->password, $user['password'])) {
+                $_SESSION['userId'] = $user['userId'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['userType'] = trim($user['userType']);
     
-                return array(
+                $response = array(
                     'success' => true,
                     'message' => 'Login successful.',
                     'userType' => $user['userType']
                 );
+    
+                if (trim($user['userType']) === 'Traveller') {
+                    $response['userId'] = $user['userId'];
+                }
+    
+                return $response;
             } else {
                 return array(
                     'success' => false,
@@ -57,7 +70,7 @@ class Login {
                 'message' => 'User not found.'
             );
         }
-    }    
+    }     
     
 }
 ?>

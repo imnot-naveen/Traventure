@@ -21,11 +21,11 @@ class Bookings {
     public $trainID;
 
     // Create a new booking
-    public function createBooking($userID, $start_station, $destination_station, $class, $no_of_passengers, $total_fare, $paymentMethod) {
+    public function createBooking($userID, $start_station, $destination_station, $class, $no_of_passengers, $total_fare, $paymentMethod, $trainID) {
         try {
             $query = "INSERT INTO " . $this->booking_table . " 
-                    (userID, start_station, destination_station, class, no_of_passengers, total_fare, paymentMethod)
-                    VALUES (:userID, :start_station, :destination_station, :class, :no_of_passengers, :total_fare, :paymentMethod)";
+                    (userID, start_station, destination_station, class, no_of_passengers, total_fare, paymentMethod, trainID)
+                    VALUES (:userID, :start_station, :destination_station, :class, :no_of_passengers, :total_fare, :paymentMethod, :trainID)";
     
             $stmt = $this->conn->prepare($query);
     
@@ -37,6 +37,7 @@ class Bookings {
             $stmt->bindParam(':no_of_passengers', $no_of_passengers);
             $stmt->bindParam(':total_fare', $total_fare);
             $stmt->bindParam(':paymentMethod', $paymentMethod);
+            $stmt->bindParam(':trainID', $trainID);
     
             // Execute the query
             if ($stmt->execute()) {
@@ -73,34 +74,32 @@ class Bookings {
     }
 
     // Get bookings by user ID
-    public function getBookingsByUserID($userID) {
-        try {
-            $query = 'SELECT b.*, 
-                        s1.station_name as start_station_name, 
-                        s2.station_name as destination_station_name,
-                        tr.route_name
-                     FROM ' . $this->booking_table . ' b
-                     JOIN station s1 ON b.start_station = s1.stationID
-                     JOIN station s2 ON b.destination_station = s2.stationID
-                     LEFT JOIN train_routes tr ON b.routeID = tr.routeID
-                     WHERE b.userID = :userID
-                     ORDER BY b.bookingDate DESC';
+    // public function getBookingsByUserID($userID) {
+    //     try {
+    //         $query = 'SELECT b.*, 
+    //                     s1.station_name as start_station_name, 
+    //                     s2.station_name as destination_station_name,
+    //                  FROM ' . $this->booking_table . ' b
+    //                  JOIN station s1 ON b.start_station = s1.stationID
+    //                  JOIN station s2 ON b.destination_station = s2.stationID
+    //                  WHERE b.userID = :userID
+    //                  ORDER BY b.bookingDate DESC';
             
-            $stmt = $this->conn->prepare($query);
+    //         $stmt = $this->conn->prepare($query);
 
-            $stmt->bindParam(':userID', $userID);
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //         $stmt->bindParam(':userID', $userID);
+    //         $stmt->execute();
+    //         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($results) {
-                return ['success' => true, 'data' => $results];
-            } else {
-                return ['success' => false, 'message' => 'No bookings found for the given user ID.'];
-            }
-        } catch (Exception $e) {
-            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
-        }
-    }
+    //         if ($results) {
+    //             return ['success' => true, 'data' => $results];
+    //         } else {
+    //             return ['success' => false, 'message' => 'No bookings found for the given user ID.'];
+    //         }
+    //     } catch (Exception $e) {
+    //         return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+    //     }
+    // }
 
     // Get booking by ID
     public function getBookingByID($bookingID) {

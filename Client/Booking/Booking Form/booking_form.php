@@ -53,8 +53,8 @@ if ($_SESSION['userType'] !== "Traveller") {
         <!-- Payment Option -->
         <label for="payment-option">Payment Option:</label>
         <select id="payment-option">
-          <option value="card">Card</option>
-          <option value="cash">Cash</option>
+          <option value="Card">Card</option>
+          <option value="Cash">Cash</option>
         </select>
 
         <!-- Total Fare -->
