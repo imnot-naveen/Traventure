@@ -4,10 +4,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   const selectedTrains =
     JSON.parse(localStorage.getItem("selectedTrains")) || [];
 
+  console.log("Trip Data:", tripData);
+  console.log("Selected Trains:", selectedTrains);
+
   const itineraryData = {
     ...tripData,
     ...itinerary,
   };
+
+  // Get user details
+  let userData = { full_name: "Guest User", id_number: "Not available" };
+  try {
+    userData = await getUserDetails();
+  } catch (error) {
+    console.error("Error fetching user details:", error);
+  }
 
   const getStationName = async (stationID) => {
     if (!stationID) {
@@ -25,17 +36,37 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       const data = await response.json();
+
       if (Array.isArray(data) && data.length > 0 && data[0].name) {
         return data[0].name;
       } else if (data.name) {
         return data.name;
       } else {
+        console.log(`No name found for station ${stationID}`);
         return `Station ${stationID}`;
       }
     } catch (error) {
+      console.error(`Error fetching station name for ID ${stationID}:`, error);
       return `Station ${stationID}`;
     }
   };
+
+  // Function to get user details
+  async function getUserDetails() {
+    try {
+      const response = await fetch("../../server/api/getuserdetails.php");
+      const data = await response.json();
+      if (data.error) {
+        console.error("Error:", data.error);
+        return { full_name: "Guest User", id_number: "Not available" };
+      } else {
+        return data;
+      }
+    } catch (err) {
+      console.error("Fetch failed:", err);
+      return { full_name: "Guest User", id_number: "Not available" };
+    }
+  }
 
   const itineraryContainer = document.getElementById("itinerary-container");
 
@@ -43,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const start = parseInt(tripData.startStation);
   const end = parseInt(tripData.endStation);
   const difference = Math.abs(end - start);
-  const travelClass = tripData.seatClass || "third"; // Using class from data or defaulting
+  const travelClass = tripData.seatClass || "First Class"; // Using class from data or defaulting
 
   let farePerAdult = 2000; // Default values
   let farePerChild = 1400;
@@ -57,10 +88,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (data.fare !== undefined) {
       farePerAdult = parseInt(data.fare);
-      farePerChild = Math.floor(farePerAdult * 0.5);
+      farePerChild = Math.floor(farePerAdult * 0.7); // 70% of adult fare
 
       const adults = parseInt(itineraryData.adults) || 0;
-
       const children = parseInt(itineraryData.children) || 0;
 
       totalFare = adults * farePerAdult + children * farePerChild;
@@ -72,6 +102,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const children = parseInt(itineraryData.children) || 0;
     totalFare = adults * farePerAdult + children * farePerChild;
   }
+
+  // Generate booking reference (using current date/time if not available)
+  const bookingReference =
+    tripData.bookingReference || `TV-${Date.now().toString().substring(6)}`;
 
   // Prepare trip segments
   let segments = [];
@@ -145,14 +179,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       <div class="ticket-header">
         <h1>🎟️ Your Train Trip Itinerary</h1>
         <div class="logo">Traventure</div>
+        <div class="booking-reference">Booking #${bookingReference}</div>
       </div>
       
       <div class="ticket-section passenger-details">
         <h2>👤 Passenger Details</h2>
         <ul>
-          <li><strong>Adults:  </strong> ${itineraryData.adults || 0}</li>
-          <li><strong>Children:  </strong> ${itineraryData.children || 0}</li>
-          <li><strong>Ticket Class:  </strong> ${travelClass}</li>
+          <li><strong>Passenger Name:</strong> ${userData.full_name}</li>
+          <li><strong>ID Number:</strong> ${userData.id_number}</li>
+          <li><strong>Adults:</strong> ${itineraryData.adults || 0}</li>
+          <li><strong>Children:</strong> ${itineraryData.children || 0}</li>
+          <li><strong>Ticket Class:</strong> ${travelClass}</li>
           <li class="fare-details">
             <strong>Total Fare:</strong> Rs. ${totalFare.toFixed(2)}
             <ul class="fare-breakdown">
@@ -196,9 +233,111 @@ document.addEventListener("DOMContentLoaded", async () => {
   `;
 
   // Add event listeners for buttons
-  document.getElementById("save-itinerary").addEventListener("click", () => {
-    alert("Itinerary saved successfully!");
-  });
+  document
+    .getElementById("save-itinerary")
+    .addEventListener("click", async () => {
+      try {
+        // Get all necessary data
+        const tripData = JSON.parse(localStorage.getItem("tripData")) || {};
+        const itinerary = JSON.parse(localStorage.getItem("itinerary")) || {};
+        const selectedTrains =
+          JSON.parse(localStorage.getItem("selectedTrains")) || [];
+
+        // Get user details
+        let userData = {
+          full_name: "Guest User",
+          id_number: "Not available",
+          username: " ",
+        };
+        try {
+          userData = await getUserDetails();
+        } catch (error) {
+          console.error("Error fetching user details:", error);
+        }
+
+        const username = userData.username;
+
+        // Get fare information that's already calculated in the frontend
+        const start = parseInt(tripData.startStation);
+        const end = parseInt(tripData.endStation);
+        const travelClass = tripData.seatClass || "First Class";
+        const adults = parseInt(tripData.adults) || 1;
+        const children = parseInt(tripData.children) || 0;
+
+        const adultFare = farePerAdult;
+        const childFare = farePerChild;
+        const totalFare = adults * adultFare + children * childFare;
+
+        // Prepare data for API
+        const bookingData = {
+          startStation: tripData.startStation,
+          endStation: tripData.endStation,
+          departureTime:
+            selectedTrains.length > 0
+              ? selectedTrains[0].departureTime
+              : "08:00:00",
+          arrivalTime:
+            selectedTrains.length > 0
+              ? selectedTrains[selectedTrains.length - 1].arrivalTime
+              : "10:00:00",
+          username: username,
+          adults: tripData.adults,
+          children: tripData.children,
+          date: tripData.searchDate,
+          seatClass: tripData.seatClass,
+          // Include fare information
+          adultFare: adultFare,
+          childFare: childFare,
+          totalFare: totalFare,
+          // Include user details
+          passengerName: userData.full_name,
+          passengerID: userData.id_number,
+          selectedTrains: selectedTrains.map((train) => ({
+            trainID: train.trainID,
+            originStationID: train.originStationID || tripData.startStation,
+            destinationStationID:
+              train.destinationStationID || tripData.endStation,
+            departureTime: train.departureTime,
+          })),
+          destinations: tripData.stopovers || [],
+        };
+
+        console.log("Sending booking data:", bookingData);
+
+        // Call the API
+        const response = await fetch("../../server/api/saveTrip.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bookingData),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Show success message
+          alert(
+            `Itinerary saved successfully! Your booking reference is ${result.bookingReference}`
+          );
+
+          // Store booking reference and trip ID in local storage
+          localStorage.setItem("bookingReference", result.bookingReference);
+          localStorage.setItem("tripID", result.tripID);
+
+          // Redirect if needed
+          if (result.redirect) {
+            window.location.href = result.redirect;
+          }
+        } else {
+          // Show error message
+          alert(`Error: ${result.message}`);
+        }
+      } catch (error) {
+        console.error("Error saving itinerary:", error);
+        alert("Failed to save itinerary. Please try again.");
+      }
+    });
 
   document.getElementById("export-pdf").addEventListener("click", () => {
     alert("Exporting PDF... This feature will be available soon.");
