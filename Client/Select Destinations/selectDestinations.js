@@ -37,6 +37,7 @@ function renderDestinations(destinations) {
     checkbox.id = `destination-${index}`;
     // Add station ID as data attribute
     checkbox.setAttribute("data-station-id", destination.nearestStation);
+    checkbox.setAttribute("data-id", destination.id);
     destinationItem.appendChild(checkbox);
 
     const label = document.createElement("label");
@@ -65,7 +66,7 @@ function renderDestinations(destinations) {
     allCheckboxes.forEach((checkbox) => {
       if (checkbox.checked) {
         selectedDestinations.push({
-          id: checkbox.value,
+          id: checkbox.getAttribute("data-id"),
           name: checkbox.value, // You might want to store more info here
           nearestStation: checkbox.getAttribute("data-station-id"), // Need to add this attr
         });

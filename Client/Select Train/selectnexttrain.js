@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${train.trainID}</td>
         <td>${train.type}</td>
         <td>
-          <button class="select-train-btn" data-trainid="${train.trainID}" data-departure="${train.departureTime}" data-name="${train.name}">
+          <button class="select-train-btn" data-trainid="${train.trainID}" data-departure="${train.departureTime}" data-arrival="${train.arrivalTime}" data-name="${train.name}">
             Select
           </button>
         </td>
@@ -203,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const trainID = e.target.getAttribute("data-trainid");
         const departureTime = e.target.getAttribute("data-departure");
         const name = e.target.getAttribute("data-name");
+        const arrivalTime = e.target.getAttribute("data-arrival");
         console.log(trainID);
 
         if (trainID) {
@@ -211,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
             trainID: trainID,
             departureTime: departureTime,
             name: name,
+            arrivalTime: arrivalTime,
           });
 
           // Save the updated array to localStorage

@@ -145,6 +145,7 @@ document
     const username = document.getElementById("new-username").value;
     const firstName = document.getElementById("new-firstName").value;
     const lastName = document.getElementById("new-lastName").value;
+    const idNumber = document.getElementById("new-idNumber").value;
     const contactNumber = document.getElementById("new-contact").value;
     const email = document.getElementById("email").value;
     const newPassword = document.getElementById("new-password").value;
@@ -162,6 +163,17 @@ document
       document.getElementById("contact-error").textContent =
         "Contact number must contain only digits.";
       valid = false;
+    }
+
+    function isValidID(input) {
+      const pattern = /^[A-Za-z\d]{6,14}$/;
+      return pattern.test(input);
+    }
+
+    if (!isValidID(idNumber)) {
+      alert(
+        "ID or Passport number must be 6-14 characters long and contain both letters and numbers (no symbols)."
+      );
     }
 
     // Check if email is not empty
@@ -192,6 +204,7 @@ document
         username: username,
         first_name: firstName,
         last_name: lastName,
+        id_number: idNumber,
         email: email,
         contact_number: contactNumber,
         password: newPassword,
