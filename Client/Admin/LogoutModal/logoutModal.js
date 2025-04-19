@@ -21,7 +21,7 @@ confirmLogout.addEventListener("click", () => {
     .then((data) => {
       if (data.success) {
         alert(data.message); // Notify user of successful logout
-        window.location.href = "../login/loginpage.html"; 
+        window.location.href = "../../Login/LoginPage.html"; 
       } else {
         alert(data.message); // Display any error message from the backend
       }

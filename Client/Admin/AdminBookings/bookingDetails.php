@@ -1,3 +1,7 @@
+<?php
+    include '../Session_check.php';
+?>
+
 <!-- bookingDetails.html -->
 <!DOCTYPE html>
 <html>
