@@ -4,7 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateRecentUpdates(bookings) {
         const updatesContainer = document.querySelector('.updates');
         updatesContainer.innerHTML = ''; // Clear existing updates
-  
+        
+        if (bookings.length === 0) {
+            updatesContainer.innerHTML = "<p>No recent bookings.</p>"; 
+            return;
+        }
+
         bookings.forEach((booking) => {
             const updateDiv = document.createElement('div');
             updateDiv.classList.add('update');
@@ -22,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
             updatesContainer.appendChild(updateDiv);
         });
     }
-  
+
     // Fetch recent bookings from API
     function fetchRecentBookings() {
         fetch('http://localhost/Traventure/Server/api/getRecent3Bookings.php') 
@@ -32,13 +37,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     updateRecentUpdates(data.data);
                 } else {
                     console.error('No bookings found or error in API response');
+                    updateRecentUpdates([]); // Handle empty response gracefully
                 }
             })
             .catch(error => {
                 console.error('Error fetching recent bookings:', error);
+                updateRecentUpdates([]); // Handle error by showing no bookings
             });
     }
-  
+
     // Fetch new user count from API
     function fetchUserCount() {
         fetch('http://localhost/Traventure/Server/api/getUserCountInaDay.php') 
@@ -46,9 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(result => {
                 if (result.success) {
                     const count = result.data;
-  
                     document.getElementById("user-count").textContent = count;
-                    document.getElementById("user-growth").textContent = "+25%"; // Dummy growth for now
+                    document.getElementById("user-growth").textContent = "+25%";
                     document.getElementById("user-growth").classList.add("success");
                 } else {
                     document.getElementById("user-count").textContent = "0";
@@ -63,9 +69,51 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("user-growth").textContent = "Error";
             });
     }
-  
+
+    // Function to fetch the logged-in username
+    async function fetchLoggedInUsername() {
+        try {
+            const response = await fetch('http://localhost/Traventure/Server/api/getUsername.php');
+            const data = await response.json();
+            
+            if (data.success) {
+                return data.username; // Return the username
+            } else {
+                console.error('Error:', data.message);
+                return null; // Return null if not logged in
+            }
+        } catch (error) {
+            console.error('Error fetching logged-in user:', error);
+            return null; // Return null if there was an error
+        }
+    }
+
+    // Function to fetch and update admin details dynamically
+    async function updateAdminInfo() {
+        const username = await fetchLoggedInUsername(); // Wait for the username
+        
+        if (username) {
+            fetch(`http://localhost/Traventure/Server/api/getAdminDetails.php?username=${username}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const admin = data.data;
+                        // Dynamically update the admin name and role
+                        document.querySelector('.info b').textContent = admin.first_name || 'Admin';
+                    } else {
+                        console.error('Admin not found:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error fetching admin details:', error));
+        } else {
+            console.error('No username provided or user not logged in');
+        }
+    }
+
+    // Call the updateAdminInfo function to update the information dynamically
+    updateAdminInfo();
+
     // Call both functions when the DOM is ready
     fetchRecentBookings();
     fetchUserCount();
-  });
-  
+});

@@ -1,115 +1,71 @@
+// Function to fetch the logged-in username
+async function fetchLoggedInUsername() {
+  try {
+    const response = await fetch('http://localhost/Traventure/Server/api/getUsername.php');
+    const data = await response.json();
+    
+    if (data.success) {
+      return data.username; // Return the username
+    } else {
+      // If the user is not logged in, handle the case
+      console.error('Error:', data.message);
+      return null; // Return null if not logged in
+    }
+  } catch (error) {
+    console.error('Error fetching logged-in user:', error);
+    return null; // Return null if there was an error
+  }
+}
+
 const sideMenu = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu-btn");
 const closeBtn = document.querySelector("#close-btn");
 
-menuBtn.addEventListener('click', ()=>{
+menuBtn.addEventListener('click', () => {
   sideMenu.style.display = 'block';
-})
+});
 
-closeBtn.addEventListener('click', ()=>{
+closeBtn.addEventListener('click', () => {
   sideMenu.style.display = 'none';
-})
+});
 
-// Function to extract query parameter by name
-function getQueryParam(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
-}
+// Main function to get admin details using the username
+async function getAdminDetails() {
+  const username = await fetchLoggedInUsername(); // Wait for the username
 
-// Fetch the admin ID from the URL
-const adminId = getQueryParam('adminid');
-
-if (adminId) {
-  // Fetch Admin details using the ID
-  fetch(`../api/getAdminDetails.php?adminid=${adminId}`)
+  if (username) {
+    fetch(`http://localhost/Traventure/Server/api/getAdminDetails.php?username=${username}`)
       .then(response => response.json())
       .then(data => {
-          if (data.success) {
-              // Populate the profile page with admin details
-              document.getElementById('adminName').textContent = `${data.data.first_name} ${data.data.last_name}`;
-              document.getElementById('adminRole').textContent = data.data.role || 'Admin';
-              document.getElementById('adminStatus').textContent = data.data.active_status;
-              document.getElementById('adminEmail').textContent = `Email: ${data.data.email}`;
-              document.getElementById('adminPhone').textContent = `Phone: ${data.data.contact_number}`;
-              document.getElementById('adminRoleDetail').textContent = `Role: ${data.data.role}`;
-              document.getElementById('adminUsername').textContent = `Username: ${data.data.username}`;
+        if (data.success) {
+          const admin = data.data;
 
-              // Update status button
-              const statusButton = document.getElementById('confirmDeactivateBtn');
-              if (data.data.active_status.toLowerCase() === 'active') {
-                  statusButton.textContent = 'Deactivate';
-              } else {
-                  statusButton.textContent = 'Activate';
-              }
+          document.getElementById('adminName').textContent = `${admin.first_name} ${admin.last_name}`;
+          document.getElementById('adminEmail').textContent = `Email: ${admin.email}`;
+          document.getElementById('adminPhone').textContent = `Phone: ${admin.contact_number}`;
+          document.getElementById('adminUsername').textContent = `Username: ${admin.username}`;
 
-              // Add event listener to toggle status
-              statusButton.addEventListener('click', function () {
-                  const newStatus = (data.data.active_status.toLowerCase() === 'active') ? 'inactive' : 'active';
-                  updateAdminStatus(adminId, newStatus);
-              });
-          } else {
-              console.error('Admin not found:', data.message);
+          // Optional status field (only if returned by backend)
+          if (admin.active_status) {
+            document.getElementById('adminStatus').textContent = admin.active_status;
+
+            const statusButton = document.getElementById('confirmDeactivateBtn');
+            statusButton.textContent = (admin.active_status.toLowerCase() === 'active') ? 'Deactivate' : 'Activate';
+
+            statusButton.addEventListener('click', function () {
+              const newStatus = (admin.active_status.toLowerCase() === 'active') ? 'inactive' : 'active';
+              updateAdminStatus(username, newStatus);
+            });
           }
+        } else {
+          console.error('Admin not found:', data.message);
+        }
       })
       .catch(error => console.error('Error fetching admin details:', error));
-} else {
-  console.error('No Admin ID provided in the URL');
+  } else {
+    console.error('No username provided or user not logged in');
+  }
 }
 
-// // Function to update Admin status
-// function updateAdminStatus(adminId, newStatus) {
-//   fetch(`../api/updateAdminStatus.php`, {
-//       method: 'POST',
-//       headers: {
-//           'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({ adminid: adminId, status: newStatus }),
-//   })
-//       .then(response => response.json())
-//       .then(data => {
-//           if (data.success) {
-//               alert(`Status updated to ${newStatus}`);
-//               // Refresh the page or update the status dynamically
-//               document.getElementById('adminStatus').textContent = newStatus;
-//           } else {
-//               console.error('Error updating status:', data.message);
-//           }
-//       })
-//       .catch(error => console.error('Error updating status:', error));
-// }
-
-
-// // Function to extract query parameter by name
-// function getQueryParam(param) {
-//   const urlParams = new URLSearchParams(window.location.search);
-//   return urlParams.get(param);
-// }
-
-// // Fetch the admin ID from the URL
-// const adminId = getQueryParam('adminid');
-
-// if (adminId) {
-//   // Fetch Admin details using the ID
-//   fetch(`../../../Server/api/getAdminDetails.php?adminid=${adminId}`)
-//       .then(response => response.json())
-//       .then(data => {
-//           if (data.success) {
-//               // Populate the profile page with admin details
-//               document.getElementById('adminName').textContent = `${data.data.first_name} ${data.data.last_name}`;
-//               document.getElementById('adminRole').textContent = data.data.role || 'Admin';
-//               document.getElementById('adminEmail').textContent = `Email: ${data.data.email}`;
-//               document.getElementById('adminPhone').textContent = `Phone: ${data.data.contact_number}`;
-//               document.getElementById('adminRoleDetail').textContent = `Role: ${data.data.role}`;
-//               document.getElementById('adminUsername').textContent = `Username: ${data.data.username}`;
-//               // You can set profile picture dynamically if needed
-//               // document.getElementById('adminPicture').src = data.data.profile_picture || '../../assets/img/AvatarMaker.png';
-//           } else {
-//               console.error('Admin not found:', data.message);
-//           }
-//       })
-//       .catch(error => {
-//           console.error('Error fetching admin details:', error);
-//       });
-// } else {
-//   console.error('No Admin ID provided in the URL');
-// }
+// Call the getAdminDetails function to fetch and display admin data
+getAdminDetails();

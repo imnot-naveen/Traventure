@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-
-
-
-/* Modal styles */
 .modal-lo{
   display: none; /* Hidden by default */
   position: fixed;
@@ -68,7 +64,6 @@
   background-color: #d6d6d6;
 }
 
-/* Media Queries */
 
 /* For small screens (up to 768px wide) */
 @media (max-width: 768px) {
