@@ -35,6 +35,8 @@ function renderDestinations(destinations) {
     checkbox.type = "checkbox";
     checkbox.value = destination.name;
     checkbox.id = `destination-${index}`;
+    // Add station ID as data attribute
+    checkbox.setAttribute("data-station-id", destination.nearestStation);
     destinationItem.appendChild(checkbox);
 
     const label = document.createElement("label");
@@ -55,21 +57,31 @@ function renderDestinations(destinations) {
 
   // Add the event listener for the dynamically created button here
   submitButton.addEventListener("click", () => {
-    const selectedDestinations = Array.from(
-      document.querySelectorAll(".destination-item input:checked")
-    ).map((checkbox) => checkbox.value);
+    // Get all checkboxes
+    const allCheckboxes = document.querySelectorAll(".destination-item input");
+    const selectedDestinations = [];
 
-    if (selectedDestinations.length === 0) {
-      alert("Please select at least one destination.");
-      return;
-    }
+    // Process checkboxes in order (maintaining route sequence)
+    allCheckboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        selectedDestinations.push({
+          id: checkbox.value,
+          name: checkbox.value, // You might want to store more info here
+          nearestStation: checkbox.getAttribute("data-station-id"), // Need to add this attr
+        });
+      }
+    });
 
     // Save selected destinations to localStorage
-    const itinerary = JSON.parse(localStorage.getItem("itinerary")) || {};
-    itinerary.destinations = selectedDestinations;
-    localStorage.setItem("itinerary", JSON.stringify(itinerary));
+    const tripData = JSON.parse(localStorage.getItem("tripData")) || {};
+    tripData.stopovers = selectedDestinations;
+    localStorage.setItem("tripData", JSON.stringify(tripData));
 
-    // Redirect to the itinerary view page
-    window.location.href = "../view itinerary/viewitinerary.html";
+    // Instead of going directly to itinerary, redirect to select next train
+    if (selectedDestinations.length > 0) {
+      window.location.href = "../select train/selectnexttrain.html";
+    } else {
+      window.location.href = "../view itinerary/viewitinerary.html";
+    }
   });
 }
