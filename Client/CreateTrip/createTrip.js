@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalPassengersInput = document.getElementById("total-passengers");
   const childrenInput = document.getElementById("children");
   const adultsInput = document.getElementById("adults");
+  const Class = document.getElementById("train-class");
   const searchDateInput = document.getElementById("search-date");
   const searchButton = document.querySelector("button[type='button']");
-  
+
   // Ensure elements are properly fetched
   if (
     !startStationSelect ||
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     !totalPassengersInput ||
     !childrenInput ||
     !adultsInput ||
+    !Class ||
     !searchDateInput ||
     !searchButton
   ) {
@@ -106,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalPassengers = totalPassengersInput.value;
     const children = childrenInput.value;
     const adults = adultsInput.value;
+    const seatClass = Class.value;
 
     // Validate inputs
     if (
@@ -122,6 +125,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    //default seat class is third
+    if (seatClass === "") {
+      seatClass = "third";
+    }
+
     // Save trip details to localStorage
     const tripData = {
       startStation,
@@ -130,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
       totalPassengers,
       children,
       adults,
+      seatClass,
     };
     localStorage.setItem("tripData", JSON.stringify(tripData));
 
