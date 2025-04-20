@@ -1,114 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-:root{
-  --color-primary : #007BFF;
-  --color-light-blue : #E3F2FD;
-  --color-accent-blue : #1565C0;
-  --color-primary-neutral-light : #F5F5F5;
-  --color-bg-lighter : #F5F5F5;
-  --color-text : #212529;
-  --color-text-secondary: #6C757D;
-  --color-border : #CED4DA;
-  --color-hover-blue : #0056b3;
-  --color-black : #000000;
-  
-
-  --boarder-radius-1 : 0.4rem;
-  --boarder-radius-2 : 0.8rem;
-  --boarder-radius-3 : 1.2rem;
-
-  --card-padding : 1.8rem;
-  --padding : 1.2rem;
-
-  --box-shadow : 0 2rem 3rem var(--color-primary-neutral-light);
-}
-
-
-*{
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  appearance: none;
-  border: 0;
-  text-decoration: none;
-  list-style: none;
-  box-sizing: border-box;
-}
-
-html{
-  font-size: 14px;
-}
-
-body{
-  width: 100vw;
-  height: 100vh;
-  font-family: poppins, sans-serif;
-  font-size: 0.88rem;
-  background: var(--color-primary-neutral-light);
-  user-select: none;
-  overflow-x: hidden;
-}
-
-.container{
-  display: grid;
-  width: 96%;
-  margin: 0;
-  gap: 1.8rem;
-  grid-template-columns: 14rem auto 23rem;
-}
-
-a{
-  color: #000000;
-}
-
-img{
-  display: block;
-  width: 100%;
-}
-
-h1{
-  font-weight: 800;
-  font-size: 1.8rem;
-}
-
-h2{
-  font-size: 1.4rem;
-}
-
-h3{
-  font-size: 0.87rem;
-}
-
-h4{
-  font-size: 0.8rem;
-}
-
-h5{
-  font-size: 0.77rem ;
-}
-
-small{
-  font-size: 0.75rem;
-}
-
-.profile-photo{
-  width: 2.8rem;
-  height: 2.8rem;
-  border-radius: 50px;
-  overflow: hidden;
-}
-
-.text-muted{
-  color: var(--color-text-secondary);
-}
-
-p{
-  color: var(--color-text);
-}
-
-b{
-  color: var(--color-black);
-}
+@import url(../../General.css);
 
 /*=======MAIN=======*/
 main{
@@ -345,13 +235,11 @@ main .recent-orders a{
     align-items: flex-start;
   }
 
-  /* Profile picture */
   .profile-picture {
     margin-right: 0;
     margin-bottom: 10px;
   }
 
-  /* Profile info */
   .profile-info h2 {
     font-size: 18px;
   }
@@ -370,7 +258,6 @@ main .recent-orders a{
     margin-left: 0;
   }
 
-  /* Action buttons side by side */
   .action-buttons {
     display: flex;
     gap: 15px; /* Space between buttons */
@@ -381,7 +268,7 @@ main .recent-orders a{
   /* Make sure buttons are side by side */
   .update-button,
   .deactivate-button {
-    width: auto; /* Reset width if previously set */
+    width: auto; 
   }
 
   main .recent-orders{
