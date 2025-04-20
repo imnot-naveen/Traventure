@@ -1,5 +1,4 @@
 @import url(../../General.css);
-
 /*=======MAIN=======*/
 main{
   margin-top: 1.4rem;
@@ -167,8 +166,33 @@ main .recent-orders a{
   color: var(--color-primary);
 }
 
-/* Media Queries */
+.pagination {
+  text-align: center;
+  margin: 10px 0;
+}
 
+.pagination button {
+  padding: 5px 15px;
+  margin: 0 5px;
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 16px;
+  margin: 0 10px;
+}
+
+/* Media Queries */
 @media screen and (max-width: 1200px){
   .container{
     width: 94%;
@@ -176,7 +200,7 @@ main .recent-orders a{
   }
 
   main .insights {
-    grid-template-columns: repeat(2, 1fr); /* Display two columns on larger screens */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 2rem;
   }
 
@@ -235,11 +259,13 @@ main .recent-orders a{
     align-items: flex-start;
   }
 
+  /* Profile picture */
   .profile-picture {
     margin-right: 0;
     margin-bottom: 10px;
   }
 
+  /* Profile info */
   .profile-info h2 {
     font-size: 18px;
   }
@@ -258,6 +284,7 @@ main .recent-orders a{
     margin-left: 0;
   }
 
+  /* Action buttons side by side */
   .action-buttons {
     display: flex;
     gap: 15px; /* Space between buttons */
@@ -268,10 +295,19 @@ main .recent-orders a{
   /* Make sure buttons are side by side */
   .update-button,
   .deactivate-button {
-    width: auto; 
+    width: auto; /* Reset width if previously set */
   }
 
   main .recent-orders{
     display: none;
+  }
+
+  .pagination button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .pagination span {
+      font-size: 12px;
   }
 }

@@ -56,21 +56,26 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Train ID</th>
-                            <th>Name</th>
-                            <th>Type</th>
+                            <th>Booking ID</th>
+                            <th>Start Station</th>
+                            <th>End Station</th>
+                            <th>Class</th>
+                            <th>No of Passengers</th>
+                            <th>Kids Count</th>
+                            <th>Total Fare</th>
+                            <th>Payment Method</th>
+                            <th>Booking Date</th>
+                            <th>Train</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        
+                    <tbody id="BookingTableBody">      
                     </tbody>
                 </table>
-                <a href="../AdminBookings/AdminBookings.php">Show All</a>
+                <div class="pagination">
+                    <button id="prevBtn" onclick="prevPage()">Previous</button>
+                    <span id="pageInfo"></span>
+                    <button id="nextBtn" onclick="nextPage()">Next</button>
+                </div>
              </div>
 
             <!-- Modal Structure -->
@@ -129,5 +134,7 @@
  <script src="AdminUserProfile.js"></script>
  <!-- <script src="AdminTsp-profile-edit.js"></script> -->
  <script src="AdminUserProfile-crud.js"></script>
+ <script src="../../Recent_updates/Recent.js"></script>
+ <script src="GetBookings.js"></script>
 </body>
 </html>

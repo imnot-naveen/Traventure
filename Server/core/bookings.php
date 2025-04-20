@@ -74,32 +74,33 @@ class Bookings {
     }
 
     // Get bookings by user ID
-    // public function getBookingsByUserID($userID) {
-    //     try {
-    //         $query = 'SELECT b.*, 
-    //                     s1.station_name as start_station_name, 
-    //                     s2.station_name as destination_station_name,
-    //                  FROM ' . $this->booking_table . ' b
-    //                  JOIN station s1 ON b.start_station = s1.stationID
-    //                  JOIN station s2 ON b.destination_station = s2.stationID
-    //                  WHERE b.userID = :userID
-    //                  ORDER BY b.bookingDate DESC';
+    public function getBookingsByUserID($userID) {
+        try {
+            $query = 'SELECT b.*, t.name,
+            s1.name as start_station_name, 
+            s2.name as destination_station_name
+     FROM ' . $this->booking_table . ' b
+     JOIN station s1 ON b.start_station = s1.stationID
+     JOIN station s2 ON b.destination_station = s2.stationID
+     JOIN train t ON t.trainID = b.trainID
+     WHERE b.userID = :userID
+     ORDER BY b.bookingDate DESC';
             
-    //         $stmt = $this->conn->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
-    //         $stmt->bindParam(':userID', $userID);
-    //         $stmt->execute();
-    //         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':userID', $userID);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    //         if ($results) {
-    //             return ['success' => true, 'data' => $results];
-    //         } else {
-    //             return ['success' => false, 'message' => 'No bookings found for the given user ID.'];
-    //         }
-    //     } catch (Exception $e) {
-    //         return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
-    //     }
-    // }
+            if ($results) {
+                return ['success' => true, 'data' => $results];
+            } else {
+                return ['success' => false, 'message' => 'No bookings found for the given user ID.'];
+            }
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
+    }
 
     // Get booking by ID
     public function getBookingByID($bookingID) {
