@@ -85,3 +85,15 @@ fetch('http://localhost/Traventure/Server/api/getUserCount.php')
     console.error('Error:', error);
   });
 
+  fetch('http://localhost/Traventure/Server/api/getUsersByMonth.php')
+  .then(response => response.json())
+  .then(data => {
+    if (data && data.success && data.data !== undefined) {
+      document.querySelector('#userCountMonth').textContent = data.data.toLocaleString();
+    } else {
+      console.error('Failed to fetch user count');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });

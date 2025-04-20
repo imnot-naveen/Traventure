@@ -9,10 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         const container = document.getElementById("detailsContainer");
         if (data.success && data.data) { 
-          const booking = data.data; // Assuming data is under `data` key
+          const booking = data.data; 
           container.innerHTML = `
             <p><strong>Booking ID:</strong> ${booking.bookingID}</p>
             <p><strong>User ID:</strong> ${booking.userID}</p>
+            <p><strong>Full Name:</strong> ${booking.fullName}</p>
             <p><strong>Train ID:</strong> ${booking.trainID}</p>
             <p><strong>Passenger Count:</strong> ${booking.no_of_passengers + booking.kidsCount}</p>
             <p><strong>Payment Status:</strong> ${booking.paymentStatus}</p>

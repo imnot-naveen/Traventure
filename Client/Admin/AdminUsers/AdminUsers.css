@@ -258,7 +258,7 @@ main .search-input:focus {
   background-color: #f9f9ff;
 }
 
-.Add-users {
+/* .Add-users {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -277,16 +277,16 @@ main .search-input:focus {
 }
 
 /* Hover Effect for Desktop */
-#Add-user:hover {
+/* #Add-user:hover {
   background-color: #45a049;
   transform: scale(1.05);
-}
+} */ 
 
-/* Active State for Desktop */
+/* Active State for Desktop
 #Add-user:active {
   background-color: #388e3c;
   transform: scale(0.95);
-}
+} */
 
 
 main .recent-orders table{
@@ -380,14 +380,14 @@ main table tbody tr:last-child td{
     padding: 0;
   }
 
-  .Add-users {
-    margin: 15px 0; /* Adjust margin for smaller screens */
+  /* .Add-users {
+    margin: 15px 0; 
   }
 
   #Add-user {
-    padding: 12px 25px; /* Slightly larger padding for better visibility */
-    font-size: 18px; /* Increase font size */
-  }
+    padding: 12px 25px; 
+    font-size: 18px; 
+  } */
 
   main .recent-orders table{
     width: 83vw;
@@ -442,7 +442,7 @@ main table tbody tr:last-child td{
     display: none;
   }
 
-  .Add-users {
+  /* .Add-users {
     position: absolute; 
     top: -1rem; 
     right: 1rem; 
@@ -455,7 +455,7 @@ main table tbody tr:last-child td{
     border-radius: 8px; 
     font-size: 14px; 
     padding: 8px 12px;
-  }
+  } */
 
   main .recent-orders table{
     width: 100%;

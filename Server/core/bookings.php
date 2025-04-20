@@ -104,13 +104,15 @@ class Bookings {
     // Get booking by ID
     public function getBookingByID($bookingID) {
         try {
-            $query = 'SELECT b.*, 
-                     s1.name as start_station_name, 
-                    s2.name as destination_station_name
-                    FROM ' . $this->booking_table . ' b
-                     JOIN station s1 ON b.start_station = s1.stationID
-                     JOIN station s2 ON b.destination_station = s2.stationID
-                     WHERE b.bookingID = :bookingID';
+            $query = 'SELECT b.*, CONCAT(p.firstName, \' \', p.lastName) AS fullName,
+          s1.name as start_station_name, 
+          s2.name as destination_station_name
+          FROM ' . $this->booking_table . ' b
+          JOIN registereduser r ON r.userID = b.userID
+          JOIN person p ON p.username = r.username
+          JOIN station s1 ON b.start_station = s1.stationID
+          JOIN station s2 ON b.destination_station = s2.stationID
+          WHERE b.bookingID = :bookingID';
             
             $stmt = $this->conn->prepare($query);
 
@@ -266,6 +268,19 @@ class Bookings {
         } catch (Exception $e) {
             return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
-    }    
+    } 
+    
+    public function getBookingCountforDay(){
+        try {
+            $query = 'SELECT COUNT(*) as count FROM bookings WHERE bookingDate >= NOW() - INTERVAL 1 DAY';
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+    
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return ['success' => true, 'count' => $result['count']];
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => 'Error: '. $e->getMessage()];
+        }
+    }
 }
 ?>

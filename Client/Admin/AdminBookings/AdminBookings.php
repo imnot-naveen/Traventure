@@ -27,17 +27,9 @@
                             <h3>Total Revenue</h3>
                             <h1 id="totalRevenue">Loading</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
                     </div>
                     <small class="text-muted">
-                        Last 24 Hours
+                        Total
                     </small>
                 </div>
 
@@ -50,17 +42,9 @@
                             <h3>Total Bookings</h3>
                             <h1 id="totalBookings">Loading..</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>87%</p>
-                            </div>
-                        </div>
                     </div>
                     <small class="text-muted">
-                        Last 24 Hours
+                        Total
                     </small>
                 </div>
 
@@ -73,17 +57,9 @@
                             <h3>Monthly Revenue</h3>
                             <h1 id="lastMonthRevenue">Loading..</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
                     </div>
                     <small class="text-muted">
-                        Last 24 Hours
+                        Last Month
                     </small>
                 </div>
                 <!-- END OF INCOME -->

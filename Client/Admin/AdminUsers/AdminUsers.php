@@ -30,14 +30,6 @@
                             <h3>Total Users</h3>
                             <h1>Loading...</h1>
                         </div>
-                        <!-- <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div> -->
                     </div>
                     <small class="text-muted">
                         Total
@@ -51,15 +43,7 @@
                     <div class="middle">
                         <div class="left">
                             <h3>User Accounts</h3>
-                            <h1>43</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>87%</p>
-                            </div>
+                            <h1 id="userCountMonth">Loading..</h1>
                         </div>
                     </div>
                     <small class="text-muted">
@@ -104,10 +88,10 @@
                       oninput="filterUsers()"
                     />
                   </div>
-                  <div class="Add-users">
+                  <!-- <div class="Add-users">
                     <button id="Add-user">Add User</button>
-                  </div>
-                  <div id="userModal" class="modal">
+                  </div> -->
+                  <!-- <div id="userModal" class="modal">
                     <div class="modal-content">
                       <span class="close">&times;</span>
                       <h2>Add New User</h2>
@@ -138,7 +122,7 @@
                         </div>
                       </form>
                     </div>
-                  </div>
+                  </div> -->
                 <table id="userTable">
                     <thead>
                         <tr>

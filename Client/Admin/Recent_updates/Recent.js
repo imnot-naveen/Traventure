@@ -110,8 +110,35 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    async function bookingCount() {
+        try {
+            const response = await fetch('http://localhost/Traventure/Server/api/getBookingCountDay.php');
+            const result = await response.json();
+    
+            if (result.success) {
+                const count = result.data.count;
+                document.getElementById("bookingCount").textContent = count;
+                document.getElementById("bookingGrowth").textContent = "+25%"; 
+                document.getElementById("bookingGrowth").classList.remove("danger");
+                document.getElementById("bookingGrowth").classList.add("success");
+            } else {
+                document.getElementById("bookingCount").textContent = "0";
+                document.getElementById("bookingGrowth").textContent = "+0%";
+                document.getElementById("bookingGrowth").classList.remove("success");
+                document.getElementById("bookingGrowth").classList.add("danger");
+            }
+        } catch (error) {
+            console.error("Error fetching booking data:", error);
+            document.getElementById("bookingCount").textContent = "0";
+            document.getElementById("bookingGrowth").textContent = "Error";
+            document.getElementById("bookingGrowth").classList.remove("success");
+            document.getElementById("bookingGrowth").classList.add("danger");
+        }
+    }
+
     // Call the updateAdminInfo function to update the information dynamically
     updateAdminInfo();
+    bookingCount();
 
     // Call both functions when the DOM is ready
     fetchRecentBookings();
