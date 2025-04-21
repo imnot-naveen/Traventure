@@ -144,6 +144,6 @@ $username = $_SESSION['username'];
         </div>
     </template>
     <script type="module" src="main.js"></script>
-    <script src="api.js"></script>
+    <!-- <script src="api.js"></script> -->
 </body>
 </html>
