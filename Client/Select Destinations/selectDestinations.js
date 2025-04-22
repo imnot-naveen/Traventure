@@ -59,7 +59,14 @@ function renderDestinations(destinations, preferredTypes) {
   const otherDestinations = [];
 
   destinations.forEach((destination) => {
-    if (preferredTypes.includes(parseInt(destination.type_id))) {
+    // Check if any of the destination's types match any preferred types
+    const hasMatchingType =
+      destination.type_ids &&
+      destination.type_ids.some((typeId) =>
+        preferredTypes.includes(parseInt(typeId))
+      );
+
+    if (hasMatchingType) {
       recommendedDestinations.push(destination);
     } else {
       otherDestinations.push(destination);
@@ -130,7 +137,7 @@ function renderDestinations(destinations, preferredTypes) {
           name: checkbox.value,
           nearestStation: checkbox.getAttribute("data-station-id"),
           photos: JSON.parse(checkbox.getAttribute("data-photos") || "[]"),
-          type_id: checkbox.getAttribute("data-type-id"),
+          type_ids: JSON.parse(checkbox.getAttribute("data-type-ids") || "[]"),
         });
       }
     });
@@ -192,7 +199,10 @@ function createDestinationItems(
     checkbox.setAttribute("data-station-id", destination.nearestStation);
     checkbox.setAttribute("data-id", destination.id);
     checkbox.setAttribute("data-photos", JSON.stringify(destination.photos));
-    checkbox.setAttribute("data-type-id", destination.type_id);
+    checkbox.setAttribute(
+      "data-type-ids",
+      JSON.stringify(destination.type_ids || [])
+    );
     checkbox.className = "destination-checkbox";
     infoSection.appendChild(checkbox);
 
@@ -218,10 +228,14 @@ function createDestinationItems(
         }
     `;
 
-    // Add destination type if available
-    if (destination.type_name) {
-      labelContent += `<div class="destination-type">${destination.type_name}</div>`;
+    // Add destination types if available
+    if (destination.types && destination.types.length > 0) {
+      labelContent += `<div class="destination-types">${destination.types.join(
+        ", "
+      )}</div>`;
     }
+
+    console.log(destination);
 
     labelContent += `</div>`;
     label.innerHTML = labelContent;

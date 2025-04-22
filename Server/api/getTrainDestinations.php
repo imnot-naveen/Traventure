@@ -1,5 +1,6 @@
 <?php
 // Include database initialization
+// Include database initialization
 include_once('../core/initialize.php');
 
 // Set response header to JSON
@@ -14,20 +15,21 @@ if (!isset($_GET['trainID'])) {
 $trainID = $_GET['trainID'];
 
 try {
-    // Query to get destinations along the train's route
+    // Query to get destinations along the train's route with their types
     $query = "
         SELECT 
             d.destination_id, 
             d.name AS destinationName, 
             d.description, 
-            d.type as type_id,
-            t.type AS destinationType,
+            GROUP_CONCAT(DISTINCT dt.type) AS type_ids,
+            GROUP_CONCAT(DISTINCT t.type) AS destinationTypes,
             GROUP_CONCAT(dp.photoName) AS photos,
             d.nearestStation
         FROM destination d
         INNER JOIN trainstops ts ON ts.stationid = d.nearestStation
         LEFT JOIN destinationphotos dp ON d.destination_id = dp.destination
-        JOIN destinationtypes t ON d.type = t.type_id
+        LEFT JOIN desttypes dt ON d.destination_id = dt.destination
+        LEFT JOIN destinationtypes t ON dt.type = t.type_id
         WHERE ts.trainid = :trainID
         GROUP BY d.destination_id
         ORDER BY d.nearestStation
@@ -44,8 +46,8 @@ try {
             return [
                 "id" => $destination['destination_id'],
                 "name" => $destination['destinationName'],
-                "type_id" => $destination['type_id'],
-                "type" => $destination['destinationType'],
+                "type_ids" => $destination['type_ids'] ? explode(",", $destination['type_ids']) : [],
+                "types" => $destination['destinationTypes'] ? explode(",", $destination['destinationTypes']) : [],
                 "description" => $destination['description'],
                 "photos" => $destination['photos'] ? explode(",", $destination['photos']) : [],
                 "nearestStation" => $destination['nearestStation']

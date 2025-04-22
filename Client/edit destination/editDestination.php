@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 if (trim($_SESSION['userType']) !== "TSP") {
-    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage
+    header("Location: ../Home/home.html"); // If not authorized, redirect to homepage
     exit();
 }
 
@@ -30,11 +30,12 @@ $username = $_SESSION['username'];
       <label for="destinationNameInput">Name:</label>
       <input type="text" id="destinationNameInput" name="name" required>
 
-      <label for="destinationType">Type:</label>
-      <select id="destinationType" name="type" required>
-        <option value="">Select Destination Type</option>
-        <!-- Types will be populated dynamically -->
-      </select>
+      <label>Type:</label>
+      <div id="destinationTypes">
+        <div class="type-checkbox-container">
+          <!-- Checkboxes will be dynamically inserted here -->
+        </div>
+      </div>
 
       <label for="nearestStation">Nearest Station:</label>
       <select id="nearestStation" name="nearestStation" required>
@@ -48,9 +49,9 @@ $username = $_SESSION['username'];
       <div id="photos-section">
         <h3>Photos</h3>
         <div id="destinationPhotos">
-          <!-- Existing photos dynamically loaded here -->
+          <!-- Existing photos will be loaded here -->
         </div>
-        <input type="file" id="newPhotosInput" name="newPhotos[]" multiple>
+        <input type="file" id="newPhotosInput" name="newPhotos[]" multiple accept="image/*">
       </div>
 
       <button type="submit">Save</button>
