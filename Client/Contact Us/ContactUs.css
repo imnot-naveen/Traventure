@@ -1,157 +1,128 @@
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #f4f7f6;
-    line-height: 1.6;
-    color: #333;
-    font-family: 'Roboto', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('Contact\ us.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+*{
+    margin: 0%;
+    padding: 0%;
 }
 
-.container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 40px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.contact-container{
+ display: flex;
+ height: 90vh;
+ padding: 30px;
+ width: 90vw;
 }
 
-.container:hover {
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-    transform: translateY(-5px);
-}
-
-.header-text {
-    color: #1a237e;
-    font-size: 36px;
-    font-weight: 700;
-    text-align: left;
-    margin-bottom: 40px;
-    border-bottom: 3px solid #1a237e;
-    padding-bottom: 10px;
-}
-
-.form-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-}
-
-.form-group {
+.contact-details{
     flex: 1;
-    margin-right: 20px;
-    position: relative;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
-.form-group:last-child {
-    margin-right: 0;
+.contact-elements{
+    margin-top: 10%;
+    margin-left: 4%;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 10px;
-    color: #455a64;
-    font-size: 16px;
-    font-weight: 600;
-    transition: color 0.3s ease;
+.contact-form{
+    flex: 1;
 }
 
-.form-group input, 
-.form-group textarea {
-    width: 100%;
-    padding: 14px;
-    border: 2px solid #e0e0e0;
-    border-radius: 6px;
-    font-size: 16px;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-    outline: none;
+.form-container{
+    padding: 30px;
+    margin-top: 14%;
+    margin-left: 3%;
+    width: 85%;
 }
 
-.form-group input:focus, 
-.form-group textarea:focus {
-    border-color: #1a237e;
-    box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.1);
+.nameInput{
+    display: flex;
+    gap: 40px;
+    margin-left: 2%;
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 150px;
+h3{
+    padding: 2%;
+    margin-bottom: 2%;
+    font-weight: 600; 
+    font-size: 50px;
 }
 
-.submit-button {
-    width: 100%;
-    padding: 16px;
-    background-color: #1a237e;
+p{
+    font-size: 20px;
+    margin-bottom: 3%;
+}
+
+i{
+    color:rgb(64, 64, 254);
+    margin-left: 2%;
+    padding: 1%;
+}
+
+.description{
+    padding : 1%;
+    margin-left: 1%;
+    font-size : 30pxpx;
+}
+
+form {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;      
+}
+
+input,textarea,button{
+    border: 2.5px solid #ccc;
+    border-radius: 4px; 
+    padding: 1%;
+    padding-left: 8px;
+    margin-left: 2%;
+}
+
+label{
+    font-weight: 500;
+    padding: 1%;
+    margin-left: 2%;
+}
+
+.error{
+    color:red;
+    margin-top: 2px;
+    font-weight: 500;
+    padding: 1%;
+    margin-left: 2%;
+}
+
+input {
+    height: 30px
+}
+
+input::placeholder {
+  color: gray;
+  font-size: 16px;
+  font-style: italic;
+  opacity: 1; 
+}
+
+
+textarea{
+    resize: none;
+    width: 96%;
+    height: 200px;
+}
+
+button{
+    border-radius: 3000px;
+    border: 0;
+    margin-top: 10px;
+    background-color: rgb(64, 64, 254);
     color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 25px;
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #0d1847;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .container {
-        width: 90%;
-        margin: 30px auto;
-        padding: 25px;
-    }
-
-    .form-row {
-        flex-direction: column;
-    }
-
-    .form-group {
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
-
-    .header-text {
-        font-size: 28px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .container {
-        width: 95%;
-        margin: 20px auto;
-        padding: 20px;
-    }
-
-    .header-text {
-        font-size: 24px;
-    }
-
-    .form-group input, 
-    .form-group textarea {
-        font-size: 14px;
-        padding: 12px;
-    }
-
-    .submit-button {
-        font-size: 16px;
-    }
+    font-size: 20px;
+    height: 50px;
+    text-align: center;
+    width: 20%;
 }

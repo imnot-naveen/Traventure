@@ -6,46 +6,57 @@ body {
   background-color: #f5f5f5;
   overflow-x: hidden; /* Prevent horizontal scroll due to large shapes */
 }
-
 /* Hero Section */
 .hero-container {
-  background: url('../assets/img/hero-2.jpg') no-repeat center center/cover, 
-              radial-gradient(circle at top left, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%),
-              linear-gradient(135deg, rgba(0, 0, 0, 0.3) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.3) 75%, rgba(0, 0, 0, 0.3));
-  background-blend-mode: overlay;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../assets/img/hero-2.jpg') center/cover no-repeat;
   text-align: center;
-  padding: 220px 20px; /* Adjusted for better balance */
+  padding: 200px 20px;
   color: #fff;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-container h1 {
   font-size: 3rem;
+  font-weight: 700;
   margin-bottom: 20px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+  max-width: 800px;
 }
 
 .hero-container p {
-  font-size: 1.5rem;
-  margin-bottom: 30px;
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin-bottom: 35px;
+  line-height: 1.7;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.hero-container a {
+  text-decoration: none;
 }
 
 .hero-container button {
   font-size: 1.2rem;
-  background-color: #007bff;
+  background: linear-gradient(135deg, #00aaff, #00d9ff);
   color: #fff;
-  padding: 12px 24px;
+  padding: 14px 30px;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .hero-container button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #008fd1, #0056b3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Problem Section */

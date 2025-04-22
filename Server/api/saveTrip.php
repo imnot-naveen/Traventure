@@ -106,7 +106,7 @@ try {
         'message' => 'Trip booked successfully!',
         'tripID' => $tripID,
         'bookingReference' => $bookingReference,
-        'redirect' => '../../client/itinerary/viewitinerary.php?tripID=' . $tripID
+        'redirect' => '../../client/userTrips/userTrips.html'
     ]);
     
 } catch (Exception $e) {
