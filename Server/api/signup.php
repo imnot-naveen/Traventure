@@ -19,7 +19,7 @@ $person = new Person($db);
 $data = json_decode(file_get_contents("php://input"));
 
 // Check if data is valid
-if (!isset($data->username, $data->first_name, $data->last_name, $data->email, $data->contact_number, $data->password, $data->user_type)) {
+if (!isset($data->username, $data->first_name, $data->last_name,$data->id_number, $data->email, $data->contact_number, $data->password, $data->user_type)) {
     http_response_code(400);
     echo json_encode(['message' => 'Invalid input']);
     exit();
@@ -29,6 +29,7 @@ if (!isset($data->username, $data->first_name, $data->last_name, $data->email, $
 $person->username = $data->username;
 $person->first_name = $data->first_name;
 $person->last_name = $data->last_name;
+$person->id_number = $data->id_number;
 $person->email = $data->email;
 $person->contact_number = $data->contact_number;
 $person->password = $data->password;

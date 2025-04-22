@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const trainData = JSON.parse(localStorage.getItem("trainData")) || [];
   const trainResultsContainer = document.getElementById("train-results");
 
+  // Array to store selected trains (trainID and departure time)
+  let selectedTrains = JSON.parse(localStorage.getItem("selectedTrains")) || [];
+
   const renderTrains = (data) => {
     trainResultsContainer.innerHTML = ""; // Clear existing rows
 
@@ -24,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${train.trainID}</td>
         <td>${train.type}</td>
         <td>
-          <button class="select-train-btn" data-trainid="${train.trainID}">
+          <button class="select-train-btn" data-trainid="${train.trainID}" data-departure="${train.departureTime}" data-arrival="${train.arrivalTime}" data-name="${train.name}">
             Select
           </button>
         </td>
@@ -38,11 +41,29 @@ document.addEventListener("DOMContentLoaded", () => {
     selectButtons.forEach((button) => {
       button.addEventListener("click", (e) => {
         const trainID = e.target.getAttribute("data-trainid");
+        const departureTime = e.target.getAttribute("data-departure");
+        const name = e.target.getAttribute("data-name");
+        const arrivalTime = e.target.getAttribute("data-arrival");
+
         if (trainID) {
           // Save selected train to localStorage
           const tripData = JSON.parse(localStorage.getItem("tripData")) || {};
           tripData.trainID = trainID;
           localStorage.setItem("tripData", JSON.stringify(tripData));
+
+          // Add selected train info to the array
+          selectedTrains.push({
+            trainID: trainID,
+            departureTime: departureTime,
+            name: name,
+            arrivalTime: arrivalTime,
+          });
+
+          // Save the updated array to localStorage
+          localStorage.setItem(
+            "selectedTrains",
+            JSON.stringify(selectedTrains)
+          );
 
           // Redirect to destinations page
           window.location.href =

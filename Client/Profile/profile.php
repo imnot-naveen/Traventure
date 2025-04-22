@@ -55,7 +55,9 @@ $username = $_SESSION['username'];
             </div>
             <div class="links">
                 <a href="../userTrips/userTrips.html" class="trip-history">View Trip History...</a>
+
                 <a href="../Bookinghistory/bookingHistory.php" id="booking-history">View Booking History</a>
+
                 <a href="#" class="edit-profile">Edit profile..</a>
             </div>
             <button type="button" class="save-btn">Save</button>

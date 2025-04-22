@@ -59,9 +59,9 @@ $username = $_SESSION['username'];
                     <label for="train-class">Train Seat Class</label>
                     <select id="train-class" name="train-class">
                         <option value="">Select class</option>
-                        <option value="1st">1st Class</option>
-                        <option value="2nd">2nd Class</option>
-                        <option value="3rd">3rd Class</option>
+                        <option value="first">1st Class</option>
+                        <option value="second">2nd Class</option>
+                        <option value="third">3rd Class</option>
                     </select>
                 </div>
                 <h3><i class='bx bx-user'></i> Fill Passenger Details</h3>

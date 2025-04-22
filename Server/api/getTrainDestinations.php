@@ -20,14 +20,17 @@ try {
             d.destination_id, 
             d.name AS destinationName, 
             d.description, 
+            d.type as type_id,
             t.type AS destinationType,
-            GROUP_CONCAT(dp.photoName) AS photos
+            GROUP_CONCAT(dp.photoName) AS photos,
+            d.nearestStation
         FROM destination d
         INNER JOIN trainstops ts ON ts.stationid = d.nearestStation
         LEFT JOIN destinationphotos dp ON d.destination_id = dp.destination
         JOIN destinationtypes t ON d.type = t.type_id
         WHERE ts.trainid = :trainID
         GROUP BY d.destination_id
+        ORDER BY d.nearestStation
     ";
 
     $stmt = $db->prepare($query);
@@ -41,9 +44,11 @@ try {
             return [
                 "id" => $destination['destination_id'],
                 "name" => $destination['destinationName'],
+                "type_id" => $destination['type_id'],
                 "type" => $destination['destinationType'],
                 "description" => $destination['description'],
                 "photos" => $destination['photos'] ? explode(",", $destination['photos']) : [],
+                "nearestStation" => $destination['nearestStation']
             ];
         }, $destinations);
 

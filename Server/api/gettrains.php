@@ -27,6 +27,7 @@ try {
     $query = "
         SELECT 
             t.trainID,
+            t.name,
             t.type,
             ts1.departureTime AS departureTime,
             ts2.arrivalTime AS arrivalTime,

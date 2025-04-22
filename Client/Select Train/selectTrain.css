@@ -168,3 +168,76 @@ td:nth-child(4) {
 tbody tr:nth-child(even) {
     background-color: #fbfbfb;
 }
+
+/* Add this to selecttrain.css */
+.journey-summary {
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.journey-summary h2 {
+  color: #0d6efd;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 10px;
+}
+
+.journey-step {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #e9ecef;
+}
+
+.journey-step:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #e9ecef;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 1.2rem;
+}
+
+.step-details {
+  flex: 1;
+}
+
+.step-title {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.step-info {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Status classes */
+.journey-step.completed .step-icon {
+  background-color: #28a745;
+  color: white;
+}
+
+.journey-step.current .step-icon {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.journey-step.pending .step-icon {
+  background-color: #e9ecef;
+  color: #6c757d;
+}

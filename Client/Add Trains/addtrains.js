@@ -149,8 +149,12 @@ addTrainForm.addEventListener("submit", (e) => {
     departureTime: document.getElementById("departureTime").value + ":00",
     arrivalTime: document.getElementById("arrivalTime").value + ":00",
     date: document.getElementById("date").value,
+    firstClass: document.getElementById("firstClass").value,
+    SecondClass: document.getElementById("secondClass").value,
     stops: [],
   };
+
+  console.log(document.getElementById("secondClass").value);
 
   // Collect stops data
   const stopElements = trainStopsDiv.querySelectorAll(".train-stop");

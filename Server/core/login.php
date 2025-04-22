@@ -15,9 +15,14 @@ class Login {
         session_start();
         
         if (!empty($this->username)) {
+
+            $query = 'SELECT * FROM ' . $this->login_table . ' WHERE username = :username OR email = :email LIMIT 1';
+
             $query = 'SELECT login.* FROM ' . $this->login_table . ' WHERE login.username = :username OR login.email = :email LIMIT 1';
+
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':username', $this->username);
+            $stmt->bindParam(':email', $this->username);
         } elseif (!empty($this->email)) {
             $query = 'SELECT login.* FROM ' . $this->login_table . ' WHERE login.email = :email LIMIT 1';
             $stmt = $this->conn->prepare($query);

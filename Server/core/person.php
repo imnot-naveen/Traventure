@@ -9,6 +9,7 @@ class Person {
     public $username;
     public $first_name;
     public $last_name;
+    public $id_number;
     public $email;
     public $contact_number;
     public $password; // Only for use in login table
@@ -33,13 +34,14 @@ class Person {
         }
 
         // Insert into the person table
-        $query = 'INSERT INTO ' . $this->person_table . ' SET username = :username, firstName = :first_name, lastName = :last_name, email = :email, contactNo = :contact_number, userType = "Traveller"';
+        $query = 'INSERT INTO ' . $this->person_table . ' SET username = :username, firstName = :first_name, lastName = :last_name, IDNumber = :id_number, email = :email, contactNo = :contact_number, userType = "Traveller"';
         $stmt = $this->conn->prepare($query);
 
         // Bind parameters
         $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':first_name', $this->first_name);
         $stmt->bindParam(':last_name', $this->last_name);
+        $stmt->bindParam(':id_number', $this->id_number);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':contact_number', $this->contact_number);
 
