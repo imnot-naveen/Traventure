@@ -15,7 +15,7 @@ if (!$driver) {
 }
 
 // Get ride requests for the driver's assigned station with status = 'pending'
-$stmt2 = $pdo->prepare("SELECT * FROM ride_requests WHERE destination_station = ? AND status = 'pending'");
+$stmt2 = $pdo->prepare("SELECT * FROM ride_requests WHERE destination = ? AND status = 'pending'");
 $stmt2->execute([$driver['assigned_station']]);
 $ride_requests = $stmt2->fetchAll();
 ?>
@@ -85,8 +85,8 @@ $ride_requests = $stmt2->fetchAll();
     <?php if (count($ride_requests) > 0): ?>
         <?php foreach ($ride_requests as $ride): ?>
             <div class="ride">
-                <p><strong>Customer:</strong> <?php echo htmlspecialchars($ride['customer_name']); ?></p>
-                <p><strong>Destination:</strong> <?php echo htmlspecialchars($ride['destination_station']); ?></p>
+                <p><strong>Customer:</strong> <?php echo htmlspecialchars($ride['user_name']); ?></p>
+                <p><strong>Destination:</strong> <?php echo htmlspecialchars($ride['destination']); ?></p>
                 <form method="post" action="handle_request.php">
                     <input type="hidden" name="ride_id" value="<?php echo $ride['id']; ?>">
                     <input type="hidden" name="driver_id" value="<?php echo $driver_id; ?>">
@@ -111,8 +111,8 @@ $ride_requests = $stmt2->fetchAll();
     <?php if (count($accepted_rides) > 0): ?>
         <?php foreach ($accepted_rides as $ride): ?>
             <div class="ride">
-                <p><strong>Customer:</strong> <?php echo htmlspecialchars($ride['customer_name']); ?></p>
-                <p><strong>Destination:</strong> <?php echo htmlspecialchars($ride['destination_station']); ?></p>
+                <p><strong>Customer:</strong> <?php echo htmlspecialchars($ride['user_name']); ?></p>
+                <p><strong>Destination:</strong> <?php echo htmlspecialchars($ride['destination']); ?></p>
                 <form method="post" action="cancel_ride.php">
                     <input type="hidden" name="ride_id" value="<?php echo $ride['id']; ?>">
                     <input type="hidden" name="driver_id" value="<?php echo $driver_id; ?>">

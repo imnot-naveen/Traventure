@@ -36,18 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt4->execute([$driver_id, $ride_id, $action]);
 
     // Send email to customer
-    $to = $ride['customer_email'];
+    $to = $ride['user_email'];
     $subject = "Ride Request - Traventure";
     
     if ($action === 'accept') {
-        $message = "Dear " . $ride['customer_name'] . ",\n\n"
-                 . "Your ride request to " . $ride['destination_station'] . " has been accepted by Driver " . $driver['name'] . ".\n"
+        $message = "Dear " . $ride['user_name'] . ",\n\n"
+                 . "Your ride request to " . $ride['destination'] . " has been accepted by Driver " . $driver['name'] . ".\n"
                  . "Driver email: " . $driver['email'] . "\n\n"
                  . "Please confirm your trip by replying or contacting the driver.\n\n"
                  . "Traventure Team";
     } else {
-        $message = "Dear " . $ride['customer_name'] . ",\n\n"
-                 . "We're sorry. Your ride request to " . $ride['destination_station'] . " has been declined by Driver " . $driver['name'] . ".\n"
+        $message = "Dear " . $ride['user_name'] . ",\n\n"
+                 . "We're sorry. Your ride request to " . $ride['destination'] . " has been declined by Driver " . $driver['name'] . ".\n"
                  . "You may try requesting again later.\n\n"
                  . "Traventure Team";
     }
