@@ -171,6 +171,27 @@ main {
     gap: 20px;
 }
 
+.seat-group {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.seat-inputs {
+    margin-top: 1%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Optional for spacing */
+}
+
+.seat-input{
+    margin-top: 1%;
+    display: inline-block; 
+    padding: 2%;
+    width: 45%;
+    height: 100px;
+}
+
 .station-selectors {
     display: grid;
     grid-template-columns: 1fr 1fr;

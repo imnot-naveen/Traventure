@@ -9,7 +9,7 @@ $data = json_decode(file_get_contents("php://input"));
 // Validate required fields
 if (empty($data->trainID) || empty($data->name) || empty($data->type) || 
     empty($data->startStation) || empty($data->endStation) || 
-    empty($data->departureTime) || empty($data->arrivalTime) || empty($data->date) || empty($data->stops)) {
+    empty($data->departureTime) || empty($data->arrivalTime) || empty($data->date) || empty($data->stops) || empty($data->firstClass) || empty($data->SecondClass)) {
     echo json_encode(['success' => false, 'message' => 'Invalid input: All fields are required.']);
     exit();
 }
@@ -19,8 +19,8 @@ try {
     $db->beginTransaction();
 
     // Insert into `train` table
-    $query = 'INSERT INTO train (trainID, name, type, startStation, endStation, departureTime, arrivalTime, days) 
-          VALUES (:trainID, :name, :type, :startStation, :endStation, :departureTime, :arrivalTime, :days)';
+    $query = 'INSERT INTO train (trainID, name, type, startStation, endStation, departureTime, arrivalTime, days,firstClassSeats,secondClassSeats) 
+          VALUES (:trainID, :name, :type, :startStation, :endStation, :departureTime, :arrivalTime, :days, :firstClass, :secondClass)';
     $stmt = $db->prepare($query);
     $stmt->bindParam(':trainID', $data->trainID);
     $stmt->bindParam(':name', $data->name);
@@ -30,6 +30,8 @@ try {
     $stmt->bindParam(':departureTime', $data->departureTime);
     $stmt->bindParam(':arrivalTime', $data->arrivalTime);
     $stmt->bindParam(':days', $data->date);
+    $stmt->bindParam(':firstClass', $data->firstClass);
+    $stmt->bindParam(':secondClass', $data->SecondClass);
 
     if (!$stmt->execute()) {
         throw new Exception('Failed to insert train details into the train table.');
