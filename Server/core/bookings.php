@@ -21,11 +21,11 @@ class Bookings {
     public $trainID;
 
     // Create a new booking
-    public function createBooking($userID, $start_station, $destination_station, $class, $no_of_passengers, $total_fare, $paymentMethod) {
+    public function createBooking($userID, $start_station, $destination_station, $class, $no_of_passengers, $total_fare, $paymentMethod, $trainID) {
         try {
             $query = "INSERT INTO " . $this->booking_table . " 
-                    (userID, start_station, destination_station, class, no_of_passengers, total_fare, paymentMethod)
-                    VALUES (:userID, :start_station, :destination_station, :class, :no_of_passengers, :total_fare, :paymentMethod)";
+                    (userID, start_station, destination_station, class, no_of_passengers, total_fare, paymentMethod, trainID)
+                    VALUES (:userID, :start_station, :destination_station, :class, :no_of_passengers, :total_fare, :paymentMethod, :trainID)";
     
             $stmt = $this->conn->prepare($query);
     
@@ -37,6 +37,7 @@ class Bookings {
             $stmt->bindParam(':no_of_passengers', $no_of_passengers);
             $stmt->bindParam(':total_fare', $total_fare);
             $stmt->bindParam(':paymentMethod', $paymentMethod);
+            $stmt->bindParam(':trainID', $trainID);
     
             // Execute the query
             if ($stmt->execute()) {
@@ -75,16 +76,15 @@ class Bookings {
     // Get bookings by user ID
     public function getBookingsByUserID($userID) {
         try {
-            $query = 'SELECT b.*, 
-                        s1.station_name as start_station_name, 
-                        s2.station_name as destination_station_name,
-                        tr.route_name
-                     FROM ' . $this->booking_table . ' b
-                     JOIN station s1 ON b.start_station = s1.stationID
-                     JOIN station s2 ON b.destination_station = s2.stationID
-                     LEFT JOIN train_routes tr ON b.routeID = tr.routeID
-                     WHERE b.userID = :userID
-                     ORDER BY b.bookingDate DESC';
+            $query = 'SELECT b.*, t.name,
+            s1.name as start_station_name, 
+            s2.name as destination_station_name
+     FROM ' . $this->booking_table . ' b
+     JOIN station s1 ON b.start_station = s1.stationID
+     JOIN station s2 ON b.destination_station = s2.stationID
+     JOIN train t ON t.trainID = b.trainID
+     WHERE b.userID = :userID
+     ORDER BY b.bookingDate DESC';
             
             $stmt = $this->conn->prepare($query);
 
@@ -105,13 +105,15 @@ class Bookings {
     // Get booking by ID
     public function getBookingByID($bookingID) {
         try {
-            $query = 'SELECT b.*, 
-                     s1.name as start_station_name, 
-                    s2.name as destination_station_name
-                    FROM ' . $this->booking_table . ' b
-                     JOIN station s1 ON b.start_station = s1.stationID
-                     JOIN station s2 ON b.destination_station = s2.stationID
-                     WHERE b.bookingID = :bookingID';
+            $query = 'SELECT b.*, CONCAT(p.firstName, \' \', p.lastName) AS fullName,
+          s1.name as start_station_name, 
+          s2.name as destination_station_name
+          FROM ' . $this->booking_table . ' b
+          JOIN registereduser r ON r.userID = b.userID
+          JOIN person p ON p.username = r.username
+          JOIN station s1 ON b.start_station = s1.stationID
+          JOIN station s2 ON b.destination_station = s2.stationID
+          WHERE b.bookingID = :bookingID';
             
             $stmt = $this->conn->prepare($query);
 
@@ -244,6 +246,42 @@ class Bookings {
         } catch (Exception $e) {
             return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
         }
-    }    
+    } 
+    
+    public function getBookingsByMonth($year, $month) {
+        try {
+            $query = "SELECT b.*, 
+                             u.username AS user_name,
+                             t.name AS train_name
+                      FROM " . $this->booking_table . " b
+                      JOIN registereduser u ON b.userID = u.userID
+                      JOIN train t ON b.trainID = t.trainID
+                      WHERE YEAR(b.bookingDate) = :year AND MONTH(b.bookingDate) = :month
+                      ORDER BY b.bookingDate DESC";
+    
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':year', $year);
+            $stmt->bindParam(':month', $month);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            return ['success' => true, 'data' => $results];
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
+    } 
+    
+    public function getBookingCountforDay(){
+        try {
+            $query = 'SELECT COUNT(*) as count FROM bookings WHERE bookingDate >= NOW() - INTERVAL 1 DAY';
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+    
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return ['success' => true, 'count' => $result['count']];
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => 'Error: '. $e->getMessage()];
+        }
+    }
 }
 ?>

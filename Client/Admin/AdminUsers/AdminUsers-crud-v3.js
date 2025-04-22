@@ -1,10 +1,10 @@
 // Fetch and display user data
-fetch('../../../Server/api/adminUser.php')
+fetch('../../../Server/api/getAllUsers.php')
     .then(response => response.json())
     .then(data => {
         if (data.success && Array.isArray(data.data)) {
-            const tableBody = document.getElementById('userTableBody'); // Ensure correct ID
-            tableBody.innerHTML = ""; // Clear existing rows
+            const tableBody = document.getElementById('userTableBody'); 
+            tableBody.innerHTML = ""; 
 
             data.data.forEach(person => {
                 const row = tableBody.insertRow();
@@ -17,9 +17,9 @@ fetch('../../../Server/api/adminUser.php')
                 // Add a class for styling
                 row.classList.add("clickable-row");
                 row.addEventListener("click", () => {
-                    const userId = person.username; // Use a unique identifier like username
+                    const userId = person.userid; 
                     console.log("Navigating to User Profile:", userId);
-                    window.location.href = `AdminUserProfile/AdminUserProfile.php?user=${userId}`;
+                    window.location.href = `AdminUserProfile/AdminUserProfile.php?userid=${userId}`;
                 });
             });
 
@@ -70,3 +70,30 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPage = 1;
     displayTable();
 });
+
+// Fetch total user count from API
+fetch('http://localhost/Traventure/Server/api/getUserCount.php')  
+  .then(response => response.json())
+  .then(data => {
+    if (data.count) {
+      document.querySelector('.left h1').textContent = data.count.toLocaleString();
+    } else {
+      console.error('Failed to fetch user count');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+  fetch('http://localhost/Traventure/Server/api/getUsersByMonth.php')
+  .then(response => response.json())
+  .then(data => {
+    if (data && data.success && data.data !== undefined) {
+      document.querySelector('#userCountMonth').textContent = data.data.toLocaleString();
+    } else {
+      console.error('Failed to fetch user count');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });

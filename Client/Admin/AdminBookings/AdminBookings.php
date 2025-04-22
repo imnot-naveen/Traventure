@@ -1,5 +1,5 @@
 <?php
-    // include '../Session_check.php';
+    include '../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="AdminBookings.css">
-  <link rel="stylesheet" href="../Common/Logout_Modal.css">
+  <link rel="stylesheet" href="../LogoutModal/logoutModal.css">
   <link rel="stylesheet" href="../Sidebar/Sidebar.css">
   <link rel="stylesheet" href="../Recent_updates/Recent.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -27,17 +27,9 @@
                             <h3>Total Revenue</h3>
                             <h1 id="totalRevenue">Loading</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
                     </div>
                     <small class="text-muted">
-                        Last 24 Hours
+                        Total
                     </small>
                 </div>
 
@@ -50,17 +42,9 @@
                             <h3>Total Bookings</h3>
                             <h1 id="totalBookings">Loading..</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>87%</p>
-                            </div>
-                        </div>
                     </div>
                     <small class="text-muted">
-                        Last 24 Hours
+                        Total
                     </small>
                 </div>
 
@@ -73,17 +57,9 @@
                             <h3>Monthly Revenue</h3>
                             <h1 id="lastMonthRevenue">Loading..</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
                     </div>
                     <small class="text-muted">
-                        Last 24 Hours
+                        Last Month
                     </small>
                 </div>
                 <!-- END OF INCOME -->
@@ -130,19 +106,9 @@
         </div>
   </div>
  
-              <!-- Dialog Box -->
-              <div id="logoutDialog" class="modal-lo">
-                <div class="modal-content-lo">
-                    <h2>Logout</h2>
-                    <p>Are you sure you want to logout?</p>
-                    <div class="button-group">
-                        <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                        <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-                    </div>
-                </div>
-            </div>
+  <?php include '../LogoutModal/logoutModal.php'; ?>
                
-  <script src="../Common/Logout_Modal.js"></script>
+  <script src="../LogoutModal/logoutModal.js"></script>
   <script src="AdminBookings.js"></script>
   <script src="../Recent_updates/Recent.js"></script>
 </body>

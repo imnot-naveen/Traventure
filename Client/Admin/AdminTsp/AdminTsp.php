@@ -1,5 +1,5 @@
 <?php
-    // include '../Session_check.php';
+    include '../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
   <title>TSPs | Admin</title>
   <link rel="stylesheet" href="AdminTsp.css">
   <link rel="stylesheet" href="AdminTspAdd.css">
-  <link rel="stylesheet" href="../Common/Logout_Modal.css">
+  <link rel="stylesheet" href="../LogoutModal/logoutModal.css">
   <link rel="stylesheet" href="../Sidebar/Sidebar.css">
   <link rel="stylesheet" href="../Recent_updates/Recent.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -29,14 +29,6 @@
                         <div class="left">
                             <h3>Total TSPs</h3>
                             <h1 id="tspCount">Loading..</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
                         </div>
                     </div>
                     <small class="text-muted">
@@ -185,19 +177,9 @@
         </div>
   </div>
 
-          <!-- Dialog Box -->
-          <div id="logoutDialog" class="modal-lo">
-            <div class="modal-content-lo">
-                <h2>Logout</h2>
-                <p>Are you sure you want to logout?</p>
-                <div class="button-group">
-                    <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                    <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-                </div>
-            </div>
-        </div>
+  <?php include '../LogoutModal/logoutModal.php'; ?>
 
- <script src="../Common/Logout_Modal.js"></script>
+ <script src="../LogoutModal/logoutModal.js"></script>
  <script src="AdminTsp-crud-v3.js"></script>
  <script src="AdminTsp.js"></script>
  <script src="AdminTspAdd.js"></script>

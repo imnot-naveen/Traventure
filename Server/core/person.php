@@ -3,6 +3,7 @@ class Person {
     private $conn;
     private $person_table = 'person';
     private $login_table = 'login';
+    private $user_table = 'registereduser';
 
     // Person properties
     public $username;
@@ -48,21 +49,28 @@ class Person {
             // Insert into the login table
             $query = 'INSERT INTO ' . $this->login_table . ' SET username = :username, password = :password, email = :email, userType = "Traveller"';
             $stmt = $this->conn->prepare($query);
-
-            // Hash the password
+        
             $hashed_password = password_hash($this->password, PASSWORD_DEFAULT);
-
-            // Bind parameters
+        
             $stmt->bindParam(':username', $this->username);
             $stmt->bindParam(':password', $hashed_password);
             $stmt->bindParam(':email', $this->email);
-
+        
             if ($stmt->execute()) {
-                return ['success' => true, 'message' => 'User created successfully.'];
+                // Insert into registereduser table
+                $query = 'INSERT INTO ' . $this->user_table . ' (username) VALUES (:username)';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':username', $this->username);
+        
+                if ($stmt->execute()) {
+                    return ['success' => true, 'message' => 'User created successfully.'];
+                } else {
+                    return ['success' => false, 'message' => 'User and login created, but failed to insert into registereduser.'];
+                }
             } else {
                 return ['success' => false, 'message' => 'Failed to create login entry.'];
             }
-        }
+        }        
 
         return ['success' => false, 'message' => 'User could not be created.'];
     }
@@ -85,7 +93,7 @@ class Person {
                         d.type,
                         CASE WHEN ud.username IS NOT NULL THEN 1 ELSE 0 END as is_preferred
                       FROM destinationTypes d
-                      LEFT JOIN userDestination ud ON d.type_id = ud.prefferedDestination 
+                      LEFT JOIN userDestination ud ON d.type_id = ud.preferredDestination 
                         AND ud.username = :username
                       ORDER BY d.type";
                       
@@ -99,6 +107,19 @@ class Person {
         
         return $userInfo;
     }
+
+    public function getAllPersons1() {
+        $query = 'SELECT username, firstName AS first_name, lastName AS last_name, email, contactNo AS contact_number 
+                  FROM ' . $this->person_table;
+        $stmt = $this->conn->prepare($query);
+
+        if ($stmt->execute()) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch all records as an associative array
+        }
+
+        return null; // Return null if the query fails
+    }
+    
     // Update user profile
     public function updateProfile() {
         error_log("Starting updateProfile method");
@@ -151,7 +172,7 @@ class Person {
     
                     // Add new destinations
                     if (!empty($this->destination_changes['add'])) {
-                        $insert_query = 'INSERT INTO userDestination (username, prefferedDestination) 
+                        $insert_query = 'INSERT INTO userDestination (username, preferredDestination) 
                                        VALUES (:username, :dest_id)';
                         $insert_stmt = $this->conn->prepare($insert_query);
     

@@ -1,5 +1,5 @@
 <?php
-    // include '../../Session_check.php';
+    include '../../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,9 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Profile | Admin</title>
   <link rel="stylesheet" href="AdminUserProfile-v2.css">
-  <link rel="stylesheet" href="AdminTsp-updateModal.css">
-  <link rel="stylesheet" href="AdminTsp-Deactivate-Modal.css">
-  <link rel="stylesheet" href="../../Common/Logout_Modal.css">
+  <link rel="stylesheet" href="AdminUser-updateModal.css">
+  <!-- <link rel="stylesheet" href="AdminTsp-Deactivate-Modal.css"> -->
+  <link rel="stylesheet" href="../../LogoutModal/logoutModal.css">
   <link rel="stylesheet" href="../../Sidebar/Sidebar.css">
   <link rel="stylesheet" href="../../Recent_updates/Recent.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -26,20 +26,19 @@
                     <div class="profile-header">
                         <img src="../../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture">
                         <div class="profile-info">
-                            <h2 id="tspName">TSP Not found</h2>
-                            <h3>Train Service Provider</h3>
-                            <p>Status: <span id="tspStatus" class="status active">Acti</span></p>
+                            <h2 id="userName">User Not found</h2>
+                            <h3>User</h3>
+                            <p>Status: <span id="userStatus" class="status active">Acti</span></p>
                         </div>
                     </div>
                     <div class="profile-details">
-                        <div class="profile-details">
                             <ul class="left-details">
-                                <li>Email: <span id="tspEmail">email not found</span></li>
-                                <li>Phone: <span id="tspContact">Contact no: Not found</span></li>
+                                <li>Email: <span id="userEmail">email not found</span></li>
+                                <li>Phone: <span id="userContact">Contact no: Not found</span></li>
                             </ul>
                             <ul class="right-details">
-                                <li>Role: TSP</li>
-                                <li>TSP ID: <span id="tspid">Tsp: Not found</span></li>
+                                <li>Role: User</li>
+                                <li>User ID: <span id="userid">User: Not found</span></li>
                             </ul>
                         </div>
                         <div class="action-buttons">
@@ -49,7 +48,6 @@
                           </button>
                       </div>
                     </div>
-                </div>
             </div>
 
             <!-- END OF INSIGHTS -->
@@ -58,40 +56,30 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Train ID</th>
-                            <th>Name</th>
-                            <th>Type</th>
+                            <th>Booking ID</th>
+                            <th>Start Station</th>
+                            <th>End Station</th>
+                            <th>Class</th>
+                            <th>No of Passengers</th>
+                            <th>Kids Count</th>
+                            <th>Total Fare</th>
+                            <th>Payment Method</th>
+                            <th>Booking Date</th>
+                            <th>Train</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        
+                    <tbody id="BookingTableBody">      
                     </tbody>
                 </table>
-                <a href="../AdminBookings/AdminBookings.php">Show All</a>
+                <div class="pagination">
+                    <button id="prevBtn" onclick="prevPage()">Previous</button>
+                    <span id="pageInfo"></span>
+                    <button id="nextBtn" onclick="nextPage()">Next</button>
+                </div>
              </div>
 
             <!-- Modal Structure -->
-            <div id="updateTspModal" class="modal">
+             <div id="updateTspModal" class="modal">
                 <div class="modal-content">
                     <span class="close-u">&times;</span>
                     <h2>Update Travel Service Provider</h2>
@@ -120,10 +108,10 @@
                         <button type="submit">Update</button>
                     </form>
                 </div>
-            </div>
+            </div> 
 
             <!--Deactivate Modal -->
-            <div id="deactivateModal" class="modal-d">
+            <!-- <div id="deactivateModal" class="modal-d">
                 <div class="modal-d-content">
                     <span class="close-btn" id="closeModal-d">&times;</span>
                     <h3>Are you sure you want to deactivate this TSP?</h3>
@@ -131,7 +119,7 @@
                     <button id="cancelDeactivateBtn">Cancel</button>
                 </div>
             </div>
-            <a href=""></a>            
+            <a href=""></a>             -->
 
         </main>
 
@@ -140,22 +128,13 @@
         </div>
   </div>
 
-            <!-- Dialog Box -->
-            <div id="logoutDialog" class="modal-lo">
-                <div class="modal-content-lo">
-                    <h2>Logout</h2>
-                    <p>Are you sure you want to logout?</p>
-                    <div class="button-group">
-                        <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                        <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-                    </div>
-                </div>
-            </div>
+  <?php include '../../LogoutModal/logoutModal.php'; ?>
     
-     <script src="../../Common/Logout_Modal.js"></script>
-
- <script src="AdminTsp-profile.js"></script>
- <script src="AdminTsp-profile-crud.js"></script>
- <script src="AdminTsp-profile-edit.js"></script>
+ <script src="../../LogoutModal/logoutModal.js"></script>
+ <script src="AdminUserProfile.js"></script>
+ <!-- <script src="AdminTsp-profile-edit.js"></script> -->
+ <script src="AdminUserProfile-crud.js"></script>
+ <script src="../../Recent_updates/Recent.js"></script>
+ <script src="GetBookings.js"></script>
 </body>
 </html>

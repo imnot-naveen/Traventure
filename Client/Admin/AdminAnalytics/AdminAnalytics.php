@@ -1,5 +1,5 @@
 <?php
-    // include '../Session_check.php';
+    include '../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,9 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Analytics</title>
   <link rel="stylesheet" href="AdminAnalytics.css">
-  <link rel="stylesheet" href="../Common/Logout_Modal.css">
   <link rel="stylesheet" href="../Sidebar/Sidebar.css">
   <link rel="stylesheet" href="../Recent_updates/Recent.css">
+  <link rel="stylesheet" href="../LogoutModal/logoutModal.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body> 
@@ -24,8 +24,8 @@
                     <span class="material-symbols-outlined">analytics</span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Booking Sales</h3>
-                            <h1>$25,056</h1>
+                            <h3>Total Trips</h3>
+                            <h1>4</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -100,6 +100,9 @@
                  </div>
              </div> 
              <div class="Downloads">
+                <label for="monthSelect">Select Month: </label>
+                <input type="month" id="monthSelect" name="monthSelect">
+
                 <button class="Download" id="Booking">Download Bookings</button>
                 <button class="Download" id="Users">Download User Growth</button>
               </div>              
@@ -109,21 +112,13 @@
     <?php include '../Recent_updates/Recent.php'; ?>
     </div>
 
-        <!-- Dialog Box -->
-        <div id="logoutDialog" class="modal-lo">
-            <div class="modal-content-lo">
-                <h2>Logout</h2>
-                <p>Are you sure you want to logout?</p>
-                <div class="button-group">
-                    <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                    <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-                </div>
-            </div>
-        </div>
- <script src="../Common/Logout_Modal.js"></script>
+    <?php include '../LogoutModal/logoutModal.php'; ?>
+
  <script src="AdminAnalytics.js"></script>
  <script src="AdminAnalytics-lineChart.js"></script>
  <script src="AdminAnalytics-lineChart2.js"></script>
  <script src="../Recent_updates/Recent.js"></script>
+ <script src="DownloadCSV.js"></script>
+ <script src="../LogoutModal/logoutModal.js"></script>
 </body>
 </html>

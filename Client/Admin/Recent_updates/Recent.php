@@ -33,8 +33,8 @@
                 <h3>ONLINE BOOKINGS</h3>
                 <small class="text-muted">Last 24 Hours</small>
             </div>
-            <h5 class="success">-17%</h5>
-            <h3>1100</h3>
+            <h5 class="success" id="bookingGrowth">-17%</h5>
+            <h3 id="bookingCount">1100</h3>
         </div>
     </div>
     <div class="item online">
@@ -59,8 +59,8 @@
                 <h3>NEW USERS</h3>
                 <small class="text-muted">Last 24 Hours</small>
             </div>
-            <h5 class="success">+25%</h5>
-            <h3>849</h3>
-        </div>
+            <h5 class="success" id="user-growth">+0%</h5>
+            <h3 id="user-count">0</h3>
+            </div>
     </div>
 </div>

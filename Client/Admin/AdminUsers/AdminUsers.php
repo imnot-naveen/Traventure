@@ -1,5 +1,5 @@
 <?php
-    // include '../Session_check.php';
+    include '../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
   <title>Users | Admin</title>
   <link rel="stylesheet" href="AdminUsers.css">
   <link rel="stylesheet" href="AdminUserAdd.css">
-  <link rel="stylesheet" href="../Common/Logout_Modal.css">
+  <link rel="stylesheet" href="../LogoutModal/logoutModal.css">
   <link rel="stylesheet" href="../Sidebar/Sidebar.css">
   <link rel="stylesheet" href="../Recent_updates/Recent.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -28,15 +28,7 @@
                     <div class="middle">
                         <div class="left">
                             <h3>Total Users</h3>
-                            <h1>5,056</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
+                            <h1>Loading...</h1>
                         </div>
                     </div>
                     <small class="text-muted">
@@ -51,15 +43,7 @@
                     <div class="middle">
                         <div class="left">
                             <h3>User Accounts</h3>
-                            <h1>43</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>87%</p>
-                            </div>
+                            <h1 id="userCountMonth">Loading..</h1>
                         </div>
                     </div>
                     <small class="text-muted">
@@ -104,10 +88,10 @@
                       oninput="filterUsers()"
                     />
                   </div>
-                  <div class="Add-users">
+                  <!-- <div class="Add-users">
                     <button id="Add-user">Add User</button>
-                  </div>
-                  <div id="userModal" class="modal">
+                  </div> -->
+                  <!-- <div id="userModal" class="modal">
                     <div class="modal-content">
                       <span class="close">&times;</span>
                       <h2>Add New User</h2>
@@ -138,7 +122,7 @@
                         </div>
                       </form>
                     </div>
-                  </div>
+                  </div> -->
                 <table id="userTable">
                     <thead>
                         <tr>
@@ -165,19 +149,9 @@
         </div>
   </div>
 
-          <!-- Dialog Box -->
-    <div id="logoutDialog" class="modal-lo">
-        <div class="modal-content-lo">
-            <h2>Logout</h2>
-            <p>Are you sure you want to logout?</p>
-            <div class="button-group">
-                <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-            </div>
-        </div>
-    </div>
-       
- <script src="../Common/Logout_Modal.js"></script>
+  <?php include '../LogoutModal/logoutModal.php'; ?>
+     
+ <script src="../LogoutModal/logoutModal.js"></script>
  <script src="AdminUsers-crud-v3.js"></script>
  <script src="AdminUserAdd.js"></script>
  <script src="AdminUsers-v2.js"></script>

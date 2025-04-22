@@ -19,8 +19,8 @@ try {
             'quantity' => 1,
         ]],
         'mode' => 'payment',
-        'success_url' => 'http://localhost/Traventure/Client/Booking/success.html',
-        'cancel_url' => 'http://localhost/Traventure/Client/Booking/cancel.html',
+        'success_url' => 'http://localhost/Traventure/Client/Booking/PaymentSuccess/Success.html',
+        'cancel_url' => 'http://localhost/Traventure/Client/Booking/PaymentCancel/cancel.html',
     ]);
 
     echo json_encode(['id' => $session->id]);

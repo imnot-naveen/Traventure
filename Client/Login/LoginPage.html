@@ -34,6 +34,7 @@
           <button type="submit" class="submit-button">Log in</button>
         </form>
         <form id="signup-form" style="display: none">
+
           <!-- Hide signup form by default -->
           <div class="form-group">
             <label for="new-username">Username</label>
@@ -41,6 +42,25 @@
             <span class="error-message" id="username-error"></span>
           </div>
           <div class="names">
+
+            <!-- Hide signup form by default -->
+            <div class="form-group">
+              <label for="new-username">Username</label>
+              <input type="text" id="new-username" name="new-username" required />
+              <span class="error-message" id="username-error"></span>
+            </div>
+            <div class="names">
+            <div class="form-group">
+                <label for="new-firstName">First Name</label>
+                <input type="text" id="new-firstName" name="new-firstName" required>
+                <span class="error-message" id="firstName-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="new-lastName">Last Name</label>
+                <input type="text" id="new-lastName" name="new-lastName" required>
+                <span class="error-message" id="lastName-error"></span>
+            </div>
+
             <div class="form-group">
               <label for="new-firstName">First Name</label>
               <input

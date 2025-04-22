@@ -27,7 +27,9 @@ if (
     !empty($data->class) &&
     !empty($data->no_of_passengers) &&
     !empty($data->total_fare) &&
-    !empty($data->paymentMethod)
+    !empty($data->paymentMethod) &&
+    !empty($data->trainID)
+
 ) {
     // Validate input data
     $userID = htmlspecialchars(strip_tags($data->userID));
@@ -38,6 +40,7 @@ if (
     $no_of_passengers = htmlspecialchars(strip_tags($data->no_of_passengers));
     $total_fare = htmlspecialchars(strip_tags($data->total_fare));
     $paymentMethod = htmlspecialchars(strip_tags($data->paymentMethod));
+    $trainID = htmlspecialchars(strip_tags($data->trainID));
 
     // Check if start and destination stations are different
     if ($start_station == $destination_station) {
@@ -79,7 +82,8 @@ if (
         $class,
         $no_of_passengers,
         $total_fare,
-        $paymentMethod
+        $paymentMethod,
+        $trainID
     );
 
     // Check if booking was created successfully
@@ -110,6 +114,7 @@ if (
     if (empty($data->no_of_passengers)) $missingFields[] = 'no_of_passengers';
     if (empty($data->total_fare)) $missingFields[] = 'total_fare';
     if (empty($data->paymentMethod)) $missingFields[] = 'paymentMethod';
+    if (empty($data->trainID)) $missingFields[] = 'trainID';
     
     echo json_encode(array(
         'success' => false,

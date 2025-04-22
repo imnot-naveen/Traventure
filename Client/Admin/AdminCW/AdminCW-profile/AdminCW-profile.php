@@ -1,5 +1,5 @@
 <?php
-    // include '../../Session_check.php';
+    include '../../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="AdminCW-profile.css">
   <link rel="stylesheet" href="AdminCW-updateModal.css">
   <link rel="stylesheet" href="AdminCW-Deactivate-Modal.css">
-  <link rel="stylesheet" href="../../Common/Logout_Modal.css">
+  <link rel="stylesheet" href="../../LogoutModal/logoutModal.css">
   <link rel="stylesheet" href="../../Sidebar/Sidebar.css">
   <link rel="stylesheet" href="../../Recent_updates/Recent.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -68,23 +68,7 @@
                             <td>T001</td>
                             <td>Blue Express</td>
                             <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        
+                        </tr>                       
                     </tbody>
                 </table>
                 <a href="../AdminBookings/AdminBookings.php">Show All</a>
@@ -140,20 +124,9 @@
         </div>
   </div>
 
-            <!-- Dialog Box -->
-            <div id="logoutDialog" class="modal-lo">
-                <div class="modal-content-lo">
-                    <h2>Logout</h2>
-                    <p>Are you sure you want to logout?</p>
-                    <div class="button-group">
-                        <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                        <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-                    </div>
-                </div>
-            </div>
-    
-     <script src="../../Common/Logout_Modal.js"></script>
+  <?php include '../../LogoutModal/logoutModal.php'; ?>
 
+ <script src="../../LogoutModal/logoutModal.js"></script>
  <script src="AdminCW-profile.js"></script>
  <script src="AdminCW-profile-crud.js"></script>
  <script src="AdminCW-profile-edit.js"></script>
