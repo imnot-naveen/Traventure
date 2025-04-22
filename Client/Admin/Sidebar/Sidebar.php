@@ -21,6 +21,7 @@
             'AdminCW/AdminCW.php' => ['icon' => 'smb_share', 'label' => 'Content Writers'],
             'AdminDriver/AdminDriver.php' => ['icon' => 'directions_car', 'label' => 'Drivers'],
             'AdminAnalytics/AdminAnalytics.php' => ['icon' => 'monitoring', 'label' => 'Analytics'],
+            'AdminTasks/AdminTasks.php' => ['icon' => 'task', 'label' => 'Tasks'],
             'AdminBookings/AdminBookings.php' => ['icon' => 'confirmation_number', 'label' => 'Bookings']
         ];
 
