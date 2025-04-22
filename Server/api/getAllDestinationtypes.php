@@ -11,9 +11,9 @@ header('Content-Type: application/json');
 // Include database and User class
 include_once('../core/initialize.php');
 
-$fare = new Fare($db);
+$destinationType = new DestinationTypes($db);
 
-$result = $fare->getFare();
+$result = $destinationType->getAllDestinationtypes();
 
 // Check if records are found
 if ($result && !empty($result)) {
@@ -21,6 +21,6 @@ if ($result && !empty($result)) {
   echo json_encode(['success' => true, 'data' => $result]);
 } else {
   http_response_code(404); 
-  echo json_encode(['success' => false, 'message' => 'No fare found.']);
+  echo json_encode(['success' => false, 'message' => 'No destination type found.']);
 }
 ?>
