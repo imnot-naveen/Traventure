@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2025 at 07:59 AM
+-- Generation Time: Apr 22, 2025 at 06:50 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -68,6 +68,27 @@ CREATE TABLE `booking` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `contactID` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `phone` int(10) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`contactID`, `name`, `phone`, `email`, `message`) VALUES
+(3, 'Naveen Harinda', 774554321, 'naveenharinda2@gmail.com', 'This is a test contact form submission. Testing 1,2,3....');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `contentwriter`
 --
 
@@ -86,7 +107,6 @@ CREATE TABLE `destination` (
   `destination_id` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `type` int(11) NOT NULL,
   `nearestStation` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -94,13 +114,15 @@ CREATE TABLE `destination` (
 -- Dumping data for table `destination`
 --
 
-INSERT INTO `destination` (`destination_id`, `name`, `description`, `type`, `nearestStation`) VALUES
-(1, 'Galle Fort ', 'Galle Fort (Sinhala: ගාලු කොටුව Galu Kotuwa; Tamil: காலிக் கோட்டை, romanized: Kālik Kōṭṭai), in the Bay of Galle on the southwest coast of Sri Lanka, was built first in 1588 by the Portuguese, then extensively fortified by the Dutch during the 17th century from 1649 onwards. It is a historical, archaeological and architectural heritage monument, which even after more than 432 years maintains a polished appearance, due to extensive reconstruction work done by the Archaeological Department of Sri Lanka.\r\n\r\nThe fort has a colourful history, and today has a multi-ethnic and multi-religious population.The Sri Lankan government and many Dutch people who still own some of the properties inside the fort are looking at making this one of the modern wonders of the world.The heritage value of the fort has been recognized by the UNESCO and the site has been inscribed as a cultural heritage UNESCO World Heritage Site under criteria iv, for its unique exposition of \"an urban ensemble which illustrates the interaction of European architecture and South Asian traditions from the 16th to the 19th centuries\".\r\n\r\nThe Galle Fort, also known as the Dutch Fort or the \"Ramparts of Galle\", withstood the Boxing Day tsunami which damaged part of coastal area Galle town. It has since been restored.', 5, 161),
-(6, 'Koggala', 'Koggala, a tranquil coastal town in Sri Lanka, offers a serene escape from the hustle and bustle.\r\n\r\n With its pristine beaches, calm waters, and picturesque lagoon, Koggala is a haven for relaxation and water sports.  The town is famous for its unique stilt fishermen, a traditional fishing method that creates stunning photo opportunities. Visitors can also explore the Koggala Lake, a haven for birdwatchers and nature lovers. Koggala provides a laid-back atmosphere, perfect for unwinding and enjoying the simple pleasures of life. ', 2, 166),
-(7, 'Richmond Castle ', 'Richmond Castle, a grand Edwardian mansion near Kalutara, Sri Lanka, stands as a testament to a bygone era.\r\n\r\n Built between 1900 and 1910, it was the opulent residence of Mudaliyar Don Arthur de Silva Wijesinghe Siriwardena. The castle boasts stunning architecture, with 99 doors, 34 windows, and a double-winged teak staircase. Its intricate design, imported Italian glass, and English bathroom ware reflect the opulence of the period. Today, the castle is open to the public and serves as a captivating glimpse into Sri Lanka\'s colonial past.', 5, 123),
-(8, 'Unawatuna Beach', 'Unawatuna Beach, a crescent-shaped bay on Sri Lanka\'s southern coast, is renowned for its crystal-clear waters, soft white sands, and vibrant coral reefs. This idyllic beach offers a perfect blend of relaxation and adventure. Visitors can laze under the sun, swim in the calm waters, or snorkel and dive to explore the underwater world. The beach is also a popular spot for surfing, especially during the monsoon season. With a variety of beachside restaurants, bars, and shops, Unawatuna caters to all tastes and budgets.', 3, 163),
-(9, 'nvnhvnb', 'iouhykuhkjhbkjbhkj', 1, 115),
-(11, 'Mount Lavinia Beach ', 'Mount Lavinia Beach, located just south of Colombo, Sri Lanka, is a popular destination known for its golden sands, warm waters, and relaxed atmosphere. The beach is a vibrant blend of local culture and natural beauty, offering stunning views of the Indian Ocean. It is a favorite spot for swimming, sunbathing, and water sports. The iconic Mount Lavinia Hotel, a colonial-era landmark, adds to the charm of the area. In the evenings, the beach comes alive with seafood restaurants and vibrant local life, making it a perfect spot to enjoy both relaxation and entertainment.', 3, 109);
+INSERT INTO `destination` (`destination_id`, `name`, `description`, `nearestStation`) VALUES
+(1, 'Galle Fort ', 'Galle Fort (Sinhala: ගාලු කොටුව Galu Kotuwa; Tamil: காலிக் கோட்டை, romanized: Kālik Kōṭṭai), in the Bay of Galle on the southwest coast of Sri Lanka, was built first in 1588 by the Portuguese, then extensively fortified by the Dutch during the 17th century from 1649 onwards. It is a historical, archaeological and architectural heritage monument, which even after more than 437 years maintains a polished appearance, due to extensive reconstruction work done by the Archaeological Department of Sri Lanka.\r\n\r\nThe fort has a colourful history, and today has a multi-ethnic and multi-religious population.The Sri Lankan government and many Dutch people who still own some of the properties inside the fort are looking at making this one of the modern wonders of the world.The heritage value of the fort has been recognized by the UNESCO and the site has been inscribed as a cultural heritage UNESCO World Heritage Site under criteria iv, for its unique exposition of \"an urban ensemble which illustrates the interaction of European architecture and South Asian traditions from the 16th to the 19th centuries.\"\r\n\r\nThe Galle Fort, also known as the Dutch Fort or the \"Ramparts of Galle\", withstood the Boxing Day tsunami of 2004 which damaged part of coastal area Galle town. It has since been restored.', 161),
+(6, 'Koggala', 'Koggala (Sinhala: කොග්ගල, romanized: Koggala; Tamil: கொக்கலை, romanized: Kokkalai) is a small coastal town, situated at the edge of a lagoon on the south coast of Sri Lanka, located in Galle District, Southern Province, Sri Lanka, governed by an Urban Council. Koggala is bounded on one side by a reef, and on the other by a large lake, Koggala Lake, into which the numerous tributaries of the Koggala Oya drain. It is approximately 139 kilometres (86 mi) south of Colombo and is situated at an elevation of 3 metres (9.8 ft) above sea level.\r\n\r\n', 166),
+(7, 'Richmond Castle ', 'Richmond Castle is an Edwardian mansion, located near Kalutara. Built between 1900 and 1910, it was formally the country seat of Mudaliyar Don Arthur de Silva Wijesinghe Siriwardena. The building is currently owned by the Public Trustee and open to the public.\r\n\r\nThe house sits on a hill 2 km (1.2 mi) from the Kalutara, adjoining the Kalu Ganga River at Palatota,on a 42 acres (17 ha) estate beside the Kalutara-Palatota Road.', 123),
+(8, 'Unawatuna Beach', 'Unawatuna Beach in Unawatuna, Sri Lanka, is a popular tourist destination known for its beautiful golden sands, vibrant atmosphere, and clear turquoise waters. It\'s a great spot for swimming, sunbathing, and enjoying the lively beach vibe. The beach is also known for its proximity to coral reefs and shipwrecks, making it a popular destination for snorkeling and diving. ', 163),
+(9, 'nvnhvnb', 'fjkbvsd', 115),
+(11, 'Mount Lavinia Beach ', 'Mount Lavinia Beach is located just out of the Colombo city. This beach strip has a lot to offer for the locals as well as the tourists visiting Colombo. Along the beach there are many nice restaurants pubs as well as relaxing areas. As a tourist who is visiting Colombo, Mount Lavinia Beach is a must visit. The weekends could be crowded with locals though, during the week it is relaxing and peaceful. If you would relax at a pool overlooking the ocean or the sunset, The Mount Lavinia Hotel terrace is recommended. You can use the Mount Lavinia Hotel pool for an affordable fee.', 109),
+(12, 'Barbaryn Lighthouse - Beruwala', 'Barberyn Lighthouse (also known as Beruwala Lighthouse) is a lighthouse located on Barberyn Island. Barberyn Island a 3.25 ha (8.0 acres) island situated 0.8 km (0.50 mi) offshore from the town of Beruwala on the south-west coast of Sri Lanka,56 km (35 mi) south of Colombo.The lighthouse is a 34 m (112 ft) high round white conical granite tower.\r\n\r\nThe lighthouse was completed in November 1889,and operated by the Imperial Lighthouse Service. In 1969 it was upgraded with the replacement of the old dioptric apparatus (produced by Chance Brothers) and with a pedestal rotating beacon (Pharos Marine PRB-21 sealed beam optic and drive pedestal). It was further modernised in 2000, with the introduction of a Differential Global Positioning System (DGPS) and is computer linked to the other major lighthouses around the country. The Barberyn Lighthouse is one of the four international lighthouses in Sri Lanka.', 128),
+(14, 'Hikkaduwa Coral Reef', 'Hikkaduwa National Park is one of the three marine national parks in Sri Lanka. It is home to some of the best coral gardens in Asia. The national park contains a fringing coral reef of a high degree of biodiversity. The area was declared a wildlife sanctuary on May 18, 1979. Hikkaduwa coral reef is a typical shallow fringing reef with an average depth of around 5 meters (16 ft).\r\n\r\nFoliaceous Montipora species dominate the coral reef. Encrusting and branching species are also present. Faviidae and Poritidae corals are contained in the inshore areas of the reef in massive colonies. Staghorn, elkhorn, cabbage, brain, table, and star corals are all present in the reef. Corals of 60 species belonging to 31 genera are recorded from the reef. The reef also recorded over 170 species of reef fish belonging to 76 genera.\r\n\r\nSeagrass and marine algae belonging to genera Halimeda and Caulerpa are common in the seabed depth ranging from 5–10 m. Seagrasses provide habitat to Dugong and sea turtles. Some species of prawns feed on the seagrass. Eight species of ornamental fishes also inhabit the reef, along with many vertebrates and invertebrates including crabs, prawns, shrimps, oysters, and sea worms. Porites desilveri is an endemic coral species of Sri Lanka. Chlorurus rhakoura and Pomacentrus proteus are two reef fish species confined to Sri Lanka. Blacktip reef shark is found along the outer slope of the reef. Three sea turtles that have been categorized threatened to visit the coral reef: the hawksbill turtle, green turtle, and Olive Ridley.', 150);
 
 -- --------------------------------------------------------
 
@@ -120,7 +142,15 @@ CREATE TABLE `destinationphotos` (
 INSERT INTO `destinationphotos` (`destination`, `photoName`) VALUES
 (1, 'Galle-Fort.jpg'),
 (9, 'safari.jpg'),
-(11, 'mount lavinia beach.jpg');
+(11, 'mount lavinia beach.jpg'),
+(12, 'Barberyn-Island1.jpg'),
+(12, 'Barbaryn.jpg'),
+(7, 'richmondCastle.webp'),
+(7, 'richmond-castle-kalutara-attractions.jpg'),
+(8, 'michael-hacker-VCksv_sJ9hM-unsplash-980x735.jpg'),
+(8, 'unawatuna-swing2-669x1024.jpg'),
+(14, 'hikkaduwa-beach-drone-1.jpg'),
+(14, 'hikkaduwa-coral-reef.jpg');
 
 -- --------------------------------------------------------
 
@@ -130,19 +160,48 @@ INSERT INTO `destinationphotos` (`destination`, `photoName`) VALUES
 
 CREATE TABLE `destinationtypes` (
   `type_id` int(11) NOT NULL,
-  `type` varchar(255) NOT NULL
+  `type` varchar(255) NOT NULL,
+  `photo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `destinationtypes`
 --
 
-INSERT INTO `destinationtypes` (`type_id`, `type`) VALUES
-(1, 'waterfall'),
-(2, 'mountain'),
-(3, 'beach'),
-(4, 'forest'),
-(5, 'historical site');
+INSERT INTO `destinationtypes` (`type_id`, `type`, `photo`) VALUES
+(1, 'waterfall', 'waterfall.jpg'),
+(2, 'mountain', 'mountain.jpg'),
+(3, 'beach', 'beach.jpg'),
+(4, 'forest', 'forest.jpg'),
+(5, 'historical site', 'historical-site.jpg'),
+(6, 'National Park', 'nationalpark.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `desttypes`
+--
+
+CREATE TABLE `desttypes` (
+  `destination` int(11) NOT NULL,
+  `type` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `desttypes`
+--
+
+INSERT INTO `desttypes` (`destination`, `type`) VALUES
+(1, 5),
+(6, 3),
+(6, 5),
+(7, 5),
+(8, 3),
+(11, 3),
+(12, 3),
+(12, 5),
+(14, 3),
+(14, 6);
 
 -- --------------------------------------------------------
 
@@ -178,17 +237,15 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`username`, `email`, `password`, `userType`) VALUES
 ('dimuthuh', 'dimuthu@gmail.com', '$2y$10$H6qBJaHHnPankeFWe8KYh.zQZqimJnkmG7SfZxcKBcfvMS.fJEt0q', 'Traveller'),
 ('exampleTSP', 'naveenharinda@gmail.com', '$2y$10$x.9PMH7T6krydJ54.UhFD.bgyk4M2gXdtqNrYJOozaIRWWwTB90rS', 'tsp'),
-('exampleUser', 'john@gmail.com', '$2y$10$WuC8oD2QqXqyiRC.4brkwOAADS.E4Vk6uNbYRirSBUl2Ru1N5m.dC', 'Traveller '),
-('exampleUser2', 'jane@gmail.com', '$2y$10$v0uZ8cJkSpwcwQNuyf3KQ.JbK4xqMExt2YbAWCkjXZDBBjNkFQ/zy', 'Traveller'),
-('imnot_naveen', 'naveenharinda2@gmail.com', '$2y$10$V1gFv0ZxZJIlaH/oOG/OAuQFJfhKwyovsC8Km87zUjcqwX4wuYjIe', 'Traveller'),
-('SteveSmith', 'stevesmith@gmail.com', '$2y$10$TjsKaQNYp4bjFckC2t9tWOvIbRmxGgeUiHu8.r1trZEV8d6ufr6Oe', 'Traveller'),
+('imnot_naveen', 'naveenharinda2@gmail.com', '$2y$10$p/VZt4fK0zsMBwTy41MgnuEKwObVltyOspSU5GZDAPK69Y.mjZUmO', 'Traveller'),
+('loki', 'loki@gmail.com', '$2y$10$9bPv6pexdOxTeOV3ARSTluDlje8eLekwy8NfqImur6o.grSO//iby', 'Traveller'),
+('nadhiya', 'nadhiya@gmail.com', '$2y$10$AfAVUQil64D4JRwKBEgn6u5c4wdKpb13nHZx8MWf10QT4zuNiZqpW', 'Traveller'),
 ('testUser', 'testuser@gmail.com', '$2y$10$cFHboCuAq/34MhiakwRMmOU5t3.ksXcT1/qRQ7NpJp15UgkdK6bYW', 'Traveller'),
 ('test_admin', 'test@admin.com', '$2y$10$8sQmIRWfrcLtfGiZ0Jd2teXyp4K79GE9xBJjtwqc1Op9ZbVR.TrdK', 'Admin'),
 ('test_cw', 'test@cw.com', '$2y$10$4OjWaZptycct9o8WjrS41.OF99Donbx9bPJSgGfdnO4qi36BqEfTa', 'CW'),
-('test_dimuthu', 'test11@test.com', '$2y$10$A/xGxEByWbOJDVe6Q5zWlee2yIFRuDynY.5YuAjtvXAkFm916Hda.', 'Traveller'),
 ('test_tsp', 'test@test.com', '$2y$10$XRcPo4XFfhroAoXk80iIQe3obfEmjLTxhH1ayW8dn8GSQrMstI6B2', 'TSP'),
 ('tsp_new', 'dimuthu1@gmail.com', '$2y$10$LFbYcWFkPWTa8gbPZHjQ2OYQcxzGmJO/WCOsN97Sieu6m.3f5PezC', 'tsp'),
-('virat', 'virat@gmail.com', '$2y$10$vm8E6o3GXWL1oKF78prm2.MqYgjYhencaIP8hWosnLURQH/5562mG', 'Traveller');
+('virat', 'virat@gmail.com', '$2y$10$vKu9sxmufkPPqtvtFFrBSuIpfDts5zjsKBZy/UCkaM01QykUrsjDW', 'Traveller');
 
 -- --------------------------------------------------------
 
@@ -200,6 +257,7 @@ CREATE TABLE `person` (
   `username` varchar(255) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
+  `IDNumber` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contactNo` int(11) NOT NULL,
   `userType` varchar(255) NOT NULL,
@@ -210,20 +268,19 @@ CREATE TABLE `person` (
 -- Dumping data for table `person`
 --
 
-INSERT INTO `person` (`username`, `firstName`, `lastName`, `email`, `contactNo`, `userType`, `profile_picture`) VALUES
-('dimuthuh', 'Dimuthu', 'Harinda', 'dimuthu@gmail.com', 774554321, 'Traveller', ''),
-('exampleTSP', 'Chamikara', 'Harinda', 'naveenharinda@gmail.com', 778899112, '', ''),
-('exampleUser', 'John', 'Doe', 'john@gmail.com', 123456789, 'Traveller', ''),
-('exampleUser2', 'Janaa', 'Doe', 'jane@gmail.com', 771111112, 'Traveller', ''),
-('imnot_naveen', 'Naveen ', 'Harinda', 'naveenharinda2@gmail.com', 774554321, 'Traveller', ''),
-('SteveSmith', 'Smith ', 'Smith ', 'stevesmith@gmail.com', 2147483647, 'Traveller', ''),
-('testUser', 'Test', 'User', 'testuser@gmail.com', 1233456789, 'Traveller', ''),
-('test_admin', 'test', 'tester', 'test@admin.com', 1234567890, 'Admin', ''),
-('test_cw', 'test', 'tester', 'test@cw.com', 123456789, 'CW', ''),
-('test_dimuthu', 'Dimuthuhh', 'Perera', 'test11@test.com', 773322111, 'Traveller', ''),
-('test_tsp', 'test', 'tester', 'test@test.com', 1234567890, 'TSP', ''),
-('tsp_new', 'tspdimuthu', 'Harinda', 'dimuthu1@gmail.com', 778899001, '', ''),
-('virat', 'kkk', 'Harinda', 'virat@gmail.com', 1234567890, 'Traveller', '');
+INSERT INTO `person` (`username`, `firstName`, `lastName`, `IDNumber`, `email`, `contactNo`, `userType`, `profile_picture`) VALUES
+('dimuthuh', 'Dimuthu', 'Harinda', '200145603215  ', 'dimuthu@gmail.com', 774554321, 'Traveller', ''),
+('exampleTSP', 'Chamikara', 'Harinda', '199812304589  ', 'naveenharinda@gmail.com', 778899112, '', ''),
+('imnot_naveen', 'Naveen ', 'Harinda', '200112200946', 'naveenharinda2@gmail.com', 774554321, 'Traveller', ''),
+('loki', 'Loki', 'Odin', '457846054V', 'loki@gmail.com', 2147483647, 'Traveller', ''),
+('nadhiya', 'Nadhiya', 'Nashath', '200045600198  ', 'nadhiya@gmail.com', 774554321, 'Traveller', ''),
+('SteveSmith', 'Steve', 'Smith ', '9999999', 'stevesmith@gmail.com', 774554321, 'Traveller', ''),
+('testUser', 'Test', 'User', '200167802134  ', 'testuser@gmail.com', 1233456789, 'Traveller', ''),
+('test_admin', 'test', 'tester', '200011201145  ', 'test@admin.com', 1234567890, 'Admin', ''),
+('test_cw', 'test', 'tester', '901234567V', 'test@cw.com', 123456789, 'CW', ''),
+('test_tsp', 'test', 'tester', '925476138V  ', 'test@test.com', 1234567890, 'TSP', ''),
+('tsp_new', 'tspdimuthu', 'Harinda', '784512637X  ', 'dimuthu1@gmail.com', 778899001, '', ''),
+('virat', 'Virat', 'Kohli', '234245898V', 'virat@gmail.com', 1234567890, 'Traveller', '');
 
 -- --------------------------------------------------------
 
@@ -394,62 +451,186 @@ CREATE TABLE `train` (
   `endStation` int(11) NOT NULL,
   `departureTime` time NOT NULL,
   `arrivalTime` time NOT NULL,
-  `days` varchar(255) NOT NULL
+  `days` varchar(255) NOT NULL,
+  `firstClassSeats` int(3) NOT NULL,
+  `secondClassSeats` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `train`
 --
 
-INSERT INTO `train` (`trainID`, `name`, `type`, `startStation`, `endStation`, `departureTime`, `arrivalTime`, `days`) VALUES
-(1, 'Colombo Commuter ', 'Commuter', 101, 104, '21:24:00', '21:34:00', 'Weekdays'),
-(2, 'Colombo Commuter ', 'Express', 101, 103, '15:44:00', '15:55:00', 'Daily'),
-(3, 'Blue Comet Express', 'Express', 101, 123, '06:00:00', '08:30:00', 'Weekdays'),
-(4, 'Silver Streak Local', 'Local', 102, 121, '09:00:00', '11:30:00', 'Daily'),
-(5, 'Golden Horizon Inter', 'Intercity', 104, 120, '14:00:00', '16:30:00', 'Weekends'),
-(6, 'Emerald Coast Expres', 'Express', 103, 122, '12:00:00', '14:45:00', 'Weekdays'),
-(7, 'Ruby Trail Local', 'Local', 101, 119, '07:00:00', '09:30:00', 'Daily'),
-(9, 'Pacific Rush', 'Express', 106, 115, '05:45:00', '08:15:00', 'Weekdays'),
-(10, 'Sunset Glide', 'Intercity', 108, 116, '10:00:00', '12:30:00', 'Daily'),
-(11, 'Golden Gateway', 'Local', 109, 121, '13:00:00', '15:30:00', 'Weekdays'),
-(12, 'Emerald Rush', 'Express', 110, 119, '16:00:00', '18:30:00', 'Weekends'),
-(13, 'Ruby Stream', 'Intercity', 111, 122, '07:30:00', '10:00:00', 'Daily'),
-(14, 'Silver Coast', 'Express', 112, 121, '11:00:00', '13:30:00', 'Weekdays'),
-(15, 'Cobalt Voyager', 'Intercity', 113, 122, '06:45:00', '09:15:00', 'Weekends'),
-(16, 'Ocean Breeze Express', 'Express', 114, 120, '09:00:00', '11:30:00', 'Weekdays'),
-(17, 'Crystal Rail', 'Local', 115, 123, '13:00:00', '15:30:00', 'Weekends'),
-(18, 'Mountain Stream', 'Intercity', 116, 119, '08:00:00', '10:30:00', 'Daily'),
-(19, 'Sunrise Splendor', 'Express', 117, 121, '07:00:00', '09:30:00', 'Weekdays'),
-(20, 'Golden Coast', 'Local', 118, 122, '10:15:00', '12:45:00', 'Weekends'),
-(21, 'Moonlight Express', 'Intercity', 119, 120, '14:00:00', '16:30:00', 'Weekdays'),
-(22, 'Westward Bound', 'Local', 120, 123, '15:30:00', '18:00:00', 'Weekends'),
-(23, 'Rapid Phoenix', 'Express', 121, 124, '09:00:00', '11:30:00', 'Weekdays'),
-(24, 'Silver Horizon', 'Intercity', 122, 125, '12:00:00', '14:30:00', 'Daily'),
-(25, 'Starstream Express', 'Express', 123, 126, '08:00:00', '10:30:00', 'Weekends'),
-(26, 'River Valley', 'Local', 124, 127, '10:30:00', '13:00:00', 'Weekdays'),
-(27, 'Northern Lights', 'Intercity', 125, 128, '06:30:00', '09:00:00', 'Weekends'),
-(28, 'Twilight Voyage', 'Express', 126, 129, '15:00:00', '17:30:00', 'Weekdays'),
-(29, 'Pine Ridge', 'Local', 127, 130, '14:00:00', '16:30:00', 'Daily'),
-(30, 'Crystal Falls', 'Intercity', 128, 131, '08:00:00', '10:30:00', 'Weekends'),
-(31, 'Thunder Express', 'Express', 101, 115, '08:00:00', '10:30:00', 'Weekdays'),
-(32, 'Silver Comet', 'Local', 103, 120, '09:30:00', '12:00:00', 'Weekdays'),
-(33, 'Golden Falcon', 'Express', 105, 123, '07:45:00', '10:15:00', 'Weekdays'),
-(34, 'Crimson Voyager', 'Local', 108, 116, '10:00:00', '12:00:00', 'Weekdays'),
-(36, 'Midnight Express', 'Express', 102, 114, '22:00:00', '23:30:00', 'Weekdays'),
-(37, 'Ocean Breeze', 'Local', 104, 118, '11:00:00', '14:00:00', 'Weekdays'),
-(38, 'Starlight Journey', 'Express', 106, 122, '15:00:00', '17:30:00', 'Weekdays'),
-(39, 'Desert Mirage', 'Local', 109, 117, '12:30:00', '14:30:00', 'Weekdays'),
-(41, 'Rapid Thunder', 'Express', 101, 119, '06:00:00', '08:30:00', 'Weekdays'),
-(42, 'Golden Horizon', 'Local', 101, 120, '09:00:00', '11:00:00', 'Weekdays'),
-(43, 'Crimson Express', 'Express', 101, 123, '10:00:00', '12:30:00', 'Weekdays'),
-(44, 'Emerald Wave', 'Local', 101, 118, '14:00:00', '16:00:00', 'Weekdays'),
-(45, 'Silver Stream', 'Express', 101, 117, '16:00:00', '18:00:00', 'Weekdays'),
-(46, 'Twilight Express', 'Local', 101, 121, '18:00:00', '20:30:00', 'Weekdays'),
-(47, 'Sunset Voyager', 'Express', 101, 124, '19:00:00', '21:30:00', 'Weekdays'),
-(48, 'Mountain Breeze', 'Local', 101, 125, '20:00:00', '22:30:00', 'Weekdays'),
-(49, 'Galaxy Express', 'Express', 101, 126, '21:00:00', '23:30:00', 'Weekdays'),
-(50, 'Aurora Line', 'Local', 101, 127, '22:00:00', '00:30:00', 'Weekdays'),
-(101, 'Mount Express ', 'Express', 101, 161, '09:00:00', '12:00:00', 'Daily');
+INSERT INTO `train` (`trainID`, `name`, `type`, `startStation`, `endStation`, `departureTime`, `arrivalTime`, `days`, `firstClassSeats`, `secondClassSeats`) VALUES
+(1, 'Colombo Commuter ', 'Commuter', 101, 104, '21:24:00', '21:34:00', 'Weekdays', 0, 0),
+(2, 'Colombo Commuter ', 'Express', 101, 103, '15:44:00', '15:55:00', 'Daily', 0, 0),
+(3, 'Blue Comet Express', 'Express', 101, 123, '06:00:00', '08:30:00', 'Weekdays', 0, 0),
+(4, 'Silver Streak Local', 'Local', 102, 121, '09:00:00', '11:30:00', 'Daily', 0, 0),
+(5, 'Golden Horizon Inter', 'Intercity', 104, 120, '14:00:00', '16:30:00', 'Weekends', 0, 0),
+(6, 'Emerald Coast Expres', 'Express', 103, 122, '12:00:00', '14:45:00', 'Weekdays', 0, 0),
+(7, 'Ruby Trail Local', 'Local', 101, 119, '07:00:00', '09:30:00', 'Daily', 0, 0),
+(9, 'Pacific Rush', 'Express', 106, 115, '05:45:00', '08:15:00', 'Weekdays', 0, 0),
+(10, 'Sunset Glide', 'Intercity', 108, 116, '10:00:00', '12:30:00', 'Daily', 0, 0),
+(11, 'Golden Gateway', 'Local', 109, 121, '13:00:00', '15:30:00', 'Weekdays', 0, 0),
+(12, 'Emerald Rush', 'Express', 110, 119, '16:00:00', '18:30:00', 'Weekends', 0, 0),
+(13, 'Ruby Stream', 'Intercity', 111, 122, '07:30:00', '10:00:00', 'Daily', 0, 0),
+(14, 'Silver Coast', 'Express', 112, 121, '11:00:00', '13:30:00', 'Weekdays', 0, 0),
+(15, 'Cobalt Voyager', 'Intercity', 113, 122, '06:45:00', '09:15:00', 'Weekends', 0, 0),
+(16, 'Ocean Breeze Express', 'Express', 114, 120, '09:00:00', '11:30:00', 'Weekdays', 0, 0),
+(17, 'Crystal Rail', 'Local', 115, 123, '13:00:00', '15:30:00', 'Weekends', 0, 0),
+(18, 'Mountain Stream', 'Intercity', 116, 119, '08:00:00', '10:30:00', 'Daily', 0, 0),
+(19, 'Sunrise Splendor', 'Express', 117, 121, '07:00:00', '09:30:00', 'Weekdays', 0, 0),
+(20, 'Golden Coast', 'Local', 118, 122, '10:15:00', '12:45:00', 'Weekends', 0, 0),
+(21, 'Moonlight Express', 'Intercity', 119, 120, '14:00:00', '16:30:00', 'Weekdays', 0, 0),
+(22, 'Westward Bound', 'Local', 120, 123, '15:30:00', '18:00:00', 'Weekends', 0, 0),
+(23, 'Rapid Phoenix', 'Express', 121, 124, '09:00:00', '11:30:00', 'Weekdays', 0, 0),
+(24, 'Silver Horizon', 'Intercity', 122, 125, '12:00:00', '14:30:00', 'Daily', 0, 0),
+(25, 'Starstream Express', 'Express', 123, 126, '08:00:00', '10:30:00', 'Weekends', 0, 0),
+(26, 'River Valley', 'Local', 124, 127, '10:30:00', '13:00:00', 'Weekdays', 0, 0),
+(27, 'Northern Lights', 'Intercity', 125, 128, '06:30:00', '09:00:00', 'Weekends', 0, 0),
+(28, 'Twilight Voyage', 'Express', 126, 129, '15:00:00', '17:30:00', 'Weekdays', 0, 0),
+(29, 'Pine Ridge', 'Local', 127, 130, '14:00:00', '16:30:00', 'Daily', 0, 0),
+(30, 'Crystal Falls', 'Intercity', 128, 131, '08:00:00', '10:30:00', 'Weekends', 0, 0),
+(31, 'Thunder Express', 'Express', 101, 115, '08:00:00', '10:30:00', 'Weekdays', 0, 0),
+(32, 'Silver Comet', 'Local', 103, 120, '09:30:00', '12:00:00', 'Weekdays', 0, 0),
+(33, 'Golden Falcon', 'Express', 105, 123, '07:45:00', '10:15:00', 'Weekdays', 0, 0),
+(34, 'Crimson Voyager', 'Local', 108, 116, '10:00:00', '12:00:00', 'Weekdays', 0, 0),
+(36, 'Midnight Express', 'Express', 102, 114, '22:00:00', '23:30:00', 'Weekdays', 0, 0),
+(37, 'Ocean Breeze', 'Local', 104, 118, '11:00:00', '14:00:00', 'Weekdays', 0, 0),
+(38, 'Starlight Journey', 'Express', 106, 122, '15:00:00', '17:30:00', 'Weekdays', 0, 0),
+(39, 'Desert Mirage', 'Local', 109, 117, '12:30:00', '14:30:00', 'Weekdays', 0, 0),
+(41, 'Rapid Thunder', 'Express', 101, 119, '06:00:00', '08:30:00', 'Weekdays', 0, 0),
+(42, 'Golden Horizon', 'Local', 101, 120, '09:00:00', '11:00:00', 'Weekdays', 0, 0),
+(43, 'Crimson Express', 'Express', 101, 123, '10:00:00', '12:30:00', 'Weekdays', 0, 0),
+(44, 'Emerald Wave', 'Local', 101, 118, '14:00:00', '16:00:00', 'Weekdays', 0, 0),
+(45, 'Silver Stream', 'Express', 101, 117, '16:00:00', '18:00:00', 'Weekdays', 0, 0),
+(46, 'Twilight Express', 'Local', 101, 121, '18:00:00', '20:30:00', 'Weekdays', 0, 0),
+(47, 'Sunset Voyager', 'Express', 101, 124, '19:00:00', '21:30:00', 'Weekdays', 0, 0),
+(48, 'Mountain Breeze', 'Local', 101, 125, '20:00:00', '22:30:00', 'Weekdays', 0, 0),
+(49, 'Galaxy Express', 'Express', 101, 126, '21:00:00', '23:30:00', 'Weekdays', 0, 0),
+(50, 'Aurora Line', 'Local', 101, 127, '22:00:00', '00:30:00', 'Weekdays', 0, 0),
+(51, 'Galle Express', 'Express', 102, 161, '09:10:00', '12:10:00', 'Daily', 0, 0),
+(52, 'Aluthgama Express', 'Express', 102, 130, '10:40:00', '13:30:00', 'Daily', 0, 0),
+(53, 'South Express ', 'Express', 113, 161, '13:30:00', '13:40:00', 'Daily', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trainfares`
+--
+
+CREATE TABLE `trainfares` (
+  `Difference` int(11) NOT NULL,
+  `FirstClass` int(11) NOT NULL,
+  `SecondClass` int(11) NOT NULL,
+  `ThirdClass` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `trainfares`
+--
+
+INSERT INTO `trainfares` (`Difference`, `FirstClass`, `SecondClass`, `ThirdClass`) VALUES
+(0, 0, 0, 0),
+(1, 100, 50, 20),
+(2, 100, 50, 20),
+(3, 100, 50, 20),
+(4, 150, 50, 40),
+(5, 150, 100, 40),
+(6, 150, 100, 40),
+(7, 200, 100, 60),
+(8, 200, 100, 60),
+(9, 200, 100, 60),
+(10, 250, 150, 60),
+(11, 250, 150, 80),
+(12, 250, 150, 80),
+(13, 300, 150, 80),
+(14, 300, 150, 100),
+(15, 300, 200, 100),
+(16, 350, 200, 100),
+(17, 350, 200, 120),
+(18, 350, 200, 120),
+(19, 400, 200, 120),
+(20, 400, 250, 140),
+(21, 400, 250, 140),
+(22, 450, 250, 140),
+(23, 450, 250, 160),
+(24, 450, 250, 160),
+(25, 500, 300, 160),
+(26, 500, 300, 180),
+(27, 500, 300, 180),
+(28, 550, 300, 180),
+(29, 550, 300, 200),
+(30, 550, 350, 200),
+(31, 600, 350, 200),
+(32, 600, 350, 220),
+(33, 600, 350, 220),
+(34, 650, 350, 220),
+(35, 650, 400, 240),
+(36, 650, 400, 240),
+(37, 700, 400, 240),
+(38, 700, 400, 260),
+(39, 700, 400, 260),
+(40, 750, 450, 260),
+(41, 750, 450, 280),
+(42, 750, 450, 280),
+(43, 800, 450, 280),
+(44, 800, 450, 300),
+(45, 800, 500, 300),
+(46, 850, 500, 300),
+(47, 850, 500, 320),
+(48, 850, 500, 320),
+(49, 900, 500, 320),
+(50, 900, 550, 340),
+(51, 900, 550, 340),
+(52, 950, 550, 340),
+(53, 950, 550, 360),
+(54, 950, 550, 360),
+(55, 1000, 600, 360),
+(56, 1000, 600, 380),
+(57, 1000, 600, 380),
+(58, 1050, 600, 380),
+(59, 1050, 600, 400),
+(60, 1050, 650, 400),
+(61, 1100, 650, 400),
+(62, 1100, 650, 420),
+(63, 1100, 650, 420),
+(64, 1150, 650, 420),
+(65, 1150, 700, 440),
+(66, 1150, 700, 440),
+(67, 1200, 700, 440),
+(68, 1200, 700, 460),
+(69, 1200, 700, 460),
+(70, 1250, 750, 460),
+(71, 1250, 750, 480),
+(72, 1250, 750, 480),
+(73, 1300, 750, 480),
+(74, 1300, 750, 500),
+(75, 1300, 800, 500),
+(76, 1350, 800, 500),
+(77, 1350, 800, 520),
+(78, 1350, 800, 520),
+(79, 1400, 800, 520),
+(80, 1400, 850, 540),
+(81, 1400, 850, 540),
+(82, 1450, 850, 540),
+(83, 1450, 850, 560),
+(84, 1450, 850, 560),
+(85, 1500, 900, 560),
+(86, 1500, 900, 580),
+(87, 1500, 900, 580),
+(88, 1550, 900, 580),
+(89, 1550, 900, 600),
+(90, 1550, 950, 600),
+(91, 1600, 950, 600),
+(92, 1600, 950, 620),
+(93, 1600, 950, 620),
+(94, 1650, 950, 620),
+(95, 1650, 1000, 640),
+(96, 1650, 1000, 640),
+(97, 1700, 1000, 640),
+(98, 1700, 1000, 660),
+(99, 1700, 1000, 660),
+(100, 1750, 1050, 660);
 
 -- --------------------------------------------------------
 
@@ -468,7 +649,6 @@ CREATE TABLE `trainserviceprovider` (
 --
 
 INSERT INTO `trainserviceprovider` (`TSPID`, `username`, `status`) VALUES
-(1, 'exampleUser2', 'inactive'),
 (200005, 'exampleTSP', 'active'),
 (200012, 'tsp_new', 'active');
 
@@ -650,11 +830,30 @@ INSERT INTO `trainstops` (`trainID`, `stationid`, `arrivaltime`, `departuretime`
 (50, 110, '22:30:00', '22:35:00'),
 (50, 124, '23:00:00', '23:05:00'),
 (50, 127, '00:00:00', '00:05:00'),
-(101, 101, '08:40:00', '09:00:00'),
-(101, 102, '09:05:00', '09:08:00'),
-(101, 109, '09:25:00', '09:30:00'),
-(101, 123, '10:00:00', '10:05:00'),
-(101, 161, '00:00:00', '00:01:00');
+(51, 102, '09:00:00', '09:10:00'),
+(51, 106, '09:25:00', '09:27:00'),
+(51, 109, '09:38:00', '09:45:00'),
+(51, 113, '00:00:00', '00:00:00'),
+(51, 117, '10:20:00', '10:25:00'),
+(51, 123, '10:50:00', '10:55:00'),
+(51, 128, '11:05:00', '11:06:00'),
+(51, 143, '11:30:00', '11:35:00'),
+(51, 150, '11:45:00', '11:46:00'),
+(51, 161, '12:10:00', '12:10:00'),
+(52, 102, '10:20:00', '10:40:00'),
+(52, 105, '10:55:00', '10:57:00'),
+(52, 109, '11:12:00', '11:14:00'),
+(52, 113, '11:30:00', '11:32:00'),
+(52, 117, '11:45:00', '11:47:00'),
+(52, 123, '12:10:00', '12:12:00'),
+(52, 128, '12:35:00', '12:37:00'),
+(53, 113, '13:25:00', '13:30:00'),
+(53, 121, '13:50:00', '13:52:00'),
+(53, 128, '14:23:00', '14:25:00'),
+(53, 130, '14:40:00', '14:42:00'),
+(53, 143, '15:20:00', '15:22:00'),
+(53, 150, '15:50:00', '15:52:00'),
+(53, 161, '16:40:00', '16:42:00');
 
 -- --------------------------------------------------------
 
@@ -675,11 +874,31 @@ CREATE TABLE `traintrip` (
 
 CREATE TABLE `trip` (
   `tripID` int(10) NOT NULL,
-  `userID` int(6) NOT NULL,
-  `sourceID` int(4) NOT NULL,
+  `status` enum('active','removed','','') NOT NULL DEFAULT 'active',
+  `username` varchar(255) NOT NULL,
+  `startStation` int(4) NOT NULL,
+  `endStation` int(11) NOT NULL,
+  `departureTime` time NOT NULL,
+  `arrivalTime` time NOT NULL,
   `no_of_members` int(2) NOT NULL,
-  `date` date NOT NULL
+  `number_of_adults` int(2) NOT NULL,
+  `number_of_children` int(2) NOT NULL,
+  `date` date NOT NULL,
+  `ticket_class` enum('first','second','third','') NOT NULL,
+  `adult_fare` int(11) NOT NULL,
+  `child_fare` int(11) NOT NULL,
+  `total_fare` int(11) NOT NULL,
+  `booking_reference` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `trip`
+--
+
+INSERT INTO `trip` (`tripID`, `status`, `username`, `startStation`, `endStation`, `departureTime`, `arrivalTime`, `no_of_members`, `number_of_adults`, `number_of_children`, `date`, `ticket_class`, `adult_fare`, `child_fare`, `total_fare`, `booking_reference`) VALUES
+(10, 'active', 'imnot_naveen', 102, 161, '00:00:09', '00:00:16', 4, 3, 1, '2025-04-19', 'second', 600, 420, 2220, 'TV-100485'),
+(11, 'active', 'imnot_naveen', 102, 161, '09:10:00', '12:10:00', 4, 2, 2, '2025-04-21', 'second', 600, 420, 2040, 'TV-228031'),
+(12, 'active', 'imnot_naveen', 102, 161, '09:10:00', '16:40:00', 5, 4, 1, '2025-04-22', 'second', 600, 420, 2820, 'TV-296662');
 
 -- --------------------------------------------------------
 
@@ -688,9 +907,68 @@ CREATE TABLE `trip` (
 --
 
 CREATE TABLE `tripdestination` (
-  `tripID` int(10) NOT NULL,
-  `destination` int(11) NOT NULL
+  `tripID` int(11) NOT NULL,
+  `destinationID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tripdestination`
+--
+
+INSERT INTO `tripdestination` (`tripID`, `destinationID`) VALUES
+(10, 11),
+(10, 12),
+(11, 11),
+(12, 11),
+(12, 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tripsegments`
+--
+
+CREATE TABLE `tripsegments` (
+  `tripID` int(11) NOT NULL,
+  `startStation` int(4) NOT NULL,
+  `endStation` int(4) NOT NULL,
+  `trainID` int(11) NOT NULL,
+  `departureTime` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tripsegments`
+--
+
+INSERT INTO `tripsegments` (`tripID`, `startStation`, `endStation`, `trainID`, `departureTime`) VALUES
+(10, 102, 161, 51, '09:10:00'),
+(10, 102, 161, 52, '11:14:00'),
+(10, 102, 161, 53, '14:25:00'),
+(11, 102, 161, 51, '09:10:00'),
+(11, 102, 161, 52, '11:14:00'),
+(11, 102, 161, 53, '14:25:00'),
+(11, 102, 161, 51, '09:10:00'),
+(11, 102, 161, 51, '09:10:00'),
+(11, 102, 161, 51, '09:10:00'),
+(11, 102, 161, 51, '09:10:00'),
+(11, 102, 161, 51, '09:45:00'),
+(11, 102, 161, 51, '09:10:00'),
+(11, 102, 161, 51, '09:45:00'),
+(11, 102, 161, 51, '09:45:00'),
+(12, 102, 161, 51, '09:10:00'),
+(12, 102, 161, 52, '11:14:00'),
+(12, 102, 161, 53, '14:25:00'),
+(12, 102, 161, 51, '09:10:00'),
+(12, 102, 161, 51, '09:10:00'),
+(12, 102, 161, 51, '09:10:00'),
+(12, 102, 161, 51, '09:10:00'),
+(12, 102, 161, 51, '09:45:00'),
+(12, 102, 161, 51, '09:10:00'),
+(12, 102, 161, 51, '09:45:00'),
+(12, 102, 161, 51, '09:45:00'),
+(12, 102, 161, 51, '09:10:00'),
+(12, 102, 161, 52, '11:14:00'),
+(12, 102, 161, 53, '14:25:00');
 
 -- --------------------------------------------------------
 
@@ -710,7 +988,26 @@ CREATE TABLE `userdestination` (
 INSERT INTO `userdestination` (`username`, `prefferedDestination`) VALUES
 ('testUser', 4),
 ('testUser', 5),
-('testUser', 3);
+('testUser', 3),
+('nadhiya', 3),
+('nadhiya', 4),
+('nadhiya', 2),
+('imnot_naveen', 3),
+('SteveSmith', 1),
+('SteveSmith', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userreviews`
+--
+
+CREATE TABLE `userreviews` (
+  `username` varchar(255) NOT NULL,
+  `destination` int(11) NOT NULL,
+  `rating` float NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -730,6 +1027,12 @@ ALTER TABLE `booking`
   ADD KEY `booking_userid` (`userID`);
 
 --
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`contactID`);
+
+--
 -- Indexes for table `contentwriter`
 --
 ALTER TABLE `contentwriter`
@@ -741,7 +1044,6 @@ ALTER TABLE `contentwriter`
 --
 ALTER TABLE `destination`
   ADD PRIMARY KEY (`destination_id`),
-  ADD KEY `fk_destType` (`type`),
   ADD KEY `fk_nearStation` (`nearestStation`);
 
 --
@@ -755,6 +1057,13 @@ ALTER TABLE `destinationphotos`
 --
 ALTER TABLE `destinationtypes`
   ADD PRIMARY KEY (`type_id`);
+
+--
+-- Indexes for table `desttypes`
+--
+ALTER TABLE `desttypes`
+  ADD KEY `destType_destination` (`destination`),
+  ADD KEY `destType_type` (`type`);
 
 --
 -- Indexes for table `inactiveusers`
@@ -774,7 +1083,8 @@ ALTER TABLE `login`
 --
 ALTER TABLE `person`
   ADD PRIMARY KEY (`username`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `IDNumber` (`IDNumber`);
 
 --
 -- Indexes for table `registereduser`
@@ -812,6 +1122,12 @@ ALTER TABLE `train`
   ADD PRIMARY KEY (`trainID`);
 
 --
+-- Indexes for table `trainfares`
+--
+ALTER TABLE `trainfares`
+  ADD PRIMARY KEY (`Difference`);
+
+--
 -- Indexes for table `trainserviceprovider`
 --
 ALTER TABLE `trainserviceprovider`
@@ -837,15 +1153,25 @@ ALTER TABLE `traintrip`
 --
 ALTER TABLE `trip`
   ADD PRIMARY KEY (`tripID`),
-  ADD KEY `trip_userID` (`userID`),
-  ADD KEY `trip_sourceID` (`sourceID`);
+  ADD KEY `trip_sourceID` (`startStation`),
+  ADD KEY `trip_DestID` (`endStation`),
+  ADD KEY `trip_username` (`username`);
 
 --
 -- Indexes for table `tripdestination`
 --
 ALTER TABLE `tripdestination`
-  ADD KEY `tripdestination_destID` (`destination`),
-  ADD KEY `tripdestination_tripID` (`tripID`);
+  ADD KEY `td_tripID` (`tripID`),
+  ADD KEY `td_destination` (`destinationID`);
+
+--
+-- Indexes for table `tripsegments`
+--
+ALTER TABLE `tripsegments`
+  ADD KEY `ts_tripID` (`tripID`),
+  ADD KEY `ts_trainID` (`trainID`),
+  ADD KEY `ts_startStation` (`startStation`),
+  ADD KEY `endstation` (`endStation`);
 
 --
 -- Indexes for table `userdestination`
@@ -865,22 +1191,34 @@ ALTER TABLE `blogposts`
   MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `contactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `destination`
 --
 ALTER TABLE `destination`
-  MODIFY `destination_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `destination_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `destinationtypes`
 --
 ALTER TABLE `destinationtypes`
-  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `registereduser`
 --
 ALTER TABLE `registereduser`
   MODIFY `userId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `trip`
+--
+ALTER TABLE `trip`
+  MODIFY `tripID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
@@ -902,7 +1240,6 @@ ALTER TABLE `contentwriter`
 -- Constraints for table `destination`
 --
 ALTER TABLE `destination`
-  ADD CONSTRAINT `fk_destType` FOREIGN KEY (`type`) REFERENCES `destinationtypes` (`type_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_nearStation` FOREIGN KEY (`nearestStation`) REFERENCES `station` (`stationID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -910,6 +1247,13 @@ ALTER TABLE `destination`
 --
 ALTER TABLE `destinationphotos`
   ADD CONSTRAINT `fk_destination` FOREIGN KEY (`destination`) REFERENCES `destination` (`destination_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `desttypes`
+--
+ALTER TABLE `desttypes`
+  ADD CONSTRAINT `destType_destination` FOREIGN KEY (`destination`) REFERENCES `destination` (`destination_id`),
+  ADD CONSTRAINT `destType_type` FOREIGN KEY (`type`) REFERENCES `destinationtypes` (`type_id`);
 
 --
 -- Constraints for table `login`
@@ -954,22 +1298,30 @@ ALTER TABLE `trainstops`
 -- Constraints for table `traintrip`
 --
 ALTER TABLE `traintrip`
-  ADD CONSTRAINT `traintrip_trainid` FOREIGN KEY (`trainID`) REFERENCES `train` (`trainID`),
-  ADD CONSTRAINT `traintrip_tripid` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`);
+  ADD CONSTRAINT `traintrip_trainid` FOREIGN KEY (`trainID`) REFERENCES `train` (`trainID`);
 
 --
 -- Constraints for table `trip`
 --
 ALTER TABLE `trip`
-  ADD CONSTRAINT `trip_sourceID` FOREIGN KEY (`sourceID`) REFERENCES `station` (`stationID`),
-  ADD CONSTRAINT `trip_userID` FOREIGN KEY (`userID`) REFERENCES `registereduser` (`userId`);
+  ADD CONSTRAINT `trip_DestID` FOREIGN KEY (`endStation`) REFERENCES `station` (`stationID`),
+  ADD CONSTRAINT `trip_sourceID` FOREIGN KEY (`startStation`) REFERENCES `station` (`stationID`);
 
 --
 -- Constraints for table `tripdestination`
 --
 ALTER TABLE `tripdestination`
-  ADD CONSTRAINT `tripdestination_destID` FOREIGN KEY (`destination`) REFERENCES `destination` (`destination_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tripdestination_tripID` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`);
+  ADD CONSTRAINT `td_destination` FOREIGN KEY (`destinationID`) REFERENCES `destination` (`destination_id`),
+  ADD CONSTRAINT `td_tripID` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`);
+
+--
+-- Constraints for table `tripsegments`
+--
+ALTER TABLE `tripsegments`
+  ADD CONSTRAINT `endstation` FOREIGN KEY (`endStation`) REFERENCES `station` (`stationID`),
+  ADD CONSTRAINT `ts_endStation` FOREIGN KEY (`endStation`) REFERENCES `station` (`stationID`),
+  ADD CONSTRAINT `ts_startStation` FOREIGN KEY (`startStation`) REFERENCES `station` (`stationID`),
+  ADD CONSTRAINT `ts_trainID` FOREIGN KEY (`trainID`) REFERENCES `train` (`trainID`);
 
 --
 -- Constraints for table `userdestination`

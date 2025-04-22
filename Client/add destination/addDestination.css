@@ -270,3 +270,77 @@ input[type="checkbox"] {
 html {
     scroll-behavior: smooth;
 }
+
+/* Destination Types Checkbox Container */
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f8fafc;
+    border-radius: var(--border-radius);
+    border: 2px solid #e1e8ed;
+}
+
+/* Individual checkbox styling */
+.form-check {
+    display: flex;
+    align-items: center;
+    min-width: 160px;
+    margin-bottom: 10px;
+}
+
+.form-check-input {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: var(--accent-color);
+}
+
+.form-check-input:checked {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.form-check-label {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    transition: color 0.2s ease;
+}
+
+.form-check-input:checked + .form-check-label {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* Hover effects */
+.form-check:hover .form-check-label {
+    color: var(--accent-color);
+}
+
+/* Focus styles for accessibility */
+.form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+    outline: none;
+}
+
+/* For validation state */
+.form-check.error .form-check-input {
+    border-color: var(--error-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .checkbox-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .form-check {
+        min-width: 100%;
+    }
+}
