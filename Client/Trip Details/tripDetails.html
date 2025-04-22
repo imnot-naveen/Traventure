@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trip Details | Traventure</title>
+    <link rel="stylesheet" href="tripDetails.css" />
+  </head>
+  <body>
+    <div class="trip-details-container">
+      <a href="../userTrips/userTrips.html" class="back-link">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 8H1M1 8L8 15M1 8L8 1"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        Back to My Trips
+      </a>
+
+      <div id="trip-content">
+        <div class="loading-container">
+          <div class="loading-spinner"></div>
+          <p>Loading trip details...</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="tripDetails.js"></script>
+  </body>
+</html>

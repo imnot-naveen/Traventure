@@ -20,6 +20,7 @@ try {
             d.destination_id, 
             d.name AS destinationName, 
             d.description, 
+            d.type as type_id,
             t.type AS destinationType,
             GROUP_CONCAT(dp.photoName) AS photos,
             d.nearestStation
@@ -43,6 +44,7 @@ try {
             return [
                 "id" => $destination['destination_id'],
                 "name" => $destination['destinationName'],
+                "type_id" => $destination['type_id'],
                 "type" => $destination['destinationType'],
                 "description" => $destination['description'],
                 "photos" => $destination['photos'] ? explode(",", $destination['photos']) : [],

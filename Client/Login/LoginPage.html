@@ -8,87 +8,106 @@
   </head>
   <body>
     <div class="container">
-      <div class="animated-text" id="animated-text"></div>
-      <div class="tabs">
-        <div class="tab" onclick="switchTab('signup')">Sign up</div>
-        <div class="tab active" onclick="switchTab('login')">Log in</div>
+      <div class="animated-text" id="animated-text">
+        <span>Your Journey Starts Here</span>
       </div>
-      <form id="login-form">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" required />
+      <div class="form-container">
+        <div class="tabs">
+          <div class="tab" onclick="switchTab('signup')">Sign up</div>
+          <div class="tab active" onclick="switchTab('login')">Log in</div>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required />
-          <a
-            href="../Forgot Password/ForgotPassword.html"
-            class="forgot-password"
-            >Forgot your password?</a
-          >
-        </div>
-        <button type="submit" class="submit-button">Log in</button>
-      </form>
-      <form id="signup-form" style="display: none">
-        <!-- Hide signup form by default -->
-        <div class="form-group">
-          <label for="new-username">Username</label>
-          <input type="text" id="new-username" name="new-username" required />
-          <span class="error-message" id="username-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="new-firstName">First Name</label>
-          <input type="text" id="new-firstName" name="new-firstName" required />
-          <span class="error-message" id="firstName-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="new-lastName">Last Name</label>
-          <input type="text" id="new-lastName" name="new-lastName" required />
-          <span class="error-message" id="lastName-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="new-idNumber">NIC/Passport No. </label>
-          <input type="text" id="new-idNumber" name="new-idNumber" required />
-          <span class="error-message" id="idNumber-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="new-contact">Contact Number</label>
-          <input
-            type="text"
-            id="new-contact"
-            name="new-contact"
-            maxlength="10"
-            required
-          />
-          <span class="error-message" id="contact-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
-          <span class="error-message" id="email-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="new-password">Password</label>
-          <input
-            type="password"
-            id="new-password"
-            name="new-password"
-            required
-          />
-          <span class="error-message" id="password-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="confirm-password">Confirm Password</label>
-          <input
-            type="password"
-            id="confirm-password"
-            name="confirm-password"
-            required
-          />
-          <span class="error-message" id="confirm-password-error"></span>
-        </div>
-        <button type="submit" class="submit-button">Sign up</button>
-      </form>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label for="username">Username / Email</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+            <a
+              href="../Forgot Password/ForgotPassword.html"
+              class="forgot-password"
+              >Forgot your password?</a
+            >
+          </div>
+          <button type="submit" class="submit-button">Log in</button>
+        </form>
+        <form id="signup-form" style="display: none">
+          <!-- Hide signup form by default -->
+          <div class="form-group">
+            <label for="new-username">Username</label>
+            <input type="text" id="new-username" name="new-username" required />
+            <span class="error-message" id="username-error"></span>
+          </div>
+          <div class="names">
+            <div class="form-group">
+              <label for="new-firstName">First Name</label>
+              <input
+                type="text"
+                id="new-firstName"
+                name="new-firstName"
+                required
+              />
+              <span class="error-message" id="firstName-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="new-lastName">Last Name</label>
+              <input
+                type="text"
+                id="new-lastName"
+                name="new-lastName"
+                required
+              />
+              <span class="error-message" id="lastName-error"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="idNumber">ID(NIC/Passport) Number</label>
+            <input type="text" id="new-idNumber" name="new-idNumber" required />
+            <span class="error-message" id="idNumber-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="new-contact">Contact Number</label>
+            <input
+              type="text"
+              id="new-contact"
+              name="new-contact"
+              maxlength="10"
+              required
+            />
+            <span class="error-message" id="contact-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+            <span class="error-message" id="email-error"></span>
+          </div>
+          <div class="names">
+            <div class="form-group">
+              <label for="new-password">Password</label>
+              <input
+                type="password"
+                id="new-password"
+                name="new-password"
+                required
+              />
+              <span class="error-message" id="password-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="confirm-password">Confirm Password</label>
+              <input
+                type="password"
+                id="confirm-password"
+                name="confirm-password"
+                required
+              />
+              <span class="error-message" id="confirm-password-error"></span>
+            </div>
+          </div>
+          <button type="submit" class="submit-button">Sign up</button>
+        </form>
+      </div>
     </div>
 
     <script src="LoginPage-v2.js"></script>
