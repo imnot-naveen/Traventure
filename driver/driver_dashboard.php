@@ -15,7 +15,7 @@ if (!$driver) {
 }
 
 // Get ride requests for the driver's assigned station with status = 'pending'
-$stmt2 = $pdo->prepare("SELECT * FROM ride_requests WHERE destination = ? AND status = 'pending'");
+$stmt2 = $pdo->prepare("SELECT * FROM ride_requests WHERE destination = ?    AND status = 'pending'");
 $stmt2->execute([$driver['assigned_station']]);
 $ride_requests = $stmt2->fetchAll();
 ?>
@@ -27,8 +27,8 @@ $ride_requests = $stmt2->fetchAll();
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f1f3f5;
-            padding: 20px;
+            background-color:rgb(50, 67, 84);
+            padding: 100px;
         }
         .container {
             max-width: 900px;
