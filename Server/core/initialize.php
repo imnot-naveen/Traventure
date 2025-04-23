@@ -26,4 +26,5 @@ require_once(CORE_PATH.DS. "fare.php");
 require_once(CORE_PATH.DS. "user.php");
 require_once(CORE_PATH.DS. "admin.php");
 require_once(CORE_PATH.DS. "destinationtypes.php");
+require_once(CORE_PATH.DS. "driver.php");
 ?>

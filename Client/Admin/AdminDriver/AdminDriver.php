@@ -93,7 +93,7 @@
             </div>
             <!-- END OF INSIGHTS -->
              <div class="recent-orders">
-                <h2>Drivers Details</h2>
+                <!-- <h2>Drivers Details</h2> -->
                 <div class="search-container">
                     <input
                       type="text"
@@ -103,18 +103,14 @@
                       oninput="filterUsers()"
                     />
                   </div>
-                  <div class="Add-users">
-                    <button id="Add-user">Add Driver</button>
+                  <div class="Add-driver">
+                    <button id="Add-driver">Add Driver</button>
                   </div>
-                  <div id="userModal" class="modal">
+                  <div id="driverModal" class="modal">
                     <div class="modal-content">
                       <span class="close-m">&times;</span>
                       <h2>Add New Drivers</h2>
                       <form id="addDriverForm">
-                        <div class="form-group">
-                          <label for="driverid">Driver ID</label>
-                          <input type="number" id="driverid" name="driverid" required autocomplete="off">
-                        </div>
                         
                         <div class="form-group">
                           <label for="username">Username</label>
@@ -139,6 +135,26 @@
                         <div class="form-group">
                           <label for="contactNumber">Contact Number</label>
                           <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required autocomplete="tel">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="nic">NIC Number</label>
+                          <input type="tel" id="nic" name="nic" title="Enter a 10-digit number" required >
+                        </div>
+
+                        <div class="form-group">
+                          <label for="station">Assigned Station</label>
+                          <input type="tel" id="station" name="station" title="Enter a 10-digit phone number" required >
+                        </div>
+
+                        <div class="form-group">
+                          <label for="vehicle">Vehicle ID</label>
+                          <input type="tel" id="vehicle" name="vehicle" title="Enter a 10-digit phone number" required >
+                        </div>
+
+                        <div class="form-group">
+                          <label for="license">License</label>
+                          <input type="tel" id="license" name="license" title="Enter a 10-digit phone number" required >
                         </div>
                         
                         <div class="form-group">

@@ -1,6 +1,6 @@
 // Get DOM elements
-const modal = document.getElementById("userModal");
-const openModalBtn = document.getElementById("Add-user");
+const modal = document.getElementById("driverModal");
+const openModalBtn = document.getElementById("Add-driver");
 const closeModalBtn = document.querySelector(".close");
 const cancelBtn = document.getElementById("cancelBtn");
 
@@ -26,45 +26,56 @@ window.addEventListener("click", (event) => {
 });
 
 // Handle Form Submission
-document.getElementById("addUserForm").addEventListener("submit", (event) => {
-  event.preventDefault();
+document.getElementById("addDriverForm")
+  .addEventListener("submit", (event) => {
+    event.preventDefault();
+
   const username = document.getElementById("username").value;
   const firstName = document.getElementById("firstName").value;
   const lastName = document.getElementById("lastName").value;
   const email = document.getElementById("email").value;
   const contactNumber = document.getElementById("contactNumber").value;
+  const nic = document.getElementById("nic").value;
+  const station = document.getElementById("station").value;
+  const vehicle = document.getElementById("vehicle").value;
+  const license = document.getElementById("license").value;
+  const newPassword = document.getElementById("new-password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
 
-  console.log("New User Data:", {
-    username,
-    firstName,
-    lastName,
-    email,
-    contactNumber,
-  });
+      // Validate passwords match
+      if (newPassword !== confirmPassword) {
+        alert("Passwords do not match. Please try again.");
+        return;
+      }
 
-  modal.style.display = "none";
-});
 
-//Add user to database
-document.getElementById("addUserForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevent the default form submission
+    // Prepare the data to send to the server
+    const requestData = {
+      username: username,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      IDNumber: nic,
+      contactNumber: contactNumber,
+      password: newPassword, 
+      assignedStation: station,
+      vehicleID: vehicle,
+      license: license
+    };
 
-  // Collect form data
-  const formData = new FormData(this);
-  const formObject = Object.fromEntries(formData.entries());
 
-  // Send the data to the backend
-  fetch("../../../Server/api/adminAddUser.php", {
+  fetch("../../../Server/api/addDriver.php", {
       method: "POST",
       headers: {
           "Content-Type": "application/json",
       },
-      body: JSON.stringify(formObject),
+      body: JSON.stringify(requestData),
   })
       .then((response) => response.json())
-      .then((data) => {
-          if (data.success) {
-              alert("User added successfully!");
+      .then((jsonData) => {
+          if (jsonData.success) {
+              alert("Driver added successfully!");
+              modal.style.display = "none";
               this.reset(); // Clear the form
           } else {
               alert("Error adding user: " + data.error);
