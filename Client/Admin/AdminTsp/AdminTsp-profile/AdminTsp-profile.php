@@ -124,7 +124,7 @@
         </div>
   </div>
 
-  <?php include '../LogoutModal/logoutModal.php'; ?>
+  <?php include '../../LogoutModal/logoutModal.php'; ?>
     
  <script src="../../LogoutModal/logoutModal.js"></script>
  <script src="AdminTsp-profile.js"></script>

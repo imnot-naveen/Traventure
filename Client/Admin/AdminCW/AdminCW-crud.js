@@ -3,7 +3,7 @@ fetch('../../../Server/api/getAllCW.php')
     .then(response => response.json())
     .then(data => {
         if (data.success && Array.isArray(data.data)) {
-            const tableBody = document.getElementById('userTableBody'); 
+            const tableBody = document.getElementById('cwTableBody'); 
             tableBody.innerHTML = ""; 
 
             data.data.forEach(cw => {

@@ -158,7 +158,7 @@
                       </form>                      
                     </div>
                   </div>
-                <table id="userTable">
+                <table id="cwTable">
                     <thead>
                         <tr>
                             <th>Username</th>
@@ -169,7 +169,7 @@
                             <th>Contact Number</th>
                         </tr>
                     </thead>
-                    <tbody id="userTableBody">
+                    <tbody id="cwTableBody">
                     </tbody>
                 </table>
                 <div class="pagination">

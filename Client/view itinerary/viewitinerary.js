@@ -12,6 +12,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     ...itinerary,
   };
 
+  async function getUserIDFromSession() {
+    try {
+        const response = await fetch('http://localhost/Traventure/Server/api/getUserId.php', {
+            method: 'GET',
+            credentials: 'include' 
+        });
+  
+        const data = await response.json();
+  
+        if (response.ok && data.success) {
+            return data.userID;
+        } else {
+            throw new Error(data.message || "Not logged in");
+        }
+    } catch (error) {
+        console.error("Error fetching user ID:", error);
+        return null;
+    }
+}
+
   // Get user details
   let userData = { full_name: "Guest User", id_number: "Not available" };
   try {
@@ -225,6 +245,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
       
       <div class="actions">
+        <button id="book-ticket" class="action-button primary-button">Book Ticket</button>
         <button id="save-itinerary" class="action-button">Save Itinerary</button>
         <button id="export-pdf" class="action-button">Export PDF</button>
         <button id="print-ticket" class="action-button">Print Ticket</button>
@@ -338,6 +359,101 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert("Failed to save itinerary. Please try again.");
       }
     });
+
+  // ADD NEW BOOK TICKET BUTTON HANDLER
+  // Add this event listener for the Book Ticket button
+document.getElementById("book-ticket").addEventListener("click", async () => {
+  try {
+    // Get user details (reuse existing function)
+    let userData = { full_name: "Guest User", id_number: "Not available" };
+    try {
+      userData = await getUserDetails();
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+    
+    // First save the itinerary to get a booking reference if not already saved
+    const savedBookingReference = localStorage.getItem("bookingReference");
+    const savedTripID = localStorage.getItem("tripID");
+    
+    let bookingReference = savedBookingReference;
+    let tripID = savedTripID;
+    
+    if (!bookingReference || !tripID) {
+      // Save the trip first (using your existing save function)
+      await document.getElementById("save-itinerary").click();
+      
+      // Get the newly saved references
+      bookingReference = localStorage.getItem("bookingReference");
+      tripID = localStorage.getItem("tripID");
+      
+      if (!bookingReference || !tripID) {
+        throw new Error("Failed to save trip before payment");
+      }
+    }
+    
+    // Now proceed to payment using your existing Stripe API
+    const paymentData = {
+      amount: totalFare, // This variable is already defined in your code
+      bookingReference: bookingReference,
+      tripID: tripID
+    };
+    
+    console.log("Sending payment data to Stripe:", paymentData);
+    
+    // Call your existing Stripe session creation API
+    const response = await fetch("../../server/api/create_checkout_session.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(paymentData),
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    
+    if (result.id) {
+      // Redirect to Stripe Checkout using the session ID
+      // Stripe.js should be loaded on your page for this to work
+      const stripe = Stripe('pk_test_51RCy68QwgaoFWhBRVwTGwX9QkMDGiSKTNE1QGHYnM4YqSSTeIgdIlCTw34rqwYcIJxKT1jfXr6fkl5SM3ABac2mY00iwkPeUmO'); 
+      stripe.redirectToCheckout({
+        sessionId: result.id
+      }).then(function (result) {
+        if (result.error) {
+          alert(result.error.message);
+        }
+      });
+    } else if (result.error) {
+      throw new Error(result.error);
+    } else {
+      throw new Error("Invalid response from server");
+    }
+  } catch (error) {
+    console.error("Error processing payment:", error);
+    alert(`Payment processing failed: ${error.message}`);
+  }
+});
+
+const bookingDetails = {
+  userID: await getUserIDFromSession(),
+  trainID: tripData.trainID,
+  start_station: tripData.startStation,
+  destination_station: tripData.endStation,
+  class: tripData.seatClass,
+  no_of_passengers: tripData.children + tripData.adults, 
+  kidsCount: tripData.children,
+  total_fare: totalFare,
+  paymentMethod: "Card",
+  paymentStatus: "Paid",
+  bookingDate: new Date().toISOString().split("T")[0]
+};
+
+localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
+console.log(bookingDetails);
 
   document.getElementById("export-pdf").addEventListener("click", () => {
     alert("Exporting PDF... This feature will be available soon.");
