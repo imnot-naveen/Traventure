@@ -149,10 +149,14 @@ addTrainForm.addEventListener("submit", (e) => {
     departureTime: document.getElementById("departureTime").value + ":00",
     arrivalTime: document.getElementById("arrivalTime").value + ":00",
     date: document.getElementById("date").value,
+    firstClass: document.getElementById("firstClass").value,
+    SecondClass: document.getElementById("secondClass").value,
     stops: [],
   };
 
-  // Collect stops data with correct stationID
+  console.log(document.getElementById("secondClass").value);
+
+  // Collect stops data
   const stopElements = trainStopsDiv.querySelectorAll(".train-stop");
   stopElements.forEach((stopElement) => {
     const checkbox = stopElement.querySelector('input[type="checkbox"]');
@@ -162,14 +166,12 @@ addTrainForm.addEventListener("submit", (e) => {
         stopElement.querySelector(".departure-time").value;
 
       trainData.stops.push({
-        stationID: checkbox.value, // Using the stationID stored in checkbox value
+        stationID: checkbox.value,
         arrivalTime: arrivalTimeInput + ":00",
         departureTime: departureTimeInput + ":00",
       });
     }
   });
-
-  console.log("Request payload:", trainData); // For debugging
 
   fetch("../../server/api/addtrain.php", {
     method: "POST",
@@ -178,12 +180,13 @@ addTrainForm.addEventListener("submit", (e) => {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log("Response:", result);
-      alert(result.message);
       if (result.success) {
-        addTrainForm.reset();
-        trainStopsDiv.innerHTML =
-          "<p>Please select both start and end stations.</p>";
+        alert(result.message);
+        if (result.redirect) {
+          window.location.href = result.redirect;
+        }
+      } else {
+        alert(result.message);
       }
     })
     .catch((err) => {

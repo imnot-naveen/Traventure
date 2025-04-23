@@ -36,8 +36,8 @@ function populateTrainList(trains) {
             <td>${train.trainID}</td>
             <td>${train.name}</td>
             <td>
-                <a href="trainDetails.html?trainNo=${train.trainID}" class="view">View</a>
-                <a href="../edit trains/editTrains.html?trainNo=${train.trainID}" class="edit">Edit</a>
+                <a href="../train details/trainDetails.html?trainNo=${train.trainID}" class="view">View</a>
+                <a href="../edit trains/editTrains.php?trainNo=${train.trainID}" class="edit">Edit</a>
                 <button class="delete" data-train-id="${train.trainID}">Delete</button>
             </td>
         `;

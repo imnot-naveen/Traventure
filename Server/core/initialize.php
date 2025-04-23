@@ -1,23 +1,29 @@
 <?php 
 
-   // Define the directory separator
+// Define the directory separator
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
-// Define the root path of your site
-defined('SITE_ROOT') ? null : define('SITE_ROOT', DS . 'xampp' . DS . 'htdocs' . DS . 'traventure');
+// Define the root path of your site dynamically
+defined('SITE_ROOT') ? null : define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']. DS . 'Traventure');
 
-// Define the combined path for root and directory separator
-defined('SITE_ROOT_DS') ? null : define('SITE_ROOT_DS', SITE_ROOT . DS);
+// Define the includes and core paths
+defined('INC_PATH') ? null : define('INC_PATH', SITE_ROOT . DS . 'Server' . DS . 'includes');
+defined('CORE_PATH') ? null : define('CORE_PATH', SITE_ROOT . DS . 'Server' . DS . 'core');
 
-// Now define INC_PATH and CORE_PATH
-defined('INC_PATH') ? null : define('INC_PATH', SITE_ROOT_DS . 'server' . DS . 'includes');
-defined('CORE_PATH') ? null : define('CORE_PATH', SITE_ROOT_DS . 'server' . DS . 'core');
+// Load the config file first
+require_once(INC_PATH . DS . "config.php");
 
-//load the config file first
-require_once(INC_PATH.DS."config.php");
-
-//core classes 
-require_once(CORE_PATH.DS."person.php");
+// Core classes
+require_once(CORE_PATH . DS . "person.php");
 require_once(CORE_PATH.DS. "login.php");
+require_once(CORE_PATH.DS. "blogpost.php");
+require_once(CORE_PATH.DS. "tsp.php");
 require_once(CORE_PATH.DS. "train.php");
+require_once(CORE_PATH.DS. "contentWriter.php");
+require_once(CORE_PATH.DS. "bookings.php");
+require_once(CORE_PATH.DS. "station.php");
+require_once(CORE_PATH.DS. "fare.php");
+require_once(CORE_PATH.DS. "user.php");
+require_once(CORE_PATH.DS. "admin.php");
+require_once(CORE_PATH.DS. "destinationtypes.php");
 ?>

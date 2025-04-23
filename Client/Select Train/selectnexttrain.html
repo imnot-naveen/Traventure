@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Next Train</title>
+    <link rel="stylesheet" href="selecttrain.css" />
+    <link rel="stylesheet" href="../Navbar/navbar.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav id="navbar-placeholder"></nav>
+    <h1>
+      <i class="bx bxs-train" style="color: #0d6efd; margin-right: 8px"></i
+      >Select Your Next Train
+    </h1>
+
+    <div class="journey-summary">
+      <h2>Current Journey Progress</h2>
+      <div id="journey-info">Loading journey information...</div>
+    </div>
+
+    <div class="table-container">
+      <div>
+        <label for="train-type-filter"> Filter by Train Type: </label>
+        <select id="train-type-filter">
+          <option value="">All</option>
+          <option value="Express">Express</option>
+          <option value="Local">Local</option>
+          <option value="Intercity">Intercity</option>
+        </select>
+
+        <button id="sort-departure">Sort by Departure Time</button>
+
+        <button id="sort-arrival">Sort by Arrival Time</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th><i class="bx bx-chevron-right-circle"></i> Departure</th>
+            <th><i class="bx bx-chevron-left-circle"></i> Arrival</th>
+            <th><i class="bx bx-time"></i> Duration</th>
+            <th><i class="bx bx-map-pin"></i> Ends At</th>
+            <th><i class="bx bx-train"></i> Train No</th>
+            <th><i class="bx bx-category"></i> Type</th>
+            <th><i class="bx bx-cog"></i> Action</th>
+          </tr>
+        </thead>
+        <tbody id="train-results">
+          <tr>
+            <td colspan="7">Loading available trains...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="selectnexttrain.js"></script>
+    <script src="../Navbar/navbar.js"></script>
+    <script>
+      // Function to load the Navbar
+      function loadNavbar() {
+        fetch("../Navbar/navbar.php")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+            // Initialize the navbar functionalities
+            document
+              .getElementById("menu-toggle")
+              .addEventListener("click", function () {
+                const navMenu = document.getElementById("nav-menu");
+                navMenu.classList.toggle("active");
+              });
+
+            // Set the initial state
+            updateNavbarState(false); // Set initial state (false means not logged in)
+          });
+      }
+
+      // Function to load the Footer
+      function loadFooter() {
+        fetch("../Footer/footer.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("footer").innerHTML = data;
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadNavbar();
+        loadFooter();
+      });
+
+      // Handle login state (optional)
+      function handleLogin(event) {
+        event.preventDefault();
+        // Simulate login action
+        updateNavbarState(true); // Set state to logged in
+      }
+
+      function handleLogout(event) {
+        event.preventDefault();
+        // Simulate logout action
+        updateNavbarState(false); // Set state to logged out
+      }
+
+      function updateNavbarState(isLoggedIn) {
+        if (isLoggedIn) {
+          document.getElementById("login-link").classList.add("hidden");
+          document.getElementById("user-icon").classList.remove("hidden");
+        } else {
+          document.getElementById("login-link").classList.remove("hidden");
+          document.getElementById("user-icon").classList.add("hidden");
+        }
+      }
+    </script>
+  </body>
+</html>

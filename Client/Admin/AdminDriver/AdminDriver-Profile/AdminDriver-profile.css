@@ -1,0 +1,360 @@
+@import url(../../General.css);
+
+/*=======MAIN=======*/
+main{
+  margin-top: 1.4rem;
+}
+
+main .insights{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.6rem;
+}
+
+main .insights > div{
+  background: #fff;
+  padding: var(--card-padding);
+  border-radius: var(--boarder-radius-3);
+  margin-top: 1rem;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+
+main .insights > div:hover{
+  box-shadow: none;
+}
+
+main .insights > div span {
+  background: rgb(31, 144, 220);
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: #ffff;
+  font-size: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid #11134F;
+}
+
+.profile-info h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #11134F;
+}
+
+.profile-info h3 {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #BDC8E8;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.active {
+  display: inline-block; 
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text color */
+  border-radius: 12px; /* Rounded corners */
+  padding: 4px 10px; /* Adds spacing inside the badge */
+  font-size: 12px;
+}
+
+.profile-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.left-details, .right-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left-details li,
+.right-details li {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.right-details {
+  padding-left: 20rem;
+  text-align: left;
+}
+
+.action-buttons {
+  margin-top: 80px;
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.update-button,
+.deactivate-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Update Button Style */
+.update-button {
+  background-color: #007bff; /* Blue color */
+  color: white;
+}
+
+.update-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Deactivate Button Style */
+.deactivate-button {
+  background-color: #dc3545; /* Red color */
+  color: white;
+}
+
+.deactivate-button:hover {
+  background-color: #a71d2a; /* Darker red on hover */
+}
+
+
+
+.action-buttons .btn-update:hover {
+  background-color: #45a049;
+}
+
+
+/* Activity Logs Section */
+.activity-logs {
+  margin-top: 40px;
+}
+
+.activity-logs h3 {
+  font-size: 18px;
+  color: #11134F;
+  margin-bottom: 10px;
+}
+
+.logs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #fff;
+}
+
+.logs-table th, .logs-table td {
+  border: 1px solid #BDC8E8;
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.logs-table th {
+  background-color: #f2f2f2;
+  color: #11134F;
+}
+
+.logs-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+
+/* RIGHT */
+
+.right{
+  margin-top: -50rem;
+  margin-right: 4.5rem;
+}
+
+.right .top{
+  display: flex;
+  justify-content: end;
+  gap: 2rem;
+}
+
+.right .top button{
+  display: none;
+}
+
+.right .top .profile{
+  display: flex;
+  gap: 2rem;
+  text-align: right;
+}
+
+
+
+/* Media Queries */
+
+@media screen and (max-width: 1200px){
+  .container{
+    width: 94%;
+    grid-template-columns: 7rem auto 23rem;
+  }
+
+  /* Adjust insights grid for larger screens */
+  main .insights {
+    grid-template-columns: repeat(2, 1fr); /* Display two columns on larger screens */
+    gap: 2rem;
+  }
+
+  /* Profile header */
+  .profile-header {
+    align-items: center;
+  }
+
+  .profile-picture {
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-info h2 {
+    font-size: 22px;
+  }
+
+  .profile-info h3 {
+    font-size: 16px;
+  }
+
+  /* Adjust profile details layout */
+  .profile-details {
+    margin-top: 20px;
+  }
+
+  .right-details {
+    margin-left: 12rem;
+  }
+
+  /* Action buttons layout */
+  .action-buttons {
+    gap: 30px;
+  }
+
+  /* Logs table */
+  .logs-table {
+    font-size: 14px;
+  }
+
+  .logs-table th, .logs-table td {
+    padding: 12px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .container{
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  main .insights {
+    grid-template-columns: 1fr; /* Stack elements vertically */
+    gap: 1rem;
+  }
+
+  /* Adjust profile header */
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Profile picture */
+  .profile-picture {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  /* Profile info */
+  .profile-info h2 {
+    font-size: 18px;
+  }
+
+  .profile-info h3 {
+    font-size: 14px;
+  }
+
+  /* Adjust profile details layout */
+  .profile-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .left-details, .right-details {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  /* Action buttons side by side */
+  .action-buttons {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    justify-content: flex-start; /* Align buttons to the left */
+    margin-top: 40px;
+  }
+
+  /* Make sure buttons are side by side */
+  .update-button,
+  .deactivate-button {
+    width: auto; /* Reset width if previously set */
+  }
+
+  /* Adjust table layout */
+  .logs-table {
+    font-size: 12px;
+  }
+
+  .logs-table th, .logs-table td {
+    padding: 8px;
+  }
+
+
+  .right{
+    width: 94%;
+    margin: 0 auto 4rem;
+  }
+
+  .right .top{
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    padding: 0 0 0.8rem;
+    height: 4.6rem;
+    background: #fff;
+    width: 100%;
+    margin: 0;
+    z-index: 2;
+    box-shadow: 0 1rem 1rem var(--color-light-blue);
+  }
+
+  .right .profile .info{
+    display: none;
+  }
+
+  .right .top button{
+    display: inline-block;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-black);
+    position: absolute;
+    left: 1rem;
+  }
+
+  .right .top button span{
+    font-size: 2rem;
+  }
+}

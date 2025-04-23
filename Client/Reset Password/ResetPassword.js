@@ -1,16 +1,33 @@
 document
   .getElementById("reset-password-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent default form submission
+  .addEventListener("submit", async (e) => {
+    e.preventDefault();
 
     const newPassword = document.getElementById("new-password").value;
     const confirmPassword = document.getElementById("confirm-password").value;
 
-    if (newPassword === confirmPassword) {
-      // Proceed with password reset logic (e.g., send to server)
-      alert("Password has been reset successfully!");
-      // Redirect to login or another page if needed
-    } else {
-      alert("Passwords do not match. Please try again.");
+    try {
+      const response = await fetch("/traventure/server/api/resetpassword.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          new_password: newPassword,
+          confirm_password: confirmPassword,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        alert(result.message);
+        window.location.href = "../Login/LoginPage.html";
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      alert("An error occurred while resetting the password.");
+      console.error(error);
     }
   });

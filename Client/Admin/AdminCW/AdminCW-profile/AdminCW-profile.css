@@ -1,0 +1,314 @@
+@import url(../../General.css);
+
+/*=======MAIN=======*/
+main{
+  margin-top: 1.4rem;
+}
+
+main .insights{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.6rem;
+}
+
+main .insights > div{
+  background: #fff;
+  padding: var(--card-padding);
+  border-radius: var(--boarder-radius-3);
+  margin-top: 1rem;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+
+main .insights > div:hover{
+  box-shadow: none;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid #11134F;
+}
+
+.profile-info h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #11134F;
+}
+
+.profile-info h3 {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #BDC8E8;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.active {
+  display: inline-block; /* Makes it appear as a block for padding */
+  background-color: #007bff; 
+  color: white; 
+  border-radius: 12px; 
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.profile-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.left-details, .right-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: -20px;
+
+}
+
+.left-details li,
+.right-details li {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.right-details {
+  padding-top: 0px;
+  margin-left: 15rem;
+  text-align: left;
+}
+
+.action-buttons {
+  margin-top: 100px;
+  display: flex;
+  gap: 20px; /* Space between buttons */
+}
+
+.update-button,
+.deactivate-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Update Button Style */
+.update-button {
+  background-color: #007bff; /* Blue color */
+  color: white;
+}
+
+.update-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Deactivate Button Style */
+.deactivate-button {
+  background-color: #000000; /* Red color */
+  color: white;
+}
+
+.deactivate-button:hover {
+  background-color: #524647; /* Darker red on hover */
+}
+
+/* Table */
+main .recent-orders{
+  margin-top: 2rem;
+}
+
+main .recent-orders h2{
+  margin-bottom: 0.8rem;
+}
+
+main .recent-orders table{
+  background: #ffff;
+  width: 100%;
+  border-radius: var(--boarder-radius-3);
+  padding: var(--card-padding);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+
+main .recent-orders table:hover{
+  box-shadow: none;
+}
+
+main table tbody td{
+  height: 2.8rem;
+  border-bottom: 1px solid var(--color-bg-lighter);
+  color: var(--color-text-secondary);
+}
+
+main table tbody tr:last-child td{
+  border: none;
+}
+
+main .recent-orders a{
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+  color: var(--color-primary);
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 1200px){
+  .container{
+    width: 94%;
+    grid-template-columns: 7rem auto 23rem;
+  }
+
+  main .insights {
+    grid-template-columns: repeat(2, 1fr); /* Display two columns on larger screens */
+    gap: 2rem;
+  }
+
+  /* Profile header */
+  .profile-header {
+    align-items: center;
+  }
+
+  .profile-picture {
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-info h2 {
+    font-size: 22px;
+  }
+
+  .profile-info h3 {
+    font-size: 16px;
+  }
+
+  /* Adjust profile details layout */
+  .profile-details {
+    margin-top: 20px;
+  }
+
+  .right-details {
+    margin-left: 12rem;
+  }
+
+  /* Action buttons layout */
+  .action-buttons {
+    gap: 30px;
+  }
+
+}
+
+@media screen and (max-width: 768px){
+  .container{
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+
+  @keyframes showMenu {
+    to{
+      left: 0;
+    } 
+  }
+
+  aside .logo{
+    margin-left: 1rem;
+  }
+
+  aside .logo h2{
+    display: inline;
+  }
+
+  aside .sidebar h3{
+    display: inline;
+  }
+
+  aside .sidebar a{
+    width: 100%;
+    height: 3.4rem;
+  }
+
+  aside .sidebar a:last-child{
+    position: absolute;
+    bottom: 5rem;
+  }
+
+  aside .close{
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  main .insights {
+    grid-template-columns: 1fr; 
+    gap: 1rem;
+  }
+
+  main .sales{
+    width: 95vw;
+    margin-left: 1rem;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Profile picture */
+  .profile-picture {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  /* Profile info */
+  .profile-info h2 {
+    font-size: 18px;
+  }
+
+  .profile-info h3 {
+    font-size: 14px;
+  }
+
+  .profile-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .left-details, .right-details {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  /* Action buttons side by side */
+  .action-buttons {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    justify-content: flex-start; /* Align buttons to the left */
+    margin-top: 40px;
+  }
+
+  /* Make sure buttons are side by side */
+  .update-button,
+  .deactivate-button {
+    width: auto; /* Reset width if previously set */
+  }
+
+  main .recent-orders{
+    display: none;
+  }
+}

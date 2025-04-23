@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar</title>
-    <link rel="stylesheet" href="path/to/your/styles.css">
+    <!-- <link rel="stylesheet" href="path/to/your/styles.css"> -->
 </head>
 <body>
     <nav>
@@ -23,7 +23,8 @@ session_start();
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="../Home/home.html">Home</a></li>
-                <li><a href="#blog">Blog</a></li>
+                <li><a href="../Destinations/destinations.html">Destinations</a></li>
+                <li><a href="../Train Schedule Form/scheduleForm.html">Train Schedule</a></li>
                 <li><a href="../About/About.html">About Us</a></li>
                 
                 <?php if (isset($_SESSION['username'])): ?>

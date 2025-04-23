@@ -19,12 +19,12 @@ $person = new Person($db);
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-// Check if user is logged in
-// if (!isset($_SESSION['username'])) {
-//     http_response_code(401);
-//     echo json_encode(['success' => false, 'message' => 'Unauthorized: Please log in.']);
-//     exit();
-// }
+//Check if user is logged in
+if (!isset($_SESSION['username'])) {
+    http_response_code(401);
+    echo json_encode(['success' => false, 'message' => 'Unauthorized: Please log in.']);
+    exit();
+}
 
 // Validate input
 if (!isset($data->firstName, $data->lastName, $data->email, $data->contactNo)) {
@@ -33,9 +33,16 @@ if (!isset($data->firstName, $data->lastName, $data->email, $data->contactNo)) {
     exit();
 }
 
+if (isset($data->destinationChanges)) {
+    error_log("Destination changes received: " . print_r($data->destinationChanges, true));
+    $person->setDestinationChanges([
+        'add' => $data->destinationChanges->add ?? [],
+        'remove' => $data->destinationChanges->remove ?? []
+    ]);
+}
+
 // Set properties
-// $person->username = $_SESSION['username'];
-$person->username = "exampleUser";
+$person->username = $_SESSION['username'];
 $person->first_name = $data->firstName;
 $person->last_name = $data->lastName;
 $person->email = $data->email;

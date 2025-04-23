@@ -1,17 +1,29 @@
 document
   .getElementById("verification-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent default form submission
+  .addEventListener("submit", async (e) => {
+    e.preventDefault();
 
     const verificationCode = document.getElementById("verification-code").value;
 
-    // Simulate verification logic
-    if (verificationCode === "123456") {
-      // Replace with actual verification logic
-      alert("Verification successful! You can now reset your password.");
-      // Redirect to the password reset page or another action
-      window.location.href = "reset-password.html"; // Change to your actual reset password page
-    } else {
-      alert("Invalid verification code. Please try again.");
+    try {
+      const response = await fetch("/traventure/server/api/verifycode.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ verification_code: verificationCode }),
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        alert(result.message);
+        window.location.href = "../reset password/resetpassword.html";
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      alert("An error occurred while verifying the code.");
+      console.error(error);
     }
   });

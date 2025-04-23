@@ -15,42 +15,31 @@ include_once('../core/initialize.php');
 // Instantiate login object 
 $login = new Login($db);  
 
-//get raw posted data 
+// Get raw posted data 
 $data = json_decode(file_get_contents("php://input"));  
 
-//check if data is null  
-if ($data === null) {     
-    http_response_code(400);     
+// Validate input 
+if ($data === null || empty($data->password) || (empty($data->username) && empty($data->email))) {
+    http_response_code(400);
     echo json_encode([
-        'success' => false,          
-        'message' => 'Invalid JSON format'
-    ]);     
-    exit(); 
-}  
-
-//check the validity of data 
-if (empty($data->password) || (empty($data->username) && empty($data->email))) {     
-    http_response_code(400);     
-    echo json_encode([
-        'success' => false,         
-        'message' => 'Invalid input'
-    ]);     
-    exit(); 
-} 
+        'success' => false,
+        'message' => 'Invalid input or JSON format'
+    ]);
+    exit();
+}
 
 // Set properties
-if (isset($data->username)) {     
-    $login->username = $data->username; 
-}  
-if (isset($data->email)) {     
-    $login->email = $data->email; 
-}  
-$login->password = $data->password;    
+if (isset($data->username)) {
+    $login->username = $data->username;
+}
+if (isset($data->email)) {
+    $login->email = $data->email;
+}
+$login->password = $data->password;
 
 // Execute login and get result
-$result = $login->loginUser(); 
+$result = $login->loginUser();
 
-// Send response (result is already an array, just encode it once)
+// Send response
 echo json_encode($result);
 exit;
-?>
