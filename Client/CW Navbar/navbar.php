@@ -22,14 +22,14 @@ session_start();
                 <span class="bar"></span>
             </div>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="../Home/home.html">Home</a></li>
-                <li><a href="../Destinations/destinations.html">Destinations</a></li>
+                <li><a href="../CW Home/home.php">Home</a></li>
                 <li><a href="../Blogs/blogs.php">Blogs</a></li>
-                <li><a href="../Train Scheduletml Form/scheduleForm.html">Train Schedule</a></li>
-                <li><a href="../About/About.html">About Us</a></li>
-                    <li id="login-link">
-                        <a href="../Login/LoginPage.html">Login</a>
-                    </li>
+                 <li><a href="../Review/review.php">Review</a></li>
+                <li id="user-greeting">
+                <a href="../Profile/profile.php" id="profile-link">
+                <img src="../assets/icons/user.png" alt="userimg" class="user-icon-img">
+                <span>Hi, <?= htmlspecialchars($_SESSION['username']); ?></span>
+                        </a>
             </ul>
         </div>
     </nav>

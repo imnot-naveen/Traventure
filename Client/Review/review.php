@@ -1,56 +1,43 @@
-<?php
-
+<?php  
 session_start();
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
-    exit();
-}
+// Check if the user is logged in 
+if (!isset($_SESSION['username'])) {     
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in     
+    exit(); 
+}  
 
-if (trim($_SESSION['userType']) !== "CW") {
-    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage
-    exit();
-}
+if (trim($_SESSION['userType']) !== "CW") {     
+    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage     
+    exit(); 
+}  
 
-// Get the username from the session
-$username = $_SESSION['username'];
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traventure</title>
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="../Navbar/navbar.css">
-  <link rel="stylesheet" href="../Footer/footer.css">
-</head>
-<body>
-    
+// Get the username from the session 
+$username = $_SESSION['username']; 
+?> 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>     
+    <meta charset="UTF-8">     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <title>Traventure</title>     
+    <link rel="stylesheet" href="review.css">     
+    <link rel="stylesheet" href="../Navbar/navbar.css">   
+    <link rel="stylesheet" href="../Footer/footer.css"> 
+</head>     
+<body>         
     <nav id="navbar-placeholder"></nav>
 
-    <main>
-        
-            <div className="section">
-              
-                <button class="btn">
-                    <span class="circle">
-                        <span class="arrow"></span>
-                    </span>
-                    <span class="text"><a href="../CWManagePosts/manageposts.php"> Manage Posts</a></span>
-                </button>
-                <p class="intro"><i>Each time I look at the screen, I see a great advice helping to move forward...
-                                <br><br>I know how hard it is to work as a content marketer as you must always be creative, ready to adjust to new challenges and learn fast...
-                            </i></p>
-              
-            </div>
-        
-    </main>
+    <div class="blog-wrapper">
+    <div class="blog-container"> 
+
+    </div> 
+    </div>
+
 
     <footer id="footer"></footer>
 
   <script src="../CW Navbar/navbar.js"></script>
-  <script src="home.js"></script>
+  <script src="review.js"></script>
   <script src="../Footer/footer.js"></script>
   <script>
     // Function to load the Navbar
@@ -106,9 +93,6 @@ $username = $_SESSION['username'];
         document.getElementById('user-icon').classList.add('hidden');
       }
     }
-  </script>
-</body>
+  </script>   
+</body> 
 </html>
-
-    
-    

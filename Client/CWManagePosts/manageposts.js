@@ -9,6 +9,9 @@ function fetchPosts() {
       } else {
         displayPosts(posts);
       }
+    })
+    .catch((error) => {
+      console.error("Error fetching posts:", error);
     });
 }
 
@@ -35,7 +38,6 @@ function displayPosts(posts) {
   });
 }
 
-// Search function to filter posts by city
 function searchByCity() {
   const searchInput = document
     .querySelector(".search input")
@@ -43,16 +45,28 @@ function searchByCity() {
     .toLowerCase();
 
   // Fetch posts filtered by city from the server
-  fetch(`post.php?city=${encodeURIComponent(searchInput)}`)
-    .then((response) => response.json())
-    .then((posts) => displayPosts(posts));
+  if (searchInput) {
+    fetch(`../../Server/api/getallblogposts.php?city=${encodeURIComponent(searchInput)}&limit=10&offset=0`)
+      .then((response) => response.json())
+      .then((posts) => {
+        if (!posts || posts.length === 0) {
+          document.querySelector(".post-card-container").innerHTML =
+            "<p>Oops, there are no posts available in this city.</p>";
+        } else {
+          displayPosts(posts); // Function to display the posts
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching posts:', error);
+      });
 
-  // Update the heading based on search results
-  document.querySelector("h1").textContent = searchInput
-    ? `Attractions in ${
-        searchInput.charAt(0).toUpperCase() + searchInput.slice(1)
-      }`
-    : "Most Recent Posts";
+    // Update the heading based on search results
+    document.querySelector("h1").textContent = `Attractions in ${searchInput.charAt(0).toUpperCase() + searchInput.slice(1)}`;
+  } else {
+    // If search input is empty, fetch all posts again
+    fetchPosts();
+    document.querySelector("h1").textContent = "Most Recent Posts";
+  }
 }
 
 // Function to view a post
@@ -65,7 +79,6 @@ function editPost(id) {
   window.location.href = `../CWUpdate/update.php?edit_id=${id}`;
 }
 
-// Function to delete a post by ID
 // Function to delete a post by ID
 function deletePost(id) {
   // Confirm deletion

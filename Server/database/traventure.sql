@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2024 at 11:32 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: Apr 22, 2025 at 07:10 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,31 @@ CREATE TABLE `blogposts` (
 --
 
 INSERT INTO `blogposts` (`blog_id`, `title`, `city`, `intro`, `content`, `imageURL`, `createdAt`, `updatedAt`) VALUES
-(2, 'My first post ', 'Mount Lavinia ', 'Beach', 'This is a beach ', '../../Public/Uploads/mount-lavinia-beach.jpg', '2024-11-27 18:03:37', '2024-11-27 18:03:37');
+(2, 'Mount Lavinia Beach', 'Mount Lavinia ', 'Mount Lavinia beach is Colombo\'s beach retreat and one of the most famous sea-bathing spots in the country. ', 'Mount Lavinia beach is Colombo’s beach retreat and one of the most famous sea-bathing spots in the country. This beach is located approximately an hour’s drive away from Colombo. Although the Dehiwala-Mount Lavinia area is a highly residential area, its beach strip is a popular spot for those looking for a quick getaway from the hustle and bustle of the city. Ideal for those on a short stay in Colombo and seeking a quick dip into the waters of the ocean, Mount Lavinia beach is the perfect escape with its sea breeze, spectacular sunsets and sandy shores lined with lively cafes and restaurants making it a place bustling with life.\r\nThis beach is suitable for swimming depending on the season, which is from October to April. The waters can be very rough during some seasons. Therefore visitors should take precaution and always swim near groups. The restaurants vary from little cafes to high end restaurants, where you can savour local street food and mouth watering seafood delicacies while enjoying the sea breeze and panoramic views of the ocean. Mount Lavinia beach is undoubtedly one of the best beaches located in the vicinity of Colombo.', '../../Public/Uploads/mount-lavinia-beach.jpg', '2024-11-27 18:03:37', '2025-02-15 12:05:10'),
+(7, 'A view from the Nine Arch Bridge', 'Ella', 'The Nine Arch Bridge, also known as the \'Bridge in the Sky\' was constructed by connecting two bog mountains when constructing the Badulla – Colombo railway.', 'Commissioned under the British in the year 1921, the Nine Arch Bridge stands proudly, a testament to the engineering and architectural brilliance of the early 20th century. Ideally placed between the Ella and Demodara railway station, those choosing to walk along the bridge will be presented with scenes of rolling hills and dense jungle to delight in.\r\n\r\nThe Nine Arch Bridge, also known as the ‘Bridge in the Sky’ was constructed by connecting two bog mountains when constructing the Badulla – Colombo railway. This bridge is 300 feet in length, 25 feet in width and 80-100 feet in height. It is one of the best examples of colonial-era railway construction in the country. The Bridge can be reached by travelling 2km on Gotuwala road starting from Halpe Textile centre in Badulla Bandarawela road. The surrounding area has seen a steady increase in tourism due to the bridge’s architectural ingenuity and the profuse greenery in the nearby hillsides.\r\n\r\nArguably the best time to venture out would be during when the locomotives come barrelling along and thus it is advisable to check on the train schedule in advance. However, be sure to carry your trusty cam with you so that you might capture every moment that unravels before you.', '../../Public/Uploads/ninearch.jpg', '2025-02-15 12:13:39', '2025-04-22 09:24:13'),
+(8, 'Admire Coconut Tree Hill', 'Mirissa', 'A vision of tropical bliss, Mirissa Beach boasts powdery pale sand, while its azure water is framed by an arc of coconut palms.', 'A vision of tropical bliss, Mirissa Beach boasts powdery pale sand, while its azure water is framed by an arc of coconut palms. The west side is the nicest and has the broadest expanse of sand; as the bay curves gently around to the east it meets up with the roar of the Galle-Matara Rd. Close to the centre of Mirissa bay is a much-photographed sandbar that connects to a tiny island that you can walk to at low tide. The western end also has a reasonable right point break for surfers.\r\n\r\nThe far eastern section of the beach has been lost to coastal erosion and is lined with unsightly concrete sea defences. There\'s also very little shade on the beach thanks to much of the original fringe of palm trees being chopped down to make way for beachfront cafes and hundreds of sun loungers.', '../../Public/Uploads/mirissa.jpg', '2025-02-15 12:16:57', '2025-04-22 09:33:40'),
+(11, 'Horton Plains', 'Nuwaraeliya', 'Horton Plains in Nuwara Eliya is a must-visit gem. With breathtaking landscapes, thrilling hikes, and serene surroundings, it\'s an unforgettable experience.', 'The famous Horton Plains is a nature reserve characterized by a beautiful landscape of rolling hills, forests, and grassland. The highest plateau in the island, spanning approximately 10,000 hectares, is home to 24 species of mammal - such as elk, deer, giant squirrel, wild boar, wild hare, porcupine, and leopard. The park also hosts unique vegetation and offers a perfect ground to observe many rare and endemic highland birds (87 species, 14 of which are endemic). An impressive physical feature in Horton Plains is the escarpment that falls 880 meters to the lowlands of the southern region of the island. Aptly known as the \"World’s End\", the precipice boasts a fabulous view of the tea estates below and all the way out to the distant southern coastline.\r\n\r\nHorton Plains, or \'Mahaeliya\' as it is traditionally named, is a popular weekend destination amongst locals. Therefore, we recommend to visit the park on a weekday when it is more peaceful.', '../../Public/Uploads/hortonplains.jpg', '2025-02-15 13:01:49', '2025-02-28 11:01:32'),
+(21, 'FLYING RAVANA', 'Ella', 'Flying Ravana is Sri Lanka\'s first-ever mega dual zip-line, located amidst the luscious green estates of Ella, Sri Lanka.', 'Flying Ravana Adventure park is one of a kind experience available in Sri Lanka, located amidst the luscious green estates of Ella. Completed with its pride, Sri Lanka’s first-ever Mega zip-line.\r\n\r\nThe two-wire zip-line stretches for more than half a kilometer, slides at 80kmph, and offers a bird’s-eye view of the beautiful hills of the island.\r\n\r\nThe adventure park is exclusively designed for adventure enthusiasts and adrenaline junkies who prefer a not-so-ordinary hillside experience, offering ATV/quad bike rides, Abseiling, Archery, and Air rifling for a gripping outdoor experience.\r\n\r\nFlying Ravana is truly, Ella in all its glory.', '../../Public/Uploads/download.jpeg', '2025-04-22 09:09:12', '2025-04-22 09:34:55'),
+(22, 'Climb Ella Rock', 'Ella', 'Hiking Ella Rock is suitable for most people with a decent level of fitness.', 'If you love living green, then Ella is obviously a place to visit. Ella Rock is one of the place which proves it.\r\n\r\nTrekkers would love the place. It’s bit tiring to do the hiking. But it is definitely worth it. Once you got to the summit you will realize why we said so. The panoramic views it provides with mist and cloud covering the area, especially in the early mornings and the late evenings are something you should witness and that would suffice enough to say that you visited Ella.\r\n\r\nTotal time for climbing up and down is 4 hours. Yes, sounds like a long journey. But the way up there is with full of diversity. If you are starting form Ella train station, you would enjoy the rail walk, and soon as you started climbing up, you will be passing a waterfall, the rubber tree forest and tea plantations.\r\n\r\nOn a rainy day, it can be slippery, so better be cautious with what you wear for the journey. Wear something suitable for a hiking and towards the end of the hike, route will get bit harder with the steep, still manageable.', '../../Public/Uploads/hiking-ella-rock.jpg', '2025-04-22 09:16:44', '2025-04-22 09:34:46'),
+(23, 'Hike Little Adam\'s Peak', 'Ella', 'The best time to hike to Little Adam\'s Peak is during Sri Lanka\'s dry season, from December to April.', 'Ella is a hiking hotspot in the mountain country of Sri Lanka. Some of the views from hikes in Ella are phenomenal with the region well known for its tea plantations and spectacular mountain ranges. If you want to enjoy some of the best views without needing to hike for hours, Little Adam’s Peak Hike is the perfect trek, especially for an unforgettable sunset.\r\nFrom the main strip in Ella, you can walk about 1.5kms to the start of the trail. The trailhead is right next to Ella Flower Garden Resort. We parked our car out the front of the resort/restaurant and hit the trail. The map below shows you the location of Little Adam’s Peak (also known as Mini Adam’s Peak) but you can also see where the trail hits the main road (the Flower Garden). An alternative entrance is also located at 98 acres resort and marked by a white Buddha. We went for sunset and only needed about an hour to reach the summit and we were super slow with all of our photos. Coming back down after sunset, we were the last to exit and it was quite dark. ', '../../Public/Uploads/download (1).jpeg', '2025-04-22 09:20:36', '2025-04-22 09:34:35'),
+(24, 'Admire Galle Lighthouse', 'Galle', 'Nestled within the iconic Galle Fort, this lighthouse is not only the oldest operating lighthouse in Sri Lanka but also one of its most photogenic landmarks.', 'The Galle Fort Lighthouse is a prominent landmark located within the historic Galle Fort in Sri Lanka. Standing on the southern tip of the fort, it offers visitors a glimpse into the country\'s colonial past while serving as an iconic symbol of Galle\'s charm. Known as the oldest lighthouse in Sri Lanka, this structure is a must-visit destination for history enthusiasts, photographers, and travelers exploring the Galle Fort.', '../../Public/Uploads/download (2).jpeg', '2025-04-22 09:29:10', '2025-04-22 09:34:25'),
+(25, 'Watch Sunset From Galle Fort Walls', 'Galle', 'Enjoying the sunset on the Fort\'s wall is one of the top things to do in Galle Fort.', 'Every evening, most people wander down to the ramparts or Galle Fort Walls towards the southern and western side of the fort for sunset. It offers an incredible vantage point to watch the sun dip below the horizon.\r\n\r\nFlag Rock Bastion seems to always gather a crowd, with local cliff jumpers wowing everyone by jumping into the rocky depths below. However, for the best direct view of the sunset, Triton Bastion was definitely the better spot, with room on the grassy walls offering front row seats to Mother Nature’s light show.', '../../Public/Uploads/download (3).jpeg', '2025-04-22 09:31:21', '2025-04-22 09:34:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogs`
+--
+
+CREATE TABLE `blogs` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `intro` text NOT NULL,
+  `content` text NOT NULL,
+  `imageURL` varchar(500) DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
+  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -70,6 +94,13 @@ CREATE TABLE `contentwriter` (
   `CWID` int(6) NOT NULL,
   `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contentwriter`
+--
+
+INSERT INTO `contentwriter` (`CWID`, `username`) VALUES
+(1, 'test_cw');
 
 -- --------------------------------------------------------
 
@@ -138,6 +169,24 @@ INSERT INTO `destinationtypes` (`type_id`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `driver`
+--
+
+CREATE TABLE `driver` (
+  `DriverID` int(6) NOT NULL,
+  `username` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `driver`
+--
+
+INSERT INTO `driver` (`DriverID`, `username`) VALUES
+(1, 'test_d');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `inactiveusers`
 --
 
@@ -170,6 +219,8 @@ INSERT INTO `login` (`username`, `email`, `password`, `userType`) VALUES
 ('exampleUser', 'john@gmail.com', '$2y$10$WuC8oD2QqXqyiRC.4brkwOAADS.E4Vk6uNbYRirSBUl2Ru1N5m.dC', 'Traveller '),
 ('exampleUser2', 'jane@gmail.com', '$2y$10$v0uZ8cJkSpwcwQNuyf3KQ.JbK4xqMExt2YbAWCkjXZDBBjNkFQ/zy', 'Traveller'),
 ('imnot_naveen', 'naveenharinda2@gmail.com', '$2y$10$V1gFv0ZxZJIlaH/oOG/OAuQFJfhKwyovsC8Km87zUjcqwX4wuYjIe', 'Traveller'),
+('test_cw', 'tom@gmail.com', '$2y$10$H1WXoLn16BIvF6v9s/O3A.clCmudK7z7iW8cYoegD3ESWYv3HCg6K', 'CW'),
+('test_d', 'jerry@gmail.com', '$2y$10$4X0MkxiXQzTsEOSuEB4iCuBQwMDle.Z8r5Tj3BrhcpjtGTq134aeS', 'Driver'),
 ('test_tsp', 'test@test.com', '$2y$10$XRcPo4XFfhroAoXk80iIQe3obfEmjLTxhH1ayW8dn8GSQrMstI6B2', 'TSP');
 
 -- --------------------------------------------------------
@@ -196,6 +247,8 @@ INSERT INTO `person` (`username`, `firstName`, `lastName`, `email`, `contactNo`,
 ('exampleUser', 'John', 'Doe', 'john@gmail.com', 123456789, 'Traveller', ''),
 ('exampleUser2', 'Jane', 'Doe', 'jane@gmail.com', 123456789, 'Traveller', ''),
 ('imnot_naveen', 'Naveen ', 'Harinda', 'naveenharinda2@gmail.com', 774554321, 'Traveller', ''),
+('test_cw', 'Tom', 'Tom', 'tom@gmail.com', 345768903, 'CW\r\n', ''),
+('test_d', 'jerry', 'jerry', 'jerry@gmail.com', 986958444, 'Driver', ''),
 ('test_tsp', 'test', 'tester', 'test@test.com', 1234567890, 'TSP', '');
 
 -- --------------------------------------------------------
@@ -515,6 +568,12 @@ ALTER TABLE `destinationtypes`
   ADD PRIMARY KEY (`type_id`);
 
 --
+-- Indexes for table `driver`
+--
+ALTER TABLE `driver`
+  ADD PRIMARY KEY (`DriverID`);
+
+--
 -- Indexes for table `inactiveusers`
 --
 ALTER TABLE `inactiveusers`
@@ -620,7 +679,7 @@ ALTER TABLE `userdestination`
 -- AUTO_INCREMENT for table `blogposts`
 --
 ALTER TABLE `blogposts`
-  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `destination`
@@ -633,6 +692,12 @@ ALTER TABLE `destination`
 --
 ALTER TABLE `destinationtypes`
   MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `driver`
+--
+ALTER TABLE `driver`
+  MODIFY `DriverID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `registereduser`

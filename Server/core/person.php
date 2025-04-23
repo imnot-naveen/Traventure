@@ -141,18 +141,7 @@ class Person {
         }
     }
 
-       // Get all persons
-       public function getAllPersons() {
-        $query = 'SELECT username, firstName AS first_name, lastName AS last_name, email, contactNo AS contact_number 
-                  FROM ' . $this->person_table;
-        $stmt = $this->conn->prepare($query);
-
-        if ($stmt->execute()) {
-            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch all records as an associative array
-        }
-
-        return null; // Return null if the query fails
-    }
+      
 
     // Create User Method
     public function createUser() {

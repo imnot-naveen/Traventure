@@ -7,10 +7,6 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-if (trim($_SESSION['userType']) !== "CW") {
-    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage
-    exit();
-}
 
 // Get the username from the session
 $username = $_SESSION['username'];
@@ -21,41 +17,46 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traventure</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="createblogs.css">
     <link rel="stylesheet" href="../Navbar/navbar.css">
-  <link rel="stylesheet" href="../Footer/footer.css">
+    <link rel="stylesheet" href="../Footer/footer.css">
 </head>
-<body>
-    
-    <nav id="navbar-placeholder"></nav>
-
+    <body>
+        <nav id="navbar-placeholder"></nav>
+        
     <main>
-        
-            <div className="section">
-              
-                <button class="btn">
-                    <span class="circle">
-                        <span class="arrow"></span>
-                    </span>
-                    <span class="text"><a href="../CWManagePosts/manageposts.php"> Manage Posts</a></span>
-                </button>
-                <p class="intro"><i>Each time I look at the screen, I see a great advice helping to move forward...
-                                <br><br>I know how hard it is to work as a content marketer as you must always be creative, ready to adjust to new challenges and learn fast...
-                            </i></p>
-              
+        <section>
+            <h1>Create Blog</h1>
+            <form action="api/addblogs.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
             </div>
-        
+            <div class="form-group">
+              <label for="intro">Introduction</label>
+              <input type="text" id="intro" name="intro" required>
+            </div>
+            <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="6" required></textarea>
+            </div>
+            <div class="form-group">
+            <label for="photos">Add Photos:</label>
+            <input type="file" id="photos" name="photos" multiple accept="image/*">
+            </div>
+            <button type="submit" class="post-button">Post</button>
+            </form>
+            
+        </section>
     </main>
-
     <footer id="footer"></footer>
 
-  <script src="../CW Navbar/navbar.js"></script>
-  <script src="home.js"></script>
-  <script src="../Footer/footer.js"></script>
+    <script src="../Navbar/navbar.js"></script>
+  <script src="createblogs.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../CW Navbar/navbar.php')
+      fetch('../Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;
@@ -109,6 +110,3 @@ $username = $_SESSION['username'];
   </script>
 </body>
 </html>
-
-    
-    

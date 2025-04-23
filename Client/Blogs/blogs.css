@@ -1,0 +1,260 @@
+body{
+  background-color: #fafdff;
+}
+
+.crt-blog{
+  margin-top: 150px;
+  margin-left: 200px;
+  max-width: 130px;
+  background-color: #11134f;
+  color: #fff;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+ /* Wrapper for all blog posts */
+.blog-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between each post */
+  
+  
+}
+
+/* Each individual blog box */
+.blog-box {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 20px auto;
+  
+}
+
+.no-blogs-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 80px;
+  margin-left: 450px;
+  font-size: 30px;
+  color: #444;
+  max-width: 600px;
+}
+
+/* Blog Header */
+.blog-header {
+  display: flex;
+  justify-content: space-between; /* Align username and options button to the ends */
+  align-items: center; /* Vertically center the items */
+  margin-bottom: 10px;
+  align-items: flex-start;
+  width: 100%; /* Ensure the container takes up the full width */
+}
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .profile {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .user-details {
+    display: flex;
+    flex-direction: column; /* Stack username and date vertically */
+    align-items: flex-start; /* Align items to the start horizontally */
+  }
+  
+  .username {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 0;
+   
+  }
+  
+  .date {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 5px;
+    
+  }
+  
+  /* Main image */
+  .blog-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Intro paragraph */
+  .intro {
+    font-size: 1.5em;
+    line-height: 1.5;
+    font-weight: bold;
+  }
+
+  .blog-link {
+    text-decoration: none; /* Removes underline */
+    color: inherit;         /* Keeps the original text color */
+    display: block;         /* Makes entire area clickable */
+  }
+
+  .blog-link:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  
+  /* Comments */
+  .comments-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .comment-box {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .submit-comment {
+    align-self: flex-start;
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-comment:hover {
+    background-color: #0056b3;
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  .comment-title {
+    margin-bottom: 5px;
+  }
+  
+  .comment {
+    padding: 10px;
+    margin-top: 10px;
+    background: #f4f4f4;
+    border-radius: 5px;
+  }
+
+  /*.post-options {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .options-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 5px;
+    border-radius: 4px;
+    z-index: 10;
+  }
+  
+  .dropdown-menu.hidden {
+    display: none;
+  }
+  
+  .dropdown-menu button {
+    padding: 5px 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  .dropdown-menu button:hover {
+    background-color: #f0f0f0;
+  }*/
+
+  .post-options {
+    position: relative; /* Keep it positioned relative to the header */
+}
+
+.options-btn {
+    font-size: 24px; /* Size of the triple dots */
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    padding: 5px;
+    display: inline-block;
+}
+
+.options-btn:hover {
+    color: #007BFF; /* Optional: Hover effect */
+}
+
+/* Hide dropdown by default */
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 25px; /* Adjust this value as needed */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 100px;
+    z-index: 100;
+}
+
+.dropdown-menu button {
+    background: none;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+    background-color: #f1f1f1;
+}
+
+.hidden {
+   display: none; /* Keep this class to hide elements */
+}
+
+
+  

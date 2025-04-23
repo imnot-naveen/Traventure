@@ -37,17 +37,21 @@ $username = $_SESSION['username'];
             <input type="text" id="title" name="title">
             </div>
             <div class="form-group">
+              <label for="intro">City</label>
+              <input type="text" id="city" name="city">
+            </div>
+            <div class="form-group">
               <label for="intro">Introduction</label>
               <input type="text" id="intro" name="intro">
             </div>
-<div class="form-group">
-    <label for="content">Content:</label>
-    <textarea id="content" name="content" rows="6"></textarea>
-</div>
-<div class="form-group">
-    <label for="photos">Add Photos:</label>
-    <input type="file" id="photos" name="photos" multiple accept="image/*">
-</div>
+            <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="6"></textarea>
+            </div>
+            <div class="form-group">
+            <label for="photos">Add Photos:</label>
+            <input type="file" id="photos" name="photos" multiple accept="image/*">
+            </div>
 <button type="submit" class="post-button">Post</button>
             </form>
             
