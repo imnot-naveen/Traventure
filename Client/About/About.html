@@ -1,67 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="About.css">
-  <link rel="stylesheet" href="../Navbar/navbar.css">
-  <title>About</title>
-</head>
-<body>
-  <!-- Navbar component -->
-  <nav id="navbar-placeholder"></nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="About.css" />
+    <link rel="stylesheet" href="../Navbar/navbar.css" />
+    <title>About</title>
+  </head>
+  <body>
+    <!-- Navbar component -->
+    <nav id="navbar-placeholder"></nav>
+    <div class="div-container">
+      div class="about">
+      <h1>About Us</h1>
+      <p id="p1">
+        Planning a train trip can be complicated and time-consuming—we've been
+        there, too! At Traventure, we believe that traveling should be all about
+        the adventure, not the hassle. That's why we're here to make it easier
+        to plan your route, stick to your pass requirements, and book the
+        perfect accommodation. With Traventure, you can focus on creating
+        unforgettable memories, while we handle the details. Your best train
+        trip experience starts here!
+      </p>
+      <p id="p2">
+        At Traventure, we're committed to keeping your costs low. That's why our
+        basic planning tool is completely free. We only generate revenue if you
+        choose to book through our affiliate links. In other words, using
+        Traventure doesn't have to add any extra cost to your trip. We're always
+        looking to improve, so if you have any feedback or suggestions, please
+        reach out—we'd love to hear from you. And if you're enjoying what we're
+        doing, a follow or share on social media would mean the world to us.
+        Thanks for reading and being a part of our journey!
+      </p>
+    </div>
 
-  <h1>About Us</h1>
-  <p id="p1">Planning a train trip can be complicated and time-consuming—we've been there, too! At Traventure, we believe that traveling should be all about the adventure, not the hassle. That's why we're here to make it easier to plan your route, stick to your pass requirements, and book the perfect accommodation. With Traventure, you can focus on creating unforgettable memories, while we handle the details. Your best train trip experience starts here!</p>
-  <p id="p2">At Traventure, we’re committed to keeping your costs low. That’s why our basic planning tool is completely free. We only generate revenue if you choose to book through our affiliate links. In other words, using Traventure doesn’t have to add any extra cost to your trip. We’re always looking to improve, so if you have any feedback or suggestions, please reach out—we’d love to hear from you. And if you’re enjoying what we’re doing, a follow or share on social media would mean the world to us. Thanks for reading and being a part of our journey!</p>
+    <div class="contact-button">
+      <a href="../Contact Us/ContactUs.html">Contact Us</a>
+    </div>
+    </div>
+    <
+    <script src="../Navbar/navbar.js"></script>
+    <script>
+      // Function to load the Navbar
+      function loadNavbar() {
+        fetch("../Navbar/navbar.php")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+            // Initialize the navbar functionalities
+            document
+              .getElementById("menu-toggle")
+              .addEventListener("click", function () {
+                const navMenu = document.getElementById("nav-menu");
+                navMenu.classList.toggle("active");
+              });
 
-  <script src="../Navbar/navbar.js"></script>
-  <script>
-    // Function to load the Navbar
-    function loadNavbar() {
-      fetch('../Navbar/navbar.php')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('navbar-placeholder').innerHTML = data;
-          // Initialize the navbar functionalities
-          document.getElementById('menu-toggle').addEventListener('click', function() {
-            const navMenu = document.getElementById('nav-menu');
-            navMenu.classList.toggle('active');
+            // Set the initial state
+            updateNavbarState(false); // Set initial state (false means not logged in)
           });
-
-          // Set the initial state
-          updateNavbarState(false); // Set initial state (false means not logged in)
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      loadNavbar();
-      loadFooter();
-    });
-
-    // Handle login state (optional)
-    function handleLogin(event) {
-      event.preventDefault();
-      // Simulate login action
-      updateNavbarState(true); // Set state to logged in
-    }
-
-    function handleLogout(event) {
-      event.preventDefault();
-      // Simulate logout action
-      updateNavbarState(false); // Set state to logged out
-    }
-
-    function updateNavbarState(isLoggedIn) {
-      if (isLoggedIn) {
-        document.getElementById('login-link').classList.add('hidden');
-        document.getElementById('user-icon').classList.remove('hidden');
-      } else {
-        document.getElementById('login-link').classList.remove('hidden');
-        document.getElementById('user-icon').classList.add('hidden');
       }
-    }
-  </script>
-  
-</body>
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadNavbar();
+        loadFooter();
+      });
+
+      // Handle login state (optional)
+      function handleLogin(event) {
+        event.preventDefault();
+        // Simulate login action
+        updateNavbarState(true); // Set state to logged in
+      }
+
+      function handleLogout(event) {
+        event.preventDefault();
+        // Simulate logout action
+        updateNavbarState(false); // Set state to logged out
+      }
+
+      function updateNavbarState(isLoggedIn) {
+        if (isLoggedIn) {
+          document.getElementById("login-link").classList.add("hidden");
+          document.getElementById("user-icon").classList.remove("hidden");
+        } else {
+          document.getElementById("login-link").classList.remove("hidden");
+          document.getElementById("user-icon").classList.add("hidden");
+        }
+      }
+    </script>
+  </body>
 </html>
