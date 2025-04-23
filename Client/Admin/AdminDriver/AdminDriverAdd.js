@@ -76,7 +76,7 @@ document.getElementById("addDriverForm")
           if (jsonData.success) {
               alert("Driver added successfully!");
               modal.style.display = "none";
-              this.reset(); // Clear the form
+        document.getElementById("addDriverForm").reset(); 
           } else {
               alert("Error adding user: " + data.error);
           }
