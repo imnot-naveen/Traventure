@@ -17,6 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
         $photoStmt = $db->prepare("DELETE FROM destinationphotos WHERE destination = ?");
         $photoStmt->execute([$destinationId]);
 
+        //next, delete the types 
+        $typeStmt = $db->prepare("DELETE FROM desttypes WHERE destination = ?");
+        $typeStmt->execute([$destinationId]); 
+
         // Then, delete the destination itself
         $destinationStmt = $db->prepare("DELETE FROM destination WHERE destination_id = ?");
         $destinationStmt->execute([$destinationId]);
