@@ -70,6 +70,26 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+    //Function to fetch trip count
+    function fetchTripCount() {
+        fetch('http://localhost/Traventure/Server/api/getTripCount.php')
+            .then(response => response.json()) 
+            .then(result => {
+                if (result.success) {
+                    const count = result.data.count;
+                    document.getElementById("tripCount").textContent = count;
+                } else {
+                    console.error("Error fetching trip count:", result.message || "Unknown error");
+                    document.getElementById("tripCount").textContent = "0"; // Fix element ID here too
+                }
+            })
+            .catch(error => {
+                console.error("Network or server error:", error);
+                document.getElementById("tripCount").textContent = "0";
+            });
+    }
+    
+
     // Function to fetch the logged-in username
     async function fetchLoggedInUsername() {
         try {
@@ -142,5 +162,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Call both functions when the DOM is ready
     fetchRecentBookings();
+    fetchTripCount();
     fetchUserCount();
 });

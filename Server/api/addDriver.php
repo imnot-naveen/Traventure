@@ -27,6 +27,7 @@ if (
     isset($data['contactNumber']) &&
     isset($data['password']) &&
     isset($data['assignedStation']) &&
+    isset($data['maxPassengers']) &&
     isset($data['vehicleID']) &&
     isset($data['license']) 
 ) {
@@ -42,6 +43,7 @@ if (
     $driver->availability = 'Available';
     $driver->vehicleID = $data['vehicleID'];
     $driver->license = $data['license'];
+    $driver->maxPassengers = $data['maxPassengers'];
     $driver->status = 'Active';
     $driver->userType = 'Driver';
 

@@ -47,7 +47,7 @@
                 <small class="text-muted">Last 24 Hours</small>
             </div>
             <h5 class="success">+39%</h5>
-            <h3>3849</h3>
+            <h3 id="tripCount">3849</h3>
         </div>
     </div>
     <div class="item customers">

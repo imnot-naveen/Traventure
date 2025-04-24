@@ -59,7 +59,7 @@ document.getElementById("addDriverForm")
       IDNumber: nic,
       contactNumber: contactNumber,
       password: newPassword, 
-      mmaxPassengers: maxPassengers,
+      maxPassengers: maxPassengers,
       assignedStation: station,
       vehicleID: vehicle,
       license: license

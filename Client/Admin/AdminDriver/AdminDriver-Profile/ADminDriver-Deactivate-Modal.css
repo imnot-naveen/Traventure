@@ -1,0 +1,62 @@
+/* Modal styles */
+.modal-d {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.4); 
+}
+
+/* Modal content */
+.modal-d-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Close button */
+.modal-d .modal-d-content .close-btn {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+}
+
+.modal-d .modal-d-content h3{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.modal-d .modal-d-content .close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Button styles */
+.modal-d .modal-d-content button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#cancelDeactivateBtn{
+  background-color: #888;
+}
+
+.modal-d .modal-d-content button:hover {
+  background-color: #e60000;
+}

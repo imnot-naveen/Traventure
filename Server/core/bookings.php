@@ -154,22 +154,22 @@ class Bookings {
     }
 
     // Cancel booking
-    public function cancelBooking($bookingID) {
-        try {
-            $query = 'DELETE FROM ' . $this->booking_table . ' WHERE bookingID = :bookingID';
-            $stmt = $this->conn->prepare($query);
+    // public function cancelBooking($bookingID) {
+    //     try {
+    //         $query = 'DELETE FROM ' . $this->booking_table . ' WHERE bookingID = :bookingID';
+    //         $stmt = $this->conn->prepare($query);
 
-            $stmt->bindParam(':bookingID', $bookingID);
+    //         $stmt->bindParam(':bookingID', $bookingID);
 
-            if ($stmt->execute()) {
-                return ['success' => true, 'message' => 'Booking canceled successfully.'];
-            } else {
-                return ['success' => false, 'message' => 'Failed to cancel booking.'];
-            }
-        } catch (Exception $e) {
-            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
-        }
-    }
+    //         if ($stmt->execute()) {
+    //             return ['success' => true, 'message' => 'Booking canceled successfully.'];
+    //         } else {
+    //             return ['success' => false, 'message' => 'Failed to cancel booking.'];
+    //         }
+    //     } catch (Exception $e) {
+    //         return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+    //     }
+    // }
 
     // Get recent bookings
     public function getRecentBookings() {

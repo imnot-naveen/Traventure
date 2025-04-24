@@ -182,15 +182,16 @@
                 <table id="userTable">
                     <thead>
                         <tr>
-                            <th>Username</th>
                             <th>Driver ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
+                            <th>Vehicle</th>
+                            <th>Licence</th>
                             <th>Contact Number</th>
                         </tr>
                     </thead>
-                    <tbody id="userTableBody">
+                    <tbody id="driverTableBody">
                     </tbody>
                 </table>
                 <div class="pagination">

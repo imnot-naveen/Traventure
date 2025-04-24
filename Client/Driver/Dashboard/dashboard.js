@@ -13,7 +13,7 @@ function handleLogout(event) {
   // Show confirmation dialog
   if (confirm("Are you sure you want to logout?")) {
     // Perform logout request
-    fetch("../../server/api/logout.php", {
+    fetch("../../../server/api/logout.php", {
       method: "POST",
       credentials: "same-origin", // Important for session handling
       headers: {
@@ -96,5 +96,5 @@ function createToastContainer() {
 
 function redirectToLogin() {
   // Redirect to login page after successful logout
-  window.location.href = "../login/loginpage.html";
+  window.location.href = "../../login/loginpage.html";
 }

@@ -43,7 +43,7 @@ class Driver extends Person {
   
           // Insert into driver table (remove the `id` field because it's auto-increment)
           $query2 = "INSERT INTO driver (username, maxPassengers ,assigned_station, availability, vehicleID, license, status)
-                     VALUES (:username,;maxPassengers, :assigned_station, :availability, :vehicleID, :license, :status)";
+                     VALUES (:username,:maxPassengers, :assigned_station, :availability, :vehicleID, :license, :status)";
           $stmt2 = $this->conn->prepare($query2);
           $stmt2->execute([
               ':username' => $this->username, // Use username as a foreign key reference
@@ -76,5 +76,69 @@ class Driver extends Person {
           return ['success' => false, 'message' => 'Registration failed: ' . $e->getMessage()];
       }
   }
+
+  public function getAllDrivers() {
+    try {
+        // Join driver with person to get full details
+        $query = "SELECT 
+                    d.id AS driverID,
+                    d.username,
+                    p.firstName,
+                    p.lastName,
+                    p.email,
+                    p.IDNumber,
+                    p.contactNo,
+                    d.assigned_station,
+                    d.availability,
+                    d.vehicleID,
+                    d.license,
+                    d.maxPassengers,
+                    d.status
+                  FROM driver d
+                  INNER JOIN person p ON d.username = p.username";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        $drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return [
+            'success' => true,
+            'data' => $drivers
+        ];
+
+    } catch (PDOException $e) {
+        return [
+            'success' => false,
+            'message' => 'Error fetching drivers: ' . $e->getMessage()
+        ];
+    }
+}
+
+public function getDriverDetailsByID($driverID) {
+    try {
+        $query = "SELECT d.id, d.username, d.assigned_station, d.availability, d.vehicleID, 
+                         d.maxPassengers, d.license, d.status,
+                         p.firstName, p.lastName, p.email, p.contactNo, p.IDNumber
+                  FROM driver d
+                  INNER JOIN person p ON d.username = p.username
+                  WHERE d.id = :driverID";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':driverID', $driverID, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $driverData = $stmt->fetch(PDO::FETCH_ASSOC);
+            return ['success' => true, 'data' => $driverData];
+        } else {
+            return ['success' => false, 'message' => 'Driver not found.'];
+        }
+    } catch (PDOException $e) {
+        return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+    }
+}
+
+
   
 }
