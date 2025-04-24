@@ -130,6 +130,11 @@
                           <label for="lastName">Last Name</label>
                           <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
                         </div>
+
+                        <div class="form-group">
+                          <label for="IDNumber">NIC No</label>
+                          <input type="text" id="IDNumber" name="IDNumber" required>
+                        </div>
                         
                         <div class="form-group">
                           <label for="email">Email</label>
@@ -153,7 +158,7 @@
                         
                         <div class="modal-buttons">
                           <button type="submit" class="btn-save">Save</button>
-                          <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
+                          <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button> 
                         </div>
                       </form>                      
                     </div>

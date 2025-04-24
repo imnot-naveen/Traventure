@@ -130,5 +130,6 @@
  <script src="AdminCW-profile.js"></script>
  <script src="AdminCW-profile-crud.js"></script>
  <script src="AdminCW-profile-edit.js"></script>
+ <script src="../../Recent_updates/Recent.js"></script>
 </body>
 </html>

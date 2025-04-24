@@ -108,5 +108,6 @@
  <script src="AdminDriver-profile.js"></script>
  <script src="AdminDriver-profile-crud.js"></script>
  <script src="AdminDriver-profile-edit.js"></script>
+ <script src="../../Recent_updates/Recent.js"></script>r
 </body>
 </html>

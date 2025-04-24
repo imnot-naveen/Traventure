@@ -128,6 +128,7 @@
     
  <script src="../../LogoutModal/logoutModal.js"></script>
  <script src="AdminTsp-profile.js"></script>
+ <script src="../../Recent_updates/Recent.js"></script>
  <script src="AdminTsp-profile-crud.js"></script>
  <script src="AdminTsp-profile-edit.js"></script>
 </body>
