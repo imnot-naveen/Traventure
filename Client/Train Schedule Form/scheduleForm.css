@@ -9,7 +9,7 @@
     --transition: all 0.3s ease;
     --border-radius: 12px;
     --header-background: rgba(13, 71, 161, 0.8);
-    --header-height: 100px;
+    --header-height: 70px;
     --divider-color: #c4c4c4;
 }
 
@@ -20,9 +20,9 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
     background-color: var(--background-light);
     color: var(--text-dark);
     padding-top: var(--header-height);
@@ -32,7 +32,7 @@ body {
 header {
     text-align: center;
     background-color: var(--header-background);
-    padding: 20px 0;
+    padding: 10px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
@@ -40,10 +40,11 @@ header {
     width: 100%;
     z-index: 1000;
     transition: background-color 0.3s ease;
+    height: var(--header-height);
 }
 
 header img {
-    height: 80px;
+    height: 50px;
     transition: transform 0.3s ease;
 }
 
@@ -52,15 +53,14 @@ header img:hover {
 }
 
 header h1 {
-    margin: 10px 0 0;
-    font-size: 28px;
+    margin: 5px 0 0;
+    font-size: 22px;
     color: var(--white);
     font-weight: 700;
 }
 
 header p {
-    margin: 5px 0;
-    font-size: 14px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.8);
 }
 
@@ -73,7 +73,7 @@ header p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     position: relative;
     overflow: hidden;
 }
@@ -85,47 +85,47 @@ header p {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1;
 }
 
 .form-box {
     background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
+    padding: 16px;
     border-radius: var(--border-radius);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
     position: relative;
     z-index: 2;
     transition: var(--transition);
 }
 
 .form-box:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
 }
 
 .form-box h2 {
-    margin-bottom: 24px;
+    margin-bottom: 14px;
     color: var(--secondary-color);
     text-align: center;
-    font-weight: 700;
+    font-size: 18px;
 }
 
 .form-box h3 {
-    font-size: 18px;
-    margin-bottom: 16px;
+    font-size: 14px;
+    margin-bottom: 10px;
     color: var(--primary-color);
     text-align: left;
     font-weight: 600;
 }
 
 .search-method {
-    padding: 20px;
+    padding: 12px;
     background-color: var(--background-light);
     border-radius: var(--border-radius);
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .station-search {
@@ -139,7 +139,7 @@ header p {
 .search-divider {
     position: relative;
     text-align: center;
-    margin: 25px 0;
+    margin: 20px 0;
 }
 
 .search-divider::before {
@@ -156,22 +156,22 @@ header p {
 .search-divider span {
     position: relative;
     background-color: white;
-    padding: 0 15px;
+    padding: 0 10px;
     font-weight: 700;
     color: var(--text-light);
-    font-size: 14px;
+    font-size: 13px;
     z-index: 2;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: left;
 }
 
 .form-box label {
     display: block;
-    margin-bottom: 8px;
-    font-size: 14px;
+    margin-bottom: 4px;
+    font-size: 13px;
     color: var(--text-dark);
     font-weight: 600;
 }
@@ -181,12 +181,12 @@ header p {
 .form-box input[type="text"],
 .form-box button {
     width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    margin-bottom: 16px;
+    padding: 8px;
+    margin-top: 6px;
+    margin-bottom: 10px;
     border: 2px solid #e0e0e0;
     border-radius: var(--border-radius);
-    font-size: 16px;
+    font-size: 14px;
     transition: var(--transition);
     outline: none;
 }
@@ -195,7 +195,7 @@ header p {
 .form-box input[type="date"]:focus,
 .form-box input[type="text"]:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
 }
 
 .form-box button {
@@ -205,15 +205,14 @@ header p {
     cursor: pointer;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 10px;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
 }
 
 .form-box button:hover {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .form-box button:disabled {
@@ -223,16 +222,69 @@ header p {
 }
 
 .form-box button:focus-visible {
-    outline: 3px dashed var(--primary-color);
-    outline-offset: 4px;
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 3px;
 }
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* space between the two forms */
+    flex-wrap: wrap; /* allows stacking on small screens */
+    z-index: 2;
+    position: relative;
+}
+
+/* Wrapper for the full layout */
+.main-wrapper {
+    display: flex;
+    min-height: 85vh;
+    background-color: var(--background-light);
+  }
+  
+  /* Left Side - Image */
+  .left-image {
+    flex: 1;
+    background: url('9 arch train.jpg') no-repeat center center;
+    background-size: cover;
+    max-height: 85%;
+    max-width: 500px;
+    margin-left: 100px;
+  }
+  
+  /* Right Side - Form Container */
+  .form-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-light);
+    padding: 10px;
+  }
+  
+  /* Responsive layout for smaller screens */
+  @media screen and (max-width: 768px) {
+    .main-wrapper {
+      flex-direction: column;
+    }
+  
+    .left-image {
+      height: 200px;
+      flex: none;
+    }
+  
+    .form-container {
+      padding: 20px 10px;
+    }
+  }
+  
 
 /* Footer Styling */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     background-color: var(--white);
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-light);
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
 }
@@ -240,39 +292,15 @@ footer {
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     :root {
-        --header-height: 90px;
+        --header-height: 65px;
     }
 
     header {
-        padding: 15px 0;
+        padding: 8px 0;
     }
 
     header img {
-        height: 60px;
-    }
-
-    header h1 {
-        font-size: 24px;
-    }
-
-    .container {
-        min-height: calc(100vh - var(--header-height));
-        padding: 20px;
-    }
-
-    .form-box {
-        padding: 30px;
-        max-width: 400px;
-    }
-    
-    .search-method {
-        padding: 15px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    :root {
-        --header-height: 80px;
+        height: 40px;
     }
 
     header h1 {
@@ -280,18 +308,32 @@ footer {
     }
 
     .form-box {
-        padding: 20px;
+        padding: 14px;
+        max-width: 360px;
     }
-    
+
     .search-method {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        --header-height: 60px;
+    }
+
+    .form-box {
         padding: 12px;
     }
 
     .form-box select,
-    .form-box input[type="date"],
-    .form-box input[type="text"],
+    .form-box input,
     .form-box button {
-        font-size: 14px;
-        padding: 10px;
+        font-size: 13px;
+        padding: 7px;
+    }
+
+    .search-method {
+        padding: 8px;
     }
 }
