@@ -10,6 +10,7 @@ class Driver extends Person {
     public $assigned_station;
     public $availability;
     public $vehicleID;
+    public $maxPassengers;
     public $license;
     public $password; // Only for use in login table
     public $status;
@@ -41,11 +42,12 @@ class Driver extends Person {
           $user_id = $this->conn->lastInsertId(); // Get the inserted person's ID
   
           // Insert into driver table (remove the `id` field because it's auto-increment)
-          $query2 = "INSERT INTO driver (username, assigned_station, availability, vehicleID, license, status)
-                     VALUES (:username, :assigned_station, :availability, :vehicleID, :license, :status)";
+          $query2 = "INSERT INTO driver (username, maxPassengers ,assigned_station, availability, vehicleID, license, status)
+                     VALUES (:username,;maxPassengers, :assigned_station, :availability, :vehicleID, :license, :status)";
           $stmt2 = $this->conn->prepare($query2);
           $stmt2->execute([
               ':username' => $this->username, // Use username as a foreign key reference
+              ':maxPassengers' => $this->maxPassengers,
               ':assigned_station' => $this->assigned_station,
               ':availability' => $this->availability,
               ':vehicleID' => $this->vehicleID,

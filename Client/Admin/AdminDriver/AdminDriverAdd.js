@@ -35,6 +35,7 @@ document.getElementById("addDriverForm")
   const lastName = document.getElementById("lastName").value;
   const email = document.getElementById("email").value;
   const contactNumber = document.getElementById("contactNumber").value;
+  const maxPassengers = document.getElementById("maxPassengers").value;
   const nic = document.getElementById("nic").value;
   const station = document.getElementById("station").value;
   const vehicle = document.getElementById("vehicle").value;
@@ -58,6 +59,7 @@ document.getElementById("addDriverForm")
       IDNumber: nic,
       contactNumber: contactNumber,
       password: newPassword, 
+      mmaxPassengers: maxPassengers,
       assignedStation: station,
       vehicleID: vehicle,
       license: license

@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const travelClass = tripData.seatClass || "First Class"; // Using class from data or defaulting
   const adults = parseInt(itineraryData.adults) || 0;
   const children = parseInt(itineraryData.children) || 0;
+  const totalPassengerCount = adults + children;
 
   let farePerPassenger = 0;
   let totalFare = 0;
@@ -506,6 +507,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const rideRequestData = {
           clientID: segmentData.clientID,
           destination: segmentData.destination,
+          passengerCount: totalPassengerCount,
           stationID: segmentData.stationID,
           tripID: segmentData.tripID,
           rideDate: segmentData.rideDate

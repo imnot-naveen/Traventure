@@ -143,6 +143,11 @@
                         </div>
 
                         <div class="form-group">
+                          <label for="maxPassengers">Max Passengers</label>
+                          <input type="tel" id="maxPassengers" name="maxPassengers" title="Enter a 10-digit number" required >
+                        </div>
+
+                        <div class="form-group">
                           <label for="station">Assigned Station</label>
                           <input type="tel" id="station" name="station" title="Enter a 10-digit phone number" required >
                         </div>

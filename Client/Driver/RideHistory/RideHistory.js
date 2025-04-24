@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   fetch('http://localhost/Traventure/Server/api/getRideHistoryByDriver.php', {
     method: 'GET',
-    credentials: 'include' // to send session cookies
+    credentials: 'include' 
   })
     .then(res => res.json())
     .then(data => {

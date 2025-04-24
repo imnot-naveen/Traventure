@@ -10,19 +10,21 @@ class RideRequests {
 
     public $id;
     public $clientID;
+    public $passengerCount;
     public $destination;
     public $stationID;
     public $status;
     public $tripID;
     public $rideDate;
 
-    public function createRideRequest($clientID,$destination,$stationID,$tripID,$rideDate){ 
+    public function createRideRequest($clientID,$passengerCount,$destination,$stationID,$tripID,$rideDate){ 
         try{
-            $query = "INSERT INTO ". $this->riderequests_table . "(clientID,destination,stationID,tripID,rideDate) VALUES (:clientID, :destination, :stationID, :tripID, :rideDate)";
+            $query = "INSERT INTO ". $this->riderequests_table . "(clientID,passengerCount,destination,stationID,tripID,rideDate) VALUES (:clientID,:passengerCount, :destination, :stationID, :tripID, :rideDate)";
 
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindParam(':clientID', $clientID);
+            $stmt->bindParam(':passengerCount', $passengerCount);
             $stmt->bindParam(':destination', $destination );
             $stmt->bindParam(':stationID', $stationID);
             $stmt->bindParam(':tripID', $tripID);
@@ -47,6 +49,7 @@ class RideRequests {
             JOIN person p ON d.username = p.username
             WHERE d.username = :username 
             AND DATE(rr.rideDate) > CURRENT_DATE 
+            AND d.maxPassengers > rr.passengerCount
             AND rr.status = 'Pending'
             ORDER BY rr.rideDate ASC";
 

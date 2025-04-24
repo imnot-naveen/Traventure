@@ -21,6 +21,7 @@ $data = json_decode(file_get_contents("php://input"));
 if (
   !empty($data->clientID) &&
   !empty($data->destination) &&
+  !empty($data->passengerCount) &&
   !empty($data->stationID) &&
   !empty($data->tripID) &&
   !empty($data->rideDate) 
@@ -28,6 +29,7 @@ if (
 
       // Validate input data
       $clientID = htmlspecialchars(strip_tags($data->clientID));
+      $passengerCount = htmlspecialchars(strip_tags($data->passengerCount));
       $destination = htmlspecialchars(strip_tags($data->destination));
       $stationID = htmlspecialchars(strip_tags($data->stationID));
       $tripID = htmlspecialchars(strip_tags($data->tripID));
@@ -35,6 +37,7 @@ if (
 
       $result = $request->createRideRequest(
         $clientID,
+        $passengerCount,
         $destination,
         $stationID,
         $tripID,
