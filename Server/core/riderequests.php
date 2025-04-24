@@ -44,15 +44,14 @@ class RideRequests {
 
     public function getRideRequestByDriver($username){
         try{
-            $query = "SELECT rr.* FROM " . $this->riderequests_table . " rr
+            $query = "SELECT rr.* , CONCAT(p.firstName, ' ', p.lastName) AS client_fullName, p.contactNo, p.email FROM " . $this->riderequests_table . " rr
             JOIN driver d ON d.assigned_station = rr.stationID 
             JOIN person p ON d.username = p.username
             WHERE d.username = :username 
             AND DATE(rr.rideDate) > CURRENT_DATE 
-            AND d.maxPassengers > rr.passengerCount
+            AND d.maxPassengers >= rr.passengerCount
             AND rr.status = 'Pending'
             ORDER BY rr.rideDate ASC";
-
 
             $stmt = $this->conn->prepare($query);
 

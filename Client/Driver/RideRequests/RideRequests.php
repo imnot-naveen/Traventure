@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Driver | Requests</title>
   <link rel="stylesheet" href="../Dashboard/dashboard.css">
+  <link rel="stylesheet" href="RideRequests.css">
 </head>
 <body>
 <div class="sidebar">
@@ -36,10 +37,8 @@
     <div class="main-content">
         <h2 class="dashboard-title">Ride Requests</h2>
         <div id="requests-container" class="requests-list">
-  <!-- Ride requests will appear here -->
-</div>
-
-
+        <!-- Ride requests will appear here -->
+        </div>
         </div>
     </div>
 
