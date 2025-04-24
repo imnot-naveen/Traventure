@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <a href="../BlogDetails/blogdetails.php?id=${post.id}" class="blog-link">
                                   <img src="../Public/${post.image}" alt="${post.title}" class="blog-image"/>
                                   <p class="intro">${post.intro}</p>
-                                </a>
+                                
   
                                 <!-- Comments Section -->
                                 <div class="comments-section">
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <button class="submit-comment">Submit</button>
                                     <div class="comment-list"></div>
                                 </div>
+                                
                             </div>
                         `;
                         
@@ -153,30 +154,4 @@ function deleteBlog(id) {
       });
   }
 
-  function deleteBlog(id) {
-    if (!confirm("Are you sure you want to delete this post?")) {
-        return;
-    }
-
-    fetch("../../Server/api/deleteblogs.php", {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: id }),
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        if (data.success) {
-            alert("Post deleted successfully");
-            fetchBlogs(); // Refresh the posts after deletion
-        } else {
-            alert(data.message || "Failed to delete post");
-        }
-    })
-    .catch((error) => {
-        console.error("Error:", error);
-        alert("An error occurred while deleting the post");
-    });
-}
-
+ 

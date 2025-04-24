@@ -54,15 +54,17 @@ body {
     object-fit: cover;
 }
 
-.user-details {
+
+  .user-info {
     display: flex;
-    flex-direction: column; /* Stack username and date vertically */
-    align-items: flex-start; /* Align items to the start horizontally */
+    align-items: center;
+    gap: 15px;
+    font-size: inherit;
   }
   
   .username {
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 2.5em;
     margin: 0;
    
   }
@@ -91,4 +93,112 @@ body {
     width: 100%;
     height: auto;
     border-radius: 10px;
+  }
+
+  .content{
+   
+    font-size: 1em;
+  }
+  /* Comments */
+  .comments-section {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9fc;
+    max-width: 800px;
+    margin: 50px auto;
+  }
+  
+  .comment-box {
+    flex-grow: 1;
+    background-color: #f9f9fc;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    max-width: 600px;
+    margin-left: 15px;
+  }
+  
+  .submit-comment {
+    align-self: flex-start;
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 15px;
+    margin-bottom: 5px;
+  }
+  
+  .submit-comment:hover {
+    background-color: #0056b3;
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  .comment-title {
+    margin-bottom: 5px;
+    margin-left: 15px;
+    margin-top: 5px;
+  }
+  
+  .comment {
+    position: relative;
+    padding: 10px;
+    margin-top: 20px;
+    background: #efefef;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+ 
+  .hidden {
+    display: none;
+  }
+
+  .comment-menu {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .comment-menu-options {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    top: 30px;
+    right: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+  }
+  
+  .comment-menu-options button {
+    background: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .comment-menu-options button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .comment-menu-options.hidden {
+    display: none;
   }

@@ -233,6 +233,7 @@ CREATE TABLE `person` (
   `username` varchar(255) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
+  `IDNumber` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contactNo` int(11) NOT NULL,
   `userType` varchar(255) NOT NULL,
@@ -243,13 +244,13 @@ CREATE TABLE `person` (
 -- Dumping data for table `person`
 --
 
-INSERT INTO `person` (`username`, `firstName`, `lastName`, `email`, `contactNo`, `userType`, `profile_picture`) VALUES
-('exampleUser', 'John', 'Doe', 'john@gmail.com', 123456789, 'Traveller', ''),
-('exampleUser2', 'Jane', 'Doe', 'jane@gmail.com', 123456789, 'Traveller', ''),
-('imnot_naveen', 'Naveen ', 'Harinda', 'naveenharinda2@gmail.com', 774554321, 'Traveller', ''),
-('test_cw', 'Tom', 'Tom', 'tom@gmail.com', 345768903, 'CW\r\n', ''),
-('test_d', 'jerry', 'jerry', 'jerry@gmail.com', 986958444, 'Driver', ''),
-('test_tsp', 'test', 'tester', 'test@test.com', 1234567890, 'TSP', '');
+INSERT INTO `person` (`username`, `firstName`, `lastName`, `IDNumber`, `email`, `contactNo`, `userType`, `profile_picture`) VALUES
+('exampleUser', 'John', 'Doe', '2002467382929', 'john@gmail.com', 123456789, 'Traveller', ''),
+('exampleUser2', 'Jane', 'Doe','200357839478','jane@gmail.com', 123456789, 'Traveller', ''),
+('imnot_naveen', 'Naveen ', 'Harinda', '200112200946', 'naveenharinda2@gmail.com', 774554321, 'Traveller', ''),
+('test_cw', 'Tom', 'Tom', '783629475869', 'tom@gmail.com', 345768903, 'CW\r\n', ''),
+('test_d', 'jerry', 'jerry', '574829485738' 'jerry@gmail.com', 986958444, 'Driver', ''),
+('test_tsp', 'test', 'tester', '925476138V  ', 'test@test.com', 1234567890, 'TSP', '');
 
 -- --------------------------------------------------------
 

@@ -28,14 +28,14 @@ $username = $_SESSION['username'];
     <nav id="navbar-placeholder"></nav>             
     <main>     
         <section>
-            <div class="heading">All Attractions</div>
+            <div class="heading">Interesting Activities</div>
             <div class="create-post-container">
                 <a id="create-post-btn" class="pill-link" href="../CWCreate/create.php">Create</a>
             </div>
             
-           <div class="search">
+           <!--<div class="search">
               <input type="text" name="text" id="searchCity" placeholder="Search by city"><button id="searchBtn" class="btn">Search</button>
-           </div>
+           </div>-->
            
             <div class="posts-wrapper">
                 <div class="post-card-container">
@@ -54,13 +54,13 @@ $username = $_SESSION['username'];
     </main>      
     <footer id="footer"></footer>
 
-  <script src="../Navbar/navbar.js"></script>
+  <script src="../CW Navbar/navbar.js"></script>
   <script src="manageposts.js"></script>
   <script src="../Footer/footer.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../Navbar/navbar.php')
+      fetch('../CW Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;

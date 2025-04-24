@@ -29,6 +29,8 @@ $username = $_SESSION['username'];
             <h1>Create Blog</h1>
             <form action="api/addblogs.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
+            <input type="hidden" id="author" name="author" value="<?php echo htmlspecialchars($username); ?>">
+
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required>
             </div>

@@ -20,13 +20,15 @@ class BlogAPI {
     
         try {
             // Fetch blog
-            $query = "SELECT id, title, intro, content, imageURL AS image, createdAt, updatedAt FROM blogs WHERE id = :id";
+            $query = "SELECT id, title, intro, content, imageURL AS image, author, createdAt, updatedAt FROM blogs WHERE id = :id";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             $blog = $stmt->fetch(PDO::FETCH_ASSOC);
     
             if ($blog) {
+                $blog['author'] = ucwords(strtolower($blog['author']));  // Ensure the name is properly capitalized
+
                 // Fetch comments
                 $commentQuery = "SELECT id, comment, createdAt FROM comments WHERE blogId = :id ORDER BY createdAt DESC";
                 $commentStmt = $this->conn->prepare($commentQuery);
