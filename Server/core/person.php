@@ -172,7 +172,7 @@ class Person {
     
                     // Add new destinations
                     if (!empty($this->destination_changes['add'])) {
-                        $insert_query = 'INSERT INTO userDestination (username, preferredDestination) 
+                        $insert_query = 'INSERT INTO userDestination (username, prefferedDestination) 
                                        VALUES (:username, :dest_id)';
                         $insert_stmt = $this->conn->prepare($insert_query);
     

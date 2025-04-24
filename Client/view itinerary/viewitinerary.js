@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error fetching user ID:", error);
         return null;
     }
-}
+  }
 
   // Get user details
   let userData = { full_name: "Guest User", id_number: "Not available" };
@@ -90,37 +90,45 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const itineraryContainer = document.getElementById("itinerary-container");
 
-  // Handle fare calculation
-  const start = parseInt(tripData.startStation);
-  const end = parseInt(tripData.endStation);
-  const difference = Math.abs(end - start);
+  // Updated fare calculation with the new API endpoint and logic
+  const fromStationId = tripData.startStation;
+  const toStationId = tripData.endStation;
   const travelClass = tripData.seatClass || "First Class"; // Using class from data or defaulting
+  const adults = parseInt(itineraryData.adults) || 0;
+  const children = parseInt(itineraryData.children) || 0;
 
-  let farePerAdult = 2000; // Default values
-  let farePerChild = 1400;
+  let farePerPassenger = 0;
   let totalFare = 0;
 
   try {
     const response = await fetch(
-      `http://localhost/traventure/server/api/getTicketFare.php?difference=${difference}&class=${travelClass}`
+      `http://localhost/Traventure/Server/api/calculateFare.php?from=${fromStationId}&to=${toStationId}&class=${travelClass}`
     );
-    const data = await response.json();
-
-    if (data.fare !== undefined) {
-      farePerAdult = parseInt(data.fare);
-      farePerChild = Math.floor(farePerAdult * 0.7); // 70% of adult fare
-
-      const adults = parseInt(itineraryData.adults) || 0;
-      const children = parseInt(itineraryData.children) || 0;
-
-      totalFare = adults * farePerAdult + children * farePerChild;
+    
+    if (response.ok) {
+      const data = await response.json();
+      
+      if (data && "total_fare" in data) {
+        farePerPassenger = data.total_fare;
+        // Calculate total fare: adults pay full fare, children pay half fare
+        totalFare = farePerPassenger * (adults + children * 0.5);
+      } else {
+        console.error('Error: No fare details returned.');
+        // Use default values if API fails
+        farePerPassenger = 2000;
+        totalFare = farePerPassenger * (adults + children * 0.5);
+      }
+    } else {
+      console.error("API Error:", "Error calculating fare.");
+      // Use default values if API fails
+      farePerPassenger = 2000;
+      totalFare = farePerPassenger * (adults + children * 0.5);
     }
   } catch (error) {
     console.error("Error fetching fare:", error);
     // Use default values if API fails
-    const adults = parseInt(itineraryData.adults) || 0;
-    const children = parseInt(itineraryData.children) || 0;
-    totalFare = adults * farePerAdult + children * farePerChild;
+    farePerPassenger = 2000;
+    totalFare = farePerPassenger * (adults + children * 0.5);
   }
 
   // Generate booking reference (using current date/time if not available)
@@ -151,14 +159,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     segments = [...segments, ...tripData.segments];
   }
 
+  // Get trip ID from localStorage or use a placeholder
+  const tripID = localStorage.getItem("tripID") || "pending";
+  
+  // Get the userID for the client ID in ride requests
+  const userID = await getUserIDFromSession();
+
   // Generate HTML for all segments
   let segmentsHTML = "";
   let segmentNumber = 1;
+  const totalSegments = segments.length;
 
   for (const segment of segments) {
     const originName = await getStationName(segment.originStationID);
     const destinationName = await getStationName(segment.destinationStationID);
     const formattedTime = segment.departureTime?.substring(0, 5) || "00:00";
+
+    // Create a JSON string of the segment data for the button
+    const segmentData = JSON.stringify({
+      clientID: userID,
+      destination: destinationName,
+      stationID: segment.destinationStationID,
+      tripID: tripID,
+      rideDate: tripData.searchDate || new Date().toISOString().split('T')[0],
+      originStationID: segment.originStationID,
+      originName: originName,
+      departureTime: segment.departureTime,
+      trainID: segment.trainID,
+      trainName: selectedTrains[segmentNumber - 1]?.name || segment.type + " Service",
+      segmentNumber: segmentNumber
+    });
+
+    // Add the "Request a Ride" button to all segments except the last one
+    const requestRideButton = segmentNumber < totalSegments 
+      ? `<button class="request-ride-button action-button" data-segment='${segmentData}'>Request a Ride</button>`
+      : '';
 
     segmentsHTML += `
       <div class="segment">
@@ -168,11 +203,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="segment-details">
           <div><strong>Train ID:</strong> ${segment.trainID || "N/A"}</div>
           <div><strong>Train Name:</strong> ${
-            selectedTrains[segmentNumber - 1].name || segment.type + " Service"
+            selectedTrains[segmentNumber - 1]?.name || segment.type + " Service"
           }</div>
           <div><strong>Departure Time:</strong> ${formattedTime} ${
       formattedTime < "12:00" ? "AM" : "PM"
     }</div>
+          ${requestRideButton}
         </div>
       </div>
     `;
@@ -213,12 +249,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           <li class="fare-details">
             <strong>Total Fare:</strong> Rs. ${totalFare.toFixed(2)}
             <ul class="fare-breakdown">
-              <li>Adult Fare: Rs. ${farePerAdult} × ${
+              <li>Adult Fare: Rs. ${farePerPassenger.toFixed(2)} × ${
     itineraryData.adults || 0
-  } = Rs. ${(farePerAdult * (itineraryData.adults || 0)).toFixed(2)}</li>
-              <li>Child Fare: Rs. ${farePerChild} × ${
+  } = Rs. ${(farePerPassenger * (itineraryData.adults || 0)).toFixed(2)}</li>
+              <li>Child Fare: Rs. ${(farePerPassenger * 0.5).toFixed(2)} × ${
     itineraryData.children || 0
-  } = Rs. ${(farePerChild * (itineraryData.children || 0)).toFixed(2)}</li>
+  } = Rs. ${(farePerPassenger * 0.5 * (itineraryData.children || 0)).toFixed(2)}</li>
             </ul>
           </li>
         </ul>
@@ -278,15 +314,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const username = userData.username;
 
-        // Get fare information that's already calculated in the frontend
-        const start = parseInt(tripData.startStation);
-        const end = parseInt(tripData.endStation);
-        const travelClass = tripData.seatClass || "First Class";
+        // Use the updated fare calculation
+        const adultFare = farePerPassenger;
+        const childFare = farePerPassenger * 0.5;
         const adults = parseInt(tripData.adults) || 1;
         const children = parseInt(tripData.children) || 0;
-
-        const adultFare = farePerAdult;
-        const childFare = farePerChild;
         const totalFare = adults * adultFare + children * childFare;
 
         // Prepare data for API
@@ -360,100 +392,99 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-  // ADD NEW BOOK TICKET BUTTON HANDLER
-  // Add this event listener for the Book Ticket button
-document.getElementById("book-ticket").addEventListener("click", async () => {
-  try {
-    // Get user details (reuse existing function)
-    let userData = { full_name: "Guest User", id_number: "Not available" };
+  // Book ticket button handler
+  document.getElementById("book-ticket").addEventListener("click", async () => {
     try {
-      userData = await getUserDetails();
-    } catch (error) {
-      console.error("Error fetching user details:", error);
-    }
-    
-    // First save the itinerary to get a booking reference if not already saved
-    const savedBookingReference = localStorage.getItem("bookingReference");
-    const savedTripID = localStorage.getItem("tripID");
-    
-    let bookingReference = savedBookingReference;
-    let tripID = savedTripID;
-    
-    if (!bookingReference || !tripID) {
-      // Save the trip first (using your existing save function)
-      await document.getElementById("save-itinerary").click();
+      // Get user details (reuse existing function)
+      let userData = { full_name: "Guest User", id_number: "Not available" };
+      try {
+        userData = await getUserDetails();
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
       
-      // Get the newly saved references
-      bookingReference = localStorage.getItem("bookingReference");
-      tripID = localStorage.getItem("tripID");
+      // First save the itinerary to get a booking reference if not already saved
+      const savedBookingReference = localStorage.getItem("bookingReference");
+      const savedTripID = localStorage.getItem("tripID");
+      
+      let bookingReference = savedBookingReference;
+      let tripID = savedTripID;
       
       if (!bookingReference || !tripID) {
-        throw new Error("Failed to save trip before payment");
-      }
-    }
-    
-    // Now proceed to payment using your existing Stripe API
-    const paymentData = {
-      amount: totalFare, // This variable is already defined in your code
-      bookingReference: bookingReference,
-      tripID: tripID
-    };
-    
-    console.log("Sending payment data to Stripe:", paymentData);
-    
-    // Call your existing Stripe session creation API
-    const response = await fetch("../../server/api/create_checkout_session.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(paymentData),
-    });
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    
-    const result = await response.json();
-    
-    if (result.id) {
-      // Redirect to Stripe Checkout using the session ID
-      // Stripe.js should be loaded on your page for this to work
-      const stripe = Stripe('pk_test_51RCy68QwgaoFWhBRVwTGwX9QkMDGiSKTNE1QGHYnM4YqSSTeIgdIlCTw34rqwYcIJxKT1jfXr6fkl5SM3ABac2mY00iwkPeUmO'); 
-      stripe.redirectToCheckout({
-        sessionId: result.id
-      }).then(function (result) {
-        if (result.error) {
-          alert(result.error.message);
+        // Save the trip first (using your existing save function)
+        await document.getElementById("save-itinerary").click();
+        
+        // Get the newly saved references
+        bookingReference = localStorage.getItem("bookingReference");
+        tripID = localStorage.getItem("tripID");
+        
+        if (!bookingReference || !tripID) {
+          throw new Error("Failed to save trip before payment");
         }
+      }
+      
+      // Now proceed to payment using your existing Stripe API
+      const paymentData = {
+        amount: totalFare, // This variable is already defined in your code
+        bookingReference: bookingReference,
+        tripID: tripID
+      };
+      
+      console.log("Sending payment data to Stripe:", paymentData);
+      
+      // Call your existing Stripe session creation API
+      const response = await fetch("../../server/api/create_checkout_session.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(paymentData),
       });
-    } else if (result.error) {
-      throw new Error(result.error);
-    } else {
-      throw new Error("Invalid response from server");
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      
+      if (result.id) {
+        // Redirect to Stripe Checkout using the session ID
+        // Stripe.js should be loaded on your page for this to work
+        const stripe = Stripe('pk_test_51RCy68QwgaoFWhBRVwTGwX9QkMDGiSKTNE1QGHYnM4YqSSTeIgdIlCTw34rqwYcIJxKT1jfXr6fkl5SM3ABac2mY00iwkPeUmO'); 
+        stripe.redirectToCheckout({
+          sessionId: result.id
+        }).then(function (result) {
+          if (result.error) {
+            alert(result.error.message);
+          }
+        });
+      } else if (result.error) {
+        throw new Error(result.error);
+      } else {
+        throw new Error("Invalid response from server");
+      }
+    } catch (error) {
+      console.error("Error processing payment:", error);
+      alert(`Payment processing failed: ${error.message}`);
     }
-  } catch (error) {
-    console.error("Error processing payment:", error);
-    alert(`Payment processing failed: ${error.message}`);
-  }
-});
+  });
 
-const bookingDetails = {
-  userID: await getUserIDFromSession(),
-  trainID: tripData.trainID,
-  start_station: tripData.startStation,
-  destination_station: tripData.endStation,
-  class: tripData.seatClass,
-  no_of_passengers: tripData.children + tripData.adults, 
-  kidsCount: tripData.children,
-  total_fare: totalFare,
-  paymentMethod: "Card",
-  paymentStatus: "Paid",
-  bookingDate: new Date().toISOString().split("T")[0]
-};
+  const bookingDetails = {
+    userID: await getUserIDFromSession(),
+    trainID: selectedTrains.length > 0 ? selectedTrains[0].trainID : null,
+    start_station: tripData.startStation,
+    destination_station: tripData.endStation,
+    class: tripData.seatClass,
+    no_of_passengers: parseInt(tripData.adults) || 0, 
+    kidsCount: parseInt(tripData.children) || 0,
+    total_fare: totalFare,
+    paymentMethod: "Card",
+    paymentStatus: "Paid",
+    bookingDate: new Date().toISOString().split("T")[0]
+  };
 
-localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
-console.log(bookingDetails);
+  localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
+  console.log(bookingDetails);
 
   document.getElementById("export-pdf").addEventListener("click", () => {
     alert("Exporting PDF... This feature will be available soon.");
@@ -461,5 +492,57 @@ console.log(bookingDetails);
 
   document.getElementById("print-ticket").addEventListener("click", () => {
     window.print();
+  });
+
+  // Add event listener for "Request a Ride" buttons
+  document.querySelectorAll(".request-ride-button").forEach(button => {
+    button.addEventListener("click", async function() {
+      try {
+        // Parse the segment data
+        const segmentData = JSON.parse(this.getAttribute("data-segment"));
+        console.log("Requesting ride for segment:", segmentData);
+        
+        // Extract required data for the API call
+        const rideRequestData = {
+          clientID: segmentData.clientID,
+          destination: segmentData.destination,
+          stationID: segmentData.stationID,
+          tripID: segmentData.tripID,
+          rideDate: segmentData.rideDate
+        };
+        
+        // Show loading indicator or message
+        this.textContent = "Requesting...";
+        this.disabled = true;
+        
+        // Call the ride request API
+        const response = await fetch("../../server/api/createRidereq.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(rideRequestData)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+          // Show success message
+          alert(`Ride request created successfully! ${result.message || ''}`);
+          this.textContent = "Ride Requested ✓";
+          this.classList.add("request-success");
+        } else {
+          // Show error message
+          alert(`Error: ${result.message || 'Failed to create ride request'}`);
+          this.textContent = "Request a Ride";
+          this.disabled = false;
+        }
+      } catch (error) {
+        console.error("Error processing ride request:", error);
+        alert("Failed to process ride request. Please try again.");
+        this.textContent = "Request a Ride";
+        this.disabled = false;
+      }
+    });
   });
 });
