@@ -34,10 +34,10 @@ try {
     if (!$stmt->execute()) {
         throw new Exception('Failed to insert destination type.');
     }
-
+    
     // Commit transaction
     $db->commit();
-
+    
     // Return success response with booking reference
     echo json_encode([
         'success' => true, 
