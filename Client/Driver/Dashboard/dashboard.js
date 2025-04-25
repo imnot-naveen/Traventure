@@ -31,8 +31,8 @@ function handleLogout(event) {
       .then((data) => {
         if (data.success) {
           // Successful logout
-          alert("Logged out successfully"); // Temporary alert for debugging
-          window.location.href = "../login/loginpage.html";
+          alert("Logged out successfully"); 
+          window.location.href = "../../login/loginpage.html";
         } else {
           // Logout failed
           alert(data.message || "Logout failed");

@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => {
                 console.error("Error fetching user data:", error);
                 document.getElementById("user-count").textContent = "0";
-                document.getElementById("user-growth").textContent = "Error";
             });
     }
 
@@ -133,7 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (result.success) {
                 const count = result.data.count;
                 document.getElementById("bookingCount").textContent = count;
-                document.getElementById("bookingGrowth").textContent = "+25%"; 
             } else {
                 document.getElementById("bookingCount").textContent = "0";
             }

@@ -27,7 +27,7 @@
                     Ride History
                 </a>
             </li>
-        </ul>
+        </ul> 
 
         <<a href="#" class="logout-btn" title="Logout">
     <img src="logout-icon.png" alt="Logout" style="width: 20px; height: 20px;">

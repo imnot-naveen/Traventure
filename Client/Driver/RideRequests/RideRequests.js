@@ -44,7 +44,7 @@ fetch('http://localhost/Traventure/Server/api/getRequestByDriver.php', {
   })
   .catch(err => {
     document.getElementById('requests-container').innerHTML = `<p class="error">Fetch error: ${err}</p>`;
-  });
+  }); 
 
 // Function to format date nicely
 function formatDate(dateString) {
@@ -54,11 +54,10 @@ function formatDate(dateString) {
 
 // Function to accept a ride request
 function acceptRequest(requestId, buttonElement) {
-  // Disable the button to prevent multiple clicks
   buttonElement.disabled = true;
   buttonElement.textContent = 'Processing...';
   
-  fetch('http://localhost/Traventure/Server/api/acceptRequest.php', {
+  fetch('http://localhost/Traventure/Server/api/acceptRideRequest.php', {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -69,11 +68,13 @@ function acceptRequest(requestId, buttonElement) {
     .then(res => res.json())
     .then(data => {
       if (data.success) {
-        // Update the UI to show the request was accepted
         const card = buttonElement.closest('.request-card');
         card.classList.add('accepted');
         buttonElement.textContent = 'Accepted ✓';
         buttonElement.classList.add('accepted-btn');
+
+        // Show success alert
+        alert('Ride request accepted successfully!');
         
         // You could also choose to remove the card after a delay
         setTimeout(() => {
