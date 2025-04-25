@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="animated-text" id="animated-text">
+      <div class="animated-text">
         <span>Your Journey Starts Here</span>
       </div>
       <div class="form-container">
@@ -33,15 +33,15 @@
           </div>
           <button type="submit" class="submit-button">Log in</button>
         </form>
-        <form id="signup-form" style="display: none">
 
-          <!-- Hide signup form by default -->
+        <form id="signup-form">
           <div class="form-group">
             <label for="new-username">Username</label>
             <input type="text" id="new-username" name="new-username" required />
             <span class="error-message" id="username-error"></span>
           </div>
-          
+
+          <div class="names">
             <div class="form-group">
               <label for="new-firstName">First Name</label>
               <input
@@ -63,11 +63,13 @@
               <span class="error-message" id="lastName-error"></span>
             </div>
           </div>
+
           <div class="form-group">
-            <label for="idNumber">ID(NIC/Passport) Number</label>
+            <label for="new-idNumber">ID(NIC/Passport) Number</label>
             <input type="text" id="new-idNumber" name="new-idNumber" required />
             <span class="error-message" id="idNumber-error"></span>
           </div>
+
           <div class="form-group">
             <label for="new-contact">Contact Number</label>
             <input
@@ -79,11 +81,13 @@
             />
             <span class="error-message" id="contact-error"></span>
           </div>
+
           <div class="form-group">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required />
             <span class="error-message" id="email-error"></span>
           </div>
+
           <div class="names">
             <div class="form-group">
               <label for="new-password">Password</label>
@@ -106,6 +110,7 @@
               <span class="error-message" id="confirm-password-error"></span>
             </div>
           </div>
+
           <button type="submit" class="submit-button">Sign up</button>
         </form>
       </div>

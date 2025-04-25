@@ -27,7 +27,6 @@ body {
     position: relative;
     z-index: 1;
     display: flex;
-    height: 80vh;
 }
 
 .animated-text {
@@ -116,12 +115,10 @@ label {
 }
 
 
-.names input {
-    width: 250px;
-}
+
 
 input {
-    width: 500px;
+    width: 100%;
     padding: 10px 13px;
     border: 1px solid #ddd;
     border-radius: 25px;
