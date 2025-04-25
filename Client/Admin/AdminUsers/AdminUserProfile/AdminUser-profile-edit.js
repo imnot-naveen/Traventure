@@ -1,12 +1,12 @@
 // Get DOM elements
-const updateModal = document.getElementById("updateuserModal");
+const updateModal = document.getElementById("updateUserModal");
 const openModalBtn = document.querySelector(".update-button");
 const closeModalBtn = document.querySelector(".close-u");
-const updateForm = document.getElementById("updateuserForm");
+const updateForm = document.getElementById("updateUserForm");
 
 // Function to fetch user details and populate the modal
 function fetchUserDetails(userId) {
-  fetch(`../../../../Server/api/adminuserUpdate.php?userid=${userId}`)
+  fetch(`../../../../Server/api/adminUserUpdate.php?userid=${userId}`)
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
@@ -56,7 +56,7 @@ updateForm.addEventListener("submit", (event) => {
     contact_number: document.getElementById("userPhone").value,
   };
 
-  fetch("../../../../Server/api/adminuserUpdate.php", {
+  fetch("../../../../Server/api/adminUserUpdate.php", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

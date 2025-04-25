@@ -17,25 +17,29 @@ class User extends Person{
 
   public function getUserDetails($userid) {
     try {
-        $query = 'SELECT u.username, p.firstName AS first_name, p.lastName AS last_name, 
-                         p.email, p.contactNo AS contact_number, u.userID AS userid
-                  FROM ' . $this->user_table . ' u
-                  INNER JOIN ' . $this->person_table . ' p ON u.username = p.username
-                  WHERE u.userID = :userid LIMIT 1';  
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':userid', $userid, PDO::PARAM_INT); 
-
-        if ($stmt->execute() && $stmt->rowCount() > 0) {
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+        if (empty($userid)) {
+            return null;
         }
 
-        return null;
+        $query = 'SELECT u.username, p.firstName AS first_name, p.lastName AS last_name, 
+                         p.email, p.contactNo AS contact_number, u.userID AS userid, status
+                  FROM ' . $this->user_table . ' AS u
+                  INNER JOIN ' . $this->person_table . ' AS p ON u.username = p.username
+                  WHERE u.userID = :userid
+                  LIMIT 1';
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
+
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ?: null;
+
     } catch (PDOException $e) {
-        error_log("Database Error: " . $e->getMessage()); 
+        error_log("Database Error: " . $e->getMessage());
         return null;
     }
-  }
+}
 
   // Get monthly user registration counts
   public function getUserGrowthByMonth() {
@@ -198,5 +202,73 @@ class User extends Person{
         return false;
     }
   }
+
+  public function updateRegisteredUser() {
+    try {
+        // Initialize query parts
+        $setParts = [];
+        $params = [];
+
+        // Dynamically build query parts for provided fields
+        if (!empty($this->first_name)) {
+            $setParts[] = 'p.firstName = :first_name';
+            $params[':first_name'] = $this->first_name;
+        }
+        if (!empty($this->last_name)) {
+            $setParts[] = 'p.lastName = :last_name';
+            $params[':last_name'] = $this->last_name;
+        }
+        if (!empty($this->contact_number)) {
+            $setParts[] = 'p.contactNo = :contact_number';
+            $params[':contact_number'] = $this->contact_number;
+        }
+
+        // Ensure at least one field is being updated
+        if (empty($setParts)) {
+            return ['success' => false, 'message' => 'No fields provided for update.'];
+        }
+
+        // Finalize query
+        $query = 'UPDATE ' . $this->user_table . ' r 
+                  INNER JOIN ' . $this->person_table . ' p 
+                  ON r.username = p.username 
+                  SET ' . implode(', ', $setParts) . ' 
+                  WHERE r.userId = :userId';
+
+        $params[':userId'] = $this->userid;
+
+        // Prepare and execute
+        $stmt = $this->conn->prepare($query);
+        if ($stmt->execute($params)) {
+            return ['success' => true, 'message' => 'Registered user updated successfully.'];
+        }
+
+        return ['success' => false, 'message' => 'Failed to update registered user.'];
+    } catch (PDOException $e) {
+        return ['success' => false, 'message' => $e->getMessage()];
+    }
+}
+
+public function updateStatus($userid, $status) {
+  try {
+      // Corrected query with consistent placeholder naming
+      $query = 'UPDATE ' . $this->user_table . ' SET status = :status WHERE userId = :userid';
+      $stmt = $this->conn->prepare($query);
+
+      // Correct parameter binding
+      $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+      $stmt->bindParam(':userid', $userid, PDO::PARAM_STR);
+
+      // Execute the statement and check success
+      if ($stmt->execute()) {
+          return true;
+      }
+      return false;
+  } catch (PDOException $e) {
+      error_log("Error updating status: " . $e->getMessage());
+      return false;
+  }
+}
+
 }
  ?>

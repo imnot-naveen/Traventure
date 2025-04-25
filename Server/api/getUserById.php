@@ -17,7 +17,7 @@ $user = new User($db);
 if (isset($_GET['userid'])) {
   $userid = htmlspecialchars(strip_tags($_GET['userid']));
 
-  $result = $user->getUserById($userid);
+  $result = $user->getUserDetails($userid);
 
   if ($result) {
     http_response_code(200);
