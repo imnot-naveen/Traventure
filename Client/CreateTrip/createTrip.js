@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  localStorage.clear(); //clearing the local storage before anything
+
   const startStationSelect = document.getElementById("start-station");
   const endStationSelect = document.getElementById("end-station");
   const totalPassengersInput = document.getElementById("total-passengers");
