@@ -42,25 +42,42 @@ class User extends Person{
 }
 
   // Get monthly user registration counts
-  public function getUserGrowthByMonth() {
+  public function getMonthlyUserCounts() {
     try {
         $query = "
-        SELECT DATE_FORMAT(p.created_at, '%Y-%m') AS month, COUNT(*) AS user_count
-        FROM {$this->user_table} u
-        INNER JOIN {$this->person_table} p ON u.username = p.username
-        GROUP BY month
-        ORDER BY month ASC
-    ";
+            SELECT 
+                MONTH(p.created_at) AS month,
+                COUNT(*) AS user_count
+            FROM 
+                {$this->user_table} u
+            JOIN 
+                {$this->person_table} p ON u.username = p.username
+            WHERE 
+                YEAR(p.created_at) = YEAR(CURDATE())
+            GROUP BY 
+                MONTH(p.created_at)
+            ORDER BY 
+                month
+        ";
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Optional: convert month numbers to names
+        foreach ($result as &$row) {
+            $row['month_name'] = date("F", mktime(0, 0, 0, $row['month'], 1));
+        }
+
+        return $result;
+
     } catch (PDOException $e) {
-        error_log("User Growth Fetch Error: " . $e->getMessage());
+        error_log("Monthly User Count Error: " . $e->getMessage());
         return [];
     }
-  }
+}
+
 
 
   public function getAllUsers() {

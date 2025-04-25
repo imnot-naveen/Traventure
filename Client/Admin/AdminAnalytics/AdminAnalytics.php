@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../Recent_updates/Recent.css">
   <link rel="stylesheet" href="../LogoutModal/logoutModal.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body> 
   <div class="container">
@@ -54,12 +55,12 @@
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Income</h3>
-                            <h1>$10,123</h1>
+                            <h3>Total Booking Revenue</h3>
+                            <h1 id="revenue">$10,123</h1>
                         </div>
                     </div>
                     <small class="text-muted">
-                        Last 24 Hours
+                        Last Month
                     </small>
                 </div>
 
@@ -67,20 +68,18 @@
             <!-- END OF INSIGHTS -->
              <div class="charts">
                 <div class="chart-container">
-                    <h2>User Growth</h2>
-                        <canvas id="lineChart" width="400" height="400"></canvas>
-                 </div>
-                 <div class="chart-container .booking-chart">
-                    <h2>Bookings</h2>
-                        <canvas id="lineChart2" width="400" height="400"></canvas>
-                 </div>
+                    <h2>Yearly Booking Trend</h2>
+                    <canvas id="bookingChart" width="600" height="200"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h2>Yearly User Growth</h2>
+                    <canvas id="userChart" width="600" height="200"></canvas>
+                </div>
              </div> 
              <div class="Downloads">
-                <label for="monthSelect">Select Month: </label>
-                <input type="month" id="monthSelect" name="monthSelect">
-
-                <button class="Download" id="Booking">Download Bookings</button>
-                <button class="Download" id="Users">Download User Growth</button>
+                <h2>Download Monthly Reports</h2>
+                <p>You can download the latest monthly report PDF for bookings, users, and trips.</p>
+                <button id="downloadReport">Download Report</button>
               </div>              
         </main>
 
@@ -91,10 +90,10 @@
     <?php include '../LogoutModal/logoutModal.php'; ?>
 
  <script src="AdminAnalytics.js"></script>
- <script src="AdminAnalytics-lineChart.js"></script>
- <script src="AdminAnalytics-lineChart2.js"></script>
+ <script src="userGrowth.js"></script>
  <script src="../Recent_updates/Recent.js"></script>
- <script src="DownloadCSV.js"></script>
+ <script src="DownloadPDF.js"></script>
+ <script src="bookingGrowth.js"></script>
  <script src="../LogoutModal/logoutModal.js"></script>
 </body>
 </html>

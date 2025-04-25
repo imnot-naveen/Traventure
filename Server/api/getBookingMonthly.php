@@ -13,10 +13,10 @@ header('Content-Type: application/json');
 include_once('../core/initialize.php');
 
 // Instantiate User object
-$user = new User($db);
+$booking = new Bookings($db);
 
 // Fetch user growth
-$data = $user->getMonthlyUserCounts();
+$data = $booking->getMonthlyBookingCounts();
 
 if (!empty($data)) {
     http_response_code(200);

@@ -76,7 +76,7 @@ fetch('../../../Server/api/driverCount.php')
             countElement.textContent = `${data.count}`;
         } else {
             console.error('Error: Unexpected response format or no count field');
-            document.getElementById('tspCount').textContent = "0";
+            document.getElementById('driverCount').textContent = "0";
         }
     })
-    .catch(error => console.error('Error fetching TSP count:', error));
+    .catch(error => console.error('Error fetching Driver count:', error));
