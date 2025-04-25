@@ -9,6 +9,7 @@ document.querySelector(".post-button").addEventListener("click", async function 
   const intro = document.getElementById("intro").value.trim();
   const content = document.getElementById("content").value.trim();
   const image = document.getElementById("photos").files[0]; // Image file input
+  const author = document.getElementById("author").value;
 
   // Validate fields
   if (!title || !intro || !content) {
@@ -20,6 +21,7 @@ document.querySelector(".post-button").addEventListener("click", async function 
   formData.append("title", title);
   formData.append("intro", intro);
   formData.append("content", content);
+  formData.append("author", author);
 
   if (image) {
     formData.append("image", image);

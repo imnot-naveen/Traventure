@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2025 at 07:10 AM
+-- Generation Time: Apr 24, 2025 at 01:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,8 +66,23 @@ CREATE TABLE `blogs` (
   `content` text NOT NULL,
   `imageURL` varchar(500) DEFAULT NULL,
   `createdAt` datetime DEFAULT current_timestamp(),
-  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` enum('under review','accepted','','') NOT NULL DEFAULT 'under review',
+  `author` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `blogs`
+--
+
+INSERT INTO `blogs` (`id`, `title`, `intro`, `content`, `imageURL`, `createdAt`, `updatedAt`, `status`, `author`) VALUES
+(5, 'njjn', 'jm', 'ujn', '../../Public/Uploads/download (3).jpeg', '2025-04-23 16:12:34', '2025-04-23 16:15:07', '', ''),
+(7, 'yh', 'jn', 'nnjm', '../../Public/Uploads/download (2).jpeg', '2025-04-23 16:17:04', '2025-04-23 16:17:22', '', ''),
+(9, 'daf', 'hsxb', 'shs', '../../Public/Uploads/download (2).jpeg', '2025-04-23 16:34:51', '2025-04-24 10:07:51', 'accepted', 'test_cw'),
+(10, 'tdg', 'csj', 'csj', '../../Public/Uploads/download (3).jpeg', '2025-04-23 23:58:20', '2025-04-24 10:44:34', 'accepted', 'test_d'),
+(15, 're', 're', 're', '../../Public/Uploads/download (1).jpeg', '2025-04-24 10:58:27', '2025-04-24 10:58:49', 'accepted', 'test_cw'),
+(16, 'dc', 'dshs', 'dji', '../../Public/Uploads/nature.jpg', '2025-04-24 11:00:06', '2025-04-24 11:00:30', 'accepted', 'sam'),
+(17, 'Beach', 'njn', 'jn', '../../Public/Uploads/download (2).jpeg', '2025-04-24 11:05:44', '2025-04-24 14:54:56', 'accepted', 'test_cw');
 
 -- --------------------------------------------------------
 
@@ -83,6 +98,39 @@ CREATE TABLE `booking` (
   `paymentStatus` varchar(20) NOT NULL,
   `bookingDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `blogId` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `author` varchar(255) NOT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
+  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `blogId`, `comment`, `author`, `createdAt`, `updatedAt`) VALUES
+(2, 17, 'de', 'test_cw', '2025-04-24 14:21:01', '2025-04-24 14:21:01'),
+(3, 17, 'rf', 'test_cw', '2025-04-24 14:24:10', '2025-04-24 14:24:10'),
+(4, 17, 'gh', 'test_cw', '2025-04-24 14:32:57', '2025-04-24 14:32:57'),
+(5, 17, 'nb', 'test_cw', '2025-04-24 14:33:01', '2025-04-24 14:33:01'),
+(6, 17, 'gh', 'test_cw', '2025-04-24 14:38:01', '2025-04-24 14:38:01'),
+(7, 17, 'hj', 'test_cw', '2025-04-24 14:38:05', '2025-04-24 14:38:05'),
+(8, 17, 'ij', 'test_cw', '2025-04-24 14:38:41', '2025-04-24 14:38:41'),
+(9, 17, 'ygh', 'test_cw', '2025-04-24 14:39:15', '2025-04-24 14:39:15'),
+(10, 17, 'ik', 'test_cw', '2025-04-24 14:39:19', '2025-04-24 14:39:19'),
+(11, 17, 'yh', 'test_cw', '2025-04-24 15:05:05', '2025-04-24 15:05:05'),
+(12, 17, 'reee', 'test_cw', '2025-04-24 15:23:29', '2025-04-24 15:23:29'),
+(13, 17, 'tr', 'test_cw', '2025-04-24 15:36:12', '2025-04-24 15:36:12');
 
 -- --------------------------------------------------------
 
@@ -140,6 +188,9 @@ CREATE TABLE `destinationphotos` (
 --
 
 INSERT INTO `destinationphotos` (`destination`, `photoName`) VALUES
+(1, 'Galle-Fort.jpg'),
+(3, 'mount-lavinia-beach.jpg'),
+(3, 'mount lavinia beach.jpg'),
 (1, 'Galle-Fort.jpg'),
 (3, 'mount-lavinia-beach.jpg'),
 (3, 'mount lavinia beach.jpg');
@@ -219,6 +270,7 @@ INSERT INTO `login` (`username`, `email`, `password`, `userType`) VALUES
 ('exampleUser', 'john@gmail.com', '$2y$10$WuC8oD2QqXqyiRC.4brkwOAADS.E4Vk6uNbYRirSBUl2Ru1N5m.dC', 'Traveller '),
 ('exampleUser2', 'jane@gmail.com', '$2y$10$v0uZ8cJkSpwcwQNuyf3KQ.JbK4xqMExt2YbAWCkjXZDBBjNkFQ/zy', 'Traveller'),
 ('imnot_naveen', 'naveenharinda2@gmail.com', '$2y$10$V1gFv0ZxZJIlaH/oOG/OAuQFJfhKwyovsC8Km87zUjcqwX4wuYjIe', 'Traveller'),
+('sam', 'sam@gmail.com', '$2y$10$sA0pYbzusSLYiYLE3Sgz5OmdnYjt5Az05YaQQqz7YX4NGB6qaBGWq', 'Traveller'),
 ('test_cw', 'tom@gmail.com', '$2y$10$H1WXoLn16BIvF6v9s/O3A.clCmudK7z7iW8cYoegD3ESWYv3HCg6K', 'CW'),
 ('test_d', 'jerry@gmail.com', '$2y$10$4X0MkxiXQzTsEOSuEB4iCuBQwMDle.Z8r5Tj3BrhcpjtGTq134aeS', 'Driver'),
 ('test_tsp', 'test@test.com', '$2y$10$XRcPo4XFfhroAoXk80iIQe3obfEmjLTxhH1ayW8dn8GSQrMstI6B2', 'TSP');
@@ -233,6 +285,7 @@ CREATE TABLE `person` (
   `username` varchar(255) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
+  `IDNumber` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contactNo` int(11) NOT NULL,
   `userType` varchar(255) NOT NULL,
@@ -243,13 +296,14 @@ CREATE TABLE `person` (
 -- Dumping data for table `person`
 --
 
-INSERT INTO `person` (`username`, `firstName`, `lastName`, `email`, `contactNo`, `userType`, `profile_picture`) VALUES
-('exampleUser', 'John', 'Doe', 'john@gmail.com', 123456789, 'Traveller', ''),
-('exampleUser2', 'Jane', 'Doe', 'jane@gmail.com', 123456789, 'Traveller', ''),
-('imnot_naveen', 'Naveen ', 'Harinda', 'naveenharinda2@gmail.com', 774554321, 'Traveller', ''),
-('test_cw', 'Tom', 'Tom', 'tom@gmail.com', 345768903, 'CW\r\n', ''),
-('test_d', 'jerry', 'jerry', 'jerry@gmail.com', 986958444, 'Driver', ''),
-('test_tsp', 'test', 'tester', 'test@test.com', 1234567890, 'TSP', '');
+INSERT INTO `person` (`username`, `firstName`, `lastName`, `IDNumber`, `email`, `contactNo`, `userType`, `profile_picture`) VALUES
+('exampleUser', 'John', 'Doe', '453748294759', 'john@gmail.com', 123456789, 'Traveller', ''),
+('exampleUser2', 'Jane', 'Doe', '453748294758', 'jane@gmail.com', 123456789, 'Traveller', ''),
+('imnot_naveen', 'Naveen ', 'Harinda', '200112200946', 'naveenharinda2@gmail.com', 774554321, 'Traveller', ''),
+('sam', 'tom', 'tom', '200112200946', 'sam@gmail.com', 345768903, 'Traveller', ''),
+('test_cw', 'Tom', 'Tom', '200118900946', 'tom@gmail.com', 345768903, 'CW\r\n', ''),
+('test_d', 'jerry', 'jerry', '454568294758', 'jerry@gmail.com', 986958444, 'Driver', ''),
+('test_tsp', 'test', 'tester', '200118900234', 'test@test.com', 1234567890, 'TSP', '');
 
 -- --------------------------------------------------------
 
@@ -474,6 +528,13 @@ INSERT INTO `trainstops` (`trainID`, `stationid`, `arrivaltime`, `departuretime`
 (1, 104, '21:32:00', '21:34:00'),
 (2, 101, '15:44:00', '15:46:00'),
 (2, 102, '15:47:00', '15:48:00'),
+(2, 103, '15:55:00', '15:56:00'),
+(1, 101, '21:20:00', '21:24:00'),
+(1, 102, '21:26:00', '21:28:00'),
+(1, 103, '21:30:00', '21:31:00'),
+(1, 104, '21:32:00', '21:34:00'),
+(2, 101, '15:44:00', '15:46:00'),
+(2, 102, '15:47:00', '15:48:00'),
 (2, 103, '15:55:00', '15:56:00');
 
 -- --------------------------------------------------------
@@ -534,11 +595,26 @@ ALTER TABLE `blogposts`
   ADD PRIMARY KEY (`blog_id`);
 
 --
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `author` (`author`);
+
+--
 -- Indexes for table `booking`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`bookingID`),
   ADD KEY `booking_userid` (`userID`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `blogId` (`blogId`),
+  ADD KEY `fk_comments_author` (`author`);
 
 --
 -- Indexes for table `contentwriter`
@@ -682,6 +758,18 @@ ALTER TABLE `blogposts`
   MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `destination`
 --
 ALTER TABLE `destination`
@@ -710,10 +798,22 @@ ALTER TABLE `registereduser`
 --
 
 --
+-- Constraints for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD CONSTRAINT `blogs_ibfk_1` FOREIGN KEY (`author`) REFERENCES `person` (`username`);
+
+--
 -- Constraints for table `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_userid` FOREIGN KEY (`userID`) REFERENCES `registereduser` (`userId`);
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `fk_comments_author` FOREIGN KEY (`author`) REFERENCES `person` (`username`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `contentwriter`

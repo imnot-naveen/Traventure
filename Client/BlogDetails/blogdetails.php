@@ -25,9 +25,12 @@ $username = $_SESSION['username'];
     <div class="blog-details-container hidden">
       <div class="blog-post">
        <div id="post-header">
-       <img src="../assets/icons/user.png" alt="Profile" class="profile"/>
-        <p class="username">
+        <div class="user-info">
+          <img src="../assets/icons/user.png" alt="Profile" class="profile"/>
+          <p class="username"></p>
+        </div>
         <p class="date"></p>
+        
         <h1 class="title"></h1>
         <p class="intro"></p>
         <div class="image-container">
@@ -35,7 +38,15 @@ $username = $_SESSION['username'];
         </div>
         <p class="content"></p>
        </div>
+          <!-- Comments Section 
+      <div class="comments-section">
+            <p class="comment-title">Comments <span class="comment-count">0</span></p>
+            <textarea class="comment-box" placeholder="Leave a comment..."></textarea>
+            <button class="submit-comment">Submit</button>
+            <div class="comment-list"></div>
+          </div>-->
       </div>
+      
    </div>
 
   <footer id="footer"></footer>

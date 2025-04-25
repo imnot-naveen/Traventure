@@ -20,4 +20,6 @@ require_once(CORE_PATH.DS. "blogpost.php");
 require_once(CORE_PATH.DS. "tsp.php");
 require_once(CORE_PATH.DS. "train.php");
 require_once(CORE_PATH.DS. "blogs.php");
+require_once(CORE_PATH.DS. "comments.php");
+
 ?>

@@ -1,6 +1,7 @@
 <?php
 // Include database and necessary initialization files
 include_once('../core/initialize.php');
+session_start();
 header('Content-Type: application/json');
 
 // Ensure the request method is POST
@@ -8,6 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
     exit();
 }
+
+$author = $_SESSION['username']; // logged-in username
 
 // Validate required fields
 if (empty($_POST['title']) || empty($_POST['intro']) || empty($_POST['content'])) {
@@ -29,8 +32,8 @@ try {
     }
 
     // Prepare query to insert blog post
-    $query = 'INSERT INTO blogs (title, intro, content, imageURL, createdAt, updatedAt) 
-              VALUES (:title, :intro, :content, :imageURL, NOW(), NOW())';
+    $query = 'INSERT INTO blogs (title, intro, content, imageURL, author, createdAt, updatedAt) 
+              VALUES (:title, :intro, :content, :imageURL, :author, NOW(), NOW())';
     $stmt = $db->prepare($query);
 
     // Bind parameters
@@ -38,6 +41,7 @@ try {
     $stmt->bindParam(':intro', $_POST['intro']);
     $stmt->bindParam(':content', $_POST['content']);
     $stmt->bindParam(':imageURL', $imageURL);
+    $stmt->bindParam(':author', $author);
 
     // Execute the query
     if ($stmt->execute()) {

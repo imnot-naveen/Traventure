@@ -48,7 +48,18 @@ class GetAllBlogsAPI {
             $stmt->execute();
             
             // Fetch all rows as associative array
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $blogs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Format the author's name (capitalize first letter)
+            foreach ($blogs as &$blog) {
+                // Check if author exists and apply formatting
+                if (isset($blog['author'])) {
+                    $blog['author'] = ucfirst(strtolower($blog['author']));  // Capitalize first letter
+                }
+            }
+
+            return $blogs;
+
         } catch (PDOException $e) {
             // Return error message if query fails
             return array('error' => 'Database query failed: ' . $e->getMessage());

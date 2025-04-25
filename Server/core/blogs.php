@@ -9,32 +9,46 @@ class Blog {
 
     // Get all blogs
     public function getAllBlogs() {
-        $query = 'SELECT id, title, intro, content, imageURL, createdAt, updatedAt FROM ' . $this->table . ' ORDER BY createdAt DESC';
+        $query = 'SELECT b.id, b.title, b.intro, b.content, b.imageURL, b.createdAt, b.updatedAt,
+                         p.username AS author_username, p.fullname AS author_name
+                  FROM ' . $this->table . ' b
+                  JOIN Person p ON b.author = p.username
+                  ORDER BY b.createdAt DESC';
+        
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    // Get single blog by ID
+    
+    // Get blog by id
     public function getBlogById($id) {
-        $query = 'SELECT id, title, intro, content, imageURL, createdAt, updatedAt 
-                  FROM ' . $this->table . ' WHERE id = :id LIMIT 1';
+        $query = 'SELECT b.id, b.title, b.intro, b.content, b.imageURL, b.createdAt, b.updatedAt,
+                         p.username AS author_username, p.fullname AS author_name
+                  FROM ' . $this->table . ' b
+                  JOIN Person p ON b.author = p.username
+                  WHERE b.id = :id LIMIT 1';
+        
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
 
     // Create a new blog post
     public function createBlog($data) {
         try {
             $query = 'INSERT INTO ' . $this->table . ' 
-                      SET title = :title, intro = :intro, content = :content, imageURL = :imageURL, createdAt = NOW(), updatedAt = NOW()';
+          SET title = :title, intro = :intro, content = :content, imageURL = :imageURL, 
+              author = :author, createdAt = NOW(), updatedAt = NOW()';
+
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':title', $data->title);
             $stmt->bindParam(':intro', $data->intro);
             $stmt->bindParam(':content', $data->content);
             $stmt->bindParam(':imageURL', $data->imageURL);
+            $stmt->bindParam(':author', $data->author);
+
 
             if ($stmt->execute()) {
                 return ['success' => true, 'message' => 'Blog post created successfully.'];
