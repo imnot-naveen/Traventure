@@ -1,60 +1,62 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traventure</title>
-    <link rel="stylesheet" href="notification.css">
+    <link rel="stylesheet" href="updateblogs.css">
     <link rel="stylesheet" href="../Navbar/navbar.css">
   <link rel="stylesheet" href="../Footer/footer.css">
 </head>
     <body>
         <nav id="navbar-placeholder"></nav>
-       
+        
     <main>
         <section>
-        <h1>Ride Notifications</h1>
+            
+            <h1>Update Blog</h1>
+            <form action="addblogs.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                  <label for="intro">Introduction</label>
+                  <input type="text" id="intro" name="intro">
+                </div>
+                <div class="form-group">
+                    <label for="content">Content:</label>
+                    <textarea id="content" name="content" rows="6"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="photos">Add Photos:</label>
+                    <input type="file" id="photos" name="photos" multiple accept="image/*">
+                </div>
+                <button type="submit" class="post-button">Post</button>
+            </form>
+            
         </section>
-
-        <section>
-        <!-- First Notification -->
-            <div class="notification">
-                <div class="notification-content">
-                    <img src="../assets/person.png" alt="Person Icon">
-                    <h2>3 min</h2>
-                    <p>Ella Station - Nine Arch Bridge</p>
-                    <div class="notification-actions">
-                        <a href="../DriverRide/ride.html"><button class="accept-button">Accept</button></a>
-                        <button class="decline-button">Decline</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Second Notification -->
-            <div class="notification">
-                <div class="notification-content">
-                    <img src="../assets/person.png" alt="Person Icon">
-                    <h2>5 min</h2>
-                    <p>Kandy Station - Temple of the Tooth</p>
-                    <div class="notification-actions">
-                        <a href="../DriverRide/ride.html"><button class="accept-button">Accept</button></a>
-                        <button class="decline-button">Decline</button>
-                    </div>
-                </div>
-            </div>
-      
-    </section>
-    
     </main>
-
     <footer id="footer"></footer>
 
     <script src="../Navbar/navbar.js"></script>
-  <script src="notification.js"></script>
+  <script src="updateblogs.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../Navbar/navbar.html')
+      fetch('../Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;
@@ -106,5 +108,5 @@
       }
     }
   </script>
-    </body>
+</body>
 </html>

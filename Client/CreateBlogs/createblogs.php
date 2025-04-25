@@ -7,10 +7,6 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-if (trim($_SESSION['userType']) !== "CW") {
-    header(header: "Location: ../Home/home.html"); // If not authorized, redirect to homepage
-    exit();
-}
 
 // Get the username from the session
 $username = $_SESSION['username'];
@@ -21,50 +17,48 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traventure</title>
-    <link rel="stylesheet" href="create.css">
+    <link rel="stylesheet" href="createblogs.css">
     <link rel="stylesheet" href="../Navbar/navbar.css">
-  <link rel="stylesheet" href="../Footer/footer.css">
+    <link rel="stylesheet" href="../Footer/footer.css">
 </head>
     <body>
         <nav id="navbar-placeholder"></nav>
         
     <main>
-        <section>>
-            <h1>Create New Post</h1>
-            <form action="addblogpost.php" method="POST" enctype="multipart/form-data">
+        <section>
+            <h1>Create Blog</h1>
+            <form action="api/addblogs.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
+            <input type="hidden" id="author" name="author" value="<?php echo htmlspecialchars($username); ?>">
+
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title">
-            </div>
-            <div class="form-group">
-              <label for="intro">City</label>
-              <input type="text" id="city" name="city">
+            <input type="text" id="title" name="title" required>
             </div>
             <div class="form-group">
               <label for="intro">Introduction</label>
-              <input type="text" id="intro" name="intro">
+              <input type="text" id="intro" name="intro" required>
             </div>
             <div class="form-group">
             <label for="content">Content:</label>
-            <textarea id="content" name="content" rows="6"></textarea>
+            <textarea id="content" name="content" rows="6" required></textarea>
             </div>
             <div class="form-group">
             <label for="photos">Add Photos:</label>
             <input type="file" id="photos" name="photos" multiple accept="image/*">
             </div>
-<button type="submit" class="post-button">Post</button>
+            <button type="submit" class="post-button">Post</button>
             </form>
             
         </section>
     </main>
     <footer id="footer"></footer>
 
-    <script src="../CW Navbar/navbar.js"></script>
-  <script src="create.js"></script>
+    <script src="../Navbar/navbar.js"></script>
+  <script src="createblogs.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../CW Navbar/navbar.php')
+      fetch('../Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;

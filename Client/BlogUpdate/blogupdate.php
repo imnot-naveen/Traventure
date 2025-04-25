@@ -1,61 +1,62 @@
+<?php
+
+session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/loginpage.html"); // Redirect to login if not logged in
+    exit();
+}
+
+
+// Get the username from the session
+$username = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traventure</title>
-    <link rel="stylesheet" href="ride.css">
+    <link rel="stylesheet" href="blogupdate.css">
     <link rel="stylesheet" href="../Navbar/navbar.css">
-  <link rel="stylesheet" href="../Footer/footer.css">
+    <link rel="stylesheet" href="../Footer/footer.css">
 </head>
     <body>
         <nav id="navbar-placeholder"></nav>
-       
+        
     <main>
         <section>
-        
-        
-        
-
-        
-        </section>
-        <section>
-        <div class="ride">
+            <h1>Update Blog</h1>
+            <form action="api/addblogs.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+              <label for="intro">Introduction</label>
+              <input type="text" id="intro" name="intro" required>
+            </div>
+            <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="6" required></textarea>
+            </div>
+            <div class="form-group">
+            <label for="photos">Add Photos:</label>
+            <input type="file" id="photos" name="photos" multiple accept="image/*">
+            </div>
+            <button type="submit" class="post-button">Post</button>
+            </form>
             
-            <div class="location-info">
-                <img src="../assets/location.png" alt="location" class="location-icon">
-                <p class="start">Your location </p><img src="../assets/arrow.png" class="arrow"><p class="end">Ella station</p>
-                
-            </div>
-
-            <div class="distance-info">
-                <p class="distance">1 km</p><p class="time">3 min</p>
-            </div>
-
-            <div class="ride-details">
-                <p class="title">Details</p><br>
-                <div class="details">
-                    <p>Customer Name:James</p><br>
-                    <p>Contact No:0123456789</p><br>
-                    <p>Number of passengers:4</p><br>
-                </div>
-            </div>
-            <a href="#"><button class="btn-arrive">Arrived</button></a>
-        </div>
-        
-      </div>
-      
-    </section>
+        </section>
     </main>
-
     <footer id="footer"></footer>
 
     <script src="../Navbar/navbar.js"></script>
-  <script src="ride.js"></script>
+  <script src="blogupdate.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../Navbar/navbar.html')
+      fetch('../Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;
@@ -107,5 +108,5 @@
       }
     }
   </script>
-    </body>
+</body>
 </html>

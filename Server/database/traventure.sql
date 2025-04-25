@@ -97,6 +97,13 @@ CREATE TABLE `contentwriter` (
   `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `contentwriter`
+--
+
+INSERT INTO `contentwriter` (`CWID`, `username`) VALUES
+(1, 'test_cw');
+
 -- --------------------------------------------------------
 
 --
@@ -257,6 +264,7 @@ CREATE TABLE `person` (
   `username` varchar(255) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
+  `IDNumber` varchar(15) NOT NULL,
   `IDNumber` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contactNo` int(11) NOT NULL,
@@ -1020,6 +1028,13 @@ ALTER TABLE `blogposts`
   ADD PRIMARY KEY (`blog_id`);
 
 --
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `author` (`author`);
+
+--
 -- Indexes for table `booking`
 --
 ALTER TABLE `booking`
@@ -1225,10 +1240,22 @@ ALTER TABLE `trip`
 --
 
 --
+-- Constraints for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD CONSTRAINT `blogs_ibfk_1` FOREIGN KEY (`author`) REFERENCES `person` (`username`);
+
+--
 -- Constraints for table `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_userid` FOREIGN KEY (`userID`) REFERENCES `registereduser` (`userId`);
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `fk_comments_author` FOREIGN KEY (`author`) REFERENCES `person` (`username`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `contentwriter`
