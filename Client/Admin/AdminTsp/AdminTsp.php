@@ -45,14 +45,6 @@
                             <h3>Trains Added</h3>
                             <h1>43</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>87%</p>
-                            </div>
-                        </div>
                     </div>
                     <small class="text-muted">
                         Last 30 Days
@@ -67,14 +59,6 @@
                         <div class="left">
                             <h3>Trains Cancalled</h3>
                             <h1>123</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
                         </div>
                     </div>
                     <small class="text-muted">

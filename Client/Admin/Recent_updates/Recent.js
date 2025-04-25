@@ -54,13 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (result.success) {
                     const count = result.data;
                     document.getElementById("user-count").textContent = count;
-                    document.getElementById("user-growth").textContent = "+25%";
-                    document.getElementById("user-growth").classList.add("success");
                 } else {
                     document.getElementById("user-count").textContent = "0";
-                    document.getElementById("user-growth").textContent = "+0%";
-                    document.getElementById("user-growth").classList.remove("success");
-                    document.getElementById("user-growth").classList.add("danger");
                 }
             })
             .catch(error => {
@@ -80,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("tripCount").textContent = count;
                 } else {
                     console.error("Error fetching trip count:", result.message || "Unknown error");
-                    document.getElementById("tripCount").textContent = "0"; // Fix element ID here too
+                    document.getElementById("tripCount").textContent = "0"; 
                 }
             })
             .catch(error => {
@@ -139,20 +134,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 const count = result.data.count;
                 document.getElementById("bookingCount").textContent = count;
                 document.getElementById("bookingGrowth").textContent = "+25%"; 
-                document.getElementById("bookingGrowth").classList.remove("danger");
-                document.getElementById("bookingGrowth").classList.add("success");
             } else {
                 document.getElementById("bookingCount").textContent = "0";
-                document.getElementById("bookingGrowth").textContent = "+0%";
-                document.getElementById("bookingGrowth").classList.remove("success");
-                document.getElementById("bookingGrowth").classList.add("danger");
             }
         } catch (error) {
             console.error("Error fetching booking data:", error);
             document.getElementById("bookingCount").textContent = "0";
-            document.getElementById("bookingGrowth").textContent = "Error";
-            document.getElementById("bookingGrowth").classList.remove("success");
-            document.getElementById("bookingGrowth").classList.add("danger");
         }
     }
 

@@ -27,16 +27,8 @@
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total TSPs</h3>
-                            <h1 id="tspCount">Loading..</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
+                            <h3>Total Drivers</h3>
+                            <h1 id="driverCount">3</h1>
                         </div>
                     </div>
                     <small class="text-muted">
@@ -50,16 +42,8 @@
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Trains Added</h3>
+                            <h3>Requests</h3>
                             <h1>43</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>87%</p>
-                            </div>
                         </div>
                     </div>
                     <small class="text-muted">
@@ -75,14 +59,6 @@
                         <div class="left">
                             <h3>Trains Cancalled</h3>
                             <h1>123</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
                         </div>
                     </div>
                     <small class="text-muted">

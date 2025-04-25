@@ -27,14 +27,6 @@
                             <h3>Total Trips</h3>
                             <h1>4</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
                     </div>
                     <small class="text-muted">
                         Last 24 Hours
@@ -50,14 +42,6 @@
                             <h3>User Accounts</h3>
                             <h1>43</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>87%</p>
-                            </div>
-                        </div>
                     </div>
                     <small class="text-muted">
                         Last 24 Hours
@@ -72,14 +56,6 @@
                         <div class="left">
                             <h3>Total Income</h3>
                             <h1>$10,123</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
                         </div>
                     </div>
                     <small class="text-muted">

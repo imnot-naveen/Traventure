@@ -60,14 +60,6 @@
                             <h3>User Preferences</h3>
                             <h1>123</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
                     </div>
                     <small class="text-muted">
                         Last 24 Hours
