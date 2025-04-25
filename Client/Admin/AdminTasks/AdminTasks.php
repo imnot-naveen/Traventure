@@ -37,9 +37,9 @@
                   <label for="rateType">Class</label>
                   <select id="rateType" name="rateType" required>
                     <option value="">Select Class</option>
-                    <option value="1st Class">1st Class</option>
-                    <option value="2nd Class">2nd Class</option>
-                    <option value="3rd Class">3rd Class</option>
+                    <option value="first">1st Class</option>
+                    <option value="second">2nd Class</option>
+                    <option value="third">3rd Class</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -72,18 +72,18 @@
             </div>
             <div class="update-destinations">
               <h4>Add Destination Type</h4>
-              <form id="destinationTypesForm">
+              <form id="destinationTypesForm" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="destType">Destination Type</label>
                   <input type="text" id="destType" name="destType" required>
                 </div>
                 <div class="form-group">
-                  <label for="destDescription">Description</label>
-                  <textarea id="destDescription" name="destDescription" rows="2"></textarea>
+                  <label for="destPhoto">Photo</label>
+                  <input type="file" id="destPhoto" name="destPhoto" accept="image/*" required>
                 </div>
                 <button type="submit" class="btn">Add Type</button>
               </form>
-            </div>
+            </div>  
           </div>
         </div>
 
