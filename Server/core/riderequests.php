@@ -42,6 +42,20 @@ class RideRequests {
         }
     }
 
+    public function getRequestCount(){
+        try{
+            $query = "SELECT COUNT(*) AS count FROM " . $this->riderequests_table . " WHERE status = 'Pending'";
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->execute();
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return ['success' => true, 'count' => $result['count']];
+        }catch(Exception $e){
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
+    }
+
     public function getRideRequestByDriver($username){
         try{
             $query = "SELECT rr.* , CONCAT(p.firstName, ' ', p.lastName) AS client_fullName, p.contactNo, p.email FROM " . $this->riderequests_table . " rr

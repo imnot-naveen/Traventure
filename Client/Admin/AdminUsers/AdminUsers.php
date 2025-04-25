@@ -50,24 +50,8 @@
                         Last 30 Days
                     </small>
                 </div>
-
-                <div class="income">
-                    <span class="material-symbols-outlined">
-                        psychology
-                        </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>User Preferences</h3>
-                            <h1>123</h1>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Last 24 Hours
-                    </small>
-                </div>
-                <!-- END OF INCOME -->
-
             </div>
+            
             <!-- END OF INSIGHTS -->
              <div class="recent-orders">
                 <h2>User Details</h2>

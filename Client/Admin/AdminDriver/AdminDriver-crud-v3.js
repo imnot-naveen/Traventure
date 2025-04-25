@@ -80,3 +80,17 @@ fetch('../../../Server/api/driverCount.php')
         }
     })
     .catch(error => console.error('Error fetching Driver count:', error));
+
+    fetch('http://localhost/Traventure/Server/api/rideReqcount.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.success && data.data && typeof data.data.count === 'number') {
+        const countElement = document.getElementById('reqCount');
+        countElement.textContent = `${data.data.count}`;
+      } else {
+        console.error('Error: Unexpected response format or no count field');
+        document.getElementById('reqCount').textContent = "0";
+      }
+    })
+    .catch(error => console.error('Error fetching Driver count:', error));
+  

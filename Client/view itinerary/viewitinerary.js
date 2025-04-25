@@ -495,56 +495,67 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.print();
   });
 
-  // Add event listener for "Request a Ride" buttons
-  document.querySelectorAll(".request-ride-button").forEach(button => {
-    button.addEventListener("click", async function() {
-      try {
-        // Parse the segment data
-        const segmentData = JSON.parse(this.getAttribute("data-segment"));
-        console.log("Requesting ride for segment:", segmentData);
-        
-        // Extract required data for the API call
-        const rideRequestData = {
-          clientID: segmentData.clientID,
-          destination: segmentData.destination,
-          passengerCount: totalPassengerCount,
-          stationID: segmentData.stationID,
-          tripID: segmentData.tripID,
-          rideDate: segmentData.rideDate
-        };
-        
-        // Show loading indicator or message
-        this.textContent = "Requesting...";
-        this.disabled = true;
-        
-        // Call the ride request API
-        const response = await fetch("../../server/api/createRidereq.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(rideRequestData)
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok && result.success) {
-          // Show success message
-          alert(`Ride request created successfully! ${result.message || ''}`);
-          this.textContent = "Ride Requested ✓";
-          this.classList.add("request-success");
-        } else {
-          // Show error message
-          alert(`Error: ${result.message || 'Failed to create ride request'}`);
-          this.textContent = "Request a Ride";
-          this.disabled = false;
-        }
-      } catch (error) {
-        console.error("Error processing ride request:", error);
-        alert("Failed to process ride request. Please try again.");
+// Add event listener for "Request a Ride" buttons
+// Add event listener for "Request a Ride" buttons
+document.querySelectorAll(".request-ride-button").forEach(button => {
+  button.addEventListener("click", async function() {
+    try {
+      // Parse the segment data
+      const segmentData = JSON.parse(this.getAttribute("data-segment"));
+      console.log("Requesting ride for segment:", segmentData);
+      
+      // Get the segment number to identify the appropriate stopover
+      const segmentNumber = segmentData.segmentNumber;
+      
+      // Find the corresponding stopover for this segment
+      // Segments are 1-indexed while arrays are 0-indexed, so we subtract 1
+      const destinationPlace = tripData.stopovers[segmentNumber - 1]?.name || 
+                                "Unknown destination";
+      
+      // Extract required data for the API call
+      const rideRequestData = {
+        clientID: segmentData.clientID,
+        destination: destinationPlace,  // Use the actual place name from stopovers
+        passengerCount: totalPassengerCount,
+        stationID: segmentData.stationID,
+        tripID: segmentData.tripID,
+        rideDate: segmentData.rideDate
+      };
+
+      console.log(rideRequestData);
+      
+      // Show loading indicator or message
+      this.textContent = "Requesting...";
+      this.disabled = true;
+      
+      // Call the ride request API
+      const response = await fetch("../../server/api/createRidereq.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        }, 
+        body: JSON.stringify(rideRequestData)
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        // Show success message
+        alert(`Ride request created successfully! ${result.message || ''}`);
+        this.textContent = "Ride Requested ✓";
+        this.classList.add("request-success");
+      } else {
+        // Show error message
+        alert(`Error: ${result.message || 'Failed to create ride request'}`);
         this.textContent = "Request a Ride";
         this.disabled = false;
       }
-    });
+    } catch (error) {
+      console.error("Error processing ride request:", error);
+      alert("Failed to process ride request. Please try again.");
+      this.textContent = "Request a Ride";
+      this.disabled = false;
+    }
+  });
   });
 });

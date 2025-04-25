@@ -36,36 +36,6 @@
                     </small>
                 </div>
 
-                <div class="expenses">
-                    <span class="material-symbols-outlined">
-                        train
-                        </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Trains Added</h3>
-                            <h1>43</h1>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Last 30 Days
-                    </small>
-                </div>
-
-                <div class="income">
-                    <span class="material-symbols-outlined">
-                        cancel
-                        </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Trains Cancalled</h3>
-                            <h1>123</h1>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Last 24 Hours
-                    </small>
-                </div>
-
             </div>
             <!-- END OF INSIGHTS -->
              <div class="recent-orders">

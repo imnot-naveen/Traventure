@@ -5,7 +5,9 @@ function getQueryParam(param) {
   }
   
   // Fetch the CW ID from the URL
-  const cwId = getQueryParam('id');
+// Fetch the CW ID from the URL (check both cases)
+const cwId = getQueryParam('cwid');
+console.log(cwId);
   
   if (cwId) {
     // Fetch cw details using the ID
@@ -21,12 +23,10 @@ function getQueryParam(param) {
           
           // Handle status display
           const cwStatus = document.getElementById('cwStatus');
-          const activeStatus = data.data.Active_status;
-          cwStatus.textContent = activeStatus;
+          cwStatus.textContent = data.data.Active_status;
           
           // Update status class based on active status
-          // Check if the status contains 'active' regardless of case
-          if (activeStatus.toLowerCase() === 'active') {
+          if (data.data.Active_status.toLowerCase() === 'active') {
             cwStatus.className = 'status active';
           } else {
             cwStatus.className = 'status inactive';
@@ -37,17 +37,20 @@ function getQueryParam(param) {
           const confirmDeactivateBtn = document.getElementById('confirmDeactivateBtn');
           
           if (deactivateBtn && confirmDeactivateBtn) {
-            // Store the current status in a data attribute for reference
-            deactivateBtn.dataset.currentStatus = activeStatus.toLowerCase();
-            
             // Check current status and update button text accordingly
-            if (activeStatus.toLowerCase() === 'active') {
+            if (data.data.Active_status.toLowerCase() === 'active') {
               deactivateBtn.textContent = 'Deactivate';
               confirmDeactivateBtn.textContent = 'Yes, Deactivate';
             } else {
               deactivateBtn.textContent = 'Activate';
               confirmDeactivateBtn.textContent = 'Yes, Activate';
             }
+  
+            // Add event listener for updating status in the confirmation modal
+            confirmDeactivateBtn.addEventListener('click', function() {
+              const newStatus = (data.data.Active_status.toLowerCase() === 'active') ? 'inactive' : 'active';
+              updateCwStatus(cwId, newStatus);
+            });
           }
         } else {
           console.error('Content writer not found:', data.message);
@@ -62,15 +65,6 @@ function getQueryParam(param) {
     console.error('No content writer ID provided in the URL');
     alert('No content writer ID found in the URL. Please navigate back and select a valid content writer.');
   }
-  
-  // Add event listener for the deactivate/activate button
-  document.getElementById('confirmDeactivateBtn')?.addEventListener('click', function() {
-    const deactivateBtn = document.getElementById('deactivateBtn');
-    const currentStatus = deactivateBtn.dataset.currentStatus || document.getElementById('cwStatus').textContent.toLowerCase();
-    const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
-    
-    updateCwStatus(cwId, newStatus);
-  });
   
   // Function to update cw status
   function updateCwStatus(cwId, newStatus) {
@@ -97,11 +91,6 @@ function getQueryParam(param) {
         // Update button texts
         const deactivateBtn = document.getElementById('deactivateBtn');
         const confirmDeactivateBtn = document.getElementById('confirmDeactivateBtn');
-        
-        // Update the stored status
-        if (deactivateBtn) {
-          deactivateBtn.dataset.currentStatus = newStatus.toLowerCase();
-        }
         
         if (newStatus.toLowerCase() === 'active') {
           deactivateBtn.textContent = 'Deactivate';
