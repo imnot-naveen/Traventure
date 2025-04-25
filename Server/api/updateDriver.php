@@ -13,51 +13,51 @@ header('Content-Type: application/json');
 // Include dependencies
 include_once('../core/initialize.php');
 
-// Handle GET request for fetching ContentWriter data
+// Handle GET request for fetching driver data
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (!isset($_GET['cwid'])) {
+    if (!isset($_GET['id'])) {
         http_response_code(400);
-        echo json_encode(['success' => false, 'message' => 'CWID is required']);
+        echo json_encode(['success' => false, 'message' => 'ID is required']);
         exit();
     }
 
-    $cwid = $_GET['cwid'];
-    $contentWriter = new contentWriter($db);
-    $result = $contentWriter->getCWDetails($cwid);
+    $id = $_GET['id'];
+    $driver = new driver($db);
+    $result = $driver->getDriverDetailsByID($id);
 
     if ($result) {
         echo json_encode(['success' => true, 'data' => $result]);
     } else {
         http_response_code(404);
-        echo json_encode(['success' => false, 'message' => 'CW not found']);
+        echo json_encode(['success' => false, 'message' => 'Driver not found']);
     }
     exit();
 }
 
-// Handle PUT request for updating CW data
+// Handle PUT request for updating Driver data
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $input = json_decode(file_get_contents('php://input'), true);
 
-    if (!isset($input['cwid'])) {
+    if (!isset($input['id'])) {
         http_response_code(400);
-        echo json_encode(['success' => false, 'message' => 'CWID is required']);
+        echo json_encode(['success' => false, 'message' => 'ID is required']);
         exit();
     }
 
-    $contentWriter = new contentWriter($db);
-    $contentWriter->cwid = $input['cwid'];
-    $contentWriter->first_name = $input['first_name'] ?? null;
-    $contentWriter->last_name = $input['last_name'] ?? null;
-    $contentWriter->contact_number = $input['contact_number'] ?? null;
+    $driver = new Driver($db);
+    $driver->id = $input['id'];
+    $driver->first_name = $input['first_name'] ?? null;
+    $driver->last_name = $input['last_name'] ?? null;
+    $driver->contact_number = $input['contact_number'] ?? null;
 
-    $result = $contentWriter->updateCw();
+    $result = $driver->updateDriver();
 
     if ($result['success']) {
         http_response_code(200);
-        echo json_encode(['success' => true, 'message' => 'ContentWriter updated successfully']);
+        echo json_encode(['success' => true, 'message' => 'driver updated successfully']);
     } else {
         http_response_code(500);
-        echo json_encode(['success' => false, 'message' => 'Failed to update ContentWriter']);
+        echo json_encode(['success' => false, 'message' => 'Failed to update driver']);
     }
     exit();
 }

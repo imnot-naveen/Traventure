@@ -67,3 +67,16 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPage = 1;
     displayTable();
 });
+
+fetch('../../../Server/api/driverCount.php')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success && typeof data.count === 'number') {
+            const countElement = document.getElementById('driverCount');
+            countElement.textContent = `${data.count}`;
+        } else {
+            console.error('Error: Unexpected response format or no count field');
+            document.getElementById('tspCount').textContent = "0";
+        }
+    })
+    .catch(error => console.error('Error fetching TSP count:', error));
