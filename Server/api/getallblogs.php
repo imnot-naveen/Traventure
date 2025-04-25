@@ -20,7 +20,7 @@ class GetAllBlogsAPI {
             // Default query for regular users
             $query = "
                 SELECT
-                    id, title, intro, content, imageURL AS image, createdAt, updatedAt
+                    id, title, intro, content, imageURL AS image, createdAt, updatedAt,author
                 FROM blogs
                 WHERE status='accepted'
                 ORDER BY createdAt DESC
@@ -30,7 +30,7 @@ class GetAllBlogsAPI {
             // Query for content writers (showing all blogs)
             $cwquery = "
                 SELECT
-                    id, title, intro, content, imageURL AS image, createdAt, updatedAt
+                    id, title, intro, content, imageURL AS image, createdAt, updatedAt, author
                 FROM blogs
                 ORDER BY createdAt DESC
                 LIMIT :limit OFFSET :offset

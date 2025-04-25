@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((res) => res.json())
     .then((data) => {
       if (data.success) {
+        console.log(data);
         const blog = data.post;
         document.querySelector(".title").textContent = blog.title;
         document.querySelector(".image").src = `../Public/${blog.image}`;

@@ -23,7 +23,7 @@ session_start();
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="../CW Home/home.php">Home</a></li>
-                <li><a href="../Blogs/blogs.php">Blogs</a></li>
+                <li><a href="../CW Blogs/blogs.php">Blogs</a></li>
                  <li><a href="../Review/review.php">Review</a></li>
                 <li id="user-greeting">
                 <a href="../Profile/profile.php" id="profile-link">

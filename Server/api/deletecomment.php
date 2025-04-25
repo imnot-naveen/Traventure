@@ -1,4 +1,6 @@
 <?php
+session_start(); // Start session to access logged-in username
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: DELETE');
@@ -13,7 +15,7 @@ class DeleteCommentAPI {
         $this->conn = $db;
     }
 
-    public function deleteComment($id) {
+    public function deleteComment($id, $currentUser) {
         if (empty($id)) {
             return ['success' => false, 'message' => 'Comment ID is required.'];
         }
@@ -21,14 +23,20 @@ class DeleteCommentAPI {
         try {
             $this->conn->beginTransaction();
 
-            // Check if the comment exists before attempting to delete
-            $stmtCheck = $this->conn->prepare("SELECT id FROM comments WHERE id = :id");
+            // Get comment and check author
+            $stmtCheck = $this->conn->prepare("SELECT author FROM comments WHERE id = :id");
             $stmtCheck->bindParam(':id', $id);
             $stmtCheck->execute();
+            $comment = $stmtCheck->fetch(PDO::FETCH_ASSOC);
 
-            if ($stmtCheck->rowCount() === 0) {
+            if (!$comment) {
                 $this->conn->rollBack();
                 return ['success' => false, 'message' => 'Comment not found.'];
+            }
+
+            if ($comment['author'] !== $currentUser) {
+                $this->conn->rollBack();
+                return ['success' => false, 'message' => 'Unauthorized: You can only delete your own comment.'];
             }
 
             // Proceed with deletion
@@ -51,17 +59,20 @@ class DeleteCommentAPI {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    // Get the raw input and decode JSON data
-    $data = json_decode(file_get_contents("php://input"));
+    // Ensure user is logged in
+    if (!isset($_SESSION['username'])) {
+        echo json_encode(['success' => false, 'message' => 'Unauthorized: User not logged in.']);
+        exit();
+    }
 
-    // Ensure 'id' is provided in the request body
+    $data = json_decode(file_get_contents("php://input"));
     if (!isset($data->id)) {
         echo json_encode(['success' => false, 'message' => 'Comment ID is missing.']);
         exit();
     }
 
+    $currentUser = $_SESSION['username'];
     $api = new DeleteCommentAPI($db);
-    // Perform the delete operation and return the result
-    echo json_encode($api->deleteComment($data->id));
+    echo json_encode($api->deleteComment($data->id, $currentUser));
 }
 ?>
