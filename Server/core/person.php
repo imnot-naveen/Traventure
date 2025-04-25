@@ -93,7 +93,7 @@ class Person {
                         d.type,
                         CASE WHEN ud.username IS NOT NULL THEN 1 ELSE 0 END as is_preferred
                       FROM destinationTypes d
-                      LEFT JOIN userDestination ud ON d.type_id = ud.	prefferedDestination 
+                      LEFT JOIN userDestination ud ON d.type_id = ud.prefferedDestination 
                         AND ud.username = :username
                       ORDER BY d.type";
                       
