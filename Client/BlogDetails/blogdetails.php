@@ -22,8 +22,6 @@ $username = $_SESSION['username'];
 <body>         
     <nav id="navbar-placeholder"></nav>
     
-    
-
     <div class="blog-details-container hidden">
       <div class="blog-post">
        <div id="post-header">
@@ -32,13 +30,13 @@ $username = $_SESSION['username'];
         <p class="date"></p>
         <h1 class="title"></h1>
         <p class="intro"></p>
-        <img class="image" alt="Blog image" />
+        <div class="image-container">
+          <img class="image" alt="Blog image" />
+        </div>
         <p class="content"></p>
-        
        </div>
       </div>
    </div>
-
 
   <footer id="footer"></footer>
 
@@ -102,4 +100,3 @@ $username = $_SESSION['username'];
   </script>   
 </body> 
 </html>
-  

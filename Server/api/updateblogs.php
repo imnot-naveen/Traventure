@@ -1,8 +1,13 @@
 <?php
+ob_start(); // Prevent accidental HTML output
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 include_once('../core/initialize.php');
 
@@ -21,16 +26,20 @@ class BlogUpdateAPI {
         try {
             $this->conn->beginTransaction();
 
-            // Base update query
             $query = "UPDATE blogs 
                       SET title = :title, 
                           intro = :intro, 
                           content = :content, 
                           updatedAt = NOW()";
 
-            // Handle image upload if present
-            if (!empty($_FILES['image']['tmp_name'])) {
-                $uploadDir = '../../uploads/';
+            $hasImage = isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name']);
+
+            if ($hasImage) {
+                $uploadDir = '../../public/uploads/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+
                 $imageName = basename($_FILES['image']['name']);
                 $uploadPath = $uploadDir . $imageName;
 
@@ -49,8 +58,8 @@ class BlogUpdateAPI {
             $stmt->bindParam(':intro', $data['intro']);
             $stmt->bindParam(':content', $data['content']);
 
-            if (!empty($_FILES['image']['tmp_name'])) {
-                $imageURL = 'uploads/' . $imageName;
+            if ($hasImage) {
+                $imageURL = '../../public/uploads' . $imageName;
                 $stmt->bindParam(':imageURL', $imageURL);
             }
 
@@ -68,8 +77,11 @@ class BlogUpdateAPI {
     }
 }
 
-// Instantiate and handle the update request
+// Process the request
 $blogAPI = new BlogUpdateAPI($db);
 $response = $blogAPI->updateBlog($_POST);
+
+// Clear any buffered output before echo
+ob_clean();
 echo json_encode($response);
-?>
+exit;

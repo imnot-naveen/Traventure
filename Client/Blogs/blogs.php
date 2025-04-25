@@ -4,6 +4,7 @@ session_start();
 if (!isset($_SESSION['username'])) {     
     header("Location: ../login/loginpage.html"); // Redirect to login if not logged in     
     exit(); 
+
 }   
 
 // Get the username from the session 
@@ -24,7 +25,7 @@ $username = $_SESSION['username'];
     
     
     
-    <button class="crt-blog" readonly onclick="window.location.href='../CreateBlogs/createblogs.php'">Crete Blog</button>
+    <button class="crt-blog" readonly onclick="window.location.href='../CreateBlogs/createblogs.php'">Create Blog</button>
    
 
   <div class="blog-wrapper hidden">
@@ -68,13 +69,13 @@ $username = $_SESSION['username'];
 
   <footer id="footer"></footer>
 
-  <script src="../Navbar/navbar.js"></script>
+  <script src="../CW Navbar/navbar.js"></script>
   <script src="blogs.js"></script>
   <script src="../Footer/footer.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../Navbar/navbar.php')
+      fetch('../CW Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;
