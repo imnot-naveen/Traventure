@@ -29,6 +29,6 @@ require_once(CORE_PATH.DS. "destinationtypes.php");
 require_once(CORE_PATH.DS. "driver.php");
 require_once(CORE_PATH.DS. "riderequests.php");
 require_once(CORE_PATH.DS. "trip.php");
-// require_once(CORE_PATH.DS. "blogs.php");
-// require_once(CORE_PATH.DS. "comments.php");
+require_once(CORE_PATH.DS. "blogs.php");
+require_once(CORE_PATH.DS. "comments.php");
 ?>
