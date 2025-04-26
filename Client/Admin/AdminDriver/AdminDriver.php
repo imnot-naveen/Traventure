@@ -142,7 +142,6 @@
                             type="text" 
                             id="vehicle" 
                             name="vehicle" 
-                            pattern="^[A-Z]{2,3}[- ]?[0-9]{3,5}$"
                             required 
                             title="Enter only numeric Vehicle ID">
                         </div>

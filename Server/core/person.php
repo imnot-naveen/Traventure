@@ -14,6 +14,7 @@ class Person {
     public $contact_number;
     public $password; // Only for use in login table
     public $user_type;
+    public $status;
 
     // Constructor to initialize db connection
     public function __construct($db) {

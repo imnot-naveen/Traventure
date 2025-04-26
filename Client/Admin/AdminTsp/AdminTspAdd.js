@@ -73,6 +73,7 @@ document
         if (jsonData.success) {
           alert("TSP Registration successful!");
           modal.style.display = "none";
+          document.getElementById("addTspForm").reset();            
         } else {
           alert(jsonData.message || "TSP registration failed. Please try again.");
         }

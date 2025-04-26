@@ -27,8 +27,8 @@ class Driver extends Person {
           $this->conn->beginTransaction(); 
   
           // Insert into person table
-          $query1 = "INSERT INTO person (username, firstName, lastName, email, IDNumber, contactNo)
-                     VALUES (:username, :first_name, :last_name, :email, :id_number, :contact_number)";
+          $query1 = "INSERT INTO person (username, firstName, lastName, email, IDNumber, contactNo,status)
+                     VALUES (:username, :first_name, :last_name, :email, :id_number, :contact_number, :status)";
           $stmt1 = $this->conn->prepare($query1);
           $stmt1->execute([
               ':username' => $this->username,
@@ -36,7 +36,8 @@ class Driver extends Person {
               ':last_name' => $this->last_name,
               ':email' => $this->email,
               ':id_number' => $this->id_number,
-              ':contact_number' => $this->contact_number
+              ':contact_number' => $this->contact_number,
+              ':status' => $this->status
           ]);
   
           $user_id = $this->conn->lastInsertId(); // Get the inserted person's ID

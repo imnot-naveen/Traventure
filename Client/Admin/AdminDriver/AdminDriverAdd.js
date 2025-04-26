@@ -80,7 +80,7 @@ document.getElementById("addDriverForm")
               modal.style.display = "none";
         document.getElementById("addDriverForm").reset(); 
           } else {
-              alert("Error adding user: " + data.error);
+              alert("Error adding user: " );
           }
       })
       .catch((error) => console.error("Error:", error));
