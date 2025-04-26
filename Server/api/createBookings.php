@@ -61,7 +61,7 @@ if (
     }
 
     // Validate class
-    $validClasses = array('1st Class', '2nd Class', '3rd Class');
+    $validClasses = array('first', 'second', 'third');
     if (!in_array($class, $validClasses)) {
         echo json_encode(array('success' => false, 'message' => 'Invalid class. Must be one of: ' . implode(', ', $validClasses)));
         exit;

@@ -6,7 +6,7 @@ main{
 
 main .insights{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.6rem;
 }
 
@@ -146,14 +146,14 @@ main .search-input:focus {
   background-color: #f9f9ff;
 }
 
-.Add-users {
+.Add-drivers {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px 0;
 }
 
-#Add-user {
+#Add-driver {
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -165,13 +165,13 @@ main .search-input:focus {
 }
 
 /* Hover Effect for Desktop */
-#Add-user:hover {
+#Add-driver:hover {
   background-color: #45a049;
   transform: scale(1.05);
 }
 
 /* Active State for Desktop */
-#Add-user:active {
+#Add-driver:active {
   background-color: #388e3c;
   transform: scale(0.95);
 }
@@ -201,12 +201,12 @@ main table tbody tr:last-child td{
   border: none;
 }
 
-#userTable tbody tr {
+#driverTable tbody tr {
   cursor: pointer;  
   transition: background-color 0.3s ease;  
 }
 
-#userTable tbody tr:hover {
+#driverTable tbody tr:hover {
   background-color: var(--color-border);  
   color: var(--color-text);  
 }
@@ -267,11 +267,11 @@ main table tbody tr:last-child td{
     padding: 0;
   }
 
-  .Add-users {
+  .Add-drivers {
     margin: 15px 0; /* Adjust margin for smaller screens */
   }
 
-  #Add-user {
+  #Add-driver {
     padding: 12px 25px; /* Slightly larger padding for better visibility */
     font-size: 18px; /* Increase font size */
   }
@@ -333,14 +333,14 @@ main table tbody tr:last-child td{
     display: none;
   }
 
-  .Add-users {
+  .Add-drivers {
     position: absolute; 
     top: -1rem; 
     right: 1rem; 
     z-index: 10; 
   }
 
-  #Add-user {
+  #Add-driver {
     background-color: #000; 
     color: white; 
     border-radius: 8px; 

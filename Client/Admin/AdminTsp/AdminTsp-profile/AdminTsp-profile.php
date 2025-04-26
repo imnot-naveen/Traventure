@@ -28,7 +28,7 @@
                         <div class="profile-info">
                             <h2 id="tspName">TSP Not found</h2>
                             <h3>Train Service Provider</h3>
-                            <p>Status: <span id="tspStatuss" class="status active">Acti</span></p>
+                            <p>Status: <span id="tspStatus" class="status active">Acti</span></p>
                         </div>
                     </div>
                     <div class="profile-details">
@@ -53,7 +53,7 @@
             </div>
 
             <!-- END OF INSIGHTS -->
-            <div class="recent-orders">
+            <!-- <div class="recent-orders">
                 <h2>Trains Added</h2>
                 <table>
                     <thead>
@@ -72,7 +72,7 @@
                     </tbody>
                 </table>
                 <a href="../AdminBookings/AdminBookings.php">Show All</a>
-             </div>
+             </div> -->
 
             <!-- Modal Structure -->
             <div id="updateTspModal" class="modal">
@@ -124,10 +124,11 @@
         </div>
   </div>
 
-  <?php include '../LogoutModal/logoutModal.php'; ?>
+  <?php include '../../LogoutModal/logoutModal.php'; ?>
     
  <script src="../../LogoutModal/logoutModal.js"></script>
  <script src="AdminTsp-profile.js"></script>
+ <script src="../../Recent_updates/Recent.js"></script>
  <script src="AdminTsp-profile-crud.js"></script>
  <script src="AdminTsp-profile-edit.js"></script>
 </body>

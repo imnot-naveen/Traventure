@@ -24,6 +24,7 @@ if (
     isset($data['username']) &&
     isset($data['firstName']) &&
     isset($data['lastName']) &&
+    isset($data['IDNumber']) &&
     isset($data['email']) &&
     isset($data['contactNumber']) &&
     isset($data['password'])
@@ -32,6 +33,7 @@ if (
     $tsp->tspid = $data['tspid'];
     $tsp->username = $data['username'];
     $tsp->first_name = $data['firstName'];
+    $tsp->id_number = $data['IDNumber'];
     $tsp->last_name = $data['lastName'];
     $tsp->email = $data['email'];
     $tsp->contact_number = $data['contactNumber'];

@@ -7,7 +7,6 @@ main{
 
 main .insights{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 1.6rem;
 }
 
@@ -30,14 +29,6 @@ main .insights > div span {
   border-radius: 50%;
   color: #ffff;
   font-size: 2rem;
-}
-
-main .insights > div.expenses span{
-  background: #15c378;
-}
-
-main .insights > div.income span{
-  background: #c34415;
 }
 
 main .insights > div .middle{

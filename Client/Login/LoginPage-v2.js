@@ -63,6 +63,9 @@ document
             case "CW":
               window.location.href = "../CW Home/home.php";
               break;
+            case "Driver":
+                window.location.href = "../Driver/Dashboard/Dashboard.php";
+                break;
             default:
               alert("Unknown user type. Contact support.");
               break;

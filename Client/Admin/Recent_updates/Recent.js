@@ -54,21 +54,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (result.success) {
                     const count = result.data;
                     document.getElementById("user-count").textContent = count;
-                    document.getElementById("user-growth").textContent = "+25%";
-                    document.getElementById("user-growth").classList.add("success");
                 } else {
                     document.getElementById("user-count").textContent = "0";
-                    document.getElementById("user-growth").textContent = "+0%";
-                    document.getElementById("user-growth").classList.remove("success");
-                    document.getElementById("user-growth").classList.add("danger");
                 }
             })
             .catch(error => {
                 console.error("Error fetching user data:", error);
                 document.getElementById("user-count").textContent = "0";
-                document.getElementById("user-growth").textContent = "Error";
             });
     }
+
+    //Function to fetch trip count
+    function fetchTripCount() {
+        fetch('http://localhost/Traventure/Server/api/getTripCount.php')
+            .then(response => response.json()) 
+            .then(result => {
+                if (result.success) {
+                    const count = result.data.count;
+                    document.getElementById("tripCount").textContent = count;
+                } else {
+                    console.error("Error fetching trip count:", result.message || "Unknown error");
+                    document.getElementById("tripCount").textContent = "0"; 
+                }
+            })
+            .catch(error => {
+                console.error("Network or server error:", error);
+                document.getElementById("tripCount").textContent = "0";
+            });
+    }
+    
 
     // Function to fetch the logged-in username
     async function fetchLoggedInUsername() {
@@ -118,21 +132,12 @@ document.addEventListener("DOMContentLoaded", function () {
             if (result.success) {
                 const count = result.data.count;
                 document.getElementById("bookingCount").textContent = count;
-                document.getElementById("bookingGrowth").textContent = "+25%"; 
-                document.getElementById("bookingGrowth").classList.remove("danger");
-                document.getElementById("bookingGrowth").classList.add("success");
             } else {
                 document.getElementById("bookingCount").textContent = "0";
-                document.getElementById("bookingGrowth").textContent = "+0%";
-                document.getElementById("bookingGrowth").classList.remove("success");
-                document.getElementById("bookingGrowth").classList.add("danger");
             }
         } catch (error) {
             console.error("Error fetching booking data:", error);
             document.getElementById("bookingCount").textContent = "0";
-            document.getElementById("bookingGrowth").textContent = "Error";
-            document.getElementById("bookingGrowth").classList.remove("success");
-            document.getElementById("bookingGrowth").classList.add("danger");
         }
     }
 
@@ -142,5 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Call both functions when the DOM is ready
     fetchRecentBookings();
+    fetchTripCount();
     fetchUserCount();
 });

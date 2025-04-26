@@ -45,9 +45,9 @@ if ($_SESSION['userType'] !== "Traveller") {
         <!-- Class Selection -->
         <label for="class">Select Class:</label>
         <select id="class">
-          <option value="1st Class">1st Class</option>
-          <option value="2nd Class">2nd Class</option>
-          <option value="3rd Class">3rd Class</option>
+          <option value="first">1st Class</option>
+          <option value="second">2nd Class</option>
+          <option value="third">3rd Class</option>
         </select>
 
         <!-- Payment Option -->

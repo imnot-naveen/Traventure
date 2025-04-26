@@ -16,7 +16,7 @@ include_once('../core/initialize.php');
 $user = new User($db);
 
 // Fetch user growth
-$data = $user->getUserGrowthByMonth();
+$data = $user->getMonthlyUserCounts();
 
 if (!empty($data)) {
     http_response_code(200);

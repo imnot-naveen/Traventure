@@ -40,13 +40,14 @@ class TrainServiceProvider extends Person {
             $this->conn->beginTransaction();
     
             // Step 3: Insert into the person table
-            $query = 'INSERT INTO person (username, firstName, lastName, email, contactNo) 
-                      VALUES (:username, :first_name, :last_name, :email, :contact_no)';
+            $query = 'INSERT INTO person (username, firstName, lastName,IDNumber, email, contactNo) 
+                      VALUES (:username, :first_name, :last_name,:id_number, :email, :contact_no)';
             $stmt = $this->conn->prepare($query);
     
             $stmt->bindParam(':username', $this->username);
             $stmt->bindParam(':first_name', $this->first_name);
             $stmt->bindParam(':last_name', $this->last_name);
+            $stmt->bindParam(':id_number', $this->id_number);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':contact_no', $this->contact_number);
     
@@ -198,7 +199,9 @@ class TrainServiceProvider extends Person {
   public function updateStatus($tspid, $status) {
     try {
         // Corrected query with consistent placeholder naming
-        $query = 'UPDATE ' . $this->tsp_table . ' SET status = :status WHERE TSPID = :tspid';
+        $query = 'UPDATE ' . $this->tsp_table . ' t
+        JOIN person p ON p.username = t.username
+        SET p.status = :status WHERE t.TSPID = :tspid';
         $stmt = $this->conn->prepare($query);
 
         // Correct parameter binding

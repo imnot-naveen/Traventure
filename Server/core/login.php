@@ -15,16 +15,18 @@ class Login {
         session_start();
         
         if (!empty($this->username)) {
-
-            $query = 'SELECT * FROM ' . $this->login_table . ' WHERE username = :username OR email = :email LIMIT 1';
-
-            $query = 'SELECT login.* FROM ' . $this->login_table . ' WHERE login.username = :username OR login.email = :email LIMIT 1';
-
+            $query = 'SELECT login.*, person.status FROM ' . $this->login_table . ' 
+                      JOIN person ON login.username = person.username 
+                      WHERE login.username = :username OR login.email = :email 
+                      LIMIT 1';
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':username', $this->username);
             $stmt->bindParam(':email', $this->username);
         } elseif (!empty($this->email)) {
-            $query = 'SELECT login.* FROM ' . $this->login_table . ' WHERE login.email = :email LIMIT 1';
+            $query = 'SELECT login.*, person.status FROM ' . $this->login_table . ' 
+                      JOIN person ON login.username = person.username 
+                      WHERE login.email = :email 
+                      LIMIT 1';
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':email', $this->email);
         } else {
@@ -38,6 +40,14 @@ class Login {
 
         if ($stmt->rowCount() > 0) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // Check if user status is Active
+            if (trim($user['status']) !== 'Active') {
+                return array(
+                    'success' => false,
+                    'message' => 'Account is inactive. Please contact support.'
+                );
+            }
             
             if (password_verify($this->password, $user['password'])) {
                 // Store basic user info in session

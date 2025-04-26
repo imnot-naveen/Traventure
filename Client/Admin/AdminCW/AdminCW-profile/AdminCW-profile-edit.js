@@ -56,7 +56,7 @@ updateForm.addEventListener("submit", (event) => {
     contact_number: document.getElementById("cwPhone").value,
   };
 
-  fetch("../../../../Server/api/admincwUpdate.php", {
+  fetch("../../../../Server/api/updateCW.php", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

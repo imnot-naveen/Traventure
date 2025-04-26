@@ -24,6 +24,8 @@ closeBtn.addEventListener('click', ()=>{
 // });
 
 
+
+
 function filterUsers() {
   const searchValue = document.getElementById("searchBar").value.toLowerCase();
   const rows = document.querySelectorAll("#userTable tbody tr");

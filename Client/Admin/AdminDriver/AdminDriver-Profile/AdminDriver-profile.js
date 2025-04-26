@@ -12,21 +12,21 @@ closeBtn.addEventListener('click', ()=>{
 
 //Table row href
 // document.addEventListener("DOMContentLoaded", function() {
-//   const tableRows = document.querySelectorAll("#userTable tbody tr");
+//   const tableRows = document.querySelectorAll("#driverTable tbody tr");
 
 //   tableRows.forEach(row => {
 //       // Add click event to each row
 //       row.addEventListener("click", function() {
-//           const userId = this.cells[0].textContent; 
-//           window.location.href = `../AdminUserProfile/AdminUserProfile.html`; 
+//           const driverId = this.cells[0].textContent; 
+//           window.location.href = `../AdmindriverProfile/AdmindriverProfile.html`; 
 //       });
 //   });
 // });
 
 
-function filterUsers() {
+function filterdrivers() {
   const searchValue = document.getElementById("searchBar").value.toLowerCase();
-  const rows = document.querySelectorAll("#userTable tbody tr");
+  const rows = document.querySelectorAll("#driverTable tbody tr");
 
   rows.forEach((row) => {
     const name = row.querySelector("td:nth-child(2)").innerText.toLowerCase();
@@ -42,7 +42,7 @@ let currentPage = 1;
 const rowsPerPage = 6;
 
 function displayTable() {
-    const tableBody = document.getElementById("userTableBody");
+    const tableBody = document.getElementById("driverTableBody");
     const rows = Array.from(tableBody.getElementsByTagName("tr"));
     const totalRows = rows.length;
 

@@ -17,18 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Fetch Destination Types
   fetchDestinationTypes();
   
-  // Fetch Service Packages
-  fetchServicePackages();
-  
-  // Fetch System Settings
-  fetchSystemSettings();
   
   // Event Listeners for Forms
   document.getElementById('fareRatesForm').addEventListener('submit', updateFareRate);
   document.getElementById('destinationTypesForm').addEventListener('submit', addDestinationType);
-  document.getElementById('servicePackagesForm').addEventListener('submit', addServicePackage);
-  document.getElementById('systemSettingsForm').addEventListener('submit', updateSystemSetting);
 });
+
+
 
 // Fetch Functions
 function fetchFareRates() {
@@ -60,17 +55,6 @@ function fetchFareRates() {
       console.error('Error fetching fare rates:', error);
       fareRatesList.innerHTML = '<p class="error">Error loading fare rates. Please try again later.</p>';
     });
-}
-
-function fetchDestinationTypes() {
-}
-
-function fetchServicePackages() {
-
-}
-
-function fetchSystemSettings() {
-
 }
 
 // Form Submit Functions
@@ -113,50 +97,81 @@ function updateFareRate(e) {
   document.getElementById('fareRatesForm').reset();
 }
 
+function fetchDestinationTypes() {
+  const destinationTypesList = document.getElementById('destinationTypesList');
+  destinationTypesList.innerHTML = '<p class="loading">Loading destination types...</p>';
+  
+  fetch('http://localhost/Traventure/Server/api/getDestinationTypes.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.success && Array.isArray(data.types)) {
+        let destinationTypesHTML = '';
+        
+        data.types.forEach(destType => {
+          destinationTypesHTML += `
+            <div class="destination-item">
+              <span class="destination-name">${destType.type}</span>
+            </div>
+          `;
+        });
+        
+        destinationTypesList.innerHTML = destinationTypesHTML;
+      } else {
+        destinationTypesList.innerHTML = '<p class="error">Failed to load destination types.</p>';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching destination types:', error);
+      destinationTypesList.innerHTML = '<p class="error">Error loading destination types. Please try again later.</p>';
+    });
+}
+
 function addDestinationType(e) {
   e.preventDefault();
+  
   const destType = document.getElementById('destType').value;
-  const destDescription = document.getElementById('destDescription').value;
+  const destPhoto = document.getElementById('destPhoto').files[0];
   
-  // Here you would typically send this data to the server
-  console.log(`Adding destination type: ${destType} with description: ${destDescription}`);
+  if (!destType || !destPhoto) {
+    alert('Please fill in all required fields');
+    return;
+  }
   
-  // For demonstration, show a success message and refresh the list
-  alert(`Destination type ${destType} added successfully!`);
-  fetchDestinationTypes();
+  // Create FormData object for file upload
+  const formData = new FormData();
+  formData.append('name', destType);
+  formData.append('photo', destPhoto);
   
-  // Reset form
-  document.getElementById('destinationTypesForm').reset();
-}
-
-function addServicePackage(e) {
-  e.preventDefault();
-  const packageName = document.getElementById('packageName').value;
-  const packagePrice = document.getElementById('packagePrice').value;
+  // Show loading state
+  const submitButton = e.target.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton.textContent;
+  submitButton.textContent = 'Adding...';
+  submitButton.disabled = true;
   
-  // Here you would typically send this data to the server
-  console.log(`Adding service package: ${packageName} with price: LKR ${packagePrice}`);
-  
-  // For demonstration, show a success message and refresh the list
-  alert(`Service package ${packageName} added successfully!`);
-  fetchServicePackages();
-  
-  // Reset form
-  document.getElementById('servicePackagesForm').reset();
-}
-
-function updateSystemSetting(e) {
-  e.preventDefault();
-  const settingName = document.getElementById('settingName').value;
-  const settingValue = document.getElementById('settingValue').value;
-  
-  // Here you would typically send this data to the server
-  console.log(`Updating system setting: ${settingName} to value: ${settingValue}`);
-  
-  // For demonstration, show a success message and refresh the list
-  alert(`System setting ${settingName} updated successfully!`);
-  fetchSystemSettings();
-  
-  // Reset form
-  document.getElementById('systemSettingsForm').reset();
+  // Send the data to the server
+  fetch('http://localhost/Traventure/Server/api/addDestinationTypes.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert(`Destination type "${destType}" added successfully!`);
+      fetchDestinationTypes(); 
+    } else {
+      alert(`Failed to add destination type: ${data.message || 'Unknown error'}`);
+    }
+  })
+  .catch(error => {
+    console.error('Error adding destination type:', error);
+    alert('Error adding destination type. Please try again later.');
+  })
+  .finally(() => {
+    // Reset button state
+    submitButton.textContent = originalButtonText;
+    submitButton.disabled = false;
+    
+    // Reset form
+    document.getElementById('destinationTypesForm').reset();
+  });
 }

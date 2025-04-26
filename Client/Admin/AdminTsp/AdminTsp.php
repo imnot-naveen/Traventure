@@ -33,53 +33,7 @@
                     </div>
                     <small class="text-muted">
                         Total
-                    </small>
-                </div>
-
-                <div class="expenses">
-                    <span class="material-symbols-outlined">
-                        train
-                        </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Trains Added</h3>
-                            <h1>43</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>87%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Last 30 Days
-                    </small>
-                </div>
-
-                <div class="income">
-                    <span class="material-symbols-outlined">
-                        cancel
-                        </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Trains Cancalled</h3>
-                            <h1>123</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Last 24 Hours
-                    </small>
+                    </small> 
                 </div>
 
             </div>
@@ -121,6 +75,11 @@
                         <div class="form-group">
                           <label for="lastName">Last Name</label>
                           <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="IDNumber">NIC No</label>
+                          <input type="text" id="IDNumber" name="IDNumber" required>
                         </div>
                         
                         <div class="form-group">

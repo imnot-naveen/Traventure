@@ -15,7 +15,7 @@ include_once('../core/initialize.php');
 // Instantiate content writer object
 $contentWriter = new contentWriter($db);
 
-// Fetch all Train Service Providers
+// Fetch all Content Writers
 $result = $contentWriter->getAllCWs();
 
 // Check if records are found
@@ -24,6 +24,6 @@ if ($result && !empty($result)) {
     echo json_encode(['success' => true, 'data' => $result]);
 } else {
     http_response_code(404); // No data found
-    echo json_encode(['success' => false, 'message' => 'No Train Service Providers found.']);
+    echo json_encode(['success' => false, 'message' => 'No Content Writers found.']);
 }
 ?>
