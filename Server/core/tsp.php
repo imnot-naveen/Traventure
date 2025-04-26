@@ -134,7 +134,7 @@ class TrainServiceProvider extends Person {
   public function getTSPDetails($tspid) {
     try {
         $query = 'SELECT t.username, p.firstName AS first_name, p.lastName AS last_name, 
-                         p.email, p.contactNo AS contact_number,t.status AS Active_status, t.TSPID AS tspid
+                         p.email, p.contactNo AS contact_number,p.status AS Active_status, t.TSPID AS tspid
                   FROM ' . $this->tsp_table . ' t
                   INNER JOIN ' . $this->person_table . ' p ON t.username = p.username
                   WHERE t.TSPID = :tspid LIMIT 1';

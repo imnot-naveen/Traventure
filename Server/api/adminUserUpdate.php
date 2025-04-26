@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     $userid = $_GET['userid'];
-    $user = new User($db);
-    $result = $user->getUserDetails($userid);
+    $user = new User($db); 
+    $result = $user->getUserById($userid);
 
     if ($result) {
         echo json_encode(['success' => true, 'data' => $result]);

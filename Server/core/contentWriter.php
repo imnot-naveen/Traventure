@@ -124,10 +124,10 @@ class contentWriter extends person{
 
   public function getCWDetails($cwid) {
     try {
-        $query = 'SELECT c.username, p.firstName AS first_name, p.lastName AS last_name, 
+        $query = 'SELECT c.username, p.firstName AS first_name, p.lastName AS last_name, p.status,
                          p.email, p.contactNo AS contact_number, c.CWID AS cwid
-                  FROM ' . $this->cw_table . ' c
-                  INNER JOIN ' . $this->person_table . ' p ON c.username = p.username
+                  FROM `' . $this->cw_table . '` c
+                  INNER JOIN `' . $this->person_table . '` p ON c.username = p.username
                   WHERE c.CWID = :cwid LIMIT 1';
 
         $stmt = $this->conn->prepare($query);

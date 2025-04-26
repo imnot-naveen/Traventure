@@ -87,11 +87,23 @@
                         <input type="hidden" id="userId" name="userId" />
 
                         <label for="userFirstName">First Name:</label>
-                        <input type="text" id="userFirstName" name="firstName" placeholder="First Name" />
-                        
+                        <input 
+                            type="text" 
+                            id="userFirstName" 
+                            name="firstName" 
+                            placeholder="First Name" 
+                            required 
+                        />
+
                         <label for="userLastName">Last Name:</label>
-                        <input type="text" id="userLastName" name="lastName" placeholder="Last Name"  />
-                        
+                        <input 
+                            type="text" 
+                            id="userLastName" 
+                            name="lastName" 
+                            placeholder="Last Name" 
+                            required 
+                        />
+
                         <label for="userPhone">Phone:</label>
                         <input 
                             type="tel" 

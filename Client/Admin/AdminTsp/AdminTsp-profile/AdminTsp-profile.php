@@ -61,23 +61,39 @@
                         <input type="hidden" id="tspId" name="tspId" />
 
                         <label for="tspFirstName">First Name:</label>
-                        <input type="text" id="tspFirstName" name="firstName" placeholder="First Name" />
-                        
-                        <label for="tspLastName">Last Name:</label>
-                        <input type="text" id="tspLastName" name="lastName" placeholder="Last Name"  />
-                        
-                        <label for="tspPhone">Phone:</label>
-                        <input 
-                            type="tel" 
-                            id="tspPhone" 
-                            name="contactNumber" 
-                            placeholder="Enter Sri Lankan Phone Number" 
-                            pattern="0[0-9]{2}[0-9]{7}" 
-                            maxlength="10" 
-                            minlength="10" 
-                            required 
-                            title="Phone number must be a valid Sri Lankan number (e.g., 0771234567 or 0112345678)." 
-                        />
+                            <input 
+                                type="text" 
+                                id="tspFirstName" 
+                                name="firstName" 
+                                placeholder="First Name" 
+                                pattern="[A-Za-z]{2,}" 
+                                required 
+                                title="First Name should contain only letters and at least 2 characters."
+                            />
+
+                            <label for="tspLastName">Last Name:</label>
+                            <input 
+                                type="text" 
+                                id="tspLastName" 
+                                name="lastName" 
+                                placeholder="Last Name"  
+                                pattern="[A-Za-z]{2,}" 
+                                required 
+                                title="Last Name should contain only letters and at least 2 characters."
+                            />
+
+                            <label for="tspPhone">Phone:</label>
+                            <input 
+                                type="tel" 
+                                id="tspPhone" 
+                                name="contactNumber" 
+                                placeholder="Enter Sri Lankan Phone Number" 
+                                pattern="0[0-9]{2}[0-9]{7}" 
+                                maxlength="10" 
+                                minlength="10" 
+                                required 
+                                title="Phone number must start with 0 and be a valid Sri Lankan number (e.g., 0771234567 or 0112345678)." 
+                            />
                         
                         <button type="submit">Update</button>
                     </form>

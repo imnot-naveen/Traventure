@@ -12,7 +12,7 @@ header('Content-Type: application/json');
 include_once('../core/initialize.php');
 
 // Check if `tspid` is provided in the query string
-if (isset($_GET['tspid'])) {
+if (isset($_GET['tspid'])) { 
     $tspid = htmlspecialchars(strip_tags($_GET['tspid']));
 
     // Instantiate TrainServiceProvider object

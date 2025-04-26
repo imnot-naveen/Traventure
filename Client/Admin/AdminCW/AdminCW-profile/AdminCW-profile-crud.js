@@ -4,7 +4,6 @@ function getQueryParam(param) {
     return urlParams.get(param);
   }
   
-  // Fetch the CW ID from the URL
 // Fetch the CW ID from the URL (check both cases)
 const cwId = getQueryParam('cwid');
 console.log(cwId);
@@ -23,10 +22,10 @@ console.log(cwId);
           
           // Handle status display
           const cwStatus = document.getElementById('cwStatus');
-          cwStatus.textContent = data.data.Active_status;
+          cwStatus.textContent = data.data.status;
           
           // Update status class based on active status
-          if (data.data.Active_status.toLowerCase() === 'active') {
+          if (data.data.status.toLowerCase() === 'active') {
             cwStatus.className = 'status active';
           } else {
             cwStatus.className = 'status inactive';
@@ -38,7 +37,7 @@ console.log(cwId);
           
           if (deactivateBtn && confirmDeactivateBtn) {
             // Check current status and update button text accordingly
-            if (data.data.Active_status.toLowerCase() === 'active') {
+            if (data.data.status.toLowerCase() === 'active') {
               deactivateBtn.textContent = 'Deactivate';
               confirmDeactivateBtn.textContent = 'Yes, Deactivate';
             } else {
@@ -48,7 +47,7 @@ console.log(cwId);
   
             // Add event listener for updating status in the confirmation modal
             confirmDeactivateBtn.addEventListener('click', function() {
-              const newStatus = (data.data.Active_status.toLowerCase() === 'active') ? 'inactive' : 'active';
+              const newStatus = (data.data.status.toLowerCase() === 'active') ? 'inactive' : 'active';
               updateCwStatus(cwId, newStatus);
             });
           }
