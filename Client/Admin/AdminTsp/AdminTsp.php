@@ -33,7 +33,7 @@
                     </div>
                     <small class="text-muted">
                         Total
-                    </small>
+                    </small> 
                 </div>
 
             </div>

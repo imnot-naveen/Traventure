@@ -3,7 +3,7 @@ function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
-  
+
 // Modal and Button Element Setup
 document.addEventListener('DOMContentLoaded', function () {
     const deactivateBtn = document.getElementById('deactivateBtn');
@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
   
     if (deactivateBtn && deactivateModal) {
         deactivateBtn.addEventListener('click', function () {
-            // Update modal button text based on current status
-            const currentStatus = document.getElementById('tspStatuss').textContent.trim();
+            // Get current status and update modal text
+            const currentStatus = document.getElementById('tspStatus').textContent.trim().toLowerCase();
             if (confirmDeactivateBtn) {
                 confirmDeactivateBtn.textContent = currentStatus === 'active' ? 'Yes, Deactivate' : 'Yes, Activate';
             }
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (confirmDeactivateBtn) {
         confirmDeactivateBtn.addEventListener('click', function () {
             const tspId = document.getElementById('tspid').textContent.trim();
-            const currentStatus = document.getElementById('tspStatuss').textContent.trim();
+            const currentStatus = document.getElementById('tspStatus').textContent.trim().toLowerCase();
             // Toggle to the opposite status
             const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
             updateTspStatus(tspId, newStatus);
@@ -66,8 +66,11 @@ function closeDeactivateModal() {
   
 // Fetch TSP Data based on Query Parameter (tspid)
 const tspId = getQueryParam('tspid');
+console.log("TSP ID:", tspId); // Debug log
+
 if (tspId) {
-    fetch(`http://localhost/Traventure/Server/api/getTspDetails.php?tspid=${tspId}`)
+    // Add cache-busting parameter to prevent caching
+    fetch(`http://localhost/Traventure/Server/api/getTspDetails.php?tspid=${tspId}&_=${new Date().getTime()}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -75,6 +78,7 @@ if (tspId) {
             return response.json();
         })
         .then(data => {
+            console.log("TSP data received:", data); // Debug log
             if (data.success) {
                 const tspData = data.data;
   
@@ -83,42 +87,49 @@ if (tspId) {
                 document.getElementById('tspEmail').textContent = tspData.email;
                 document.getElementById('tspContact').textContent = tspData.contact_number;
                 document.getElementById('tspid').textContent = tspData.tspid;
-                document.getElementById('tspStatuss').textContent = tspData.status;
-  
-                // Also update the status class for styling
-                const statusElement = document.getElementById('tspStatuss');
-                if (statusElement) {
-                    statusElement.className = `status ${tspData.status === 'active' ? 'active' : 'inactive'}`;
+                
+                // Handle status display
+                const tspStatus = document.getElementById('tspStatus');
+                tspStatus.textContent = tspData.Active_status;
+                
+                // Standardize status case and update class
+                if (tspData.Active_status.toLowerCase() === 'active') {
+                    tspStatus.className = 'status active';
+                } else {
+                    tspStatus.className = 'status inactive';
                 }
   
+                // Set initial button text based on current status
                 const deactivateBtn = document.getElementById('deactivateBtn');
-          
-                if (deactivateBtn) {
-                    // Set initial button text based on current status
-                    updateButtonLabels(tspData.status);
+                const confirmDeactivateBtn = document.getElementById('confirmDeactivateBtn');
+                
+                if (deactivateBtn && confirmDeactivateBtn) {
+                    if (tspData.Active_status.toLowerCase() === 'active') {
+                        deactivateBtn.textContent = 'Deactivate';
+                        if (confirmDeactivateBtn) confirmDeactivateBtn.textContent = 'Yes, Deactivate';
+                    } else {
+                        deactivateBtn.textContent = 'Activate';
+                        if (confirmDeactivateBtn) confirmDeactivateBtn.textContent = 'Yes, Activate';
+                    }
                 }
             } else {
                 console.error('TSP not found:', data.message);
+                alert('TSP not found. Please check the ID and try again.');
             }
         })
         .catch(error => {
             console.error('Fetch error:', error);
+            alert('Failed to load TSP details. Please try again later.');
         });
-}
-  
-// Function to update button labels based on current status
-function updateButtonLabels(status) {
-    const deactivateBtn = document.getElementById('deactivateBtn');
-    
-    if (deactivateBtn) {
-        deactivateBtn.textContent = status === 'active' ? 'Deactivate' : 'Activate';
-    }
 }
   
 // Function to update TSP status (active/inactive)
 function updateTspStatus(tspId, newStatus) {
+    console.log("Updating status for TSP ID:", tspId, "to:", newStatus); // Debug log
+    
+    // Changed from POST to PUT to match your API expectations
     fetch('../../../../Server/api/adminTsp_Deactivate.php', {
-        method: 'POST',
+        method: 'PUT', // Try PUT instead of POST
         headers: {
             'Content-Type': 'application/json',
         },
@@ -127,28 +138,46 @@ function updateTspStatus(tspId, newStatus) {
             status: newStatus,
         }),
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Update the displayed status text
-                const statusElement = document.getElementById('tspStatuss');
-                if (statusElement) {
-                    statusElement.textContent = newStatus;
-                    // Also update the CSS class for styling
-                    statusElement.className = `status ${newStatus === 'active' ? 'active' : 'inactive'}`;
-                }
-          
-                // Update button labels
-                updateButtonLabels(newStatus);
-          
-                // Show success message
-                alert(`TSP status has been updated to ${newStatus}`);
-          
-                // Close the modal
-                closeDeactivateModal();
-            } else {
-                console.error('Failed to update TSP status:', data.message);
+    .then(response => {
+        console.log("Raw response:", response); // Debug log
+        return response.json();
+    })
+    .then(data => {
+        console.log("Status update response:", data); // Debug log
+        
+        if (data.success) {
+            // Update the displayed status text
+            const statusElement = document.getElementById('tspStatus');
+            if (statusElement) {
+                statusElement.textContent = newStatus;
+                // Also update the CSS class for styling
+                statusElement.className = `status ${newStatus.toLowerCase()}`;
             }
-        })
-        .catch(error => console.error('Error updating TSP status:', error));
+          
+            // Update button labels
+            const deactivateBtn = document.getElementById('deactivateBtn');
+            const confirmDeactivateBtn = document.getElementById('confirmDeactivateBtn');
+            
+            if (newStatus.toLowerCase() === 'active') {
+                if (deactivateBtn) deactivateBtn.textContent = 'Deactivate';
+                if (confirmDeactivateBtn) confirmDeactivateBtn.textContent = 'Yes, Deactivate';
+            } else {
+                if (deactivateBtn) deactivateBtn.textContent = 'Activate';
+                if (confirmDeactivateBtn) confirmDeactivateBtn.textContent = 'Yes, Activate';
+            }
+          
+            // Show success message
+            alert(`TSP status has been updated to ${newStatus}`);
+          
+            // Close the modal
+            closeDeactivateModal();
+        } else {
+            console.error('Failed to update TSP status:', data.message);
+            alert(`Failed to update status: ${data.message || 'Unknown error'}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error updating TSP status:', error);
+        alert('An error occurred while updating the status. Please try again.');
+    });
 }

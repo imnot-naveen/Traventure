@@ -199,7 +199,9 @@ class TrainServiceProvider extends Person {
   public function updateStatus($tspid, $status) {
     try {
         // Corrected query with consistent placeholder naming
-        $query = 'UPDATE ' . $this->tsp_table . ' SET status = :status WHERE TSPID = :tspid';
+        $query = 'UPDATE ' . $this->tsp_table . ' t
+        JOIN person p ON p.username = t.username
+        SET p.status = :status WHERE t.TSPID = :tspid';
         $stmt = $this->conn->prepare($query);
 
         // Correct parameter binding

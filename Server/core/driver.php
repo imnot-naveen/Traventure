@@ -120,7 +120,7 @@ public function getDriverDetailsByID($driverID) {
     try {
         $query = "SELECT d.id, d.username, d.assigned_station, d.availability, d.vehicleID, 
                          d.maxPassengers, d.license, d.status,
-                         p.firstName, p.lastName, p.email, p.contactNo, p.IDNumber
+                         p.firstName, p.lastName, p.email, p.contactNo, p.IDNumber, p.status
                   FROM driver d
                   INNER JOIN person p ON d.username = p.username
                   WHERE d.id = :driverID";
@@ -186,7 +186,11 @@ public function updateDriver(){
   public function updateStatus($id, $status) {
     try {
         // Corrected query with consistent placeholder naming
-        $query = 'UPDATE ' . $this->driver . ' SET status = :status WHERE id = :id';
+        $query = 'UPDATE ' . $this->driver . ' d
+        JOIN person p ON d.username = p.username
+        SET p.status = :status 
+        WHERE d.id = :id';
+
         $stmt = $this->conn->prepare($query);
   
         // Correct parameter binding

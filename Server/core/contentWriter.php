@@ -128,7 +128,7 @@ class contentWriter extends person{
   public function getCWDetails($cwid) {
     try {
         $query = 'SELECT c.username, p.firstName AS first_name, p.lastName AS last_name, 
-                         p.email, p.contactNo AS contact_number,c.status AS Active_status, c.CWID AS cwid
+                         p.email, p.contactNo AS contact_number,p.status AS Active_status, c.CWID AS cwid
                   FROM ' . $this->cw_table . ' c
                   INNER JOIN ' . $this->person_table . ' p ON c.username = p.username
                   WHERE c.CWID = :cwid LIMIT 1';
@@ -192,7 +192,8 @@ class contentWriter extends person{
     public function updateStatus($cwid, $status) {
     try {
         // Corrected query with consistent placeholder naming
-        $query = 'UPDATE ' . $this->cw_table . ' SET status = :status WHERE CWID = :cwid';
+        $query = 'UPDATE ' . $this->cw_table . ' c
+        JOIN person p ON p.username = c.username SET p.status = :status WHERE c.CWID = :cwid';
         $stmt = $this->conn->prepare($query);
 
         // Correct parameter binding

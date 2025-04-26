@@ -78,8 +78,6 @@ class User extends Person{
     }
 }
 
-
-
   public function getAllUsers() {
     try {
         $query = "
@@ -103,7 +101,7 @@ class User extends Person{
 
   public function getUserById($userid){
     try {
-      $query = 'SELECT u.username, p.firstName AS first_name, p.lastName AS last_name, u.status, 
+      $query = 'SELECT u.username, p.firstName AS first_name, p.lastName AS last_name, p.status, 
                        p.email, p.contactNo AS contact_number, u.userId AS userid 
                 FROM ' . $this->user_table . ' u 
                 INNER JOIN ' . $this->person_table . ' p ON u.username = p.username 
@@ -269,7 +267,9 @@ class User extends Person{
 public function updateStatus($userid, $status) {
   try {
       // Corrected query with consistent placeholder naming
-      $query = 'UPDATE ' . $this->user_table . ' SET status = :status WHERE userId = :userid';
+      $query = 'UPDATE ' . $this->user_table . ' r 
+      JOIN person p ON r.username = p.username 
+      SET p.status = :status WHERE userId = :userid';
       $stmt = $this->conn->prepare($query);
 
       // Correct parameter binding
