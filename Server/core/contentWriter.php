@@ -7,7 +7,6 @@ class contentWriter extends person{
 
   // TSP-specific properties
     public $cwid;
-    public $Active_status;
     public $password; // Only for use in login table
     public $userType;
 
@@ -22,10 +21,9 @@ class contentWriter extends person{
             // Step 1: Check if the CWID or email already exists
             $query = 'SELECT * FROM contentwriter cw
                       INNER JOIN person p ON cw.username = p.username
-                      WHERE cw.CWID = :cwid OR p.email = :email LIMIT 1';
+                      WHERE p.email = :email LIMIT 1';
     
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':cwid', $this->cwid);
             $stmt->bindParam(':email', $this->email);
             $stmt->execute();
     
@@ -46,7 +44,7 @@ class contentWriter extends person{
             $stmt->bindParam(':id_number', $this->id_number);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':contact_no', $this->contact_number);
-            $stmt->bindParam(':userType', $this->userType); // Corrected to userType
+            $stmt->bindParam(':userType', $this->userType);
     
             if (!$stmt->execute()) {
                 $this->conn->rollBack();
@@ -54,10 +52,9 @@ class contentWriter extends person{
             }
     
             // Step 4: Insert into the contentwriter table
-            $query = 'INSERT INTO contentwriter (CWID, username) 
-                      VALUES (:cwid, :username)';
+            $query = 'INSERT INTO contentwriter ( username) 
+                      VALUES (:username)';
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':cwid', $this->cwid);
             $stmt->bindParam(':username', $this->username);
     
             if (!$stmt->execute()) {
@@ -96,7 +93,7 @@ class contentWriter extends person{
 
     // GET all ContentWriters
     public function getAllCWs() {
-      $query = 'SELECT c.username, p.firstName AS first_name, p.lastName AS last_name, p.email, p.contactNo AS contact_number, c.status AS Active_status,
+      $query = 'SELECT c.username, p.firstName AS first_name, p.lastName AS last_name, p.email, p.contactNo AS contact_number, 
                        c.CWID AS cwid 
                 FROM ' . $this->cw_table . ' c
                 INNER JOIN ' . $this->person_table . ' p ON c.username = p.username';
@@ -128,7 +125,7 @@ class contentWriter extends person{
   public function getCWDetails($cwid) {
     try {
         $query = 'SELECT c.username, p.firstName AS first_name, p.lastName AS last_name, 
-                         p.email, p.contactNo AS contact_number,p.status AS Active_status, c.CWID AS cwid
+                         p.email, p.contactNo AS contact_number, c.CWID AS cwid
                   FROM ' . $this->cw_table . ' c
                   INNER JOIN ' . $this->person_table . ' p ON c.username = p.username
                   WHERE c.CWID = :cwid LIMIT 1';

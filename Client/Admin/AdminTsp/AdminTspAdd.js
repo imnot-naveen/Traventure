@@ -33,7 +33,6 @@ document
     event.preventDefault();
 
     // Get form input values
-    const tspid = document.getElementById("tspid").value;
     const username = document.getElementById("username").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
@@ -51,7 +50,6 @@ document
 
     // Prepare the data to send to the server
     const requestData = {
-      tspid: tspid,
       username: username,
       firstName: firstName,
       lastName: lastName,

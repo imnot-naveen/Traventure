@@ -57,10 +57,6 @@
                       <span class="close-m">&times;</span>
                       <h2>Add New CW</h2>
                       <form id="addCWForm">
-                        <div class="form-group">
-                          <label for="cwid">CW ID</label>
-                          <input type="number" id="cwid" name="cwid" required autocomplete="off">
-                        </div>
                         
                         <div class="form-group">
                           <label for="username">Username</label>

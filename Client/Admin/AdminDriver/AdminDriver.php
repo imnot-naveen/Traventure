@@ -69,10 +69,7 @@
                   </div>
                   <div id="driverModal" class="modal">
                     <div class="modal-content">
-                      <span class="close-m">&times;</span>
-                      <h2>Add New Drivers</h2>
                       <form id="addDriverForm">
-                        
                         <div class="form-group">
                           <label for="username">Username</label>
                           <input type="text" id="username" name="username" required autocomplete="username">

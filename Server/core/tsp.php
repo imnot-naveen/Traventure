@@ -8,7 +8,6 @@ class TrainServiceProvider extends Person {
 
     // TSP-specific properties
     public $tspid;
-    public $Active_status;
     public $password; // Only for use in login table
     public $userType;
 
@@ -57,11 +56,10 @@ class TrainServiceProvider extends Person {
             }
     
             // Step 4: Insert into the trainserviceprovider table
-            $query = 'INSERT INTO trainserviceprovider (TSPID, username) 
-                      VALUES (:tspid, :username)';
+            $query = 'INSERT INTO trainserviceprovider ( username) 
+                      VALUES ( :username)';
             $stmt = $this->conn->prepare($query);
     
-            $stmt->bindParam(':tspid', $this->tspid);
             $stmt->bindParam(':username', $this->username);
     
             if (!$stmt->execute()) {
@@ -102,10 +100,11 @@ class TrainServiceProvider extends Person {
     
     // GET all train service providers
     public function getAllTSPs() {
-        $query = 'SELECT t.username, p.firstName AS first_name, p.lastName AS last_name, p.email, p.contactNo AS contact_number, t.status AS Active_status,
-                         t.TSPID AS tspid 
-                  FROM ' . $this->tsp_table . ' t
-                  INNER JOIN ' . $this->person_table . ' p ON t.username = p.username';
+        $query = 'SELECT t.username, p.firstName AS first_name, p.lastName AS last_name, p.email, p.contactNo AS contact_number, 
+                 t.TSPID AS tspid 
+          FROM `' . $this->tsp_table . '` t
+          INNER JOIN `' . $this->person_table . '` p ON t.username = p.username';
+
 
         $stmt = $this->conn->prepare($query);
 

@@ -52,28 +52,6 @@
                 </div>
             </div>
 
-            <!-- END OF INSIGHTS -->
-            <!-- <div class="recent-orders">
-                <h2>Trains Added</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Train ID</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>       
-                    </tbody>
-                </table>
-                <a href="../AdminBookings/AdminBookings.php">Show All</a>
-             </div> -->
-
             <!-- Modal Structure -->
             <div id="updateTspModal" class="modal">
                 <div class="modal-content">

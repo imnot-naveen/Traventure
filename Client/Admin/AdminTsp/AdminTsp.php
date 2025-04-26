@@ -57,10 +57,6 @@
                       <span class="close-m">&times;</span>
                       <h2>Add New TSP</h2>
                       <form id="addTspForm">
-                        <div class="form-group">
-                          <label for="tspid">TSP ID</label>
-                          <input type="number" id="tspid" name="tspid" required autocomplete="off">
-                        </div>
                         
                         <div class="form-group">
                           <label for="username">Username</label>

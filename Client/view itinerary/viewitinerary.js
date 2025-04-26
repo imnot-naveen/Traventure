@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const itineraryData = {
     ...tripData,
     ...itinerary,
-  };
+  }; 
 
   async function getUserIDFromSession() {
     try {
@@ -495,7 +495,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.print();
   });
 
-// Add event listener for "Request a Ride" buttons
 // Add event listener for "Request a Ride" buttons
 document.querySelectorAll(".request-ride-button").forEach(button => {
   button.addEventListener("click", async function() {
