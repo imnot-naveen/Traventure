@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
               </div>
               
-              <a href="../BlogDetails/blogdetails.php?id=${
+              <a href="../BlogDetails/blogdetails.html?id=${
                 post.id
               }" class="blog-link">
                   <div class="card-image-container">
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function viewBlog(id) {
-    window.location.href = `../BlogDetails/blogdetails.php?id=${id}`;
+    window.location.href = `../BlogDetails/blogdetails.html?id=${id}`;
   }
 
   function showNotification(message, type = "success") {

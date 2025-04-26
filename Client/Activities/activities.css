@@ -1,0 +1,222 @@
+:root {
+    --primary-color: #11134f;
+    --secondary-color: #0d1b4c;
+    --accent-color: #4a6bff;
+    --background-color: #f8f9fa;
+    --white: #ffffff;
+    --text-color: #333;
+    --light-text: #6c757d;
+    --border-radius: 12px;
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.heading {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin: 40px 0 30px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+    padding-top: 3%;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    color: var(--light-text);
+    z-index: 2;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+    box-shadow: var(--card-shadow);
+}
+
+.search-wrapper input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.1);
+}
+
+.btn {
+    padding: 15px 25px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    box-shadow: var(--card-shadow);
+    white-space: nowrap;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+}
+
+.posts-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.post-card-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.post-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.post-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.post-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-content h2 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.post-content p {
+    color: var(--light-text);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+.post-meta i {
+    margin-right: 5px;
+    color: var(--accent-color);
+}
+
+.no-posts, .error-message {
+    text-align: center;
+    color: var(--light-text);
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+    padding: 40px 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .heading {
+        font-size: 2rem;
+        margin: 30px 0 20px;
+    }
+    
+    .search-wrapper {
+        flex-direction: column;
+    }
+    
+    .search-wrapper input {
+        margin-bottom: 10px;
+        padding-left: 40px;
+    }
+    
+    .search-icon {
+        left: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .post-card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .heading {
+        font-size: 1.8rem;
+    }
+    
+    .post-content {
+        padding: 15px;
+    }
+    
+    .post-content h2 {
+        font-size: 1.2rem;
+    }
+}

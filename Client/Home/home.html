@@ -64,6 +64,17 @@
       </div>
     </div>
 
+    <div class="blog-container">
+      <div class="section-header">
+        <h1>Blogs</h1>
+        <a href="../Blogs/blogs.html" class="view-all">View All</a>
+      </div>
+
+      <div class="blogs-grid" id="blogs-container">
+        <div class="loading">Loading blogs...</div>
+      </div>
+    </div>
+
     <!-- Popular Attractions -->
     <div class="popular-attractions-section">
       <h2>Most Popular Attractions</h2>
@@ -121,6 +132,99 @@
     <script src="home.js"></script>
     <script>
       // Function to load the Navbar
+      document.addEventListener("DOMContentLoaded", function () {
+        fetchBlogs();
+      });
+
+      function fetchBlogs() {
+        const blogsContainer = document.getElementById("blogs-container");
+
+        fetch("../../Server/api/getallblogs.php?limit=3&offset=0")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((blogs) => {
+            if (blogs.length === 0) {
+              blogsContainer.innerHTML =
+                '<div class="error">No blogs found</div>';
+              return;
+            }
+
+            // Clear the loading message
+            blogsContainer.innerHTML = "";
+
+            // Display the first blog as the main blog
+            const mainBlog = blogs[0];
+            const mainBlogElement = createMainBlogElement(mainBlog);
+            blogsContainer.appendChild(mainBlogElement);
+
+            // Display the rest of the blogs as cards (up to 3 more)
+            for (let i = 1; i < Math.min(blogs.length, 4); i++) {
+              const blogCard = createBlogCardElement(blogs[i]);
+              blogsContainer.appendChild(blogCard);
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching blogs:", error);
+            blogsContainer.innerHTML = `<div class="error">Failed to load blogs. Please try again later.</div>`;
+          });
+      }
+
+      function formatDate(dateString) {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString("en-US", options);
+      }
+
+      function createMainBlogElement(blog) {
+        const mainBlog = document.createElement("div");
+        mainBlog.className = "main-blog";
+        mainBlog.onclick = () => (window.location.href = `/blog/${blog.id}`);
+
+        const imageUrl = blog.image || "/api/placeholder/560/400";
+
+        mainBlog.innerHTML = `
+                <img src="${imageUrl}" alt="${blog.title}">
+                <div class="blog-content">
+                    <h2>${blog.title}</h2>
+                    <p>${blog.intro}</p>
+                    <div class="author-date">
+                        <span>By ${blog.author || "Unknown Author"}</span>
+                        <span>${formatDate(blog.createdAt)}</span>
+                    </div>
+                   
+                </div>
+            `;
+
+        return mainBlog;
+      }
+
+      function createBlogCardElement(blog) {
+        const blogCard = document.createElement("div");
+        blogCard.className = "blog-card";
+        blogCard.onclick = () => (window.location.href = `/blog/${blog.id}`);
+
+        const imageUrl = blog.image || "/api/placeholder/120/120";
+
+        blogCard.innerHTML = `
+                <img src="${imageUrl}" alt="${blog.title}">
+                <div class="blog-content">
+                    <div>
+                        <h3>${blog.title}</h3>
+                        <p>${blog.intro}</p>
+                    </div>
+                    <div class="author-date">
+                        <span>By ${blog.author || "Unknown Author"}</span>
+                        <span>${formatDate(blog.createdAt)}</span>
+                    </div>
+                    
+                </div>
+            `;
+
+        return blogCard;
+      }
       function loadNavbar() {
         fetch("../Navbar/navbar.php")
           .then((response) => response.text())
