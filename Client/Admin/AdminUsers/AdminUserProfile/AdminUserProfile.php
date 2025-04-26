@@ -10,7 +10,7 @@
   <title>User Profile | Admin</title>
   <link rel="stylesheet" href="AdminUserProfile-v2.css">
   <link rel="stylesheet" href="AdminUser-updateModal.css">
-  <!-- <link rel="stylesheet" href="AdminTsp-Deactivate-Modal.css"> -->
+  <link rel="stylesheet" href="AdminUser-Deactivate-Modal.css">
   <link rel="stylesheet" href="../../LogoutModal/logoutModal.css">
   <link rel="stylesheet" href="../../Sidebar/Sidebar.css">
   <link rel="stylesheet" href="../../Recent_updates/Recent.css">
@@ -79,23 +79,23 @@
              </div>
 
             <!-- Modal Structure -->
-             <div id="updateTspModal" class="modal">
+             <div id="updateUserModal" class="modal">
                 <div class="modal-content">
                     <span class="close-u">&times;</span>
-                    <h2>Update Travel Service Provider</h2>
-                    <form id="updateTspForm">
-                        <input type="hidden" id="tspId" name="tspId" />
+                    <h2>Update User</h2>
+                    <form id="updateUserForm">
+                        <input type="hidden" id="userId" name="userId" />
 
-                        <label for="tspFirstName">First Name:</label>
-                        <input type="text" id="tspFirstName" name="firstName" placeholder="First Name" />
+                        <label for="userFirstName">First Name:</label>
+                        <input type="text" id="userFirstName" name="firstName" placeholder="First Name" />
                         
-                        <label for="tspLastName">Last Name:</label>
-                        <input type="text" id="tspLastName" name="lastName" placeholder="Last Name"  />
+                        <label for="userLastName">Last Name:</label>
+                        <input type="text" id="userLastName" name="lastName" placeholder="Last Name"  />
                         
-                        <label for="tspPhone">Phone:</label>
+                        <label for="userPhone">Phone:</label>
                         <input 
                             type="tel" 
-                            id="tspPhone" 
+                            id="userPhone" 
                             name="contactNumber" 
                             placeholder="Enter Sri Lankan Phone Number" 
                             pattern="0[0-9]{2}[0-9]{7}" 
@@ -111,15 +111,15 @@
             </div> 
 
             <!--Deactivate Modal -->
-            <!-- <div id="deactivateModal" class="modal-d">
+            <div id="deactivateModal" class="modal-d">
                 <div class="modal-d-content">
                     <span class="close-btn" id="closeModal-d">&times;</span>
-                    <h3>Are you sure you want to deactivate this TSP?</h3>
+                    <h3>Are you sure you want to deactivate this User?</h3>
                     <button id="confirmDeactivateBtn">Yes, Deactivate</button>
                     <button id="cancelDeactivateBtn">Cancel</button>
                 </div>
             </div>
-            <a href=""></a>             -->
+            <a href=""></a>            
 
         </main>
 
@@ -132,7 +132,7 @@
     
  <script src="../../LogoutModal/logoutModal.js"></script>
  <script src="AdminUserProfile.js"></script>
- <!-- <script src="AdminTsp-profile-edit.js"></script> -->
+ <script src="AdminUser-profile-edit.js"></script>
  <script src="AdminUserProfile-crud.js"></script>
  <script src="../../Recent_updates/Recent.js"></script>
  <script src="GetBookings.js"></script>

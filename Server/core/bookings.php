@@ -153,23 +153,6 @@ class Bookings {
         }
     }
 
-    // Cancel booking
-    public function cancelBooking($bookingID) {
-        try {
-            $query = 'DELETE FROM ' . $this->booking_table . ' WHERE bookingID = :bookingID';
-            $stmt = $this->conn->prepare($query);
-
-            $stmt->bindParam(':bookingID', $bookingID);
-
-            if ($stmt->execute()) {
-                return ['success' => true, 'message' => 'Booking canceled successfully.'];
-            } else {
-                return ['success' => false, 'message' => 'Failed to cancel booking.'];
-            }
-        } catch (Exception $e) {
-            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
-        }
-    }
 
     // Get recent bookings
     public function getRecentBookings() {
@@ -283,5 +266,121 @@ class Bookings {
             return ['success' => false, 'message' => 'Error: '. $e->getMessage()];
         }
     }
+
+    public function getBookingRevenueforMonth(){
+        try {
+            $query = 'SELECT SUM(total_fare) as revenue 
+                      FROM bookings 
+                      WHERE MONTH(bookingDate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH) 
+                      AND YEAR(bookingDate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)';
+    
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+    
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return ['success' => true, 'revenue' => $result['revenue'] ?? 0];
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
+    }
+
+  public function getMonthlyBookingCounts() {
+    try {
+        $query = "
+        SELECT 
+            MONTH(b.bookingDate) AS month,
+            COUNT(*) AS booking_count
+        FROM 
+            {$this->booking_table} b
+        WHERE 
+            YEAR(b.bookingDate) = YEAR(CURDATE())
+        GROUP BY 
+            MONTH(b.bookingDate)
+        ORDER BY 
+            month
+    ";    
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Optional: convert month numbers to names
+        foreach ($result as &$row) {
+            $row['month_name'] = date("F", mktime(0, 0, 0, $row['month'], 1));
+        }
+
+        return $result;
+
+    } catch (PDOException $e) {
+        error_log("Monthly User Count Error: " . $e->getMessage());
+        return [];
+    }
+}
+
+public function bookingCountlastmonth() {
+    try {
+        // Query to count the bookings from the last month
+        $query = 'SELECT COUNT(*) as count 
+                  FROM bookings 
+                  WHERE YEAR(bookingDate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) 
+                  AND MONTH(bookingDate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)';
+        
+        // Prepare and execute the query
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        
+        // Fetch the result
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        // Return the count
+        return ['success' => true, 'count' => $result['count']];
+    } catch (Exception $e) {
+        // Catch and return error message if any exception occurs
+        return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+    }
+}
+
+public function revenueLastMonth(){
+    try {
+        $query = 'SELECT SUM(total_fare) AS total_revenue
+                  FROM bookings
+                  WHERE DATE(bookingDate) >= CURDATE() - INTERVAL 1 MONTH';
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total_revenue'] ? $result['total_revenue'] : 0;
+    } catch (PDOException $e) {
+        error_log("Last month revenue Error: " . $e->getMessage());
+        return [];
+    }
+}
+
+
+public function bookingDetailsLastMonth(){
+    try {
+        $query = "
+            SELECT b.*, p.username, s1.name AS schedule_name, s2.name AS show_name, t.name AS theater_name
+            FROM bookings b
+            JOIN person p ON b.userId = p.id
+            JOIN station s1 ON b.schedule_id = s1.id
+            JOIN shows s2 ON b.show_id = s2.id
+            JOIN theaters t ON b.theater_id = t.id
+            WHERE DATE(b.created_at) >= CURDATE() - INTERVAL 1 MONTH";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    } catch (PDOException $e) {
+        error_log("Last month booking details Error: " . $e->getMessage());
+        return [];
+    }
+}
+
+    
 }
 ?>

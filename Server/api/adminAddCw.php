@@ -24,15 +24,17 @@ if (
   isset($data['username']) &&
   isset($data['firstName']) &&
   isset($data['lastName']) &&
+  isset($data['IDNumber']) &&
   isset($data['email']) &&
   isset($data['contactNumber']) &&
   isset($data['password'])
 ) {
   // Assign data to the CW object
-  $contentWriter->cwid = $data['cwid'];
+  $contentWriter->cwid = $data['cwid'];   
   $contentWriter->username = $data['username'];
   $contentWriter->first_name = $data['firstName'];
   $contentWriter->last_name = $data['lastName'];
+  $contentWriter->id_number = $data['IDNumber'];
   $contentWriter->email = $data['email'];
   $contentWriter->contact_number = $data['contactNumber'];
   $contentWriter->password = $data['password'];

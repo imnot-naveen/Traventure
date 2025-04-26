@@ -22,6 +22,14 @@ try {
     if (!move_uploaded_file($photo['tmp_name'], $targetFilePath)) {
         throw new Exception('Failed to upload photo.');
     }
+ 
+    // Insert into destinationTypes table
+    $query = 'INSERT INTO destinationtypes (type, photo) 
+              VALUES (:name, :photo)';
+    
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':photo', $fileName);
 
     // Insert into destinationTypes table
     $query = 'INSERT INTO destinationtypes (type, photo) 

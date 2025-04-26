@@ -53,7 +53,7 @@
             </div>
 
             <!-- END OF INSIGHTS -->
-            <div class="recent-orders">
+            <!-- <div class="recent-orders">
                 <h2>Trains Added</h2>
                 <table>
                     <thead>
@@ -72,7 +72,7 @@
                     </tbody>
                 </table>
                 <a href="../AdminBookings/AdminBookings.php">Show All</a>
-             </div>
+             </div> -->
 
             <!-- Modal Structure -->
             <div id="updatecwModal" class="modal">
@@ -130,5 +130,6 @@
  <script src="AdminCW-profile.js"></script>
  <script src="AdminCW-profile-crud.js"></script>
  <script src="AdminCW-profile-edit.js"></script>
+ <script src="../../Recent_updates/Recent.js"></script>
 </body>
 </html>

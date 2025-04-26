@@ -7,10 +7,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TSP Profile | Admin</title>
+  <title>Driver Profile | Admin</title>
   <link rel="stylesheet" href="AdminDriver-profile.css">
   <link rel="stylesheet" href="AdminDriver-updateModal.css">
-  <link rel="stylesheet" href="AdminDriver-Deactivate-Modal.css">
+  <link rel="stylesheet" href="ADminDriver-Deactivate-Modal.css">
   <link rel="stylesheet" href="../../LogoutModal/logoutModal.css">
   <link rel="stylesheet" href="../../Sidebar/Sidebar.css">
   <link rel="stylesheet" href="../../Recent_updates/Recent.css">
@@ -26,7 +26,7 @@
                     <div class="profile-header">
                         <img src="../../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture">
                         <div class="profile-info">
-                            <h2 id="driverName">TSP Not found</h2>
+                            <h2 id="driverName">Driver Not found</h2>
                             <h3>Driver</h3>
                             <p>Status: <span id="driverStatus" class="status active">Acti</span></p>
                         </div>
@@ -52,62 +52,24 @@
                 </div>
             </div>
 
-            <!-- END OF INSIGHTS -->
-            <div class="recent-orders">
-                <h2>Trains Added</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Train ID</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        <tr>
-                            <td>T001</td>
-                            <td>Blue Express</td>
-                            <td>Intercity</td>   
-                        </tr>
-                        
-                    </tbody>
-                </table>
-                <a href="../AdminBookings/AdminBookings.php">Show All</a>
-             </div>
-
             <!-- Modal Structure -->
-            <div id="updateTspModal" class="modal">
+            <div id="updatedriverModal" class="modal">
                 <div class="modal-content">
                     <span class="close-u">&times;</span>
-                    <h2>Update Travel Service Provider</h2>
-                    <form id="updateTspForm">
-                        <input type="hidden" id="tspId" name="tspId" />
+                    <h2>Update Driver</h2>
+                    <form id="updatedriverForm">
+                        <input type="hidden" id="driverId" name="driverId" />
 
-                        <label for="tspFirstName">First Name:</label>
-                        <input type="text" id="tspFirstName" name="firstName" placeholder="First Name" />
+                        <label for="driverFirstName">First Name:</label>
+                        <input type="text" id="driverFirstName" name="firstName" placeholder="First Name" />
                         
-                        <label for="tspLastName">Last Name:</label>
-                        <input type="text" id="tspLastName" name="lastName" placeholder="Last Name"  />
+                        <label for="driverLastName">Last Name:</label>
+                        <input type="text" id="driverLastName" name="lastName" placeholder="Last Name"  />
                         
-                        <label for="tspPhone">Phone:</label>
+                        <label for="driverPhone">Phone:</label>
                         <input 
                             type="tel" 
-                            id="tspPhone" 
+                            id="driverPhone" 
                             name="contactNumber" 
                             placeholder="Enter Sri Lankan Phone Number" 
                             pattern="0[0-9]{2}[0-9]{7}" 
@@ -143,8 +105,9 @@
   <?php include '../../LogoutModal/logoutModal.php'; ?>
     
  <script src="../../LogoutModal/logoutModal.js"></script>
- <script src="AdminTsp-profile.js"></script>
- <script src="AdminTsp-profile-crud.js"></script>
- <script src="AdminTsp-profile-edit.js"></script>
+ <script src="AdminDriver-profile.js"></script>
+ <script src="AdminDriver-profile-crud.js"></script>
+ <script src="AdminDriver-profile-edit.js"></script>
+ <script src="../../Recent_updates/Recent.js"></script>
 </body>
 </html>

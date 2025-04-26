@@ -18,10 +18,10 @@ $user = new User($db);
 // Fetch user growth
 $data = $user->countUsersLast24Hours();
 
-if (!empty($data)) {
+if ($data !== null) {
   http_response_code(200);
   echo json_encode(['success' => true, 'data' => $data]);
 } else {
-  http_response_code(404);
-  echo json_encode(['success' => false, 'message' => 'No users found in last 24h']);
+  http_response_code(200);  
+  echo json_encode(['success' => true, 'data' => 0]);  
 }
