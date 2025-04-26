@@ -11,7 +11,7 @@ header('Content-Type: application/json');
 
 // Include core initialization 
 include_once('../core/initialize.php');
-
+ 
 // Instantiate Bookings object
 $booking = new Bookings($db);
 
