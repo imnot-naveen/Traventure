@@ -73,10 +73,16 @@
             <div class="update-destinations">
               <h4>Add Destination Type</h4>
               <form id="destinationTypesForm" enctype="multipart/form-data">
-                <div class="form-group">
-                  <label for="destType">Destination Type</label>
-                  <input type="text" id="destType" name="destType" required>
-                </div>
+              <div class="form-group">
+                <label for="destType">Destination Type</label>
+                <input 
+                  type="text" 
+                  id="destType" 
+                  name="destType" 
+                  pattern="[A-Za-z\s]+" 
+                  required 
+                  title="Enter a valid destination type (letters and spaces only)">
+              </div>
                 <div class="form-group">
                   <label for="destPhoto">Photo</label>
                   <input type="file" id="destPhoto" name="destPhoto" accept="image/*" required>
