@@ -5,41 +5,11 @@ body {
     padding: 0;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.logo img {
-    height: 50px;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-}
-
-nav ul li {
-    margin-left: 80px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #0d1b4c;
-    font-weight: bold;
-}
 
 .details-container {
     max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
+    margin: 3px auto;
+    padding: 15px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

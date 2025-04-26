@@ -31,6 +31,14 @@ try {
     $stmt->bindParam(':name', $name);
     $stmt->bindParam(':photo', $fileName);
 
+    // Insert into destinationTypes table
+    $query = 'INSERT INTO destinationtypes (type, photo) 
+              VALUES (:name, :photo)';
+    
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':photo', $fileName);
+
     if (!$stmt->execute()) {
         throw new Exception('Failed to insert destination type.');
     }

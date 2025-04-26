@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us</title>
     <link rel="stylesheet" href="ContactUs.css" />
+    <link rel="stylesheet" href="../Navbar/navbar.css" />
+    <link rel="stylesheet" href="../Footer/footer.css" />
   </head>
   <body>
+    <!-- Navbar component -->
+    <nav id="navbar-placeholder"></nav>
     <div class="contact-container">
       <div class="contact-details">
         <div class="contact-elements">
@@ -51,6 +55,65 @@
         </div>
       </div>
     </div>
+    <footer id="footer"></footer>
+    <script src="../Navbar/navbar.js"></script>
     <script src="ContactUs.js"></script>
+    <script>
+      // Function to load the Navbar
+      function loadNavbar() {
+        fetch("../Navbar/navbar.php")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+            // Initialize the navbar functionalities
+            document
+              .getElementById("menu-toggle")
+              .addEventListener("click", function () {
+                const navMenu = document.getElementById("nav-menu");
+                navMenu.classList.toggle("active");
+              });
+
+            // Set the initial state
+            updateNavbarState(false); // Set initial state (false means not logged in)
+          });
+      }
+
+      // Function to load the Footer
+      function loadFooter() {
+        fetch("../Footer/footer.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("footer").innerHTML = data;
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadNavbar();
+        loadFooter();
+      });
+
+      // Handle login state (optional)
+      function handleLogin(event) {
+        event.preventDefault();
+        // Simulate login action
+        updateNavbarState(true); // Set state to logged in
+      }
+
+      function handleLogout(event) {
+        event.preventDefault();
+        // Simulate logout action
+        updateNavbarState(false); // Set state to logged out
+      }
+
+      function updateNavbarState(isLoggedIn) {
+        if (isLoggedIn) {
+          document.getElementById("login-link").classList.add("hidden");
+          document.getElementById("user-icon").classList.remove("hidden");
+        } else {
+          document.getElementById("login-link").classList.remove("hidden");
+          document.getElementById("user-icon").classList.add("hidden");
+        }
+      }
+    </script>
   </body>
 </html>

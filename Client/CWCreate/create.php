@@ -29,7 +29,7 @@ $username = $_SESSION['username'];
         <nav id="navbar-placeholder"></nav>
         
     <main>
-        <section>>
+        <section>
             <h1>Create New Post</h1>
             <form action="addblogpost.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
@@ -37,17 +37,21 @@ $username = $_SESSION['username'];
             <input type="text" id="title" name="title">
             </div>
             <div class="form-group">
+              <label for="intro">City</label>
+              <input type="text" id="city" name="city">
+            </div>
+            <div class="form-group">
               <label for="intro">Introduction</label>
               <input type="text" id="intro" name="intro">
             </div>
-<div class="form-group">
-    <label for="content">Content:</label>
-    <textarea id="content" name="content" rows="6"></textarea>
-</div>
-<div class="form-group">
-    <label for="photos">Add Photos:</label>
-    <input type="file" id="photos" name="photos" multiple accept="image/*">
-</div>
+            <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="6"></textarea>
+            </div>
+            <div class="form-group">
+            <label for="photos">Add Photos:</label>
+            <input type="file" id="photos" name="photos" multiple accept="image/*">
+            </div>
 <button type="submit" class="post-button">Post</button>
             </form>
             
@@ -55,12 +59,12 @@ $username = $_SESSION['username'];
     </main>
     <footer id="footer"></footer>
 
-    <script src="../Navbar/navbar.js"></script>
+    <script src="../CW Navbar/navbar.js"></script>
   <script src="create.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../Navbar/navbar.php')
+      fetch('../CW Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;

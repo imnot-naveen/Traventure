@@ -55,30 +55,29 @@ $username = $_SESSION['username'];
         <h2 class="dashboard-title">Dashboard Overview</h2>
         
         <div class="dashboard-grid">
-            <div class="dashboard-card">
+        <div class="dashboard-card">
                 <img src="total-trains-icon.png" alt="Total Trains">
                 <h3>Total Trains</h3>
-                <p>25 Trains</p>
+                <p id="trains"></p>
             </div>
             
             <div class="dashboard-card">
                 <img src="active-routes-icon.png" alt="Active Routes">
                 <h3>Active Routes</h3>
-                <p>12 Routes</p>
+                <p id="routes"></p>
             </div>
             
             <div class="dashboard-card">
                 <img src="passengers-icon.png" alt="Passengers This Month">
                 <h3>Passengers This Month</h3>
-                <p>5,420 Passengers</p>
+                <p id="passengers"></p>
             </div>
             
             <div class="dashboard-card">
                 <img src="revenue-icon.png" alt="Monthly Revenue">
                 <h3>Monthly Revenue</h3>
-                <p>$124,500</p>
+                <p id="revenue"></p>
             </div>
-        </div>
     </div>
     <script src="dashboard.js"></script>
 </body>

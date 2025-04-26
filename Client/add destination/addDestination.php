@@ -15,38 +15,46 @@ if (!($_SESSION['userType'] == "TSP")){
 $username = $_SESSION['username'];
 ?>
 
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Destination</title>
-    <link rel="stylesheet" href="addDestination.css">
-</head>
-<body>
+    <link rel="stylesheet" href="addDestination.css" />
+  </head>
+  <body>
     <div class="form-container">
-        <form id="destination-form">
-            <h2>Add Destination</h2>
+      <form id="destination-form">
+        <h2>Add Destination</h2>
 
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
 
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
 
-            <label for="type">Type:</label>
-            <select id="type" name="type" required></select>
+        <label for="type">Type/s:</label>
+        <div id="typesContainer"></div>
 
-            <label for="nearestStation">Nearest Station:</label>
-            <select id="nearestStation" name="nearestStation" required></select>
+        <label for="nearestStation">Nearest Station:</label>
+        <select id="nearestStation" name="nearestStation" required></select>
 
-            <label for="photos">Upload Photos:</label>
-            <input type="file" id="photos" name="photos[]" multiple accept="image/*">
-
+        <label for="photos">Upload Photos:</label>
+        <input
+          type="file"
+          id="photos"
+          name="photos[]"
+          multiple
+          accept="image/*"
+        />
+        <div class="form-actions">
             <button type="submit">Submit</button>
-        </form>
+            <button type="button" onclick="window.location.href='../manage destinations/managedestinations.php'" class="btn btn-secondary">Cancel</button>
+        </div>
+      </form>
     </div>
 
     <script src="addDestination.js"></script>
-</body>
+  </body>
 </html>

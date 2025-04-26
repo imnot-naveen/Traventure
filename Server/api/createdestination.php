@@ -15,13 +15,12 @@ try {
     }
 
     // Insert destination details
-    $query = 'INSERT INTO Destination (name, description, type, nearestStation) VALUES (:name, :description, :type, :nearestStation)';
+    $query = 'INSERT INTO Destination (name, description, nearestStation) VALUES (:name, :description, :nearestStation)';
     $stmt = $db->prepare($query);
     $stmt->bindParam(':name', $_POST['name']);
     $stmt->bindParam(':description', $_POST['description']);
-    $stmt->bindParam(':type', $_POST['type']);
     $stmt->bindParam(':nearestStation', $_POST['nearestStation']);
-
+    
     if ($stmt->execute()) {
         $destinationId = $db->lastInsertId();
 
@@ -32,6 +31,30 @@ try {
             $photoStmt->bindParam(':destination', $destinationId);
             $photoStmt->bindParam(':photoName', $photoName);
             $photoStmt->execute();
+        }
+
+        // Handle multiple destination types
+        if (isset($_POST['types']) && is_array($_POST['types'])) {
+            foreach ($_POST['types'] as $type) {
+                $typeQuery = 'INSERT INTO desttypes (destination, type) VALUES (:destination_id, :type)';
+                $typeStmt = $db->prepare($typeQuery);
+                $typeStmt->bindParam(':destination_id', $destinationId);
+                $typeStmt->bindParam(':type', $type);
+                $typeStmt->execute();
+            }
+        } else if (isset($_POST['types']) && !empty($_POST['types'])) {
+            // Handle case where types might be a comma-separated string
+            $types = explode(',', $_POST['types']);
+            foreach ($types as $type) {
+                $type = trim($type);
+                if (!empty($type)) {
+                    $typeQuery = 'INSERT INTO desttypes (destination_id, type) VALUES (:destination_id, :type)';
+                    $typeStmt = $db->prepare($typeQuery);
+                    $typeStmt->bindParam(':destination_id', $destinationId);
+                    $typeStmt->bindParam(':type', $type);
+                    $typeStmt->execute();
+                }
+            }
         }
 
         echo json_encode(['success' => true, 'message' => 'Destination created successfully!']);

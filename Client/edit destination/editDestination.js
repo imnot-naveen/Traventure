@@ -30,18 +30,54 @@ function loadDestinationForEdit(destinationId) {
         throw new Error(destinationResponse.error);
       }
 
-      // Populate types dropdown
-      const typeSelect = document.querySelector("#destinationType");
-      typeSelect.innerHTML =
-        '<option value="">Select Destination Type</option>';
+      // Get destination types container
+      const typesContainer = document.querySelector("#destinationTypes");
+      typesContainer.innerHTML = ""; // Clear existing content
+
+      // Create heading for types
+      const typesHeading = document.createElement("label");
+      typesHeading.textContent = "Destination Types:";
+      typesHeading.className = "form-label";
+      typesContainer.appendChild(typesHeading);
+
+      // Create checkbox container
+      const checkboxContainer = document.createElement("div");
+      checkboxContainer.className = "checkbox-container";
+      typesContainer.appendChild(checkboxContainer);
 
       // Check if types response has the expected structure
       if (typesResponse.success && Array.isArray(typesResponse.types)) {
+        // Get destination's current types (if any)
+        const currentTypes = destinationResponse.types || [];
+
         typesResponse.types.forEach((typeObj) => {
-          const option = document.createElement("option");
-          option.value = typeObj.type_id;
-          option.textContent = typeObj.type;
-          typeSelect.appendChild(option);
+          // Create container for each checkbox
+          const checkboxDiv = document.createElement("div");
+          checkboxDiv.className = "form-check";
+
+          // Create checkbox input
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.className = "form-check-input";
+          checkbox.name = "types[]";
+          checkbox.value = typeObj.type_id;
+          checkbox.id = `type-${typeObj.type_id}`;
+
+          // Check if this type is already associated with the destination
+          if (currentTypes.some((type) => type.type_id === typeObj.type_id)) {
+            checkbox.checked = true;
+          }
+
+          // Create label
+          const label = document.createElement("label");
+          label.className = "form-check-label";
+          label.htmlFor = `type-${typeObj.type_id}`;
+          label.textContent = typeObj.type;
+
+          // Add checkbox and label to container
+          checkboxDiv.appendChild(checkbox);
+          checkboxDiv.appendChild(label);
+          checkboxContainer.appendChild(checkboxDiv);
         });
       } else {
         console.error("Invalid types response", typesResponse);
@@ -71,14 +107,6 @@ function loadDestinationForEdit(destinationId) {
 
       // Populate destination details
       document.querySelector("#destinationNameInput").value = data.name;
-
-      // Set the correct type in dropdown
-      const typeOption = Array.from(typeSelect.options).find(
-        (option) => parseInt(option.value) === data.type_id
-      );
-      if (typeOption) {
-        typeOption.selected = true;
-      }
 
       // Set the correct station in dropdown
       const stationOption = Array.from(stationSelect.options).find(
@@ -150,14 +178,23 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    // Check if at least one type is selected
+    const selectedTypes = document.querySelectorAll(
+      'input[name="types[]"]:checked'
+    );
+    if (selectedTypes.length === 0) {
+      alert("Please select at least one destination type.");
+      return;
+    }
+
     const formData = new FormData();
+
     // Use the stored destination ID from the loaded data
     formData.append("id", window.currentDestinationId);
     formData.append(
       "name",
       document.querySelector("#destinationNameInput").value
     );
-    formData.append("type", document.querySelector("#destinationType").value);
     formData.append(
       "nearestStation",
       document.querySelector("#nearestStation").value
@@ -166,6 +203,11 @@ document.addEventListener("DOMContentLoaded", () => {
       "description",
       document.querySelector("#destinationDescriptionInput").value
     );
+
+    // Add selected types to the form data
+    selectedTypes.forEach((checkbox) => {
+      formData.append("types[]", checkbox.value);
+    });
 
     // Handle photo deletions
     formData.append(
@@ -190,7 +232,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((result) => {
         if (result.success) {
           alert("Destination updated successfully!");
-          window.location.href = "destinations.html"; // Redirect after successful update
+          window.location.href =
+            "../manage destinations/managedestinations.php"; // Redirect after successful update
         } else {
           alert(`Error updating destination: ${result.error}`);
         }

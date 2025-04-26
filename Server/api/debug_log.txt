@@ -1,0 +1,6 @@
+Array
+(
+    [title] => ggg
+    [intro] => dd
+    [content] => ee
+)

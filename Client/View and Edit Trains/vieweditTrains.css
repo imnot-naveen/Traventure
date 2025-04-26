@@ -1,168 +1,188 @@
-:root {
-    --primary-color: #11134f;
-    --secondary-color: #0d1b4c;
-    --accent-color: #007bff;
-    --background-color: #f5f5f5;
-    --white: #ffffff;
-    --text-color: #333;
-    --border-radius: 12px;
-}
-
+/* Reset and Base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    line-height: 1.6;
-}
-
-header {
+  }
+  
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+  }
+  
+  /* Header */
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: var(--white);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.logo img {
+    background: #ffffff;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo img {
     height: 50px;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  }
+  
+  nav a.go-back-btn {
     display: flex;
     align-items: center;
-}
-
-nav ul li {
-    margin-left: 80px;
-}
-
-nav ul li a {
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #0066cc;
     text-decoration: none;
-    color: var(--secondary-color);
-    font-weight: bold;
-}
-
-.profile a {
-    display: flex;
-    align-items: center;
-    color: var(--secondary-color);
-}
-
-.user-icon {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    margin-right: 5px;
-}
-
-.table-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: var(--secondary-color);
-}
-
-table {
+    padding: 0.6rem 1rem;
+    border: 2px solid #0066cc;
+    border-radius: 0.8rem;
+    transition: all 0.3s ease;
+  }
+  
+  nav a.go-back-btn:hover {
+    background-color: #0066cc;
+    color: white;
+  }
+  
+  nav a.go-back-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Table Container */
+  .table-container {
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    text-align: center;
+  }
+  
+  .table-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Table */
+  table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-thead th {
-    text-align: left;
-    padding: 10px;
-    background-color: #f1f1f1;
-    font-weight: bold;
-    border-bottom: 2px solid #ccc;
-    color: var(--secondary-color);
-}
-
-tbody td {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-}
-
-tbody tr:hover {
-    background-color: #f9f9f9;
-}
-
-.actions {
-    display: flex;
-    align-items: center;
-}
-
-.actions a {
-    margin-right: 15px;
+    margin-bottom: 2rem;
+  }
+  
+  tbody tr {
+    height: 2.8rem; /* Adjusted to reduce scroll */
+  }
+  
+  td, th {
+    padding: 0.4rem 0.5rem;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  /* Action Buttons */
+  .view, .edit, .delete {
+    padding: 0.35rem 0.7rem;
+    margin: 0 0.3rem;
+    font-size: 0.85rem;
+    border-radius: 5px;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: color 0.3s ease;
-}
-
-.view {
-    color: var(--accent-color);
-}
-
-.edit {
-    color: var(--secondary-color);
-}
-
-.delete {
-    color: #dc3545;
-}
-
-.actions a:hover {
-    opacity: 0.7;
-}
-
-.pagination {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 15px;
-}
-
-.pagination button {
-    background-color: var(--white);
-    color: var(--secondary-color);
-    border: 1px solid rgba(13, 27, 76, 0.2);
-    padding: 8px 15px;
-    border-radius: 6px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .view {
+    background-color: #007bff;
+  }
+  
+  .view:hover {
+    background-color: #0056b3;
+  }
+  
+  .edit {
+    background-color: #17a2b8;
+  }
+  
+  .edit:hover {
+    background-color: #117a8b;
+  }
+  
+  .delete {
+    background-color: #dc3545;
+  }
+  
+  .delete:hover {
+    background-color: #a71d2a;
+  }
+  
+  thead th {
+    background-color: #f0f0f0;
+    color: #444;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tbody tr:hover {
+    background-color: #eef6ff;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Generic Buttons */
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.7rem;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.pagination button:hover {
-    background-color: var(--accent-color);
-    color: var(--white);
-}
-
-#current-page {
-    font-weight: bold;
-    color: var(--secondary-color);
-}
-
-.modal {
+  }
+  
+  .delete-btn {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c0392b;
+  }
+  
+  .cancel-btn {
+    background-color: #bdc3c7;
+    color: #2c3e50;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #95a5a6;
+  }
+  
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  
+  .pagination button {
+    background-color: #3498db;
+    color: white;
+    padding: 0.4rem 1rem;
+    font-size: 1.2rem;
+    border-radius: 0.8rem;
+  }
+  
+  .pagination button:hover {
+    background-color: #2980b9;
+  }
+  
+  #current-page {
+    font-size: 1.2rem;
+  }
+  
+  /* Modal */
+  .modal {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -170,55 +190,33 @@ tbody tr:hover {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background-color: var(--white);
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .modal-content {
+    background-color: white;
     margin: 15% auto;
-    padding: 30px;
-    border-radius: var(--border-radius);
-    width: 100%;
-    max-width: 500px;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.modal-content h3 {
-    color: var(--secondary-color);
-    margin-bottom: 20px;
-}
-
-.modal-buttons {
-    margin-top: 20px;
+  }
+  
+  .modal-content h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .modal-content p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+  }
+  
+  .modal-buttons {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.delete-btn, .cancel-btn {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.delete-btn {
-    background-color: #dc3545;
-    color: var(--white);
-}
-
-.cancel-btn {
-    background-color: #6c757d;
-    color: var(--white);
-}
-
-.delete-btn:hover {
-    background-color: #c82333;
-}
-
-.cancel-btn:hover {
-    background-color: #5a6268;
-}
+    justify-content: space-around;
+  }
+  

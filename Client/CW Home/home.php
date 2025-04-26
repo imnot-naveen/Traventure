@@ -49,13 +49,13 @@ $username = $_SESSION['username'];
 
     <footer id="footer"></footer>
 
-  <script src="../Navbar/navbar.js"></script>
+  <script src="../CW Navbar/navbar.js"></script>
   <script src="home.js"></script>
   <script src="../Footer/footer.js"></script>
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../Navbar/navbar.php')
+      fetch('../CW Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;

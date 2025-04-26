@@ -21,12 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        // Display profile picture if available
-        const profilePicture = document.querySelector(".profile-picture");
-        if (profilePicture && data.data.profilePicture) {
-          profilePicture.style.backgroundImage = `url('${data.data.profilePicture}')`;
-        }
-
         // Populate basic profile fields
         safeSetElement(
           ".name",
@@ -137,10 +131,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (saveButton) {
         if (!profileInputs[0].disabled) {
           saveButton.style.display = "block";
-          editProfileLink.textContent = "Cancel Edit";
+          editProfileLink.innerHTML = '<i class="fas fa-times"></i> Cancel';
         } else {
           saveButton.style.display = "none";
-          editProfileLink.textContent = "Edit profile..";
+          editProfileLink.innerHTML = '<i class="fas fa-pen"></i> Edit';
 
           // Revert basic info
           document.getElementById("first-name").value = document
@@ -189,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('input[name="destinations[]"]:checked')
       ).map((checkbox) => checkbox.value);
 
-      // Calculate changes
+      // Calculate changes - FIXED LOGIC HERE
       const toAdd = currentSelections.filter(
         (id) => !originalSelections.includes(id)
       );
@@ -257,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             saveButton.style.display = "none";
             if (editProfileLink) {
-              editProfileLink.textContent = "Edit profile..";
+              editProfileLink.innerHTML = '<i class="fas fa-pen"></i> Edit';
             }
           } else {
             alert(data.message);
