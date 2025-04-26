@@ -23,6 +23,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
+    background-color: rgb(237, 250, 255);
 }
 
 main {
@@ -243,6 +244,11 @@ section h1 {
     font-size: 18px;
 }
 
+.create-post-container {
+    text-align: center;
+    justify-content: center;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .header-actions {
@@ -275,7 +281,7 @@ section h1 {
 
 a.pill-link {
     margin-top: 50px;
-    width: 100px;
+    width: 200px;
     height: 40px;
     display: inline-block; /* Makes it behave like a button */
     padding: 0.50rem 0.75rem; /* Adjusts size for a small pill shape */
@@ -287,6 +293,7 @@ a.pill-link {
     font-size: 0.975rem; /* Small font size */
     font-weight: 500; /* Slightly bold for better readability */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+    padding-bottom: 2%;
 }
 
 a.pill-link:hover {
