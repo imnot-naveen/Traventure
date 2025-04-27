@@ -1,4 +1,4 @@
-/* General Styles */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,7 +9,7 @@ body {
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f7fa;
+  background-color: #f3f7ff;
   color: #333;
   line-height: 1.6;
 }
@@ -67,20 +67,40 @@ h1 {
 }
 
 .destinations-header {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
   text-align: center;
-  margin-bottom: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .destinations-header h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
   color: #2c3e50;
+  font-size: 28px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .destinations-header p {
-  color: #7d8a96;
+  color: #555;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
+
+.destinations-header i {
+  color: rgb(35, 35, 132);
+  font-size: 24px;
+}
+
+
 
 /* Section titles */
 .destinations-section {
@@ -366,10 +386,10 @@ h1 {
 
 .primary-button {
   padding: 12px 24px;
-  background-color: #4CAF50;
+  background-color: #72cb75;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;

@@ -49,10 +49,11 @@ function renderDestinations(destinations, preferredTypes) {
   const headerElement = document.createElement("div");
   headerElement.className = "destinations-header";
   headerElement.innerHTML = `
-    <h2>Select Your Destinations</h2>
-    <p>Choose the places you'd like to visit along this route</p>
+    <h2><i class='bx bxs-map'></i> Select Your Destinations</h2>
+    <p> Choose the places you'd like to visit along this route</p>
   `;
   destinationList.appendChild(headerElement);
+  
 
   // Sort destinations - recommended first
   const recommendedDestinations = [];

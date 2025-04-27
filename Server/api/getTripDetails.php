@@ -1,6 +1,5 @@
 <?php
-// File: server/api/getTripDetails.php
-// Get detailed information for a specific trip
+
 include_once('../core/initialize.php');
 header('Content-Type: application/json');
 
@@ -28,12 +27,31 @@ try {
     $checkStmt->bindParam(':tripID', $tripID);
     $checkStmt->bindParam(':username', $username);
     $checkStmt->execute();
+
+   
     
     if($checkStmt->fetchColumn() == 0) {
         echo json_encode(['success' => false, 'message' => 'Trip not found or access denied']);
         exit();
     }
+
+    $bookingIDQuery = 'SELECT bookingID FROM trip WHERE tripID = :tripID';
+    $bookingIDStmt = $db->prepare($bookingIDQuery);
+    $bookingIDStmt->bindParam(':tripID', $tripID);
+    $bookingIDStmt->execute();
+
+    $bookingIDRow = $bookingIDStmt->fetch(PDO::FETCH_ASSOC);
+    $bookingID = $bookingIDRow['bookingID'];
     
+
+    // Get destination details
+    $bookingQuery = 'SELECT bookingID, total_fare as amount, paymentMethod, paymentStatus as status FROM bookings WHERE bookingID = :bookingID';
+    $bookingStmt = $db->prepare($bookingQuery);
+    $bookingStmt->bindParam(':bookingID', $bookingID);
+    $bookingStmt->execute();
+
+    $bookingData = $bookingStmt->fetch(PDO::FETCH_ASSOC);
+
     // Get trip details
     $tripQuery = 'SELECT * FROM trip WHERE tripID = :tripID';
     $tripStmt = $db->prepare($tripQuery);
@@ -89,7 +107,8 @@ try {
         'tripData' => $tripData,
         'stations' => $stations,
         'segments' => $segments,
-        'destinations' => $destinations
+        'destinations' => $destinations,
+        'bookingData' => $bookingData,
     ];
     
     echo json_encode(['success' => true, 'tripDetails' => $tripDetails]);

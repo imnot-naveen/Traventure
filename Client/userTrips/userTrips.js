@@ -79,11 +79,20 @@ function createTripCard(trip) {
       <span class="trip-meta-item">${trip.ticket_class}</span>
       <span class="trip-meta-item">Rs. ${trip.total_fare}</span>
     </div>
+    <button class="btn-remove-trip">Remove</button>
   `;
 
-  // Add click event to view trip details
   tripCard.addEventListener("click", () => {
     window.location.href = `../Trip Details/tripDetails.html?tripID=${trip.tripID}`;
+  });
+
+  const removeButton = tripCard.querySelector(".btn-remove-trip");
+  removeButton.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    if (confirm("Are you sure you want to remove this trip?")) {
+      removeTrip(trip.tripID, tripCard);
+    }
   });
 
   return tripCard;
@@ -99,4 +108,27 @@ function displayEmptyState() {
       <a href="../createTrip/createTrip.html" class="btn-book-trip">Book Your First Trip</a>
     </div>
   `;
+}
+
+function removeTrip(tripID, tripCard) {
+  fetch("../../server/api/removeTrip.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ tripID }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        tripCard.remove();
+        alert("Trip removed successfully!");
+      } else {
+        alert(data.message || "Failed to remove trip.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error removing trip:", error);
+      alert("Something went wrong. Please try again later.");
+    });
 }

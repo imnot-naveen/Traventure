@@ -22,21 +22,18 @@ if (!isset($data->tripID) || empty($data->tripID)) {
 }
 
 try {
-    // Update the trip status to 'removed'
-    $query = 'UPDATE Trip SET status = :status WHERE tripID = :tripID';
+    $query = 'UPDATE Trip SET status = "removed" WHERE tripID = :tripID';
     $stmt = $db->prepare($query);
     
-    // Bind parameters
-    $stmt->bindParam(':status', $status);
+    
     $stmt->bindParam(':tripID', $tripID);
     
-    // Set values
-    $status = 'removed';
+
     $tripID = $data->tripID;
     
-    // Execute query
+    
     if ($stmt->execute()) {
-        // Return success response
+       
         echo json_encode([
             'success' => true,
             'message' => 'Trip removed successfully'
@@ -45,8 +42,8 @@ try {
         throw new Exception('Failed to update trip status');
     }
 } catch (Exception $e) {
-    // Return an error message if the query fails
-    http_response_code(500); // Internal Server Error
+    
+    http_response_code(500); 
     echo json_encode([
         'success' => false,
         'message' => 'Error updating trip status',

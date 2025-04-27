@@ -1,6 +1,4 @@
 <?php
-// File: server/api/getUserTrips.php
-// Get all trips for the logged in user
 include_once('../core/initialize.php');
 header('Content-Type: application/json');
 

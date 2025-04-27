@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const itineraryData = {
     ...tripData,
     ...itinerary,
-  }; 
+  };
 
   async function getUserIDFromSession() {
     try {
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const data = await response.json();
 
       if (response.ok && data.success) {
+        console.log(data.userID);
         return data.userID;
       } else {
         throw new Error(data.message || "Not logged in");
@@ -139,7 +140,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   // We'll get the actual one from the server after saving
   const temporaryBookingReference = `TV-${Date.now().toString().substring(6)}`;
 
-  // Prepare trip segments
   let segments = [];
 
   // First segment from selected trains
@@ -289,16 +289,84 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
       
       <div class="actions">
-        <button id="book-ticket" class="action-button primary-button"></button>
-        <button id="save-itinerary" class="action-button">Save Itinerary</button>
+        <button id="book-ticket" class="action-button primary-button">Book & Pay Now</button>
+        <button id="save-itinerary" class="action-button">Save for Later</button>
         <button id="export-pdf" class="action-button">Export PDF</button>
         <button id="print-ticket" class="action-button">Print Ticket</button>
+      </div>
+      
+      <div class="button-hints">
+        <small>"Book & Pay Now" will save your itinerary and proceed to payment.</small>
+        <small>"Save for Later" will only save this trip to your account without booking.</small>
       </div>
     </div>
   `;
 
-  // Function to save itinerary and return trip ID and booking reference
-  async function saveItinerary() {
+  // Function to create booking record first
+  async function createBooking() {
+    try {
+      const userData = await getUserDetails();
+      const userID = await getUserIDFromSession();
+
+      if (!userID) {
+        return {
+          success: false,
+          message: "You must be logged in to create a booking",
+        };
+      }
+
+      const bookingData = {
+        userID: userID,
+        trainID: selectedTrains.length > 0 ? selectedTrains[0].trainID : null,
+        start_station: tripData.startStation,
+        destination_station: tripData.endStation,
+        class: tripData.seatClass,
+        no_of_passengers: parseInt(tripData.adults) || 0,
+        kidsCount: parseInt(tripData.children) || 0,
+        total_fare: totalFare,
+        paymentMethod: "Card",
+        paymentStatus: "Pending", // Will be updated after successful payment
+        bookingDate: new Date().toISOString().split("T")[0],
+      };
+
+      console.log("Creating booking with data:", bookingData);
+
+      // Call the API to create booking
+      const response = await fetch("../../server/api/createBookings.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Store booking ID in local storage
+        localStorage.setItem("bookingID", result.bookingID);
+
+        return {
+          success: true,
+          bookingID: result.bookingID,
+          message: result.message,
+        };
+      } else {
+        return {
+          success: false,
+          message: result.message || "Failed to create booking",
+        };
+      }
+    } catch (error) {
+      console.error("Error creating booking:", error);
+      return {
+        success: false,
+        message: "An error occurred while creating the booking",
+      };
+    }
+  }
+
+  async function saveItinerary(bookingID) {
     try {
       // Get all necessary data
       const tripData = JSON.parse(localStorage.getItem("tripData")) || {};
@@ -327,8 +395,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       const children = parseInt(tripData.children) || 0;
       const totalFare = adults * adultFare + children * childFare;
 
+      // Ensure we have a booking ID
+      if (!bookingID) {
+        throw new Error("A booking ID is required to save a trip");
+      }
+
       // Prepare data for API
-      const bookingData = {
+      const tripSaveData = {
         startStation: tripData.startStation,
         endStation: tripData.endStation,
         departureTime:
@@ -351,6 +424,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Include user details
         passengerName: userData.full_name,
         passengerID: userData.id_number,
+        // Include booking ID
+        bookingID: bookingID,
         selectedTrains: selectedTrains.map((train) => ({
           trainID: train.trainID,
           originStationID: train.originStationID || tripData.startStation,
@@ -361,14 +436,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         destinations: tripData.stopovers || [],
       };
 
-      console.log("Sending booking data:", bookingData);
+      console.log("Sending trip save data:", tripSaveData);
       // Call the API
       const response = await fetch("../../server/api/saveTrip.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(bookingData),
+        body: JSON.stringify(tripSaveData),
       });
 
       const result = await response.json();
@@ -376,114 +451,98 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (result.success) {
         // Store trip ID in local storage
         localStorage.setItem("tripID", result.tripID);
-        
+
         return {
           success: true,
           tripID: result.tripID,
-          message: result.message
+          message: result.message,
         };
       } else {
         return {
           success: false,
-          message: result.message || "Failed to save trip"
+          message: result.message || "Failed to save trip",
         };
       }
     } catch (error) {
       console.error("Error saving itinerary:", error);
       return {
         success: false,
-        message: "An error occurred while saving the trip"
+        message: "An error occurred while saving the trip: " + error.message,
       };
     }
   }
 
-  // Add event listeners for buttons
-  document.getElementById("save-itinerary").addEventListener("click", async () => {
-    const result = await saveItinerary();
-    
-    if (result.success) {
-      alert("Itinerary saved successfully!");
-    } else {
-      alert(`Error: ${result.message}`);
-    }
-  });
+  // Updated "Save for Later" button handler - this just saves the trip without booking
+  document
+    .getElementById("save-itinerary")
+    .addEventListener("click", async () => {
+      // Show loading indicator
+      const button = document.getElementById("save-itinerary");
+      const originalText = button.textContent;
+      button.textContent = "Saving...";
+      button.disabled = true;
 
-  document.getElementById("book-ticket").textContent = "Book tickets";
+      const result = await saveItinerary(null); // No booking ID for "Save for Later"
 
+      if (result.success) {
+        button.textContent = "Saved ✓";
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.disabled = false;
+        }, 2000);
+        alert("Itinerary saved for later. You can find it in your account.");
+      } else {
+        button.textContent = originalText;
+        button.disabled = false;
+        alert(`Error: ${result.message}`);
+      }
+    });
 
-  // Book ticket button handler - now handles the entire flow
+  // Updated "Book & Pay Now" button handler - with the new flow
   document.getElementById("book-ticket").addEventListener("click", async () => {
     try {
+      // Add loading indicator
+      const button = document.getElementById("book-ticket");
+      button.textContent = "Processing...";
+      button.disabled = true;
 
-      // Get user details (reuse existing function)
-      let userData = { full_name: "Guest User", id_number: "Not available" };
-      try {
-        userData = await getUserDetails();
-      } catch (error) {
-        console.error("Error fetching user details:", error);
+      // 1. Create a booking first
+      console.log("Creating booking record first...");
+      const bookingResult = await createBooking();
+
+      if (!bookingResult.success) {
+        throw new Error(`Failed to create booking: ${bookingResult.message}`);
       }
 
-      // First save the itinerary to get a booking reference if not already saved
-      const savedBookingReference = localStorage.getItem("bookingReference");
-      const savedTripID = localStorage.getItem("tripID");
+      const bookingID = bookingResult.bookingID;
+      console.log("Booking created successfully with ID:", bookingID);
 
-      let bookingReference = savedBookingReference;
-      let tripID = savedTripID;
+      // Store booking ID in local storage
+      localStorage.setItem("bookingID", bookingID);
 
-      if (!bookingReference || !tripID) {
-        // Save the trip first (using your existing save function)
-        await document.getElementById("save-itinerary").click();
+      // 2. Save the trip with the booking ID
+      console.log("Now saving trip with booking ID...");
+      const saveResult = await saveItinerary(bookingID);
 
-        // Get the newly saved references
-        bookingReference = localStorage.getItem("bookingReference");
-        tripID = localStorage.getItem("tripID");
-
-        if (!bookingReference || !tripID) {
-          throw new Error("Failed to save trip before payment");
-        }
+      if (!saveResult.success) {
+        throw new Error(`Failed to save trip: ${saveResult.message}`);
       }
 
-      // Now proceed to payment using your existing Stripe API
-      const paymentData = {
-        amount: totalFare, // This variable is already defined in your code
-        bookingReference: bookingReference,
-        tripID: tripID,
+      const tripID = saveResult.tripID;
+      console.log("Trip saved successfully with ID:", tripID);
 
-        //Dimuthu
-      // First check if we need to save the trip
-      const savedTripID = localStorage.getItem("tripID");
-      const tripData = localStorage.getItem("tripData");
-      let tripID = savedTripID;
-  
-      tripData.clicked = true;
-      // Now proceed to payment using Stripe API
+      // 3. Proceed to payment using Stripe API
       const paymentData = {
         amount: totalFare,
         tripID: tripID,
-        // Include additional booking details needed for creating a booking record
-        bookingDetails: {
-          userID: await getUserIDFromSession(),
-          trainID: selectedTrains.length > 0 ? selectedTrains[0].trainID : null,
-          start_station: tripData.startStation,
-          destination_station: tripData.endStation,
-          class: tripData.seatClass,
-          no_of_passengers: adults,
-          kidsCount: children,
-          total_fare: totalFare,
-          paymentMethod: "Card",
-          paymentStatus: "Pending", // Will be updated to "Paid" after successful payment
-          bookingDate: new Date().toISOString().split("T")[0]
-        } 
-        //dimuthu
-
+        bookingID: bookingID,
       };
 
       console.log("Sending payment data to Stripe:", paymentData);
 
-
-      // Call your existing Stripe session creation API
+      // Call the Stripe session creation API
       const response = await fetch(
-        "../../server/api/create_checkout_session.php",
+        "../../server/api/create_trip_checkout.php",
         {
           method: "POST",
           headers: {
@@ -493,39 +552,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       );
 
-
-      //dimuthu
-      // Call your Stripe session creation API with the updated structure
-      const response = await fetch("../../server/api/create_checkout_session.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(paymentData),
-      });
-      
-
-      //dimuthu
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
-        document.getElementById("book-ticket").textContent = "Book tickets";
       }
 
-
-      document.getElementById("book-ticket").textContent = "Booked!"; //dimuthu
-      
-      
       const result = await response.json();
 
       if (result.id) {
-        // Store booking ID in local storage if available
-        if (result.bookingID) {
-          localStorage.setItem("bookingID", result.bookingID);
-        }
-        
         // Redirect to Stripe Checkout using the session ID
-
-        // Stripe.js should be loaded on your page for this to work
         const stripe = Stripe(
           "pk_test_51RCy68QwgaoFWhBRVwTGwX9QkMDGiSKTNE1QGHYnM4YqSSTeIgdIlCTw34rqwYcIJxKT1jfXr6fkl5SM3ABac2mY00iwkPeUmO"
         );
@@ -538,182 +572,88 @@ document.addEventListener("DOMContentLoaded", async () => {
               alert(result.error.message);
             }
           });
-
-  //dimuthu
-        const stripe = Stripe('pk_test_51RCy68QwgaoFWhBRVwTGwX9QkMDGiSKTNE1QGHYnM4YqSSTeIgdIlCTw34rqwYcIJxKT1jfXr6fkl5SM3ABac2mY00iwkPeUmO'); 
-        stripe.redirectToCheckout({
-          sessionId: result.id
-        }).then(function (result) {
-          if (result.error) {
-            alert(result.error.message);
-          }
-        });
-        //dimuthu
-        
       } else if (result.error) {
         throw new Error(result.error);
       } else {
         throw new Error("Invalid response from server");
       }
     } catch (error) {
-      console.error("Error processing payment:", error);
+      console.error("Error processing booking and payment:", error);
+      // Reset button state
+      const button = document.getElementById("book-ticket");
+      button.textContent = "Book & Pay Now";
+      button.disabled = false;
       alert(`Payment processing failed: ${error.message}`);
     }
   });
 
-  // Store booking details in localStorage for potential use elsewhere
-  const bookingDetails = {
-    userID: await getUserIDFromSession(),
-    trainID: selectedTrains.length > 0 ? selectedTrains[0].trainID : null,
-    start_station: tripData.startStation,
-    destination_station: tripData.endStation,
-    class: tripData.seatClass,
-    no_of_passengers: parseInt(tripData.adults) || 0,
-    kidsCount: parseInt(tripData.children) || 0,
-    total_fare: totalFare,
-    paymentMethod: "Card",
+  // Modified "Save for Later" button handler
+  document
+    .getElementById("save-itinerary")
+    .addEventListener("click", async () => {
+      // Show loading indicator
+      const button = document.getElementById("save-itinerary");
+      const originalText = button.textContent;
+      button.textContent = "Saving...";
+      button.disabled = true;
 
-    paymentStatus: "Paid",
-    bookingDate: new Date().toISOString().split("T")[0],
+      try {
+        // Create a temporary booking with "Saved" status
+        const bookingData = {
+          userID: await getUserIDFromSession(),
+          trainID: selectedTrains.length > 0 ? selectedTrains[0].trainID : null,
+          start_station: tripData.startStation,
+          destination_station: tripData.endStation,
+          class: tripData.seatClass,
+          no_of_passengers: parseInt(tripData.adults) || 0,
+          kidsCount: parseInt(tripData.children) || 0,
+          total_fare: totalFare,
+          paymentMethod: "None",
+          paymentStatus: "Saved", // Special status for saved trips
+          bookingDate: new Date().toISOString().split("T")[0],
+        };
 
-      //dimuthu
-    paymentStatus: "Pending", // Will be updated after successful payment
-    bookingDate: new Date().toISOString().split("T")[0]
-  //dimuthu
-  };
-
-  localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
-  console.log(bookingDetails);
-
-  document.getElementById("export-pdf").addEventListener("click", () => {
-    // Show loading indicator
-    const exportButton = document.getElementById("export-pdf");
-    const originalText = exportButton.textContent;
-    exportButton.textContent = "Generating PDF...";
-    exportButton.disabled = true;
-
-    // Get the ticket container element
-    const ticketContainer = document.querySelector(".ticket-container");
-
-    // Create a clone of the ticket container to remove buttons
-    const ticketClone = ticketContainer.cloneNode(true);
-    const actionsDiv = ticketClone.querySelector(".actions");
-    if (actionsDiv) {
-      ticketClone.removeChild(actionsDiv);
-    }
-
-    // Append the clone to the body temporarily, but hide it
-    ticketClone.style.position = "absolute";
-    ticketClone.style.left = "-9999px";
-    ticketClone.style.width = "800px"; // Fixed width for PDF
-    document.body.appendChild(ticketClone);
-
-    // Use html2canvas to render the ticket to a canvas
-    html2canvas(ticketClone, {
-      scale: 2, // Higher scale for better quality
-      logging: false,
-      useCORS: true,
-      allowTaint: true,
-    })
-      .then((canvas) => {
-        // Remove the clone from the DOM
-        document.body.removeChild(ticketClone);
-
-        // Create a new jsPDF instance
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-          orientation: "portrait",
-          unit: "mm",
-          format: "a4",
-        });
-
-        // Calculate the width and height of the PDF page
-        const pageWidth = pdf.internal.pageSize.getWidth();
-        const pageHeight = pdf.internal.pageSize.getHeight();
-
-        // Calculate the width and height of the canvas
-        const canvasWidth = canvas.width;
-        const canvasHeight = canvas.height;
-
-        // Calculate the scaling factor to fit the canvas to the PDF page width
-        const scaleFactor = pageWidth / canvasWidth;
-        const scaledHeight = canvasHeight * scaleFactor;
-
-        // Add the canvas as an image to the PDF
-        let yPosition = 10; // Start position
-        let remainingHeight = canvasHeight;
-        let startY = 0;
-
-        // If the scaled canvas height is greater than the page height,
-        // split it into multiple pages
-        while (remainingHeight > 0) {
-          // Calculate the height to add to the current page
-          const addHeight = Math.min(
-            remainingHeight,
-            (pageHeight - 20) / scaleFactor
-          );
-
-          // Add the canvas portion to the PDF
-          pdf.addImage(
-            canvas,
-            "PNG",
-            10, // x position
-            yPosition, // y position
-            pageWidth - 20, // width
-            addHeight * scaleFactor, // height
-            "", // alias
-            "FAST", // compression
-            0, // rotation
-            startY, // sourceY
-            canvasWidth, // sourceWidth
-            addHeight // sourceHeight
-          );
-
-          // Update the remaining height and startY
-          remainingHeight -= addHeight;
-          startY += addHeight;
-
-          // If there's more content to add, add a new page
-          if (remainingHeight > 0) {
-            pdf.addPage();
-            yPosition = 10; // Reset yPosition for the new page
+        // Call the API to create booking
+        const bookingResponse = await fetch(
+          "../../server/api/createBooking.php",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bookingData),
           }
+        );
+
+        const bookingResult = await bookingResponse.json();
+
+        if (!bookingResult.success) {
+          throw new Error(`Failed to create booking: ${bookingResult.message}`);
         }
 
-        // Get booking reference from local storage or generate one
-        const tripData = JSON.parse(localStorage.getItem("tripData")) || {};
-        const bookingReference =
-          localStorage.getItem("bookingReference") ||
-          tripData.bookingReference ||
-          `TV-${Date.now().toString().substring(6)}`;
+        const bookingID = bookingResult.bookingID;
 
-        // Generate a filename for the PDF
-        const filename = `Traventure_Ticket_${bookingReference}.pdf`;
+        // Now save the trip with this booking ID
+        const result = await saveItinerary(bookingID);
 
-        // Save the PDF
-        pdf.save(filename);
+        if (result.success) {
+          button.textContent = "Saved ✓";
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+          }, 2000);
+          alert("Itinerary saved for later. You can find it in your account.");
+        } else {
+          throw new Error(`Failed to save trip: ${result.message}`);
+        }
+      } catch (error) {
+        button.textContent = originalText;
+        button.disabled = false;
+        alert(`Error: ${error.message}`);
+      }
+    });
 
-        // Reset button
-        exportButton.textContent = originalText;
-        exportButton.disabled = false;
-      })
-      .catch((error) => {
-        console.error("Error generating PDF:", error);
-        alert("Error generating PDF. Please try again.");
-
-        // Reset button
-        exportButton.textContent = originalText;
-        exportButton.disabled = false;
-      });
-  });
-
-  document.getElementById("print-ticket").addEventListener("click", () => {
-    window.print();
-  });
-
-  // Add event listener for "Request a Ride" buttons
-
-  // Add event listener for "Request a Ride" buttons
+  // Modified function for "Request a Ride" buttons
   document.querySelectorAll(".request-ride-button").forEach((button) => {
     button.addEventListener("click", async function () {
       try {
@@ -721,29 +661,72 @@ document.addEventListener("DOMContentLoaded", async () => {
         const segmentData = JSON.parse(this.getAttribute("data-segment"));
         console.log("Requesting ride for segment:", segmentData);
 
+        // Show loading indicator
+        const originalText = this.textContent;
+        this.textContent = "Processing...";
+        this.disabled = true;
+
+        // First create a booking if needed
+        let bookingID = localStorage.getItem("bookingID");
+
+        if (!bookingID) {
+          this.textContent = "Creating booking...";
+          const bookingResult = await createBooking();
+
+          if (!bookingResult.success) {
+            throw new Error(
+              `Failed to create booking: ${bookingResult.message}`
+            );
+          }
+
+          bookingID = bookingResult.bookingID;
+          localStorage.setItem("bookingID", bookingID);
+        }
+
+        // Check if we have a valid trip ID
+        let tripID = segmentData.tripID;
+
+        // If tripID is "pending" or not valid, save the trip first with the booking ID
+        if (!tripID || tripID === "pending") {
+          this.textContent = "Saving trip...";
+
+          // Call the saveItinerary function to create the trip with the booking ID
+          const saveResult = await saveItinerary(bookingID);
+
+          if (!saveResult.success) {
+            throw new Error(
+              `Failed to save trip before requesting ride: ${saveResult.message}`
+            );
+          }
+
+          // Update the tripID with the new one
+          tripID = saveResult.tripID;
+          segmentData.tripID = tripID;
+          localStorage.setItem("tripID", tripID);
+        }
+
         // Get the segment number to identify the appropriate stopover
         const segmentNumber = segmentData.segmentNumber;
 
         // Find the corresponding stopover for this segment
-        // Segments are 1-indexed while arrays are 0-indexed, so we subtract 1
         const destinationPlace =
           tripData.stopovers[segmentNumber - 1]?.name || "Unknown destination";
 
         // Extract required data for the API call
         const rideRequestData = {
           clientID: segmentData.clientID,
-          destination: destinationPlace, // Use the actual place name from stopovers
+          destination: destinationPlace,
           passengerCount: totalPassengerCount,
           stationID: segmentData.stationID,
-          tripID: segmentData.tripID,
+          tripID: tripID,
+          bookingID: bookingID,
           rideDate: segmentData.rideDate,
         };
 
-        console.log(rideRequestData);
+        console.log("Sending ride request data:", rideRequestData);
 
-        // Show loading indicator or message
+        // Show loading indicator
         this.textContent = "Requesting...";
-        this.disabled = true;
 
         // Call the ride request API
         const response = await fetch("../../server/api/createRidereq.php", {
@@ -761,10 +744,128 @@ document.addEventListener("DOMContentLoaded", async () => {
           alert(`Ride request created successfully! ${result.message || ""}`);
           this.textContent = "Ride Requested ✓";
           this.classList.add("request-success");
+          this.disabled = true;
         } else {
           // Show error message
           alert(`Error: ${result.message || "Failed to create ride request"}`);
-          this.textContent = "Request a Ride";
+          this.textContent = originalText;
+          this.disabled = false;
+        }
+      } catch (error) {
+        console.error("Error processing ride request:", error);
+        alert("Failed to process ride request. Please try again.");
+        this.textContent = "Request a Ride";
+        this.disabled = false;
+      }
+    });
+  });
+
+  document.getElementById("export-pdf").addEventListener("click", () => {
+    alert("Exporting PDF... This feature will be available soon.");
+  });
+
+  document.getElementById("print-ticket").addEventListener("click", () => {
+    window.print();
+  });
+
+  // Update the event listener for "Request a Ride" buttons
+  document.querySelectorAll(".request-ride-button").forEach((button) => {
+    button.addEventListener("click", async function () {
+      try {
+        // Parse the segment data
+        const segmentData = JSON.parse(this.getAttribute("data-segment"));
+        console.log("Requesting ride for segment:", segmentData);
+
+        // Show loading indicator
+        const originalText = this.textContent;
+        this.textContent = "Processing...";
+        this.disabled = true;
+
+        // First create a booking if needed
+        let bookingID = localStorage.getItem("bookingID");
+
+        if (!bookingID) {
+          this.textContent = "Creating booking...";
+          const bookingResult = await createBooking();
+
+          if (!bookingResult.success) {
+            throw new Error(
+              `Failed to create booking: ${bookingResult.message}`
+            );
+          }
+
+          bookingID = bookingResult.bookingID;
+        }
+
+        // Check if we have a valid trip ID
+        let tripID = segmentData.tripID;
+
+        // If tripID is "pending" or not valid, save the trip first
+        if (!tripID || tripID === "pending") {
+          this.textContent = "Saving trip...";
+
+          // Call the saveItinerary function to create the trip
+          const saveResult = await saveItinerary(bookingID);
+
+          if (!saveResult.success) {
+            throw new Error(
+              `Failed to save trip before requesting ride: ${saveResult.message}`
+            );
+          }
+
+          // Update the tripID with the new one
+          tripID = saveResult.tripID;
+          segmentData.tripID = tripID;
+        }
+
+        // Get the segment number to identify the appropriate stopover
+        const segmentNumber = segmentData.segmentNumber;
+
+        // Find the corresponding stopover for this segment
+        const destinationPlace =
+          tripData.stopovers[segmentNumber - 1]?.name || "Unknown destination";
+
+        // Extract required data for the API call
+        const rideRequestData = {
+          clientID: segmentData.clientID,
+          destination: destinationPlace,
+          passengerCount: totalPassengerCount,
+          stationID: segmentData.stationID,
+          tripID: tripID,
+          bookingID: bookingID,
+          rideDate: segmentData.rideDate,
+        };
+
+        console.log("Sending ride request data:", rideRequestData);
+
+        // Show loading indicator
+        this.textContent = "Requesting...";
+
+        // Call the ride request API
+        const response = await fetch("../../server/api/createRidereq.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(rideRequestData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          // Show success message
+          alert(`Ride request created successfully! ${result.message || ""}`);
+          this.textContent = "Ride Requested ✓";
+          this.classList.add("request-success");
+          this.disabled = true;
+
+          // Store the tripID and bookingID in localStorage
+          localStorage.setItem("tripID", tripID);
+          localStorage.setItem("bookingID", bookingID);
+        } else {
+          // Show error message
+          alert(`Error: ${result.message || "Failed to create ride request"}`);
+          this.textContent = originalText;
           this.disabled = false;
         }
       } catch (error) {
@@ -776,93 +877,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 });
-
-  //dimuthu
-// Update the event listener for "Request a Ride" buttons to ensure trip exists first
-document.querySelectorAll(".request-ride-button").forEach(button => {
-  button.addEventListener("click", async function() {
-    try {
-      // Parse the segment data
-      const segmentData = JSON.parse(this.getAttribute("data-segment"));
-      console.log("Requesting ride for segment:", segmentData);
-      
-      // Check if we have a valid trip ID
-      let tripID = segmentData.tripID;
-      
-      // If tripID is "pending" or not valid, save the trip first
-      if (!tripID || tripID === "pending") {
-        // Show loading indicator
-        this.textContent = "Saving trip...";
-        this.disabled = true;
-        
-        // Call the saveItinerary function to create the trip first
-        const saveResult = await saveItinerary();
-        
-        if (!saveResult.success) {
-          throw new Error(`Failed to save trip before requesting ride: ${saveResult.message}`);
-        }
-        
-        // Update the tripID with the new one
-        tripID = saveResult.tripID;
-        segmentData.tripID = tripID;
-      }
-      
-      // Get the segment number to identify the appropriate stopover
-      const segmentNumber = segmentData.segmentNumber;
-      
-      // Find the corresponding stopover for this segment
-      const destinationPlace = tripData.stopovers[segmentNumber - 1]?.name || 
-                               "Unknown destination";
-      
-      // Extract required data for the API call
-      const rideRequestData = {
-        clientID: segmentData.clientID,
-        destination: destinationPlace,
-        passengerCount: totalPassengerCount,
-        stationID: segmentData.stationID,
-        tripID: tripID, // Using confirmed tripID
-        rideDate: segmentData.rideDate
-      };
-
-      console.log("Sending ride request data:", rideRequestData);
-      
-      // Show loading indicator
-      this.textContent = "Requesting...";
-      this.disabled = true;
-      
-      // Call the ride request API
-      const response = await fetch("../../server/api/createRidereq.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        }, 
-        body: JSON.stringify(rideRequestData)
-      });
-      
-      const result = await response.json();
-      
-      if (response.ok && result.success) {
-        // Show success message
-        alert(`Ride request created successfully! ${result.message || ''}`);
-        this.textContent = "Ride Requested ✓";
-        this.classList.add("request-success");
-        
-        // Store the tripID in localStorage since it might have been updated
-        localStorage.setItem("tripID", tripID);
-      } else {
-        // Show error message
-        alert(`Error: ${result.message || 'Failed to create ride request'}`);
-        this.textContent = "Request a Ride";
-        this.disabled = false;
-      }
-    } catch (error) {
-      console.error("Error processing ride request:", error);
-      alert("Failed to process ride request. Please try again.");
-      this.textContent = "Request a Ride";
-      this.disabled = false;
-    }
-  });
-});
-});
-//dimuthu
-

@@ -243,3 +243,32 @@
   transform: translateY(1px) !important;
 }
 
+.ticket-section {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.payment-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.payment-details li {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.payment-details strong {
+  color: #333;
+}
+
+.payment-details {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+

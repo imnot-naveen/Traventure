@@ -32,6 +32,8 @@ try {
     $children = isset($data->children) ? intval($data->children) : 0;
     $totalMembers = $adults + $children;
     
+    // Check if booking ID is provided
+    $bookingID = !empty($data->bookingID) ? $data->bookingID : null;
     
     // Insert into trip table
     $query = 'INSERT INTO trip (username, startStation, endStation, departureTime, arrivalTime, 
@@ -98,10 +100,10 @@ try {
     // Commit transaction
     $db->commit();
     
-    // Return success response with booking reference
+    // Return success response with trip ID
     echo json_encode([
         'success' => true, 
-        'message' => 'Trip booked successfully!',
+        'message' => 'Trip saved successfully!',
         'tripID' => $tripID,
         'redirect' => '../../client/userTrips/userTrips.html'
     ]);

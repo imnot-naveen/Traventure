@@ -5,12 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Destinations Along Route</title>
   <link rel="stylesheet" href="selectdestinations.css">
+  <link rel="stylesheet" href="../Navbar/navbar.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+  <nav id="navbar-placeholder"></nav>
   <h1>Destinations Along the Train Route</h1>
   <div id="destination-list">
-    <!-- Dynamic Destination Data will be appended here -->
+    
   </div>
   <script src="selectDestinations.js"></script>
+  <script src="../Navbar/navbar.js"></script>
+  <script>
+    // Function to load the Navbar
+    function loadNavbar() {
+      fetch("../Navbar/navbar.php")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-placeholder").innerHTML = data;
+          // Initialize the navbar functionalities
+          document
+            .getElementById("menu-toggle")
+            .addEventListener("click", function () {
+              const navMenu = document.getElementById("nav-menu");
+              navMenu.classList.toggle("active");
+            });
+
+          // Set the initial state
+          updateNavbarState(false); // Set initial state (false means not logged in)
+        });
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      loadNavbar();
+    });
+
+    // Handle login state (optional)
+    function handleLogin(event) {
+      event.preventDefault();
+      // Simulate login action
+      updateNavbarState(true); // Set state to logged in
+    }
+
+    function handleLogout(event) {
+      event.preventDefault();
+      // Simulate logout action
+      updateNavbarState(false); // Set state to logged out
+    }
+
+    function updateNavbarState(isLoggedIn) {
+      if (isLoggedIn) {
+        document.getElementById("login-link").classList.add("hidden");
+        document.getElementById("user-icon").classList.remove("hidden");
+      } else {
+        document.getElementById("login-link").classList.remove("hidden");
+        document.getElementById("user-icon").classList.add("hidden");
+      }
+    }
+  </script>
 </body>
 </html>

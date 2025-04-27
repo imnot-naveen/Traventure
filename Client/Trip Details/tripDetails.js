@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const tripContentElement = document.getElementById("trip-content");
 
-  // Get tripID from URL parameters
   const urlParams = new URLSearchParams(window.location.search);
   const tripID = urlParams.get("tripID");
 
@@ -11,7 +10,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    // Fetch trip details
     const response = await fetch(
       `../../server/api/getTripDetails.php?tripID=${tripID}`
     );
@@ -21,7 +19,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       throw new Error(data.message || "Failed to load trip details");
     }
 
-    // Render trip details
     renderTripDetails(data.tripDetails);
   } catch (error) {
     console.error("Error fetching trip details:", error);
@@ -30,9 +27,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 function renderTripDetails(tripDetails) {
-  const { tripData, stations, segments, destinations } = tripDetails;
+  const { tripData, stations, segments, bookingData } = tripDetails;
 
-  // Format date
   const tripDate = new Date(tripData.date);
   const formattedDate = tripDate.toLocaleDateString("en-US", {
     weekday: "long",
@@ -41,7 +37,6 @@ function renderTripDetails(tripDetails) {
     day: "numeric",
   });
 
-  // Format time helper
   const formatTime = (timeStr) => {
     if (!timeStr) return "N/A";
     const timeParts = timeStr.split(":");
@@ -52,13 +47,11 @@ function renderTripDetails(tripDetails) {
     return `${hour12}:${minute} ${ampm}`;
   };
 
-  // Get station names
   const startStationName =
     stations[tripData.startStation] || `Station ${tripData.startStation}`;
   const endStationName =
     stations[tripData.endStation] || `Station ${tripData.endStation}`;
 
-  // Generate segments HTML
   let segmentsHTML = "";
   if (segments && segments.length > 0) {
     segments.forEach((segment, index) => {
@@ -99,17 +92,12 @@ function renderTripDetails(tripDetails) {
     `;
   }
 
-  // Calculate fare information
   const adultFare = parseFloat(tripData.adult_fare) || 0;
   const childFare = parseFloat(tripData.child_fare) || 0;
   const adults = parseInt(tripData.number_of_adults) || 0;
   const children = parseInt(tripData.number_of_children) || 0;
   const totalFare = parseFloat(tripData.total_fare) || 0;
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const tripID = urlParams.get("tripID");
-
-  // Build the complete itinerary HTML
   const tripContentElement = document.getElementById("trip-content");
   tripContentElement.innerHTML = `
     <div class="ticket-container">
@@ -147,7 +135,18 @@ function renderTripDetails(tripDetails) {
           </ul>
         </div>
       </div>
-      
+
+      <div class="ticket-section booking-details">
+        <h2>💳 Booking Details</h2>
+        <ul>
+          <li><strong>Amount Paid:</strong> Rs. ${parseFloat(
+            bookingData.amount
+          ).toFixed(2)}</li>
+          <li><strong>Payment Method:</strong> ${bookingData.paymentMethod}</li>
+          <li><strong>Payment Status:</strong> ${bookingData.status}</li>
+        </ul>
+      </div>
+
       <div class="ticket-section trip-segments">
         <h2>🚉 Trip Segments</h2>
         ${segmentsHTML}
@@ -181,7 +180,6 @@ function renderTripDetails(tripDetails) {
     </div>
   `;
 
-  // Add event listeners for buttons
   document.getElementById("print-ticket").addEventListener("click", () => {
     window.print();
   });
@@ -189,7 +187,11 @@ function renderTripDetails(tripDetails) {
   document.getElementById("export-pdf").addEventListener("click", () => {
     alert("Exporting PDF... This feature will be available soon.");
   });
+
   document.getElementById("remove-trip").addEventListener("click", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tripID = urlParams.get("tripID");
+
     confirmTripRemoval(tripID);
   });
 }

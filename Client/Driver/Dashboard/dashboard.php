@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 if (trim($_SESSION['userType']) !== "Driver") {
-    header(header: "Location: ../../Home/home.html"); 
+    header(header: "Location: ../Home/home.html"); 
     exit();
 }
 
@@ -22,31 +22,32 @@ $username = $_SESSION['username'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driver Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <img src="logo.png" alt="Traventure Logo">
+            <i class='bx bxs-car'></i>
             <h1>Driver</h1>
         </div>
         
         <ul class="nav-menu">
             <li>
                 <a href="../RideRequests/RideRequests.php">
-                    <img src="train-icon.png" alt="Manage Trains">
+                    <i class='bx bxs-traffic-barrier'></i>
                     Ride Requests
                 </a>
             </li>
             <li>
                 <a href="../RideHistory/RideHistory.php">
-                    <img src="destination-icon.png" alt="Manage Destinations">
+                    <i class='bx bxs-time-five'></i>
                     Ride History
                 </a>
             </li>
         </ul>
 
-        <<a href="#" class="logout-btn" title="Logout">
-    <img src="logout-icon.png" alt="Logout" style="width: 20px; height: 20px;">
+    <a href="#" class="logout-btn" title="Logout">
+    <i class='bx bx-log-out' style="font-size: 20px;"></i>
     Logout
 </a>
     </div>
@@ -57,14 +58,8 @@ $username = $_SESSION['username'];
         <div class="dashboard-grid">
             <div class="dashboard-card">
                 <img src="total-trains-icon.png" alt="Total Trains">
-                <h3>Total Trains</h3>
-                <p>25 Trains</p>
-            </div>
-            
-            <div class="dashboard-card">
-                <img src="active-routes-icon.png" alt="Active Routes">
-                <h3>Active Routes</h3>
-                <p>12 Routes</p>
+                <h3>Total Rides</h3>
+                <p>25 Rides</p>
             </div>
             
             <div class="dashboard-card">

@@ -13,10 +13,10 @@ header('Content-Type: application/json');
 session_start();
 
 // Check if user ID is set in session
-if (isset($_SESSION['userId'])) {
+if (isset($_SESSION['userID'])) {
     echo json_encode([
         'success' => true,
-        'userID' => $_SESSION['userId']
+        'userID' => $_SESSION['userID']
     ]);
 } else {
     http_response_code(401);

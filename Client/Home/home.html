@@ -181,7 +181,8 @@
       function createMainBlogElement(blog) {
         const mainBlog = document.createElement("div");
         mainBlog.className = "main-blog";
-        mainBlog.onclick = () => (window.location.href = `/blog/${blog.id}`);
+        mainBlog.onclick = () =>
+          (window.location.href = `../BlogDetails/blogdetails.html?id=${blog.id}`);
 
         const imageUrl = blog.image || "/api/placeholder/560/400";
 
@@ -204,7 +205,8 @@
       function createBlogCardElement(blog) {
         const blogCard = document.createElement("div");
         blogCard.className = "blog-card";
-        blogCard.onclick = () => (window.location.href = `/blog/${blog.id}`);
+        blogCard.onclick = () =>
+          (window.location.href = `../BlogDetails/blogdetails.html?id=${blog.id}`);
 
         const imageUrl = blog.image || "/api/placeholder/120/120";
 
