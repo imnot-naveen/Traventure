@@ -173,6 +173,64 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Error: No destination ID specified");
   }
 
+  // Add event listener for file input changes to show previews
+  const newPhotosInput = document.querySelector("#newPhotosInput");
+  newPhotosInput.addEventListener("change", function () {
+    const photosContainer = document.querySelector("#destinationPhotos");
+
+    // Remove "No photos available" text if it exists
+    if (photosContainer.textContent === "No photos available.") {
+      photosContainer.textContent = "";
+    }
+
+    // Remove any existing new photo previews (in case the user selects files multiple times)
+    const existingPreviews = photosContainer.querySelectorAll(".new-photo");
+    existingPreviews.forEach((preview) => preview.remove());
+
+    // Show previews for newly selected files
+    for (let i = 0; i < this.files.length; i++) {
+      const file = this.files[i];
+
+      // Only process image files
+      if (!file.type.match("image.*")) {
+        continue;
+      }
+
+      const photoWrapper = document.createElement("div");
+      photoWrapper.classList.add("photo-wrapper", "new-photo");
+
+      const imgElement = document.createElement("img");
+      imgElement.classList.add("photo-thumbnail");
+
+      // Create a temporary preview URL
+      const reader = new FileReader();
+      reader.onload = (function (img) {
+        return function (e) {
+          img.src = e.target.result;
+        };
+      })(imgElement);
+
+      reader.readAsDataURL(file);
+      imgElement.alt = file.name;
+
+      const label = document.createElement("div");
+      label.classList.add("new-photo-label");
+      label.textContent = "New";
+
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "X";
+      deleteButton.classList.add("delete-photo");
+      deleteButton.addEventListener("click", () => {
+        photoWrapper.remove();
+      });
+
+      photoWrapper.appendChild(imgElement);
+      photoWrapper.appendChild(label);
+      photoWrapper.appendChild(deleteButton);
+      photosContainer.appendChild(photoWrapper);
+    }
+  });
+
   // Form submission handler
   const form = document.querySelector("#edit-destination-form");
   form.addEventListener("submit", (event) => {
@@ -218,9 +276,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // Append new photos
     const newPhotosInput = document.querySelector("#newPhotosInput");
     if (newPhotosInput.files.length > 0) {
+      console.log("Files detected for upload:", newPhotosInput.files.length);
+
       for (let i = 0; i < newPhotosInput.files.length; i++) {
+        console.log(`Adding file: ${newPhotosInput.files[i].name}`);
         formData.append("newPhotos[]", newPhotosInput.files[i]);
       }
+    } else {
+      console.log("No new photos selected for upload");
+    }
+
+    // Log form data for debugging
+    console.log("FormData entries:");
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value instanceof File ? value.name : value}`);
     }
 
     // Submit the update

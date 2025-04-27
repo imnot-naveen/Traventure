@@ -14,21 +14,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function getUserIDFromSession() {
     try {
-        const response = await fetch('http://localhost/Traventure/Server/api/getUserId.php', {
-            method: 'GET',
-            credentials: 'include' 
-        });
-  
-        const data = await response.json();
-  
-        if (response.ok && data.success) {
-            return data.userID;
-        } else {
-            throw new Error(data.message || "Not logged in");
+      const response = await fetch(
+        "http://localhost/Traventure/Server/api/getUserId.php",
+        {
+          method: "GET",
+          credentials: "include",
         }
+      );
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        return data.userID;
+      } else {
+        throw new Error(data.message || "Not logged in");
+      }
     } catch (error) {
-        console.error("Error fetching user ID:", error);
-        return null;
+      console.error("Error fetching user ID:", error);
+      return null;
     }
   }
 
@@ -105,16 +108,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch(
       `http://localhost/Traventure/Server/api/calculateFare.php?from=${fromStationId}&to=${toStationId}&class=${travelClass}`
     );
-    
+
     if (response.ok) {
       const data = await response.json();
-      
+
       if (data && "total_fare" in data) {
         farePerPassenger = data.total_fare;
         // Calculate total fare: adults pay full fare, children pay half fare
         totalFare = farePerPassenger * (adults + children * 0.5);
       } else {
-        console.error('Error: No fare details returned.');
+        console.error("Error: No fare details returned.");
         // Use default values if API fails
         farePerPassenger = 2000;
         totalFare = farePerPassenger * (adults + children * 0.5);
@@ -162,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Get trip ID from localStorage or use a placeholder
   const tripID = localStorage.getItem("tripID") || "pending";
-  
+
   // Get the userID for the client ID in ride requests
   const userID = await getUserIDFromSession();
 
@@ -182,19 +185,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       destination: destinationName,
       stationID: segment.destinationStationID,
       tripID: tripID,
-      rideDate: tripData.searchDate || new Date().toISOString().split('T')[0],
+      rideDate: tripData.searchDate || new Date().toISOString().split("T")[0],
       originStationID: segment.originStationID,
       originName: originName,
       departureTime: segment.departureTime,
       trainID: segment.trainID,
-      trainName: selectedTrains[segmentNumber - 1]?.name || segment.type + " Service",
-      segmentNumber: segmentNumber
+      trainName:
+        selectedTrains[segmentNumber - 1]?.name || segment.type + " Service",
+      segmentNumber: segmentNumber,
     });
 
     // Add the "Request a Ride" button to all segments except the last one
-    const requestRideButton = segmentNumber < totalSegments 
-      ? `<button class="request-ride-button action-button" data-segment='${segmentData}'>Request a Ride</button>`
-      : '';
+    const requestRideButton =
+      segmentNumber < totalSegments
+        ? `<button class="request-ride-button action-button" data-segment='${segmentData}'>Request a Ride</button>`
+        : "";
 
     segmentsHTML += `
       <div class="segment">
@@ -255,7 +260,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   } = Rs. ${(farePerPassenger * (itineraryData.adults || 0)).toFixed(2)}</li>
               <li>Child Fare: Rs. ${(farePerPassenger * 0.5).toFixed(2)} × ${
     itineraryData.children || 0
-  } = Rs. ${(farePerPassenger * 0.5 * (itineraryData.children || 0)).toFixed(2)}</li>
+  } = Rs. ${(farePerPassenger * 0.5 * (itineraryData.children || 0)).toFixed(
+    2
+  )}</li>
             </ul>
           </li>
         </ul>
@@ -403,62 +410,69 @@ document.addEventListener("DOMContentLoaded", async () => {
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
-      
+
       // First save the itinerary to get a booking reference if not already saved
       const savedBookingReference = localStorage.getItem("bookingReference");
       const savedTripID = localStorage.getItem("tripID");
-      
+
       let bookingReference = savedBookingReference;
       let tripID = savedTripID;
-      
+
       if (!bookingReference || !tripID) {
         // Save the trip first (using your existing save function)
         await document.getElementById("save-itinerary").click();
-        
+
         // Get the newly saved references
         bookingReference = localStorage.getItem("bookingReference");
         tripID = localStorage.getItem("tripID");
-        
+
         if (!bookingReference || !tripID) {
           throw new Error("Failed to save trip before payment");
         }
       }
-      
+
       // Now proceed to payment using your existing Stripe API
       const paymentData = {
         amount: totalFare, // This variable is already defined in your code
         bookingReference: bookingReference,
-        tripID: tripID
+        tripID: tripID,
       };
-      
+
       console.log("Sending payment data to Stripe:", paymentData);
-      
+
       // Call your existing Stripe session creation API
-      const response = await fetch("../../server/api/create_checkout_session.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(paymentData),
-      });
-      
+      const response = await fetch(
+        "../../server/api/create_checkout_session.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(paymentData),
+        }
+      );
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      
+
       const result = await response.json();
-      
+
       if (result.id) {
         // Redirect to Stripe Checkout using the session ID
         // Stripe.js should be loaded on your page for this to work
-        const stripe = Stripe('pk_test_51RCy68QwgaoFWhBRVwTGwX9QkMDGiSKTNE1QGHYnM4YqSSTeIgdIlCTw34rqwYcIJxKT1jfXr6fkl5SM3ABac2mY00iwkPeUmO'); 
-        stripe.redirectToCheckout({
-          sessionId: result.id
-        }).then(function (result) {
-          if (result.error) {
-            alert(result.error.message);
-          }
-        });
+        const stripe = Stripe(
+          "pk_test_51RCy68QwgaoFWhBRVwTGwX9QkMDGiSKTNE1QGHYnM4YqSSTeIgdIlCTw34rqwYcIJxKT1jfXr6fkl5SM3ABac2mY00iwkPeUmO"
+        );
+        stripe
+          .redirectToCheckout({
+            sessionId: result.id,
+          })
+          .then(function (result) {
+            if (result.error) {
+              alert(result.error.message);
+            }
+          });
       } else if (result.error) {
         throw new Error(result.error);
       } else {
@@ -476,86 +490,204 @@ document.addEventListener("DOMContentLoaded", async () => {
     start_station: tripData.startStation,
     destination_station: tripData.endStation,
     class: tripData.seatClass,
-    no_of_passengers: parseInt(tripData.adults) || 0, 
+    no_of_passengers: parseInt(tripData.adults) || 0,
     kidsCount: parseInt(tripData.children) || 0,
     total_fare: totalFare,
     paymentMethod: "Card",
     paymentStatus: "Paid",
-    bookingDate: new Date().toISOString().split("T")[0]
+    bookingDate: new Date().toISOString().split("T")[0],
   };
 
   localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
   console.log(bookingDetails);
 
   document.getElementById("export-pdf").addEventListener("click", () => {
-    alert("Exporting PDF... This feature will be available soon.");
+    // Show loading indicator
+    const exportButton = document.getElementById("export-pdf");
+    const originalText = exportButton.textContent;
+    exportButton.textContent = "Generating PDF...";
+    exportButton.disabled = true;
+
+    // Get the ticket container element
+    const ticketContainer = document.querySelector(".ticket-container");
+
+    // Create a clone of the ticket container to remove buttons
+    const ticketClone = ticketContainer.cloneNode(true);
+    const actionsDiv = ticketClone.querySelector(".actions");
+    if (actionsDiv) {
+      ticketClone.removeChild(actionsDiv);
+    }
+
+    // Append the clone to the body temporarily, but hide it
+    ticketClone.style.position = "absolute";
+    ticketClone.style.left = "-9999px";
+    ticketClone.style.width = "800px"; // Fixed width for PDF
+    document.body.appendChild(ticketClone);
+
+    // Use html2canvas to render the ticket to a canvas
+    html2canvas(ticketClone, {
+      scale: 2, // Higher scale for better quality
+      logging: false,
+      useCORS: true,
+      allowTaint: true,
+    })
+      .then((canvas) => {
+        // Remove the clone from the DOM
+        document.body.removeChild(ticketClone);
+
+        // Create a new jsPDF instance
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({
+          orientation: "portrait",
+          unit: "mm",
+          format: "a4",
+        });
+
+        // Calculate the width and height of the PDF page
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+
+        // Calculate the width and height of the canvas
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+
+        // Calculate the scaling factor to fit the canvas to the PDF page width
+        const scaleFactor = pageWidth / canvasWidth;
+        const scaledHeight = canvasHeight * scaleFactor;
+
+        // Add the canvas as an image to the PDF
+        let yPosition = 10; // Start position
+        let remainingHeight = canvasHeight;
+        let startY = 0;
+
+        // If the scaled canvas height is greater than the page height,
+        // split it into multiple pages
+        while (remainingHeight > 0) {
+          // Calculate the height to add to the current page
+          const addHeight = Math.min(
+            remainingHeight,
+            (pageHeight - 20) / scaleFactor
+          );
+
+          // Add the canvas portion to the PDF
+          pdf.addImage(
+            canvas,
+            "PNG",
+            10, // x position
+            yPosition, // y position
+            pageWidth - 20, // width
+            addHeight * scaleFactor, // height
+            "", // alias
+            "FAST", // compression
+            0, // rotation
+            startY, // sourceY
+            canvasWidth, // sourceWidth
+            addHeight // sourceHeight
+          );
+
+          // Update the remaining height and startY
+          remainingHeight -= addHeight;
+          startY += addHeight;
+
+          // If there's more content to add, add a new page
+          if (remainingHeight > 0) {
+            pdf.addPage();
+            yPosition = 10; // Reset yPosition for the new page
+          }
+        }
+
+        // Get booking reference from local storage or generate one
+        const tripData = JSON.parse(localStorage.getItem("tripData")) || {};
+        const bookingReference =
+          localStorage.getItem("bookingReference") ||
+          tripData.bookingReference ||
+          `TV-${Date.now().toString().substring(6)}`;
+
+        // Generate a filename for the PDF
+        const filename = `Traventure_Ticket_${bookingReference}.pdf`;
+
+        // Save the PDF
+        pdf.save(filename);
+
+        // Reset button
+        exportButton.textContent = originalText;
+        exportButton.disabled = false;
+      })
+      .catch((error) => {
+        console.error("Error generating PDF:", error);
+        alert("Error generating PDF. Please try again.");
+
+        // Reset button
+        exportButton.textContent = originalText;
+        exportButton.disabled = false;
+      });
   });
 
   document.getElementById("print-ticket").addEventListener("click", () => {
     window.print();
   });
 
-// Add event listener for "Request a Ride" buttons
-// Add event listener for "Request a Ride" buttons
-document.querySelectorAll(".request-ride-button").forEach(button => {
-  button.addEventListener("click", async function() {
-    try {
-      // Parse the segment data
-      const segmentData = JSON.parse(this.getAttribute("data-segment"));
-      console.log("Requesting ride for segment:", segmentData);
-      
-      // Get the segment number to identify the appropriate stopover
-      const segmentNumber = segmentData.segmentNumber;
-      
-      // Find the corresponding stopover for this segment
-      // Segments are 1-indexed while arrays are 0-indexed, so we subtract 1
-      const destinationPlace = tripData.stopovers[segmentNumber - 1]?.name || 
-                                "Unknown destination";
-      
-      // Extract required data for the API call
-      const rideRequestData = {
-        clientID: segmentData.clientID,
-        destination: destinationPlace,  // Use the actual place name from stopovers
-        passengerCount: totalPassengerCount,
-        stationID: segmentData.stationID,
-        tripID: segmentData.tripID,
-        rideDate: segmentData.rideDate
-      };
+  // Add event listener for "Request a Ride" buttons
+  // Add event listener for "Request a Ride" buttons
+  document.querySelectorAll(".request-ride-button").forEach((button) => {
+    button.addEventListener("click", async function () {
+      try {
+        // Parse the segment data
+        const segmentData = JSON.parse(this.getAttribute("data-segment"));
+        console.log("Requesting ride for segment:", segmentData);
 
-      console.log(rideRequestData);
-      
-      // Show loading indicator or message
-      this.textContent = "Requesting...";
-      this.disabled = true;
-      
-      // Call the ride request API
-      const response = await fetch("../../server/api/createRidereq.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        }, 
-        body: JSON.stringify(rideRequestData)
-      });
-      
-      const result = await response.json();
-      
-      if (response.ok && result.success) {
-        // Show success message
-        alert(`Ride request created successfully! ${result.message || ''}`);
-        this.textContent = "Ride Requested ✓";
-        this.classList.add("request-success");
-      } else {
-        // Show error message
-        alert(`Error: ${result.message || 'Failed to create ride request'}`);
+        // Get the segment number to identify the appropriate stopover
+        const segmentNumber = segmentData.segmentNumber;
+
+        // Find the corresponding stopover for this segment
+        // Segments are 1-indexed while arrays are 0-indexed, so we subtract 1
+        const destinationPlace =
+          tripData.stopovers[segmentNumber - 1]?.name || "Unknown destination";
+
+        // Extract required data for the API call
+        const rideRequestData = {
+          clientID: segmentData.clientID,
+          destination: destinationPlace, // Use the actual place name from stopovers
+          passengerCount: totalPassengerCount,
+          stationID: segmentData.stationID,
+          tripID: segmentData.tripID,
+          rideDate: segmentData.rideDate,
+        };
+
+        console.log(rideRequestData);
+
+        // Show loading indicator or message
+        this.textContent = "Requesting...";
+        this.disabled = true;
+
+        // Call the ride request API
+        const response = await fetch("../../server/api/createRidereq.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(rideRequestData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          // Show success message
+          alert(`Ride request created successfully! ${result.message || ""}`);
+          this.textContent = "Ride Requested ✓";
+          this.classList.add("request-success");
+        } else {
+          // Show error message
+          alert(`Error: ${result.message || "Failed to create ride request"}`);
+          this.textContent = "Request a Ride";
+          this.disabled = false;
+        }
+      } catch (error) {
+        console.error("Error processing ride request:", error);
+        alert("Failed to process ride request. Please try again.");
         this.textContent = "Request a Ride";
         this.disabled = false;
       }
-    } catch (error) {
-      console.error("Error processing ride request:", error);
-      alert("Failed to process ride request. Please try again.");
-      this.textContent = "Request a Ride";
-      this.disabled = false;
-    }
-  });
+    });
   });
 });

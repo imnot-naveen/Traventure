@@ -17,7 +17,7 @@ class TrainAPI {
     public function getAllTrains($limit, $offset) {
         $query = "
             SELECT 
-                trainID, name, type, startStation, endStation, departureTime, arrivalTime
+                trainID, name, type, startStation, endStation, departureTime, arrivalTime, status
             FROM 
                 Train
             LIMIT :limit OFFSET :offset

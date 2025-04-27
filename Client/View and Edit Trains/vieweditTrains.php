@@ -59,16 +59,24 @@ $username = $_SESSION['username'];
         </div>
     </div>
 
-    <div id="deleteModal" class="modal">
-        <div class="modal-content">
-            <h3>Confirm Delete</h3>
-            <p>Are you sure you want to delete this train?</p>
-            <div class="modal-buttons">
-                <button id="confirmDelete" class="delete-btn">Delete</button>
-                <button id="cancelDelete" class="cancel-btn">Cancel</button>
-            </div>
-        </div>
+    <!-- Disable Modal -->
+    <div id="disableModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to disable this train?</p>
+        <button id="confirmDisable">Yes, Disable</button>
+        <button id="cancelDisable">Cancel</button>
     </div>
+    </div>
+
+    <!-- Activate Modal -->
+    <div id="activateModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to activate this train?</p>
+        <button id="confirmActivate">Yes, Activate</button>
+        <button id="cancelActivate">Cancel</button>
+    </div>
+    </div>
+
     
     <script src="viewedittrains.js"></script>
 </body>
