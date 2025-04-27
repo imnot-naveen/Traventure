@@ -52,7 +52,7 @@
 
             <!-- END OF INSIGHTS -->
             <div class="recent-orders">
-                <h2>Trains Added</h2>
+                <h2>User Bookings</h2>
                 <table>
                     <thead>
                         <tr>

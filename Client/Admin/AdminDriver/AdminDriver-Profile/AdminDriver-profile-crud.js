@@ -4,6 +4,14 @@ function getQueryParam(param) {
     return urlParams.get(param);
 }
 
+// Function to close the deactivate modal
+function closeDeactivateModal() {
+    const deactivateModal = document.getElementById('deactivateModal');
+    if (deactivateModal) {
+        deactivateModal.style.display = 'none';
+    }
+}
+
 // Fetch the Driver ID from the URL
 const driverId = getQueryParam('driver');
 
@@ -28,9 +36,9 @@ if (driverId) {
                 const closeModalButton = document.getElementById('closeModal-d');
                 const cancelDeactivateButton = document.getElementById('cancelDeactivateBtn');
 
-                if (statusButton) {
+                if (statusButton && activeBtn && deactivateModal) {
                     // Set button text based on current status
-                    if (driver.status === 'active') {
+                    if (driver.status === 'Active') {
                         statusButton.textContent = 'Deactivate';
                         activeBtn.textContent = 'Deactivate';
                     } else {
@@ -44,20 +52,19 @@ if (driverId) {
                     });
 
                     // Close the modal when cancel or close button is clicked
-                    closeModalButton.addEventListener('click', () => {
-                        deactivateModal.style.display = 'none';
-                    });
-
-                    cancelDeactivateButton.addEventListener('click', () => {
-                        deactivateModal.style.display = 'none';
-                    });
+                    if (closeModalButton) {
+                        closeModalButton.addEventListener('click', closeDeactivateModal);
+                    }
+                    if (cancelDeactivateButton) {
+                        cancelDeactivateButton.addEventListener('click', closeDeactivateModal);
+                    }
 
                     // Change the driver status when confirmed
                     statusButton.addEventListener('click', function () {
-                        const newStatus = (driver.status === 'active') ? 'inactive' : 'active';
-                        console.log('New Status:', newStatus); // Log the status for debugging
-                        updatedriverStatus(driver.id, newStatus);
-                        deactivateModal.style.display = 'none';
+                        const currentStatus = document.getElementById('driverStatus').textContent.trim();
+                        const newStatus = (currentStatus === 'Active') ? 'Inactive' : 'Active';
+                        updateDriverStatus(driver.id, newStatus);
+                        closeDeactivateModal();
                     });
                 }
             }
@@ -68,12 +75,7 @@ if (driverId) {
 }
 
 // Function to update driver status
-function updatedriverStatus(driverId, newStatus) {
-    console.log('Sending request with data:', {
-        id: driverId,
-        status: newStatus
-    });
-
+function updateDriverStatus(driverId, newStatus) {
     fetch('http://localhost/Traventure/Server/api/deactivateDriver.php', {
         method: 'PUT',
         headers: {
@@ -90,7 +92,7 @@ function updatedriverStatus(driverId, newStatus) {
             alert(`Driver status has been updated to ${newStatus}`);
             // Update status on the page
             document.getElementById('driverStatus').textContent = newStatus;
-            document.getElementById('confirmDeactivateBtn').textContent = (newStatus === 'active') ? 'Deactivate' : 'Activate';
+            document.getElementById('confirmDeactivateBtn').textContent = (newStatus === 'Active') ? 'Deactivate' : 'Activate';
         } else {
             console.error('Failed to update driver status:', data.message);
         }

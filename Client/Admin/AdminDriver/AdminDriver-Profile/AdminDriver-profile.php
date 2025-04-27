@@ -28,7 +28,7 @@
                         <div class="profile-info">
                             <h2 id="driverName">Driver Not found</h2>
                             <h3>Driver</h3>
-                            <p>Status: <span id="driverStatus" class="status active">Acti</span></p>
+                            <p>Status: <span id="driverStatus" class="status active">Loading..</span></p>
                         </div>
                     </div>
                     <div class="profile-details">

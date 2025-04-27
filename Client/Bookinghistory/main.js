@@ -79,10 +79,6 @@ function displayBookingCards(bookingsToDisplay) {
         clone.querySelector(".class-value").textContent = booking.class ?? "N/A";
         clone.querySelector(".price-value").textContent = `Rs. ${booking.total_fare ?? "0.00"}`;
 
-        const cancelBtn = clone.querySelector(".cancel-btn");
-        cancelBtn.textContent = booking.paymentStatus === "Paid" ? "Cancel Booking" : "Not Available";
-        cancelBtn.disabled = booking.paymentStatus !== "Paid";
-
         bookingList.appendChild(clone);
     });
 }
@@ -183,15 +179,7 @@ function setupEventListeners() {
         applyFilters();
     });
 
-    applyDateFilter.addEventListener('click', () => {
-        if (dateFrom.value && dateTo.value) {
-            currentFilters.dateFrom = dateFrom.value;
-            currentFilters.dateTo = dateTo.value;
-            applyFilters();
-        } else {
-            alert('Please select both start and end dates');
-        }
-    });
+
 
     prevPageBtn.addEventListener('click', () => {
         if (currentPage > 1) {
@@ -218,17 +206,10 @@ const errorMessage = document.getElementById('error-message');
 const noResults = document.getElementById('no-results');
 const bookingList = document.getElementById('booking-list');
 const bookingTemplate = document.getElementById('booking-template');
-const userDisplayName = document.getElementById('user-display-name');
 const prevPageBtn = document.getElementById('prev-page');
 const nextPageBtn = document.getElementById('next-page');
 const pageInfo = document.getElementById('page-info');
-const searchInput = document.getElementById('search-input');
-const searchBtn = document.getElementById('search-btn');
-const filterStatus = document.getElementById('filter-status');
-const dateFrom = document.getElementById('date-from');
-const dateTo = document.getElementById('date-to');
-const applyDateFilter = document.getElementById('apply-date-filter');
-const retryBtn = document.getElementById('retry-btn');
+const retryBtn = document.getElementById('retry-btn');cancel-btn
 
 let bookings = [];
 let filteredBookings = [];

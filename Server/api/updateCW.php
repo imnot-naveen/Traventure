@@ -13,7 +13,7 @@ header('Content-Type: application/json');
 // Include dependencies
 include_once('../core/initialize.php');
 
-// Handle GET request for fetching ContentWriter data
+// Handle GET request for fetching TSP data
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (!isset($_GET['cwid'])) {
         http_response_code(400);
@@ -54,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
 
     if ($result['success']) {
         http_response_code(200);
-        echo json_encode(['success' => true, 'message' => 'ContentWriter updated successfully']);
+        echo json_encode(['success' => true, 'message' => 'TSP updated successfully']);
     } else {
         http_response_code(500);
-        echo json_encode(['success' => false, 'message' => 'Failed to update ContentWriter']);
+        echo json_encode(['success' => false, 'message' => 'Failed to update TSP']);
     }
     exit();
 }

@@ -71,7 +71,7 @@ function createTripCard(trip) {
   tripCard.className = "trip-card";
   tripCard.setAttribute("data-trip-id", trip.tripID);
   tripCard.innerHTML = `
-    <div class="booking-ref">${trip.booking_reference}</div>
+    <div class="booking-ref">${trip.bookingID}</div>
     <div class="trip-date">${formattedDate}</div>
     <div class="trip-route">${trip.start_station_name} to ${trip.end_station_name}</div>
     <div class="trip-time">Departure: ${departureTime}</div>

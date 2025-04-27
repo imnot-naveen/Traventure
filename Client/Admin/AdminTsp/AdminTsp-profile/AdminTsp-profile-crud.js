@@ -106,7 +106,7 @@ if (tspId) {
                 if (deactivateBtn && confirmDeactivateBtn) {
                     if (tspData.Active_status.toLowerCase() === 'active') {
                         deactivateBtn.textContent = 'Deactivate';
-                        if (confirmDeactivateBtn) confirmDeactivateBtn.textContent = 'Yes, Deactivate';
+                         if (confirmDeactivateBtn) confirmDeactivateBtn.textContent = 'Yes, Deactivate';
                     } else {
                         deactivateBtn.textContent = 'Activate';
                         if (confirmDeactivateBtn) confirmDeactivateBtn.textContent = 'Yes, Activate';
@@ -129,7 +129,7 @@ function updateTspStatus(tspId, newStatus) {
     
     // Changed from POST to PUT to match your API expectations
     fetch('../../../../Server/api/adminTsp_Deactivate.php', {
-        method: 'PUT', // Try PUT instead of POST
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -138,26 +138,27 @@ function updateTspStatus(tspId, newStatus) {
             status: newStatus,
         }),
     })
-    .then(response => {
-        console.log("Raw response:", response); // Debug log
-        return response.json();
+    .then(async (response) => {
+        const data = await response.json(); // Always parse first
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to update status');
+        }
+        return data;
     })
     .then(data => {
-        console.log("Status update response:", data); // Debug log
-        
+        console.log("Status update response:", data);
+    
         if (data.success) {
-            // Update the displayed status text
+            // SUCCESS handling (already correct in your code)
             const statusElement = document.getElementById('tspStatus');
             if (statusElement) {
                 statusElement.textContent = newStatus;
-                // Also update the CSS class for styling
                 statusElement.className = `status ${newStatus.toLowerCase()}`;
             }
-          
-            // Update button labels
+    
             const deactivateBtn = document.getElementById('deactivateBtn');
             const confirmDeactivateBtn = document.getElementById('confirmDeactivateBtn');
-            
+    
             if (newStatus.toLowerCase() === 'active') {
                 if (deactivateBtn) deactivateBtn.textContent = 'Deactivate';
                 if (confirmDeactivateBtn) confirmDeactivateBtn.textContent = 'Yes, Deactivate';
@@ -165,19 +166,15 @@ function updateTspStatus(tspId, newStatus) {
                 if (deactivateBtn) deactivateBtn.textContent = 'Activate';
                 if (confirmDeactivateBtn) confirmDeactivateBtn.textContent = 'Yes, Activate';
             }
-          
-            // Show success message
+    
             alert(`TSP status has been updated to ${newStatus}`);
-          
-            // Close the modal
             closeDeactivateModal();
         } else {
-            console.error('Failed to update TSP status:', data.message);
-            alert(`Failed to update status: ${data.message || 'Unknown error'}`);
+            throw new Error(data.message || 'Unknown error occurred');
         }
     })
     .catch(error => {
         console.error('Error updating TSP status:', error);
-        alert('An error occurred while updating the status. Please try again.');
-    });
+        alert(`Failed to update status: ${error.message}`);
+    });    
 }

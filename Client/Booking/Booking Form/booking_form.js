@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
             kidsCount: kidsCount,
             total_fare: finalAmountInNum,
             paymentMethod: paymentOption,
-            paymentStatus: paymentOption === "Cash" ? "Pending" : "Paid",
+            paymentStatus: paymentOption === "Paid",
             bookingDate: new Date().toISOString().split("T")[0]
         };
 
@@ -167,8 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("Stripe Checkout error:", error);
                 alert("Something went wrong with the payment.");
             }
-        } else if (paymentOption === "Cash") {
-            window.location.href = "../CashPayment/cashpayment.php";
+        // } else if (paymentOption === "Cash") {
+        //     window.location.href = "../CashPayment/cashpayment.php";
         }
     });
 });

@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const bookingDetails = JSON.parse(localStorage.getItem("bookingDetails"));
-  
+    bookingDetails.paymentStatus = "Paid";
+
     if (!bookingDetails) {
         alert("Booking details not found.");
         return;
@@ -24,10 +25,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 console.log("Booking ID saved:", data.bookingID);
             }
             
-            alert("✅ Booking successful!");
+            alert("Booking successful!");
             localStorage.removeItem("bookingDetails"); 
         } else {
-            alert("❌ Booking failed: " + data.message);
+            alert("Booking failed: " + data.message);
             console.error("Booking error:", data);
         }
     } catch (err) {

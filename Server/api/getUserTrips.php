@@ -18,7 +18,7 @@ try {
     // Get all trips for this user
     $query = 'SELECT 
                 t.tripID, 
-                t.booking_reference, 
+                t.bookingID,
                 t.date, 
                 s1.name as start_station_name, 
                 s2.name as end_station_name,
