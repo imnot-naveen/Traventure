@@ -24,17 +24,17 @@ try {
     $revenuestmt->execute();
 
     // Fetch train details
-    $train = $trainstmt->fetchAll(PDO::FETCH_ASSOC);
-    $route = $routestmt->fetchAll(PDO::FETCH_ASSOC);
-    $passenger = $passengerstmt->fetchAll(PDO::FETCH_ASSOC);
-    $revenue = $revenuestmt->fetchAll(PDO::FETCH_ASSOC);
+    $train = $trainstmt->fetch(PDO::FETCH_ASSOC);
+    $route = $routestmt->fetch(PDO::FETCH_ASSOC);
+    $passenger = $passengerstmt->fetch(PDO::FETCH_ASSOC);
+    $revenue = $revenuestmt->fetch(PDO::FETCH_ASSOC);
 
     $response = [
         'tspData' => [
-            'trains' => 50,
-            'routes' => 1,
-            'passengers' => 6,
-            'revenue' => 604.50
+            'trains' => $train,
+            'routes' => $route,
+            'passengers' => $passenger,
+            'revenue' => $revenue,
         ]
     ];
     

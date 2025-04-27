@@ -21,10 +21,10 @@ function populate() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data); // Check what data is returned from the API
-      train = data.tspData.trains;
-      route = data.tspData.routes;
-      passenger = data.tspData.passengers;
-      revenue = data.tspData.revenue;
+      train = data.tspData.trains.trains;
+      route = data.tspData.routes.routes;
+      passenger = data.tspData.passengers.passengers;
+      revenue = data.tspData.revenue.revenue;
 
       populateFields(train, route, passenger, revenue);
     })
