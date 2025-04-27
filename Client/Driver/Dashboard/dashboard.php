@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 if (trim($_SESSION['userType']) !== "Driver") {
-    header(header: "Location: ../Home/home.html"); 
+    header(header: "Location: ../../Home/home.html"); 
     exit();
 }
 

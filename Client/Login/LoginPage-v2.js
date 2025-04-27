@@ -64,8 +64,8 @@ document
               window.location.href = "../CW Home/home.php";
               break;
             case "Driver":
-                window.location.href = "../Driver/Dashboard/Dashboard.php";
-                break;
+              window.location.href = "../Driver/Dashboard/Dashboard.php";
+              break;
             default:
               alert("Unknown user type. Contact support.");
               break;
@@ -123,6 +123,57 @@ document
     //validate id number
     if (!(id_number.length < 15)) {
       alert("Invalid id_number");
+      valid = false;
+    }
+
+    // password validation requirements
+    let strength = 0;
+    let messages = [];
+    const requirements = {
+      minLength: 8,
+      requireUpper: true,
+      requireLower: true,
+      requireNumber: true,
+      requireSpecialChar: true,
+    };
+
+    if (password.length < requirements.minLength) {
+      document.getElementById("password-error") = `Password must be at least ${requirements.minLength} characters`;
+    } else {
+      strength += 1;
+    }
+
+    if (requirements.requireUpper && !/[A-Z]/.test(password)) {
+      document.getElementById("password-error").textContent =
+        "Password must be have at least one uppercase letter";
+    } else {
+      strength += 1;
+    }
+
+    if (requirements.requireLower && !/[a-z]/.test(password)) {
+      document.getElementById("password-error").textContent =
+        "Password must have at least one lowercase letter";
+    } else {
+      strength += 1;
+    }
+
+    if (requirements.requireNumber && !/\d/.test(password)) {
+      document.getElementById("password-error").textContent =
+        "Password must have at least one number";
+    } else {
+      strength += 1;
+    }
+
+    if (
+      requirements.requireSpecialChar &&
+      !/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+    ) {
+      document.getElementById("password-error").textContent = "Password is too weak. Password should have at least one uppercase letter, one lowercase letter, one number and one special character";
+    } else {
+      strength += 1;
+    }
+
+    if(strength < 5){
       valid = false;
     }
 
