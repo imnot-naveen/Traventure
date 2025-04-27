@@ -23,9 +23,6 @@ $username = $_SESSION['username'];
     <div class="container">
         <header>
             <h1>Your Train Booking History</h1>
-            <div class="user-info">
-                <span id="username">Welcome, <strong id="user-display-name">User</strong></span>
-            </div>
         </header>
 
         <div class="filter-section">
@@ -33,15 +30,6 @@ $username = $_SESSION['username'];
                 <div class="search-box">
                     <input type="text" id="search-input" placeholder="Search by destination or train number...">
                     <button id="search-btn">Search</button>
-                </div>
-                <div class="filter-dropdown">
-                    <label for="filter-status">Filter by Status:</label>
-                    <select id="filter-status">
-                        <option value="all">All Bookings</option>
-                        <option value="confirmed">Confirmed</option>
-                        <option value="cancelled">Cancelled</option>
-                        <option value="pending">Pending</option>
-                    </select>
                 </div>
                 <div class="date-range">
                     <label for="date-from">From:</label>
@@ -136,8 +124,8 @@ $username = $_SESSION['username'];
                     <span class="value price-value"></span>
                 </div>
                 <div class="booking-actions">
-                    <button class="view-details-btn">View Details</button>
-                    <button class="download-btn">Download E-Ticket</button>
+                  
+                
                     <button class="cancel-btn" data-status=""></button>
                 </div>
             </div>

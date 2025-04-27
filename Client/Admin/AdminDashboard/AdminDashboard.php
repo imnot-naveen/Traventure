@@ -56,20 +56,23 @@
                     </thead>
                     <tbody id="booking-table-body">
                     </tbody> 
-                        <script>
-                        fetch('http://localhost/Traventure/Server/api/getAllBookings.php') 
+                
+<script>
+                        fetch('http://localhost/Traventure/Server/api/getAllBookings.php?limit=6') 
                         .then(res => res.json())
                         .then(data => {
                             const tbody = document.getElementById('booking-table-body');
                             if (data.success) {
-                                data.data.forEach(booking => {
+                                // Limit to only 6 rows
+                                const bookings = data.data.slice(0, 6);
+                                bookings.forEach(booking => {
                                     const row = document.createElement('tr');
                                     row.innerHTML = `
                                         <td>${booking.bookingID}</td>
                                         <td>${booking.userID}</td>
                                         <td>${booking.start_station}</td>
                                         <td>${booking.total_fare}</td>
-                                        <td>$${booking.bookingDate}</td>
+                                        <td>${booking.bookingDate}</td>
                                     `;
                                     tbody.appendChild(row);
                                 });
@@ -83,7 +86,6 @@
                                 `<tr><td colspan="5">Failed to load bookings.</td></tr>`;
                         });
                     </script>
-                
                 </table>
                 <a href="../AdminBookings/AdminBookings.php">Show All</a>
              </div>

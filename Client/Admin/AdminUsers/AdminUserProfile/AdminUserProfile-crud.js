@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const userId = document.getElementById('userid').textContent.trim();
       const currentStatus = document.getElementById('userStatus').textContent.trim();
       // Toggle to the opposite status
-      const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+      const newStatus = currentStatus === 'Active' ? 'Inactive' : 'Active';
       updateUserStatus(userId, newStatus);
     });
   }
@@ -97,7 +97,7 @@ function updateButtonLabels(status) {
   const deactivateBtn = document.getElementById('deactivateBtn');
   
   if (deactivateBtn) {
-    deactivateBtn.textContent = status === 'active' ? 'Deactivate' : 'Activate';
+    deactivateBtn.textContent = status === 'Active' ? 'Deactivate' : 'Activate';
   }
 }
 

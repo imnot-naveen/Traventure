@@ -28,7 +28,7 @@
                         <div class="profile-info">
                             <h2 id="cwName">Content Writer Not found</h2>
                             <h3>Content Writer</h3>
-                            <p>Status: <span id="cwStatus" class="status active">Acti</span></p>
+                            <p>Status: <span id="cwStatus" class="status active">Loading</span></p>
                         </div>
                     </div>
                     <div class="profile-details">

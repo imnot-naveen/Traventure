@@ -359,28 +359,42 @@ public function revenueLastMonth(){
 }
 
 
-public function bookingDetailsLastMonth(){
+public function bookingDetailsLastMonth() {
     try {
         $query = "
-            SELECT b.*, p.username, s1.name AS schedule_name, s2.name AS show_name, t.name AS theater_name
+            SELECT b.bookingID,p.username,CONCAT(p.firstName, ' ', p.lastName) as fullName, s1.name AS Start_Station_name, s2.name AS End_station_name, t.name AS train_name , b.no_of_passengers, b.total_fare,b.paymentMethod,b.paymentStatus, b.bookingDate ,b.kidsCount
             FROM bookings b
-            JOIN person p ON b.userId = p.id
-            JOIN station s1 ON b.schedule_id = s1.id
-            JOIN shows s2 ON b.show_id = s2.id
-            JOIN theaters t ON b.theater_id = t.id
-            WHERE DATE(b.created_at) >= CURDATE() - INTERVAL 1 MONTH";
+            JOIN registereduser r ON b.userId = r.userId
+            JOIN person p ON r.username = p.username
+            JOIN station s1 ON b.start_station = s1.stationID
+            JOIN station s2 ON b.destination_station = s2.stationID
+            JOIN train t ON b.trainID = t.trainID
+            WHERE bookingDate >= DATE_FORMAT(CURDATE() - INTERVAL 1 MONTH, '%Y-%m-01') AND bookingDate <= LAST_DAY(CURDATE())";
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
+
+        if (!empty($results)) {
+            return [
+                'success' => true,
+                'data' => $results
+            ];
+        } else {
+            return [
+                'success' => false,
+                'message' => 'No bookings found in the last month.'
+            ];
+        }
     } catch (PDOException $e) {
         error_log("Last month booking details Error: " . $e->getMessage());
-        return [];
+        return [
+            'success' => false,
+            'message' => 'Database error: ' . $e->getMessage()
+        ];
     }
 }
-
     
 }
 ?>

@@ -33,12 +33,6 @@ header h1 {
   font-size: 28px;
 }
 
-.user-info {
-  background-color: #e8f4fe;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-}
 
 /* Filter Section Styles */
 .filter-section {

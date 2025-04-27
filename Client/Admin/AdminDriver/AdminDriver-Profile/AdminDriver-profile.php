@@ -28,7 +28,7 @@
                         <div class="profile-info">
                             <h2 id="driverName">Driver Not found</h2>
                             <h3>Driver</h3>
-                            <p>Status: <span id="driverStatus" class="status active">Acti</span></p>
+                            <p>Status: <span id="driverStatus" class="status active">Loading..</span></p>
                         </div>
                     </div>
                     <div class="profile-details">
@@ -61,10 +61,26 @@
                         <input type="hidden" id="driverId" name="driverId" />
 
                         <label for="driverFirstName">First Name:</label>
-                        <input type="text" id="driverFirstName" name="firstName" placeholder="First Name" />
-                        
-                        <label for="driverLastName">Last Name:</label>
-                        <input type="text" id="driverLastName" name="lastName" placeholder="Last Name"  />
+                    <input 
+                        type="text" 
+                        id="driverFirstName" 
+                        name="firstName" 
+                        placeholder="First Name" 
+                        pattern="[A-Za-z]{2,}" 
+                        required 
+                        title="First name should contain only letters and must be at least 2 characters." 
+                    />
+
+                    <label for="driverLastName">Last Name:</label>
+                    <input 
+                        type="text" 
+                        id="driverLastName" 
+                        name="lastName" 
+                        placeholder="Last Name" 
+                        pattern="[A-Za-z]{2,}" 
+                        required 
+                        title="Last name should contain only letters and must be at least 2 characters." 
+                    />
                         
                         <label for="driverPhone">Phone:</label>
                         <input 
@@ -76,8 +92,9 @@
                             maxlength="10" 
                             minlength="10" 
                             required 
+                            inputmode="numeric" 
                             title="Phone number must be a valid Sri Lankan number (e.g., 0771234567 or 0112345678)." 
-                        />
+                            />
                         
                         <button type="submit">Update</button>
                     </form>

@@ -32,14 +32,12 @@ try {
     $children = isset($data->children) ? intval($data->children) : 0;
     $totalMembers = $adults + $children;
     
-    // Generate booking reference
-    $bookingReference = 'TV-' . substr(time(), -6);
     
     // Insert into trip table
     $query = 'INSERT INTO trip (username, startStation, endStation, departureTime, arrivalTime, 
-              no_of_members, number_of_adults, number_of_children, date, ticket_class, adult_fare, child_fare, total_fare, booking_reference) 
+              no_of_members, number_of_adults, number_of_children, date, ticket_class, adult_fare, child_fare, total_fare, bookingID) 
               VALUES (:username, :startStation, :endStation, :departureTime, :arrivalTime, 
-              :no_of_members, :number_of_adults, :number_of_children, :date, :ticket_class, :adult_fare, :child_fare, :total_fare, :booking_reference)';
+              :no_of_members, :number_of_adults, :number_of_children, :date, :ticket_class, :adult_fare, :child_fare, :total_fare, :bookingID)';
     
     $stmt = $db->prepare($query);
     $stmt->bindParam(':username', $username);
@@ -55,7 +53,7 @@ try {
     $stmt->bindParam(':adult_fare', $adultFare);
     $stmt->bindParam(':child_fare', $childFare);
     $stmt->bindParam(':total_fare', $totalFare);
-    $stmt->bindParam(':booking_reference', $bookingReference);
+    $stmt->bindParam(':bookingID', $bookingID);
 
     if (!$stmt->execute()) {
         throw new Exception('Failed to insert trip details.');
@@ -105,12 +103,10 @@ try {
         'success' => true, 
         'message' => 'Trip booked successfully!',
         'tripID' => $tripID,
-        'bookingReference' => $bookingReference,
         'redirect' => '../../client/userTrips/userTrips.html'
     ]);
     
 } catch (Exception $e) {
-    // Rollback transaction on error
     $db->rollBack();
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }

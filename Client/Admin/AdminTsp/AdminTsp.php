@@ -57,10 +57,6 @@
                       <span class="close-m">&times;</span>
                       <h2>Add New TSP</h2>
                       <form id="addTspForm">
-                        <div class="form-group">
-                          <label for="tspid">TSP ID</label>
-                          <input type="number" id="tspid" name="tspid" required autocomplete="off">
-                        </div>
                         
                         <div class="form-group">
                           <label for="username">Username</label>
@@ -69,18 +65,30 @@
                         
                         <div class="form-group">
                           <label for="firstName">First Name</label>
-                          <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+                          <input type="text" id="firstName" name="firstName" 
+                                required 
+                                autocomplete="given-name" 
+                                pattern="[A-Za-z]+" 
+                                title="First name should contain letters only">
                         </div>
+
                         
                         <div class="form-group">
                           <label for="lastName">Last Name</label>
-                          <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+                          <input type="text" id="lastName" name="lastName" required 
+                          autocomplete="given-name" 
+                          pattern="[A-Za-z]+" 
+                          title="First name should contain letters only">
                         </div>
 
                         <div class="form-group">
                           <label for="IDNumber">NIC No</label>
-                          <input type="text" id="IDNumber" name="IDNumber" required>
+                          <input type="text" id="IDNumber" name="IDNumber" 
+                                required 
+                                pattern="^(\d{9}[vVxX]|\d{12})$" 
+                                title="Enter a valid NIC: 9 digits followed by V/X or 12 digits">
                         </div>
+
                         
                         <div class="form-group">
                           <label for="email">Email</label>
@@ -89,12 +97,22 @@
                         
                         <div class="form-group">
                           <label for="contactNumber">Contact Number</label>
-                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required autocomplete="tel">
+                          <input 
+                            type="tel" 
+                            id="contactNumber" 
+                            name="contactNumber" 
+                            pattern="\d{10}" 
+                            title="Enter a valid 10-digit phone number" 
+                            required 
+                            autocomplete="tel">
                         </div>
-                        
+
                         <div class="form-group">
                           <label for="new-password">Password</label>
-                          <input type="password" id="new-password" name="new-password" required autocomplete="new-password">
+                          <input type="password" id="new-password" name="new-password"
+                                required
+                                autocomplete="new-password"
+                                title="Password must be at least 8 characters, include letters and numbers">
                         </div>
                         
                         <div class="form-group">

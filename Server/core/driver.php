@@ -14,7 +14,6 @@ class Driver extends Person {
     public $maxPassengers;
     public $license;
     public $password; // Only for use in login table
-    public $status;
     public $userType;
     
     // Constructor to initialize db connection and parent class
@@ -28,8 +27,8 @@ class Driver extends Person {
           $this->conn->beginTransaction(); 
   
           // Insert into person table
-          $query1 = "INSERT INTO person (username, firstName, lastName, email, IDNumber, contactNo)
-                     VALUES (:username, :first_name, :last_name, :email, :id_number, :contact_number)";
+          $query1 = "INSERT INTO person (username, firstName, lastName, email, IDNumber, contactNo,status)
+                     VALUES (:username, :first_name, :last_name, :email, :id_number, :contact_number, :status)";
           $stmt1 = $this->conn->prepare($query1);
           $stmt1->execute([
               ':username' => $this->username,
@@ -37,14 +36,15 @@ class Driver extends Person {
               ':last_name' => $this->last_name,
               ':email' => $this->email,
               ':id_number' => $this->id_number,
-              ':contact_number' => $this->contact_number
+              ':contact_number' => $this->contact_number,
+              ':status' => $this->status
           ]);
   
           $user_id = $this->conn->lastInsertId(); // Get the inserted person's ID
   
           // Insert into driver table (remove the `id` field because it's auto-increment)
-          $query2 = "INSERT INTO driver (username, maxPassengers ,assigned_station, availability, vehicleID, license, status)
-                     VALUES (:username,:maxPassengers, :assigned_station, :availability, :vehicleID, :license, :status)";
+          $query2 = "INSERT INTO driver (username, maxPassengers ,assigned_station, availability, vehicleID, license)
+                     VALUES (:username,:maxPassengers, :assigned_station, :availability, :vehicleID, :license )";
           $stmt2 = $this->conn->prepare($query2);
           $stmt2->execute([
               ':username' => $this->username, // Use username as a foreign key reference
@@ -52,8 +52,7 @@ class Driver extends Person {
               ':assigned_station' => $this->assigned_station,
               ':availability' => $this->availability,
               ':vehicleID' => $this->vehicleID,
-              ':license' => $this->license,
-              ':status' => $this->status
+              ':license' => $this->license
           ]);
   
           // Insert into login table
@@ -82,21 +81,20 @@ class Driver extends Person {
     try {
         // Join driver with person to get full details
         $query = "SELECT 
-                    d.id AS driverID,
-                    d.username,
-                    p.firstName,
-                    p.lastName,
-                    p.email,
-                    p.IDNumber,
-                    p.contactNo,
-                    d.assigned_station,
-                    d.availability,
-                    d.vehicleID,
-                    d.license,
-                    d.maxPassengers,
-                    d.status
-                  FROM driver d
-                  INNER JOIN person p ON d.username = p.username";
+            d.id AS driverID,
+            d.username,
+            p.firstName,
+            p.lastName,
+            p.email,
+            p.IDNumber,
+            p.contactNo,
+            d.assigned_station,
+            d.availability,
+            d.vehicleID,
+            d.license,
+            d.maxPassengers
+          FROM driver d
+          INNER JOIN person p ON d.username = p.username";
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -119,7 +117,7 @@ class Driver extends Person {
 public function getDriverDetailsByID($driverID) {
     try {
         $query = "SELECT d.id, d.username, d.assigned_station, d.availability, d.vehicleID, 
-                         d.maxPassengers, d.license, d.status,
+                         d.maxPassengers, d.license,
                          p.firstName, p.lastName, p.email, p.contactNo, p.IDNumber, p.status
                   FROM driver d
                   INNER JOIN person p ON d.username = p.username

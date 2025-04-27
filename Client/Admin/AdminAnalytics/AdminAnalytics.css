@@ -138,6 +138,72 @@ main .insights small{
   cursor: pointer;
 }
 
+/* Add these to your AdminAnalytics.css file */
+
+.Downloads {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 0.7rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+#status {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+#status.success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+#status.error {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+#previewContainer {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.preview-table th, .preview-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.preview-table th {
+  background-color: #f0f0f0;
+}
+
+.preview-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#downloadReport {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+#downloadReport:hover {
+  background-color: #1565c0;
+}
+
 /* Media Queries */
 
 @media screen and (max-width: 1200px){

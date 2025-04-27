@@ -32,7 +32,6 @@ document
     event.preventDefault();
 
     // Get form input values
-    const cwid = document.getElementById("cwid").value; // Change tspid to cwid
     const username = document.getElementById("username").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
@@ -49,8 +48,7 @@ document
     }
 
     // Prepare the data to send to the server
-    const requestData = {
-      cwid: cwid, 
+    const requestData = { 
       username: username,
       firstName: firstName,
       lastName: lastName,

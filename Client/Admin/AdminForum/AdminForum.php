@@ -16,20 +16,27 @@
 </head>
 <body>
   <div class="container">
-  <?php include '../Sidebar/Sidebar.php'; ?>
+    <?php include '../Sidebar/Sidebar.php'; ?>
     <main>
-            <h1>Forum</h1>
-            <div class="insights">
-            </div>
-            <!-- END OF INSIGHTS -->
-             <div class="recent-orders">
-             </div>
-        </main>
-
-        <div class="right">
-            <?php include '../Recent_updates/Recent.php'; ?>
+      <h1>Inquiries</h1>
+      <div class="inquiries-container">
+        <!-- Inquiries will be loaded here -->
+        <div class="loading">Loading inquiries...</div>
+      </div>
+      
+      <!-- Pagination controls -->
+      <div class="pagination">
+        <button id="prev-page" disabled>&laquo; Previous</button>
+        <div class="page-info">
+          Page <span id="current-page">1</span> of <span id="total-pages">1</span>
         </div>
+        <button id="next-page">Next &raquo;</button>
+      </div>
+    </main>
 
+    <div class="right">
+      <?php include '../Recent_updates/Recent.php'; ?>
+    </div>
   </div>
  
   <?php include '../LogoutModal/logoutModal.php'; ?>
@@ -37,5 +44,6 @@
   <script src="../LogoutModal/logoutModal.js"></script>
   <script src="AdminForum.js"></script>
   <script src="../Recent_updates/Recent.js"></script>
+  <script src="Forum.js"></script>
 </body>
 </html>

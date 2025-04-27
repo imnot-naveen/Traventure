@@ -69,10 +69,7 @@
                   </div>
                   <div id="driverModal" class="modal">
                     <div class="modal-content">
-                      <span class="close-m">&times;</span>
-                      <h2>Add New Drivers</h2>
                       <form id="addDriverForm">
-                        
                         <div class="form-group">
                           <label for="username">Username</label>
                           <input type="text" id="username" name="username" required autocomplete="username">
@@ -80,13 +77,30 @@
                         
                         <div class="form-group">
                           <label for="firstName">First Name</label>
-                          <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+                          <input type="text" id="firstName" name="firstName" 
+                                required 
+                                autocomplete="given-name" 
+                                pattern="[A-Za-z]+" 
+                                title="First name should contain letters only">
                         </div>
+
                         
                         <div class="form-group">
                           <label for="lastName">Last Name</label>
-                          <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+                          <input type="text" id="lastName" name="lastName" required 
+                          autocomplete="given-name" 
+                          pattern="[A-Za-z]+" 
+                          title="First name should contain letters only">
                         </div>
+
+                        <div class="form-group">
+                          <label for="nic">NIC No</label>
+                          <input type="text" id="nic" name="nic" 
+                                required 
+                                pattern="^(\d{9}[vVxX]|\d{12})$" 
+                                title="Enter a valid NIC: 9 digits followed by V/X or 12 digits">
+                        </div>
+
                         
                         <div class="form-group">
                           <label for="email">Email</label>
@@ -95,17 +109,26 @@
                         
                         <div class="form-group">
                           <label for="contactNumber">Contact Number</label>
-                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required autocomplete="tel">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="nic">NIC Number</label>
-                          <input type="tel" id="nic" name="nic" title="Enter a 10-digit number" required >
+                          <input 
+                            type="tel" 
+                            id="contactNumber" 
+                            name="contactNumber" 
+                            pattern="\d{10}" 
+                            title="Enter a valid 10-digit phone number" 
+                            required 
+                            autocomplete="tel">
                         </div>
 
                         <div class="form-group">
                           <label for="maxPassengers">Max Passengers</label>
-                          <input type="tel" id="maxPassengers" name="maxPassengers" title="Enter a 10-digit number" required >
+                          <input 
+                            type="number" 
+                            id="maxPassengers" 
+                            name="maxPassengers" 
+                            min="1" 
+                            max="99" 
+                            required 
+                            title="Enter a number between 1 and 99">
                         </div>
 
                         <div class="form-group">
@@ -115,13 +138,25 @@
 
                         <div class="form-group">
                           <label for="vehicle">Vehicle ID</label>
-                          <input type="tel" id="vehicle" name="vehicle" title="Enter a 10-digit phone number" required >
+                          <input 
+                            type="text" 
+                            id="vehicle" 
+                            name="vehicle" 
+                            required 
+                            title="Enter only numeric Vehicle ID">
                         </div>
 
                         <div class="form-group">
-                          <label for="license">License</label>
-                          <input type="tel" id="license" name="license" title="Enter a 10-digit phone number" required >
+                          <label for="license">Driving License</label>
+                          <input 
+                            type="text" 
+                            id="license" 
+                            name="license" 
+                            pattern="^[A-Za-z]{1,2}-\d{7}$" 
+                            required 
+                            title="Enter a valid Sri Lankan driver's license (e.g., P-1234567)">
                         </div>
+
                         
                         <div class="form-group">
                           <label for="new-password">Password</label>

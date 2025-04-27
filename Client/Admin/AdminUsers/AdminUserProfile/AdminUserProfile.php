@@ -28,17 +28,17 @@
                         <div class="profile-info">
                             <h2 id="userName">User Not found</h2>
                             <h3>User</h3>
-                            <p>Status: <span id="userStatus" class="status active">Acti</span></p>
+                            <p>Status: <span id="userStatus" class="status active">loading..</span></p>
                         </div>
                     </div>
                     <div class="profile-details">
                             <ul class="left-details">
-                                <li>Email: <span id="userEmail">email not found</span></li>
-                                <li>Phone: <span id="userContact">Contact no: Not found</span></li>
+                                <li>Email: <span id="userEmail">not found</span></li>
+                                <li>Phone: <span id="userContact">Not found</span></li>
                             </ul>
                             <ul class="right-details">
                                 <li>Role: User</li>
-                                <li>User ID: <span id="userid">User: Not found</span></li>
+                                <li>User ID: <span id="userid">Not found</span></li>
                             </ul>
                         </div>
                         <div class="action-buttons">
@@ -52,7 +52,7 @@
 
             <!-- END OF INSIGHTS -->
             <div class="recent-orders">
-                <h2>Trains Added</h2>
+                <h2>User Bookings</h2>
                 <table>
                     <thead>
                         <tr>
@@ -87,11 +87,23 @@
                         <input type="hidden" id="userId" name="userId" />
 
                         <label for="userFirstName">First Name:</label>
-                        <input type="text" id="userFirstName" name="firstName" placeholder="First Name" />
-                        
+                        <input 
+                            type="text" 
+                            id="userFirstName" 
+                            name="firstName" 
+                            placeholder="First Name" 
+                            required 
+                        />
+
                         <label for="userLastName">Last Name:</label>
-                        <input type="text" id="userLastName" name="lastName" placeholder="Last Name"  />
-                        
+                        <input 
+                            type="text" 
+                            id="userLastName" 
+                            name="lastName" 
+                            placeholder="Last Name" 
+                            required 
+                        />
+
                         <label for="userPhone">Phone:</label>
                         <input 
                             type="tel" 

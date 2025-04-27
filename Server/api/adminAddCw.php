@@ -20,7 +20,6 @@ $data = json_decode(file_get_contents("php://input"), true);
 
 // Validate required fields
 if (
-  isset($data['cwid']) &&
   isset($data['username']) &&
   isset($data['firstName']) &&
   isset($data['lastName']) &&
@@ -29,8 +28,7 @@ if (
   isset($data['contactNumber']) &&
   isset($data['password'])
 ) {
-  // Assign data to the CW object
-  $contentWriter->cwid = $data['cwid'];   
+  // Assign data to the CW object  
   $contentWriter->username = $data['username'];
   $contentWriter->first_name = $data['firstName'];
   $contentWriter->last_name = $data['lastName'];
