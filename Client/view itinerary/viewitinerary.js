@@ -132,9 +132,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     totalFare = farePerPassenger * (adults + children * 0.5);
   }
 
-  // Generate booking reference (using current date/time if not available)
-  const bookingReference =
-    tripData.bookingReference || `TV-${Date.now().toString().substring(6)}`;
+  // Generate booking reference for display purposes only
+  // We'll get the actual one from the server after saving
+  const temporaryBookingReference = `TV-${Date.now().toString().substring(6)}`;
 
   // Prepare trip segments
   let segments = [];
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <div class="ticket-header">
         <h1>🎟️ Your Train Trip Itinerary</h1>
         <div class="logo">Traventure</div>
-        <div class="booking-reference">Booking #${bookingReference}</div>
+        <div class="booking-reference">Booking #${temporaryBookingReference}</div>
       </div>
       
       <div class="ticket-section passenger-details">
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
       
       <div class="actions">
-        <button id="book-ticket" class="action-button primary-button">Book Ticket</button>
+        <button id="book-ticket" class="action-button primary-button"></button>
         <button id="save-itinerary" class="action-button">Save Itinerary</button>
         <button id="export-pdf" class="action-button">Export PDF</button>
         <button id="print-ticket" class="action-button">Print Ticket</button>
@@ -290,150 +290,152 @@ document.addEventListener("DOMContentLoaded", async () => {
     </div>
   `;
 
-  // Add event listeners for buttons
-  document
-    .getElementById("save-itinerary")
-    .addEventListener("click", async () => {
-      try {
-        // Get all necessary data
-        const tripData = JSON.parse(localStorage.getItem("tripData")) || {};
-        const itinerary = JSON.parse(localStorage.getItem("itinerary")) || {};
-        const selectedTrains =
-          JSON.parse(localStorage.getItem("selectedTrains")) || [];
-
-        // Get user details
-        let userData = {
-          full_name: "Guest User",
-          id_number: "Not available",
-          username: " ",
-        };
-        try {
-          userData = await getUserDetails();
-        } catch (error) {
-          console.error("Error fetching user details:", error);
-        }
-
-        const username = userData.username;
-
-        // Use the updated fare calculation
-        const adultFare = farePerPassenger;
-        const childFare = farePerPassenger * 0.5;
-        const adults = parseInt(tripData.adults) || 1;
-        const children = parseInt(tripData.children) || 0;
-        const totalFare = adults * adultFare + children * childFare;
-
-        // Prepare data for API
-        const bookingData = {
-          startStation: tripData.startStation,
-          endStation: tripData.endStation,
-          departureTime:
-            selectedTrains.length > 0
-              ? selectedTrains[0].departureTime
-              : "08:00:00",
-          arrivalTime:
-            selectedTrains.length > 0
-              ? selectedTrains[selectedTrains.length - 1].arrivalTime
-              : "10:00:00",
-          username: username,
-          adults: tripData.adults,
-          children: tripData.children,
-          date: tripData.searchDate,
-          seatClass: tripData.seatClass,
-          // Include fare information
-          adultFare: adultFare,
-          childFare: childFare,
-          totalFare: totalFare,
-          // Include user details
-          passengerName: userData.full_name,
-          passengerID: userData.id_number,
-          selectedTrains: selectedTrains.map((train) => ({
-            trainID: train.trainID,
-            originStationID: train.originStationID || tripData.startStation,
-            destinationStationID:
-              train.destinationStationID || tripData.endStation,
-            departureTime: train.departureTime,
-          })),
-          destinations: tripData.stopovers || [],
-        };
-
-        console.log("Sending booking data:", bookingData);
-
-        // Call the API
-        const response = await fetch("../../server/api/saveTrip.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(bookingData),
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          // Show success message
-          alert(
-            `Itinerary saved successfully! Your booking reference is ${result.bookingReference}`
-          );
-
-          // Store booking reference and trip ID in local storage
-          localStorage.setItem("bookingReference", result.bookingReference);
-          localStorage.setItem("tripID", result.tripID);
-
-          // Redirect if needed
-          if (result.redirect) {
-            window.location.href = result.redirect;
-          }
-        } else {
-          // Show error message
-          alert(`Error: ${result.message}`);
-        }
-      } catch (error) {
-        console.error("Error saving itinerary:", error);
-        alert("Failed to save itinerary. Please try again.");
-      }
-    });
-
-  // Book ticket button handler
-  document.getElementById("book-ticket").addEventListener("click", async () => {
+  // Function to save itinerary and return trip ID and booking reference
+  async function saveItinerary() {
     try {
-      // Get user details (reuse existing function)
-      let userData = { full_name: "Guest User", id_number: "Not available" };
+      // Get all necessary data
+      const tripData = JSON.parse(localStorage.getItem("tripData")) || {};
+      const itinerary = JSON.parse(localStorage.getItem("itinerary")) || {};
+      const selectedTrains =
+        JSON.parse(localStorage.getItem("selectedTrains")) || [];
+
+      // Get user details
+      let userData = {
+        full_name: "Guest User",
+        id_number: "Not available",
+        username: " ",
+      };
       try {
         userData = await getUserDetails();
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
-      
-      // First save the itinerary to get a booking reference if not already saved
-      const savedBookingReference = localStorage.getItem("bookingReference");
-      const savedTripID = localStorage.getItem("tripID");
-      
-      let bookingReference = savedBookingReference;
-      let tripID = savedTripID;
-      
-      if (!bookingReference || !tripID) {
-        // Save the trip first (using your existing save function)
-        await document.getElementById("save-itinerary").click();
+
+      const username = userData.username;
+
+      // Use the updated fare calculation
+      const adultFare = farePerPassenger;
+      const childFare = farePerPassenger * 0.5;
+      const adults = parseInt(tripData.adults) || 1;
+      const children = parseInt(tripData.children) || 0;
+      const totalFare = adults * adultFare + children * childFare;
+
+      // Prepare data for API
+      const bookingData = {
+        startStation: tripData.startStation,
+        endStation: tripData.endStation,
+        departureTime:
+          selectedTrains.length > 0
+            ? selectedTrains[0].departureTime
+            : "08:00:00",
+        arrivalTime:
+          selectedTrains.length > 0
+            ? selectedTrains[selectedTrains.length - 1].arrivalTime
+            : "10:00:00",
+        username: username,
+        adults: tripData.adults,
+        children: tripData.children,
+        date: tripData.searchDate,
+        seatClass: tripData.seatClass,
+        // Include fare information
+        adultFare: adultFare,
+        childFare: childFare,
+        totalFare: totalFare,
+        // Include user details
+        passengerName: userData.full_name,
+        passengerID: userData.id_number,
+        selectedTrains: selectedTrains.map((train) => ({
+          trainID: train.trainID,
+          originStationID: train.originStationID || tripData.startStation,
+          destinationStationID:
+            train.destinationStationID || tripData.endStation,
+          departureTime: train.departureTime,
+        })),
+        destinations: tripData.stopovers || [],
+      };
+
+      console.log("Sending booking data:", bookingData);
+      // Call the API
+      const response = await fetch("../../server/api/saveTrip.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Store trip ID in local storage
+        localStorage.setItem("tripID", result.tripID);
         
-        // Get the newly saved references
-        bookingReference = localStorage.getItem("bookingReference");
-        tripID = localStorage.getItem("tripID");
-        
-        if (!bookingReference || !tripID) {
-          throw new Error("Failed to save trip before payment");
-        }
+        return {
+          success: true,
+          tripID: result.tripID,
+          message: result.message
+        };
+      } else {
+        return {
+          success: false,
+          message: result.message || "Failed to save trip"
+        };
       }
-      
-      // Now proceed to payment using your existing Stripe API
+    } catch (error) {
+      console.error("Error saving itinerary:", error);
+      return {
+        success: false,
+        message: "An error occurred while saving the trip"
+      };
+    }
+  }
+
+  // Add event listeners for buttons
+  document.getElementById("save-itinerary").addEventListener("click", async () => {
+    const result = await saveItinerary();
+    
+    if (result.success) {
+      alert("Itinerary saved successfully!");
+    } else {
+      alert(`Error: ${result.message}`);
+    }
+  });
+
+  document.getElementById("book-ticket").textContent = "Book tickets";
+
+
+  // Book ticket button handler - now handles the entire flow
+  document.getElementById("book-ticket").addEventListener("click", async () => {
+    try {
+      // First check if we need to save the trip
+      const savedTripID = localStorage.getItem("tripID");
+      const tripData = localStorage.getItem("tripData");
+      let tripID = savedTripID;
+  
+      tripData.clicked = true;
+      // Now proceed to payment using Stripe API
       const paymentData = {
-        amount: totalFare, // This variable is already defined in your code
-        bookingReference: bookingReference,
-        tripID: tripID
+        amount: totalFare,
+        tripID: tripID,
+        // Include additional booking details needed for creating a booking record
+        bookingDetails: {
+          userID: await getUserIDFromSession(),
+          trainID: selectedTrains.length > 0 ? selectedTrains[0].trainID : null,
+          start_station: tripData.startStation,
+          destination_station: tripData.endStation,
+          class: tripData.seatClass,
+          no_of_passengers: adults,
+          kidsCount: children,
+          total_fare: totalFare,
+          paymentMethod: "Card",
+          paymentStatus: "Pending", // Will be updated to "Paid" after successful payment
+          bookingDate: new Date().toISOString().split("T")[0]
+        } 
       };
       
       console.log("Sending payment data to Stripe:", paymentData);
       
-      // Call your existing Stripe session creation API
+      // Call your Stripe session creation API with the updated structure
       const response = await fetch("../../server/api/create_checkout_session.php", {
         method: "POST",
         headers: {
@@ -444,13 +446,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
+        document.getElementById("book-ticket").textContent = "Book tickets";
       }
+
+      document.getElementById("book-ticket").textContent = "Booked!";
+      
       
       const result = await response.json();
       
       if (result.id) {
+        // Store booking ID in local storage if available
+        if (result.bookingID) {
+          localStorage.setItem("bookingID", result.bookingID);
+        }
+        
         // Redirect to Stripe Checkout using the session ID
-        // Stripe.js should be loaded on your page for this to work
         const stripe = Stripe('pk_test_51RCy68QwgaoFWhBRVwTGwX9QkMDGiSKTNE1QGHYnM4YqSSTeIgdIlCTw34rqwYcIJxKT1jfXr6fkl5SM3ABac2mY00iwkPeUmO'); 
         stripe.redirectToCheckout({
           sessionId: result.id
@@ -470,6 +480,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // Store booking details in localStorage for potential use elsewhere
   const bookingDetails = {
     userID: await getUserIDFromSession(),
     trainID: selectedTrains.length > 0 ? selectedTrains[0].trainID : null,
@@ -480,7 +491,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     kidsCount: parseInt(tripData.children) || 0,
     total_fare: totalFare,
     paymentMethod: "Card",
-    paymentStatus: "Paid",
+    paymentStatus: "Pending", // Will be updated after successful payment
     bookingDate: new Date().toISOString().split("T")[0]
   };
 
@@ -495,7 +506,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.print();
   });
 
-// Add event listener for "Request a Ride" buttons
+  // Add event listener for "Request a Ride" buttons
+// Update the event listener for "Request a Ride" buttons to ensure trip exists first
 document.querySelectorAll(".request-ride-button").forEach(button => {
   button.addEventListener("click", async function() {
     try {
@@ -503,27 +515,47 @@ document.querySelectorAll(".request-ride-button").forEach(button => {
       const segmentData = JSON.parse(this.getAttribute("data-segment"));
       console.log("Requesting ride for segment:", segmentData);
       
+      // Check if we have a valid trip ID
+      let tripID = segmentData.tripID;
+      
+      // If tripID is "pending" or not valid, save the trip first
+      if (!tripID || tripID === "pending") {
+        // Show loading indicator
+        this.textContent = "Saving trip...";
+        this.disabled = true;
+        
+        // Call the saveItinerary function to create the trip first
+        const saveResult = await saveItinerary();
+        
+        if (!saveResult.success) {
+          throw new Error(`Failed to save trip before requesting ride: ${saveResult.message}`);
+        }
+        
+        // Update the tripID with the new one
+        tripID = saveResult.tripID;
+        segmentData.tripID = tripID;
+      }
+      
       // Get the segment number to identify the appropriate stopover
       const segmentNumber = segmentData.segmentNumber;
       
       // Find the corresponding stopover for this segment
-      // Segments are 1-indexed while arrays are 0-indexed, so we subtract 1
       const destinationPlace = tripData.stopovers[segmentNumber - 1]?.name || 
-                                "Unknown destination";
+                               "Unknown destination";
       
       // Extract required data for the API call
       const rideRequestData = {
         clientID: segmentData.clientID,
-        destination: destinationPlace,  // Use the actual place name from stopovers
+        destination: destinationPlace,
         passengerCount: totalPassengerCount,
         stationID: segmentData.stationID,
-        tripID: segmentData.tripID,
+        tripID: tripID, // Using confirmed tripID
         rideDate: segmentData.rideDate
       };
 
-      console.log(rideRequestData);
+      console.log("Sending ride request data:", rideRequestData);
       
-      // Show loading indicator or message
+      // Show loading indicator
       this.textContent = "Requesting...";
       this.disabled = true;
       
@@ -543,6 +575,9 @@ document.querySelectorAll(".request-ride-button").forEach(button => {
         alert(`Ride request created successfully! ${result.message || ''}`);
         this.textContent = "Ride Requested ✓";
         this.classList.add("request-success");
+        
+        // Store the tripID in localStorage since it might have been updated
+        localStorage.setItem("tripID", tripID);
       } else {
         // Show error message
         alert(`Error: ${result.message || 'Failed to create ride request'}`);
@@ -556,5 +591,5 @@ document.querySelectorAll(".request-ride-button").forEach(button => {
       this.disabled = false;
     }
   });
-  });
+});
 });

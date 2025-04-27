@@ -1,12 +1,17 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const bookingDetails = JSON.parse(localStorage.getItem("bookingDetails"));
-    bookingDetails.paymentStatus = "Paid";
+    const bookingDetailsString = localStorage.getItem("bookingDetails");
+    const tripDataString = localStorage.getItem("tripData");
 
-    if (!bookingDetails) {
+    if (!bookingDetailsString) {
         alert("Booking details not found.");
         return;
     }
-  
+
+    const bookingDetails = JSON.parse(bookingDetailsString);
+    const tripData = tripDataString ? JSON.parse(tripDataString) : {};
+
+    bookingDetails.paymentStatus = "Paid"; // ✅ Now safe to access
+
     try {
         const response = await fetch("http://localhost/Traventure/Server/api/createBookings.php", {
             method: "POST",
@@ -15,24 +20,33 @@ document.addEventListener("DOMContentLoaded", async () => {
             },
             body: JSON.stringify(bookingDetails),
         });
-  
+
         const data = await response.json();
-  
+
         if (data.success) {
-            // Store the booking ID in localStorage
             if (data.bookingId) {
+                console.log(data);
+                console.log(data.bookingID);
                 localStorage.setItem("bookingId", data.bookingID);
                 console.log("Booking ID saved:", data.bookingID);
             }
-            
+
             alert("Booking successful!");
-            localStorage.removeItem("bookingDetails"); 
+            localStorage.removeItem("bookingDetails");
         } else {
             alert("Booking failed: " + data.message);
             console.error("Booking error:", data);
+        }
+
+        if (tripData.clicked) {
+            document.getElementById("redirect-btn").textContent = "Go back to Itinerary";
+            document.getElementById("redirect-btn").href = "../../view itinerary/viewitinerary.html";
+        } else {
+            document.getElementById("redirect-btn").textContent = "Go back to Home";
+            document.getElementById("redirect-btn").href = "../../Home/home.html";
         }
     } catch (err) {
         console.error("Fetch error:", err);
         alert("Error submitting booking.");
     }
-  });
+});
