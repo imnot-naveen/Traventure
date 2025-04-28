@@ -89,7 +89,7 @@ function displayInquiries(page) {
   
   // Get current page inquiries
   const currentInquiries = allInquiries.slice(startIndex, endIndex);
-  
+
   // Display each inquiry
   currentInquiries.forEach(inquiry => {
     container.appendChild(createInquiryCard(inquiry));
@@ -133,11 +133,6 @@ function createInquiryCard(inquiry) {
     markAsRead(inquiry.contactID, card);
   });
   
-  card.querySelector('.btn-reply').addEventListener('click', function(e) {
-    e.stopPropagation(); // Prevent card click event
-    // You can implement reply functionality here
-    window.location.href = `mailto:${inquiry.email}?subject=Re: Contact Inquiry&body=Dear ${inquiry.name},\n\nThank you for your inquiry.\n\n`;
-  });
   
   return card;
 }
