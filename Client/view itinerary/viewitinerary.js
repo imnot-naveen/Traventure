@@ -291,7 +291,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       <div class="actions">
         <button id="book-ticket" class="action-button primary-button">Book & Pay Now</button>
         <button id="save-itinerary" class="action-button">Save for Later</button>
-        <button id="export-pdf" class="action-button">Export PDF</button>
         <button id="print-ticket" class="action-button">Print Ticket</button>
       </div>
       
@@ -760,15 +759,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  document.getElementById("export-pdf").addEventListener("click", () => {
-    alert("Exporting PDF... This feature will be available soon.");
-  });
-
   document.getElementById("print-ticket").addEventListener("click", () => {
     window.print();
   });
 
-  // Update the event listener for "Request a Ride" buttons
   document.querySelectorAll(".request-ride-button").forEach((button) => {
     button.addEventListener("click", async function () {
       try {

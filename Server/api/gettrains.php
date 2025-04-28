@@ -41,6 +41,7 @@ try {
           AND ts2.stationID = :endStation
           AND ts1.arrivalTime < ts2.arrivalTime
           AND (t.days = 'Daily' OR (t.days = 'Weekdays' AND NOT :isWeekend))
+          AND t.status = 'Active'
     ";
 
     $stmt = $db->prepare($query);
