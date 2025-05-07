@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
           rideDiv.innerHTML = `
             <h3>Request ID: ${ride.id}</h3>
             <p><strong>Date:</strong> ${ride.rideDate}</p>
-            <p><strong>Time:</strong> ${ride.rideTime}</p>
+            <p><strong>Destination:</strong> ${ride.destination}</p>
             <p><strong>Pickup:</strong> ${ride.pickupPoint}</p>
             <p><strong>Drop:</strong> ${ride.dropPoint}</p>
           `;

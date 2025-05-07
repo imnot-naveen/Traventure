@@ -33,11 +33,11 @@ function fetchBookings() {
 
       bookings = Array.isArray(data) ? data : data.data || [];
 
-      // Calculate total revenue
+   
       const totalRevenue = bookings.reduce((sum, booking) => sum + parseFloat(booking.total_fare || 0), 0);
       const totalBookings = bookings.length;
 
-      // Calculate last month's revenue
+  
       const now = new Date();
       const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
       const startOfLastMonth = new Date(lastMonth.getFullYear(), lastMonth.getMonth(), 1);
@@ -51,12 +51,12 @@ function fetchBookings() {
         return sum;
       }, 0);
 
-      // Display stats
+   
       document.getElementById("totalRevenue").innerText = `Rs. ${totalRevenue.toFixed(2)}`;
       document.getElementById("totalBookings").innerText = `${totalBookings}`;
       document.getElementById("lastMonthRevenue").innerText = `Rs. ${lastMonthRevenue.toFixed(2)}`;
 
-      // Show table + pagination
+   
       displayBookings();
       updatePagination();
     })

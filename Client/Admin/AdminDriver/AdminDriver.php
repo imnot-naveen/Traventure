@@ -157,6 +157,16 @@
                             title="Enter a valid Sri Lankan driver's license (e.g., P-1234567)">
                         </div>
 
+                        <div class="form-group">
+                          <label for="vehicle-type">Vehicle Type</label>
+                          <select id="vehicle-type">
+                            <option value="Bike">Bike</option>
+                            <option value="Three-wheel">Three Wheel</option>
+                            <option value="Car">Car</option>
+                            <option value="Van">Van</option>
+                          </select>
+                        </div>
+
                         
                         <div class="form-group">
                           <label for="new-password">Password</label>

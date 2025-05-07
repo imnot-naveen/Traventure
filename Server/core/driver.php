@@ -15,6 +15,7 @@ class Driver extends Person {
     public $license;
     public $password; // Only for use in login table
     public $userType;
+    public $vehicleType;
     
     // Constructor to initialize db connection and parent class
     public function __construct($db) {
@@ -43,8 +44,8 @@ class Driver extends Person {
           $user_id = $this->conn->lastInsertId(); // Get the inserted person's ID
   
           // Insert into driver table (remove the `id` field because it's auto-increment)
-          $query2 = "INSERT INTO driver (username, maxPassengers ,assigned_station, availability, vehicleID, license)
-                     VALUES (:username,:maxPassengers, :assigned_station, :availability, :vehicleID, :license )";
+          $query2 = "INSERT INTO driver (username, maxPassengers ,assigned_station, availability, vehicleID, license, vehicleType)
+                     VALUES (:username,:maxPassengers, :assigned_station, :availability, :vehicleID, :license, :vehicleType )";
           $stmt2 = $this->conn->prepare($query2);
           $stmt2->execute([
               ':username' => $this->username, // Use username as a foreign key reference
@@ -52,7 +53,8 @@ class Driver extends Person {
               ':assigned_station' => $this->assigned_station,
               ':availability' => $this->availability,
               ':vehicleID' => $this->vehicleID,
-              ':license' => $this->license
+              ':license' => $this->license,
+              ':vehicleType' => $this->vehicleType
           ]);
   
           // Insert into login table

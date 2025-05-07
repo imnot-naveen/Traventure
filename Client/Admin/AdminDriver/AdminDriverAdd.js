@@ -42,6 +42,7 @@ document.getElementById("addDriverForm")
   const license = document.getElementById("license").value;
   const newPassword = document.getElementById("new-password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
+  const vehicleType = document.getElementById("vehicle-type").value;
 
       // Validate passwords match
       if (newPassword !== confirmPassword) {
@@ -62,7 +63,8 @@ document.getElementById("addDriverForm")
       maxPassengers: maxPassengers,
       assignedStation: station,
       vehicleID: vehicle,
-      license: license
+      license: license,
+      vehicleType: vehicleType
     };
 
 

@@ -21,4 +21,4 @@ fetch('http://localhost/Traventure/Server/api/getMonthlyRev.php')
             document.getElementById('revenue').textContent = "0";
         }
     })
-    .catch(error => console.error('Error fetching Revenue count:', error));
+    .catch(error => console.error('Error fetching Revenue count:', error)); 

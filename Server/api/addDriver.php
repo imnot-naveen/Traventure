@@ -29,7 +29,8 @@ if (
     isset($data['assignedStation']) &&
     isset($data['maxPassengers']) &&
     isset($data['vehicleID']) &&
-    isset($data['license']) 
+    isset($data['license']) &&
+    isset($data['vehicleType'])
 ) {
     // Assign data to the Driver object
     $driver->username = $data['username'];
@@ -44,6 +45,7 @@ if (
     $driver->vehicleID = $data['vehicleID'];
     $driver->license = $data['license'];
     $driver->maxPassengers = $data['maxPassengers'];
+    $driver->vehicleType = $data['vehicleType'];
     $driver->status = 'Active';
     $driver->userType = 'Driver';
 

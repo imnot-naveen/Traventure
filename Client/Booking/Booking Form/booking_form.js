@@ -16,7 +16,7 @@ async function getUserIDFromSession() {
         console.error("Error fetching user ID:", error);
         return null;
     }
-}
+} 
 
 // Function to check if the train is selected
 function checkTrainSelection() {
@@ -82,11 +82,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 const data = await response.json();
 
                 if (data && "total_fare" in data) {
+
                     const totalFare = data.total_fare * (passengerCount + kidsCount * 0.5);
-                    totalAmountDisplay.textContent = totalFare.toLocaleString('en-LK', {
-                        style: 'currency',
-                        currency: 'LKR'
-                    });
+
+                    if(kidsCount > 3){
+                        const discountFare = data.total_fare * (passengerCount + kidsCount * 0.5)*0.8;
+                        const displaydiscount = totalAmountDisplay.textContent = discountFare.toLocaleString('en-LK', {
+                            style: 'currency',
+                            currency: 'LKR'
+                        });
+
+                        totalAmountDisplay.textContent = `Discounted Fare: ${displaydiscount}`;
+                        
+                    }else{
+                        totalAmountDisplay.textContent = totalFare.toLocaleString('en-LK', {
+                            style: 'currency',
+                            currency: 'LKR'
+                        });
+                    }
+                    
                 } else {
                     console.error('Error: No fare details returned.');
                     totalAmountDisplay.textContent = "Error calculating fare";
