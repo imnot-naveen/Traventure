@@ -23,8 +23,7 @@ $username = $_SESSION['username'];
     <link rel="stylesheet" href="managetrains.css">
 </head>
 <body>
-    <div class="container">
-        <header>
+<header>
             <div class="logo">
                 <img src="logo.png" alt="Traventure Logo">
             </div>
@@ -37,7 +36,7 @@ $username = $_SESSION['username'];
                 </a>
             </nav>
         </header>
-
+    <div class="container">
         <main>
             <div class="content">
                 <div class="train-management">

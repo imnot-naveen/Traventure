@@ -1,42 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traventure - Contact Us</title>
-    <link rel="stylesheet" href="ContactUs.css">
-</head>
-<body>
-    <div class="container">
-        <div class="header-text">Contact Us</div>
-        <form>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="name">Your Name*</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email*</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="ContactUs.css" />
+    <link rel="stylesheet" href="../Navbar/navbar.css" />
+    <link rel="stylesheet" href="../Footer/footer.css" />
+  </head>
+  <body>
+    <!-- Navbar component -->
+    <nav id="navbar-placeholder"></nav>
+    <div class="contact-container">
+      <div class="contact-details">
+        <div class="contact-elements">
+          <h3>Contact Us</h3>
+          <p class="description">
+            Feel free to use the form or drop us an email. Old fashioned phone
+            calls work too.
+          </p>
+          <p><i class="fas fa-phone"></i>+123 456 789</p>
+          <p><i class="fas fa-envelope"></i>traventurecorp@gmail.com</p>
+          <p>
+            <i class="fas fa-map-marker-alt"></i>123 Travel Lane, City, Country
+          </p>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-container">
+          <form id="contact-us">
+            <label for="fName">Name </label>
+            <div class="nameInput">
+              <div class="firstName">
+                <input type="text" id="fName" placeholder="First" />
+              </div>
+              <div class="lastName">
+                <input type="text" id="lName" placeholder="Last" />
+              </div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="phone">Phone*</label>
-                    <input type="text" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject*</label>
-                    <input type="text" id="subject" name="subject" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="message">Message*</label>
-                <textarea id="message" name="message" rows="6" required></textarea>
-            </div>
-            <button type="submit" class="submit-button">Send</button>
-        </form>
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="ex:- example@gmail.com"
+            />
+            <div id="emailError" class="error"></div>
+            <label for="phone">Phone Number</label>
+            <div id="phoneError" class="error"></div>
+            <input type="text" id="phone" placeholder="ex:- 0771234567" />
+            <label for="message">Message</label>
+            <textarea id="message"></textarea>
+            <button type="submit" class="submit-button">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
-    
-</body>
+    <footer id="footer"></footer>
+    <script src="../Navbar/navbar.js"></script>
+    <script src="ContactUs.js"></script>
+    <script>
+      // Function to load the Navbar
+      function loadNavbar() {
+        fetch("../Navbar/navbar.php")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+            // Initialize the navbar functionalities
+            document
+              .getElementById("menu-toggle")
+              .addEventListener("click", function () {
+                const navMenu = document.getElementById("nav-menu");
+                navMenu.classList.toggle("active");
+              });
+
+            // Set the initial state
+            updateNavbarState(false); // Set initial state (false means not logged in)
+          });
+      }
+
+      // Function to load the Footer
+      function loadFooter() {
+        fetch("../Footer/footer.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("footer").innerHTML = data;
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadNavbar();
+        loadFooter();
+      });
+
+      // Handle login state (optional)
+      function handleLogin(event) {
+        event.preventDefault();
+        // Simulate login action
+        updateNavbarState(true); // Set state to logged in
+      }
+
+      function handleLogout(event) {
+        event.preventDefault();
+        // Simulate logout action
+        updateNavbarState(false); // Set state to logged out
+      }
+
+      function updateNavbarState(isLoggedIn) {
+        if (isLoggedIn) {
+          document.getElementById("login-link").classList.add("hidden");
+          document.getElementById("user-icon").classList.remove("hidden");
+        } else {
+          document.getElementById("login-link").classList.remove("hidden");
+          document.getElementById("user-icon").classList.add("hidden");
+        }
+      }
+    </script>
+  </body>
 </html>

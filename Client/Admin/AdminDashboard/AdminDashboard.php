@@ -1,19 +1,5 @@
 <?php
-
-session_start();
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: ../../Login/LoginPage.html"); 
-    exit();
-}
-
-if ($_SESSION['userType'] !== "Admin") {
-    header("Location: ../../Home/home.html"); 
-    exit();
-}
-
-// Get the username from the session
-$username = $_SESSION['username'];
+    include '../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -23,103 +9,37 @@ $username = $_SESSION['username'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="AdminDashboard.css">
-  <link rel="stylesheet" href="../Common/Logout_Modal.css">
+  <link rel="stylesheet" href="../Sidebar/Sidebar.css">
+  <link rel="stylesheet" href="../Recent_updates/Recent.css">
+  <link rel="stylesheet" href="../LogoutModal/logoutModal.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
   <div class="container">
-    <aside>
-    <div class="top">
-                <div class="logo">
-                    <img src="../../assets/logo/logo.png" alt="logo">
-                </div>
-                <div class="close" id="close-btn">
-                    <span class="material-symbols-outlined">
-                        close
-                    </span>
-                </div>
-            </div>
-            <div class="sidebar">
-                <a href="#" class="active">
-                    <span class="material-symbols-outlined">
-                        grid_view
-                    </span>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="../AdminForum/AdminForum.php">
-                    <span class="material-symbols-outlined">
-                        forum
-                    </span>
-                    <h3>Forums</h3>
-                </a>
-                <a href="../AdminUsers/AdminUsers.php">
-                    <span class="material-symbols-outlined">
-                        manage_accounts
-                    </span>
-                    <h3>Users</h3>
-                </a>
-                <a href="../AdminTsp/AdminTsp.php">
-                    <span class="material-symbols-outlined">
-                        train
-                    </span>
-                    <h3>Train Service Providers</h3>
-                </a>
-                <a href="../AdminCW/AdminCW.php">
-                    <span class="material-symbols-outlined">
-                        smb_share
-                        </span>
-                    <h3>Content Writers</h3>
-                </a>
-                <a href="../AdminDriver/AdminDriver.php">
-                    <span class="material-symbols-outlined">
-                        directions_car
-                        </span>
-                    <h3>Drivers</h3>
-                </a>
-                <a href="../AdminAnalytics/AdminAnalytics.php">
-                    <span class="material-symbols-outlined">
-                        monitoring
-                    </span>
-                    <h3>Analytics</h3>
-                </a>
-                <a href="../AdminBookings/AdminBookings.php">
-                    <span class="material-symbols-outlined">
-                        confirmation_number
-                        </span>
-                    <h3>Bookings</h3>
-                </a>
-                <a href="#" id="logoutButton">
-                    <span class="material-symbols-outlined">
-                        logout
-                    </span>
-                    <h3>Logout</h3>
-                </a>
-            </div>
-    </aside>
+  <?php include '../Sidebar/Sidebar.php'; ?>
     <main>
-            <h1>Admin Dashboard</h1>
-            <div class="insights">
-                <div class="sales">
-                <div class="profile-header">
-            <img src="../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture" id="adminPicture">
-            <div class="profile-info">
-                <h2 id="adminName">Admin Name</h2>
-                <h3 id="adminRole">Admin Role</h3>
-            </div>
-        </div>
-        <div class="profile-details">
-            <ul class="left-details">
-                <li id="adminEmail">Email: admin@example.com</li>
-                <li id="adminPhone">Phone: +94 71 234 5678</li>
-            </ul>
-            <ul class="right-details">
-                <li id="adminRoleDetail">Role: Administrator</li>
-                <li id="adminUsername">Username: dimuthu</li>
-            </ul>
-        </div>
-                 
+    <h1>Admin Dashboard</h1>
+    <div class="insights">
+        <div class="sales">
+            <div class="profile-header">
+                <img src="../../assets/img/AvatarMaker.png" alt="Admin Profile Picture" class="profile-picture" id="adminPicture">
+                <div class="profile-info">
+                    <h2 id="adminName">Loading...</h2>
+                    <h3 id="adminRole">Admin</h3>
                 </div>
             </div>
+            <div class="profile-details">
+                <ul class="left-details">
+                    <li id="adminEmail">Email: Loading...</li>
+                    <li id="adminPhone">Phone: Loading...</li>
+                </ul>
+                <ul class="right-details">
+                    <li id="adminRoleDetail">Role: Admin</li>
+                    <li id="adminUsername">Username: Loading...</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
             <!-- END OF INSIGHTS -->
              <div class="recent-orders">
@@ -130,175 +50,55 @@ $username = $_SESSION['username'];
                             <th>Booking ID</th>
                             <th>User</th>
                             <th>Starting Station</th>
-                            <th>Destination</th>
-                            <th>Amount</th>
+                            <th>Total Fare</th>
+                            <th>Booking Date</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>10002</td>
-                            <td>Dimuthu Harshamal</td>
-                            <td>Fort</td>
-                            <td>Kandy</td>
-                            <td>$20.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10003</td>
-                            <td>John Doe</td>
-                            <td>Fort</td>
-                            <td>Galle</td>
-                            <td>$13.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10004</td>
-                            <td>Kavindu Perera</td>
-                            <td>Maradana</td>
-                            <td>Badulla</td>
-                            <td>$220.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10005</td>
-                            <td>Kamal Gunarathne</td>
-                            <td>Kalutara</td>
-                            <td>Beliatta</td>
-                            <td>$30.00</td>   
-                        </tr>
-                        <tr>
-                            <td>10006</td>
-                            <td>Tharushi Senarathne</td>
-                            <td>Maho</td>
-                            <td>Ambewela</td>
-                            <td>$22.00</td>   
-                        </tr>
-                    </tbody>
+                    <tbody id="booking-table-body">
+                    </tbody> 
+                
+<script>
+                        fetch('http://localhost/Traventure/Server/api/getAllBookings.php?limit=6') 
+                        .then(res => res.json())
+                        .then(data => {
+                            const tbody = document.getElementById('booking-table-body');
+                            if (data.success) {
+                                // Limit to only 6 rows
+                                const bookings = data.data.slice(0, 6);
+                                bookings.forEach(booking => {
+                                    const row = document.createElement('tr');
+                                    row.innerHTML = `
+                                        <td>${booking.bookingID}</td>
+                                        <td>${booking.userID}</td>
+                                        <td>${booking.start_station}</td>
+                                        <td>${booking.total_fare}</td>
+                                        <td>${booking.bookingDate}</td>
+                                    `;
+                                    tbody.appendChild(row);
+                                });
+                            } else {
+                                tbody.innerHTML = `<tr><td colspan="5">${data.message}</td></tr>`;
+                            }
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            document.getElementById('booking-table-body').innerHTML =
+                                `<tr><td colspan="5">Failed to load bookings.</td></tr>`;
+                        });
+                    </script>
                 </table>
                 <a href="../AdminBookings/AdminBookings.php">Show All</a>
              </div>
         </main>
 
         <div class="right">
-            <div class="top">
-                <button id="menu-btn">
-                    <span class="material-symbols-outlined">
-                        menu
-                        </span>
-                </button>
-                <div class="profile">
-                    <div class="info">
-                        <p>Hey, <b>Dimuthu</b></p>
-                        <small class="text-muted">Admin</small>
-                    </div>
-                    <div class="profile-photo">
-                        <span class="material-symbols-outlined">
-                            account_circle
-                            </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- END OF TOP --> 
-             <div class="recent-updates">
-                <h2>Recent Updates</h2>
-                <div class="updates">
-                    <div class="update">
-                        <div class="profile-photo">
-                            <span class="material-symbols-outlined">
-                                account_circle
-                                </span>
-                        </div>
-                        <div class="message">
-                            <p><b>John Doe</b> booked a train Maradana to Kandy.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <span class="material-symbols-outlined">
-                                account_circle
-                                </span>
-                        </div>
-                        <div class="message">
-                            <p><b>Virat Kohli</b> booked a train Kalutara to Panadura.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <span class="material-symbols-outlined">
-                                account_circle
-                                </span>
-                        </div>
-                        <div class="message">
-                            <p><b>Kylian Mbappe</b> booked a train Maradana to Galle.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                </div>
-             </div>
-             <div class="sales-analytics">
-                <h2>Analytics</h2>
-                <div class="item online">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">
-                            local_mall
-                            </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>ONLINE BOOKINGS</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">-17%</h5>
-                        <h3>1100</h3>
-                    </div>
-                </div>
-                <div class="item online">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">
-                            shopping_cart
-                            </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>TOTAL TRIPS</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">+39%</h5>
-                        <h3>3849</h3>
-                    </div>
-                </div>
-                <div class="item customers">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">
-                            person
-                            </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>NEW USERS</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">+25%</h5>
-                        <h3>849</h3>
-                    </div>
-                </div>
-             </div>
+            <?php include '../Recent_updates/Recent.php'; ?>
         </div>
 </div>
-
-      <!-- Dialog Box -->
-      <div id="logoutDialog" class="modal-lo">
-        <div class="modal-content-lo">
-            <h2>Logout</h2>
-            <p>Are you sure you want to logout?</p>
-            <div class="button-group">
-                <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-            </div>
-        </div>
-    </div>
+    <?php include '../LogoutModal/logoutModal.php'; ?>
 
   <script src="AdminDashboard.js"></script>
-  <script src="../Common/Logout_Modal.js"></script>
+  <script src="../Recent_updates/Recent.js"></script>
+  <script src="../LogoutModal/logoutModal.js"></script>
 </body>
 </html>

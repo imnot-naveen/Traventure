@@ -1,0 +1,116 @@
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  width: calc(100% - 250px);
+}
+
+.dashboard-title {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.dashboard-title:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #3498db;
+}
+
+/* Ride Requests Styles */
+.requests-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.request-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.request-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.request-card h3 {
+  color: #3498db;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.request-card p {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.request-card p strong {
+  color: #2c3e50;
+}
+
+.accept-btn {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.accept-btn:hover {
+  background-color: #27ae60;
+}
+
+.error {
+  color: #e74c3c;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  background-color: #fadbd8;
+  border-radius: 8px;
+}
+
+/* For accepted requests */
+.accepted {
+  background-color: #f1fdf6;
+  border-left: 4px solid #2ecc71;
+}
+
+.accepted-btn {
+  background-color: #7f8c8d;
+  cursor: not-allowed;
+}
+
+.accepted-btn:hover {
+  background-color: #7f8c8d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .requests-list {
+    grid-template-columns: 1fr;
+  }
+}

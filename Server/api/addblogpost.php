@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Validate required fields
-if (empty($_POST['title']) || empty($_POST['intro']) || empty($_POST['content'])) {
+if (empty($_POST['title']) || empty($_POST['city']) || empty($_POST['intro']) || empty($_POST['content'])) {
     echo json_encode(['success' => false, 'message' => 'Invalid input: All fields are required.']);
     exit();
 }
@@ -30,12 +30,13 @@ try {
 
     // Prepare query to insert blog post
     $query = 'INSERT INTO blogposts (title, city, intro, content, imageURL, createdAt, updatedAt) 
-              VALUES (:title, "any", :intro, :content, :imageURL, NOW(), NOW())';
+              VALUES (:title, :city, :intro, :content, :imageURL, NOW(), NOW())';
     $stmt = $db->prepare($query);
 
     // Bind parameters
     $stmt->bindParam(':title', $_POST['title']);
     $stmt->bindParam(':intro', $_POST['intro']);
+    $stmt->bindParam(':city', $_POST['city']);
     $stmt->bindParam(':content', $_POST['content']);
     $stmt->bindParam(':imageURL', $imageURL);
 

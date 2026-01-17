@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traventure - Blog Post</title>
+    <link rel="stylesheet" href="viewactivity.css" />
+    <link rel="stylesheet" href="../Navbar/navbar.css" />
+    <link rel="stylesheet" href="../Footer/footer.css" />
+  </head>
+  <body>
+    <nav id="navbar-placeholder"></nav>
+
+    <main class="blog-post-container">
+      <article class="blog-post">
+        <div id="post-header">
+          <h1 id="post-title">Loading Post...</h1>
+          <div class="post-meta">
+            <span id="post-city"></span>
+            <span id="post-date"></span>
+          </div>
+        </div>
+
+        <div id="post-image-container">
+          <img id="post-image" src="" alt="Blog Post Image" />
+        </div>
+
+        <div class="post-content">
+          <p id="post-intro"></p>
+          <div id="post-body"></div>
+        </div>
+      </article>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="../Navbar/navbar.js"></script>
+    <script src="viewactivity.js"></script>
+    <script>
+      // Navbar and Footer loading scripts (similar to previous implementations)
+      function loadNavbar() {
+        fetch("../Navbar/navbar.php")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+            // Initialize navbar functionalities
+            document
+              .getElementById("menu-toggle")
+              .addEventListener("click", function () {
+                const navMenu = document.getElementById("nav-menu");
+                navMenu.classList.toggle("active");
+              });
+          });
+      }
+
+      function loadFooter() {
+        fetch("../Footer/footer.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("footer").innerHTML = data;
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadNavbar();
+        loadFooter();
+      });
+    </script>
+  </body>
+</html>

@@ -1,87 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Traventure</title>
-    <link rel="stylesheet" href="scheduleform.css">
-    <link rel="stylesheet" href="../Navbar/navbar.css">
-</head>
-<body>
-    <!-- Navbar component -->
-  <nav id="navbar-placeholder"></nav>
-    <!-- <header>
-        <img src="placeholder-logo.png" alt="Traventure Logo"> ]
-        <h1>Traventure</h1>
-        <p>Your ultimate destination for railway time tables</p>
-    </header> -->
+    <link rel="stylesheet" href="scheduleform.css" />
+    <link rel="stylesheet" href="../Navbar/navbar.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav id="navbar-placeholder"></nav>
 
-    <div class="container">
+    <div class="main-wrapper">
+      <!-- Left Background Image -->
+      <div class="left-image"></div>
+
+      <!-- Right Form Section -->
+      <div class="form-container">
         <div class="form-box">
+          <h2>Search Train Schedule</h2>
+
+          <div class="search-method station-search">
+            <h3>Search by Stations</h3>
             <label for="start-station">Start Station:</label>
             <select id="start-station">
-                <option>--Select--</option>
+              <option>--Select--</option>
             </select>
 
             <label for="end-station">End Station:</label>
             <select id="end-station">
-                <option>--Select--</option>
+              <option>--Select--</option>
             </select>
 
             <label for="search-date">Search Date:</label>
-            <input type="date" id="search-date" value="2024-11-24">
+            <input type="date" id="search-date" value="2024-11-24" />
+          </div>
 
-            <button type="button">Search</button>
+          <div class="search-divider"><span>OR</span></div>
+
+          <div class="search-method name-search">
+            <h3>Search by Train Name</h3>
+            <label for="train-name">Train Name:</label>
+            <input
+              type="text"
+              id="train-name"
+              placeholder="Ex:- Samudra Devi"
+            />
+          </div>
+
+          <button type="button" id="search-button">Search</button>
         </div>
+      </div>
     </div>
+
     <script src="scheduleForm.js"></script>
-
     <script src="../Navbar/navbar.js"></script>
-  <script>
-    // Function to load the Navbar
-    function loadNavbar() {
-      fetch('../Navbar/navbar.php')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('navbar-placeholder').innerHTML = data;
-          // Initialize the navbar functionalities
-          document.getElementById('menu-toggle').addEventListener('click', function() {
-            const navMenu = document.getElementById('nav-menu');
-            navMenu.classList.toggle('active');
+    <script>
+      function loadNavbar() {
+        fetch("../Navbar/navbar.php")
+          .then((res) => res.text())
+          .then((data) => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+            document
+              .getElementById("menu-toggle")
+              .addEventListener("click", () => {
+                const navMenu = document.getElementById("nav-menu");
+                navMenu.classList.toggle("active");
+              });
+            updateNavbarState(false);
           });
-
-          // Set the initial state
-          updateNavbarState(false); // Set initial state (false means not logged in)
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      loadNavbar();
-      loadFooter();
-    });
-
-    // Handle login state (optional)
-    function handleLogin(event) {
-      event.preventDefault();
-      // Simulate login action
-      updateNavbarState(true); // Set state to logged in
-    }
-
-    function handleLogout(event) {
-      event.preventDefault();
-      // Simulate logout action
-      updateNavbarState(false); // Set state to logged out
-    }
-
-    function updateNavbarState(isLoggedIn) {
-      if (isLoggedIn) {
-        document.getElementById('login-link').classList.add('hidden');
-        document.getElementById('user-icon').classList.remove('hidden');
-      } else {
-        document.getElementById('login-link').classList.remove('hidden');
-        document.getElementById('user-icon').classList.add('hidden');
       }
-    }
-  </script>
-</body>
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadNavbar();
+      });
+
+      function updateNavbarState(isLoggedIn) {
+        document
+          .getElementById("login-link")
+          .classList.toggle("hidden", isLoggedIn);
+        document
+          .getElementById("user-icon")
+          .classList.toggle("hidden", !isLoggedIn);
+      }
+    </script>
+  </body>
 </html>

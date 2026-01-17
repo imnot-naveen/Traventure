@@ -1,0 +1,501 @@
+/* Main Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e6ed;
+}
+
+header h1 {
+  color: #2c3e50;
+  font-size: 28px;
+}
+
+
+/* Filter Section Styles */
+.filter-section {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  padding: 16px;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.search-box {
+  display: flex;
+  flex: 1;
+  min-width: 280px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+}
+
+.search-box button {
+  padding: 10px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-box button:hover {
+  background-color: #2980b9;
+}
+
+.filter-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-dropdown select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 14px;
+}
+
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.date-range input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.date-range button {
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.date-range button:hover {
+  background-color: #2980b9;
+}
+
+/* Booking History Container */
+.booking-history-container {
+  position: relative;
+  min-height: 200px;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(52, 152, 219, 0.3);
+  border-radius: 50%;
+  border-top-color: #3498db;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-message, .no-results {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.error-message p, .no-results p {
+  margin-bottom: 16px;
+  color: #e74c3c;
+  font-size: 16px;
+}
+
+.error-message button {
+  padding: 8px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Booking Card Styles */
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.booking-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.booking-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.booking-id .label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.booking-id .value {
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.booking-status {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-confirmed {
+  background-color: #e6f7ee;
+  color: #10b981;
+}
+
+.status-pending {
+  background-color: #fef9c3;
+  color: #d97706;
+}
+
+.status-cancelled {
+  background-color: #fee2e2;
+  color: #ef4444;
+}
+
+.booking-details {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+}
+
+.train-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.train-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.train-number {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.journey-date .label {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.journey-date .value {
+  font-weight: 500;
+}
+
+.journey-details {
+  border-left: 1px dashed #ddd;
+  border-right: 1px dashed #ddd;
+  padding: 0 20px;
+}
+
+.station-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.from-station, .to-station {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.from-station {
+  margin-bottom: 16px;
+}
+
+.to-station {
+  margin-top: 16px;
+}
+
+.time {
+  font-size: 18px;
+  font-weight: 600;
+  min-width: 60px;
+}
+
+.station {
+  font-size: 16px;
+}
+
+.journey-line {
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #3498db;
+  border-radius: 50%;
+}
+
+.line {
+  flex: 1;
+  width: 2px;
+  background-color: #3498db;
+}
+
+.passenger-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.passenger-info .label {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.passenger-info .value {
+  font-weight: 500;
+}
+
+.booking-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f8fafc;
+  border-top: 1px solid #edf2f7;
+}
+
+.price .label {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.price .value {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.booking-actions button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.view-details-btn {
+  background-color: #e6f7ff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+
+.view-details-btn:hover {
+  background-color: #bae6fd;
+}
+
+.download-btn {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.download-btn:hover {
+  background-color: #bae6fd;
+}
+
+.cancel-btn {
+  background-color: #fff;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+}
+
+.cancel-btn:hover {
+  background-color: #fee2e2;
+}
+
+.cancel-btn.disabled {
+  background-color: #f1f5f9;
+  color: #94a3b8;
+  border: 1px solid #e2e8f0;
+  cursor: not-allowed;
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 16px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.pagination button:hover:not([disabled]) {
+  background-color: #2980b9;
+}
+
+.pagination button:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+#page-info {
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .booking-details {
+      grid-template-columns: 1fr 1fr;
+  }
+  
+  .journey-details {
+      border-right: none;
+      grid-column: span 2;
+      border-top: 1px dashed #ddd;
+      border-bottom: 1px dashed #ddd;
+      padding: 20px 0;
+      margin: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .booking-details {
+      grid-template-columns: 1fr;
+  }
+  
+  .journey-details {
+      grid-column: span 1;
+  }
+  
+  .booking-footer {
+      flex-direction: column;
+      gap: 16px;
+  }
+  
+  .booking-actions {
+      width: 100%;
+      justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-controls {
+      flex-direction: column;
+      align-items: stretch;
+  }
+  
+  .search-box {
+      width: 100%;
+  }
+  
+  .booking-actions {
+      flex-direction: column;
+      width: 100%;
+  }
+  
+  .booking-actions button {
+      width: 100%;
+  }
+}

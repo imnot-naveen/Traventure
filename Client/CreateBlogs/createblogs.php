@@ -58,7 +58,10 @@ $username = $_SESSION['username'];
   <script>
     // Function to load the Navbar
     function loadNavbar() {
-      fetch('../Navbar/navbar.php')
+      const userType = '<?php echo $_SESSION['userType']; ?>';
+      console.log(userType);
+      if(userType === "CW"){
+        fetch('../CW Navbar/navbar.php')
         .then(response => response.text())
         .then(data => {
           document.getElementById('navbar-placeholder').innerHTML = data;
@@ -71,6 +74,22 @@ $username = $_SESSION['username'];
           // Set the initial state
           updateNavbarState(false); // Set initial state (false means not logged in)
         });
+      }
+      else {
+        fetch('../Navbar/navbar.php')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('navbar-placeholder').innerHTML = data;
+          // Initialize the navbar functionalities
+          document.getElementById('menu-toggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+          });
+
+          // Set the initial state
+          updateNavbarState(false); // Set initial state (false means not logged in)
+        });
+      }
     }
 
     // Function to load the Footer

@@ -194,7 +194,7 @@ body {
 }
 
 .btn-secondary {
-  background-color: #95a5a6;
+  background-color: #6f7475;
   color: var(--white);
   display: flex;
   align-items: center;
@@ -205,7 +205,7 @@ body {
 }
 
 .btn-secondary:hover {
-  background-color: #7f8c8d;
+  background-color: #677071;
 }
 
 .btn-secondary svg {

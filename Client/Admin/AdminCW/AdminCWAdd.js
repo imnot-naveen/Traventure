@@ -1,7 +1,7 @@
 // Get DOM elements
 const modal = document.getElementById("userModal");
 const openModalBtn = document.getElementById("Add-user");
-const closeModalBtn = document.querySelector(".close");
+const closeModalBtn = document.querySelector(".close-m");
 const cancelBtn = document.getElementById("cancelBtn");
 
 // Open Modal
@@ -12,7 +12,7 @@ openModalBtn.addEventListener("click", () => {
 // Close Modal
 closeModalBtn.addEventListener("click", () => {
   modal.style.display = "none";
-});
+}); 
 
 cancelBtn.addEventListener("click", () => {
   modal.style.display = "none";
@@ -25,51 +25,58 @@ window.addEventListener("click", (event) => {
   }
 });
 
-// Handle Form Submission
-document.getElementById("addUserForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const username = document.getElementById("username").value;
-  const firstName = document.getElementById("firstName").value;
-  const lastName = document.getElementById("lastName").value;
-  const email = document.getElementById("email").value;
-  const contactNumber = document.getElementById("contactNumber").value;
+// Handle CW registration form submission
+document
+  .getElementById("addCWForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
 
-  console.log("New User Data:", {
-    username,
-    firstName,
-    lastName,
-    email,
-    contactNumber,
-  });
+    // Get form input values
+    const username = document.getElementById("username").value;
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const email = document.getElementById("email").value;
+    const IDNumber = document.getElementById("IDNumber").value;
+    const contactNumber = document.getElementById("contactNumber").value;
+    const newPassword = document.getElementById("new-password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
 
-  modal.style.display = "none";
-});
+    // Validate passwords match
+    if (newPassword !== confirmPassword) {
+      alert("Passwords do not match. Please try again.");
+      return;
+    }
 
-//Add user to database
-document.getElementById("addUserForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevent the default form submission
+    // Prepare the data to send to the server
+    const requestData = { 
+      username: username,
+      firstName: firstName,
+      lastName: lastName,
+      IDNumber: IDNumber,
+      email: email,
+      contactNumber: contactNumber,
+      password: newPassword, 
+    };
 
-  // Collect form data
-  const formData = new FormData(this);
-  const formObject = Object.fromEntries(formData.entries());
-
-  // Send the data to the backend
-  fetch("../../../Server/api/adminAddUser.php", {
+    // Send the data to the API
+    fetch("../../../Server/api/adminAddCw.php", { 
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(formObject),
-  })
+      body: JSON.stringify(requestData),
+    })
       .then((response) => response.json())
-      .then((data) => {
-          if (data.success) {
-              alert("User added successfully!");
-              this.reset(); // Clear the form
-          } else {
-              alert("Error adding user: " + data.error);
-          }
+      .then((jsonData) => {
+        if (jsonData.success) {
+          alert("CW Registration successful!");
+          modal.style.display = "none";
+        } else {
+          alert(jsonData.message || "CW registration failed. Please try again.");
+        }
       })
-      .catch((error) => console.error("Error:", error));
-});
-
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again later.");
+      });
+  });

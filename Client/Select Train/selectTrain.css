@@ -1,0 +1,249 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    background-color: #f3f7ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.table-container {
+    padding: 20px;
+    width: 90%;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+  
+.table-container > div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+  
+  label {
+    font-weight: 500;
+    color: #2a5298;
+    margin-right: 8px;
+  }
+  
+  select {
+    padding: 8px 12px;
+    border: 1px solid #2a5298;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #2a5298;
+    font-weight: 500;
+    transition: border-color 0.3s;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: #2a5298;
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: rgb(10, 80, 186);
+  }
+
+.select-train-btn {
+    background-color: #ECFDF3;
+    border: solid 1px #037847;
+    color: #037847;
+}
+
+.select-train-btn:hover {
+    background-color: #f3feff;
+    
+}
+
+#sort-arrival {
+    background-color: #ccc;
+    color: #333;
+}
+
+th i {
+    margin-right: 6px;
+    color: #6c757d;
+}
+  
+  
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+  
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid #e2e6ea;
+}
+  
+th {
+    background-color: #e9f2ff;
+    color: #2a5298;
+    font-weight: 600;
+}
+  
+  td:nth-child(5) {
+    color: #2a5298;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  td:nth-child(5):hover {
+    text-decoration: underline;
+  }
+  
+  td:first-child {
+    color: #dc3545;
+    
+  }
+  
+  td:last-child {
+    color: #495057;
+  }
+  
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+    
+    th, td {
+        padding: 8px 10px;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    table {
+        font-size: 12px;
+    }
+    
+    th, td {
+        padding: 6px 8px;
+    }
+}
+
+/* Row hover effect */
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Duration and Ends At columns */
+td:nth-child(3),
+td:nth-child(4) {
+    color: #495057;
+}
+
+/* Even rows subtle background */
+tbody tr:nth-child(even) {
+    background-color: #fbfbfb;
+}
+
+/* Add this to selecttrain.css */
+.journey-summary {
+  margin: 20px auto;
+  max-width: 800px;
+  width: 60%;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.journey-summary h2 {
+  color: #0d6efd;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-bottom: 2px solid #0d6efd;
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+
+
+.journey-step {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #e9ecef;
+}
+
+.journey-step:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #e9ecef;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 1.2rem;
+}
+
+.step-details {
+  flex: 1;
+}
+
+.step-title {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.step-info {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Status classes */
+.journey-step.completed .step-icon {
+  background-color: #28a745;
+  color: white;
+}
+
+.journey-step.current .step-icon {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.journey-step.pending .step-icon {
+  background-color: #e9ecef;
+  color: #6c757d;
+}

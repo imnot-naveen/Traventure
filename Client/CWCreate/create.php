@@ -29,7 +29,7 @@ $username = $_SESSION['username'];
         <nav id="navbar-placeholder"></nav>
         
     <main>
-        <section>>
+        <section>
             <h1>Create New Post</h1>
             <form action="addblogpost.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">

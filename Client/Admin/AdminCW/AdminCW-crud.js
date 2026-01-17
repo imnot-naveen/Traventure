@@ -1,25 +1,25 @@
-// Fetch and display user data
-fetch('../../../Server/api/adminUser.php')
+// Fetch and display data
+fetch('../../../Server/api/getAllCW.php')
     .then(response => response.json())
     .then(data => {
         if (data.success && Array.isArray(data.data)) {
-            const tableBody = document.getElementById('userTableBody'); // Ensure correct ID
-            tableBody.innerHTML = ""; // Clear existing rows
+            const tableBody = document.getElementById('cwTableBody'); 
+            tableBody.innerHTML = ""; 
 
-            data.data.forEach(person => {
+            data.data.forEach(cw => {
                 const row = tableBody.insertRow();
-                row.insertCell(0).textContent = person.username || "N/A";
-                row.insertCell(1).textContent = person.first_name || "N/A";
-                row.insertCell(2).textContent = person.last_name || "N/A";
-                row.insertCell(3).textContent = person.email || "N/A";
-                row.insertCell(4).textContent = person.contact_number || "N/A";
+                row.insertCell(0).textContent = cw.username || "N/A";
+                row.insertCell(1).textContent = cw.cwid || "N/A";
+                row.insertCell(2).textContent = cw.first_name || "N/A";
+                row.insertCell(3).textContent = cw.last_name || "N/A";
+                row.insertCell(4).textContent = cw.email || "N/A";
+                row.insertCell(5).textContent = cw.contact_number || "N/A";
 
                 // Add a class for styling
                 row.classList.add("clickable-row");
                 row.addEventListener("click", () => {
-                    const userId = person.username; // Use a unique identifier like username
-                    console.log("Navigating to User Profile:", userId);
-                    window.location.href = `AdminUserProfile/AdminUserProfile.php?user=${userId}`;
+                    const cwId = cw.cwid;
+                    window.location.href = `AdminCw-profile/AdminCw-profile.php?cwid=${cwId}`;
                 });
             });
 
@@ -27,17 +27,17 @@ fetch('../../../Server/api/adminUser.php')
             displayTable();
         } else {
             console.error('Error: Unexpected response format or no success flag');
-            document.getElementById('userTableBody').innerHTML = "<tr><td colspan='5'>No data available</td></tr>";
+            document.getElementById('userTableBody').innerHTML = "<tr><td colspan='6'>No data available</td></tr>";
         }
     })
-    .catch(error => console.error('Error fetching user data:', error));
+    .catch(error => console.error('Error fetching TSP data:', error));
 
 // Pagination logic
 let currentPage = 1;
 const rowsPerPage = 6;
 
 function displayTable() {
-    const tableBody = document.getElementById("userTableBody");
+    const tableBody = document.getElementById("cwTableBody");
     const rows = Array.from(tableBody.getElementsByTagName("tr"));
     const totalRows = rows.length;
 
@@ -70,3 +70,17 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPage = 1;
     displayTable();
 });
+
+// Fetch and display TSP count
+fetch('../../../Server/api/getCwCount.php')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success && typeof data.count === 'number') {
+            const countElement = document.getElementById('cwCount');
+            countElement.textContent = `${data.count}`;
+        } else {
+            console.error('Error: Unexpected response format or no count field');
+            document.getElementById('cwCount').textContent = "0";
+        }
+    })
+    .catch(error => console.error('Error fetching CW count:', error));

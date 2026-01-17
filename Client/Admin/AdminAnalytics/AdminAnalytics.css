@@ -1,220 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-:root{
-  --color-primary : #007BFF;
-  --color-light-blue : #E3F2FD;
-  --color-accent-blue : #1565C0;
-  --color-primary-neutral-light : #F5F5F5;
-  --color-bg-lighter : #F5F5F5;
-  --color-text : #212529;
-  --color-text-secondary: #6C757D;
-  --color-border : #CED4DA;
-  --color-hover-blue : #0056b3;
-  --color-black : #000000;
-  
-
-  --boarder-radius-1 : 0.4rem;
-  --boarder-radius-2 : 0.8rem;
-  --boarder-radius-3 : 1.2rem;
-
-  --card-padding : 1.8rem;
-  --padding : 1.2rem;
-
-  --box-shadow : 0 2rem 3rem var(--color-primary-neutral-light);
-}
-
-
-*{
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  appearance: none;
-  border: 0;
-  text-decoration: none;
-  list-style: none;
-  box-sizing: border-box;
-}
-
-html{
-  font-size: 14px;
-}
-
-body{
-  width: 100vw;
-  height: 100vh;
-  font-family: poppins, sans-serif;
-  font-size: 0.88rem;
-  background: var(--color-primary-neutral-light);
-  user-select: none;
-  overflow-x: hidden;
-}
-
-.container{
-  display: grid;
-  width: 96%;
-  margin: 0;
-  gap: 1.8rem;
-  grid-template-columns: 14rem auto 23rem;
-}
-
-a{
-  color: #000000;
-}
-
-img{
-  display: block;
-  width: 100%;
-}
-
-h1{
-  font-weight: 800;
-  font-size: 1.8rem;
-}
-
-h2{
-  font-size: 1.4rem;
-}
-
-h3{
-  font-size: 0.87rem;
-}
-
-h4{
-  font-size: 0.8rem;
-}
-
-h5{
-  font-size: 0.77rem ;
-}
-
-small{
-  font-size: 0.75rem;
-}
-
-.profile-photo{
-  width: 2.8rem;
-  height: 2.8rem;
-  border-radius: 50px;
-  overflow: hidden;
-}
-
-.text-muted{
-  color: var(--color-text-secondary);
-}
-
-p{
-  color: var(--color-text);
-}
-
-b{
-  color: var(--color-black);
-}
-
-/* aside-bar styling */
-aside{
-  height: 100vh;
-  background-color: #fff;
-}
-
-aside .top{
-  background-color: var(--color-light-blue); 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem; /* Padding for spacing */
-  border-radius: var(--boarder-radius-2); 
-  margin: 1rem 1rem 0 1rem; /* Spacing from the top */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-aside .logo{
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-aside .logo img{
-  width: 2rem;
-  height: auto;
-  border-radius: 0.3rem;
-}
-
-aside .close{
-  display: none;
-  font-size: 1.5rem;
-  color: var(--color-text-secondary);
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-aside .close:hover{
-  color: var(--color-hover-blue);
-}
-
-aside .sidebar{
-  background: white;
-  display: flex;
-  flex-direction: column;
-  height: 86vh;
-  position: relative;
-  top: 3rem;
-}
-
-aside h3{
-  font-weight: 500;
-}
-
-aside .sidebar a{
-  display: flex;
-  color: var(--color-black);
-  margin-left: 2rem;
-  gap: 1rem;
-  align-items: center;
-  position: relative;
-  height: 3.7rem;
-  transition: all 300ms ease;
-}
-
-aside .sidebar a span{
-  font-size: 1.6rem;
-  transition: all 300ms ease;
-}
-
-aside .sidebar a:last-child{
-  position: absolute;
-  bottom: 2rem;
-  width: 100%;
-}
-
-aside .sidebar a.active{
-  background: var(--color-light-blue) ;
-  color: var(--color-primary);
-  margin-left: 0;
-}
-
-aside .sidebar a.active:before{
-  content: '';
-  width: 6px;
-  height: 100%;
-  background: var(--color-primary);
-}
-
-aside .sidebar a.active span{
-  color: var(--color-primary);
-  margin-left: calc(1rem - 6px);
-}
-
-aside .sidebar a:hover{
-  color: var(--color-primary);
-}
-
-aside .sidebar a:hover span{
-  margin-left: 1rem;
-}
-
-
+@import url(../General.css);
 /*=======MAIN=======*/
-
 main{
   margin-top: 1.4rem;
 }
@@ -318,166 +103,105 @@ main .insights small{
 }
 
 /* Charts */
-
 .charts {
-  display: flex; /* Enables a flex container */
-  gap: 20px; /* Adds space between the charts */
-  justify-content: center; /* Centers the charts horizontally */
-  align-items: flex-start; /* Aligns the charts to the top */
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
 .chart-container {
-  width: 50%;
-  max-width: 900px;
-  margin-top: 20px;
-  position: relative;
-  aspect-ratio: 16 / 9; /* Maintain a 16:9 aspect ratio */
+  width: 45%;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-canvas {
-  width: 100%;
-  height: 100%;
-  border: 1px solid #ddd;
-  background-color: #fff;
-}
-
-/* Downloads Section */
 .Downloads {
-  display: flex;
-  justify-content: center; /* Center buttons horizontally */
-  gap: 15px; /* Space between buttons */
-  margin: 20px 0; /* Spacing above and below */
-  flex-wrap: wrap; /* Wrap buttons to the next row on smaller screens */
+  margin-top: 3rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Download Buttons */
-.Download {
-  background-color: #4CAF50; /* Green background */
-  color: white; /* White text */
-  font-size: 16px; /* Button text size */
-  font-family: Arial, sans-serif; /* Font family */
-  padding: 10px 20px; /* Button padding */
-  border: none; /* Remove default border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transition: all 0.3s ease; /* Smooth hover and active effects */
-  flex: 1 1 auto; /* Allow buttons to shrink/grow responsively */
-  min-width: 150px; /* Minimum width for smaller buttons */
-  text-align: center; /* Center-align button text */
+.Downloads button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
-/* Hover Effect */
-.Download:hover {
-  background-color: #45a049; /* Darker green on hover */
-  transform: translateY(-2px); /* Slight lift on hover */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
-}
+/* Add these to your AdminAnalytics.css file */
 
-/* Active State */
-.Download:active {
-  transform: translateY(2px); /* Button press effect */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow on press */
-}
-
-/* RIGHT */
-.right{
-  margin-top: 1.4rem;
-}
-
-.right .top{
-  display: flex;
-  justify-content: end;
-  gap: 2rem;
-}
-
-.right .top button{
-  display: none;
-}
-
-.right .top .profile{
-  display: flex;
-  gap: 2rem;
-  text-align: right;
-}
-
-/* RECENT UPDATES */
-
-.right .recent-updates{
-  margin-top: 1rem;
-}
-
-.right .recent-updates h2{
-  margin-bottom: 0.8rem;
-}
-
-.right .recent-updates .updates{
-  background: #ffff;
-  padding: var(--card-padding);
-  border-radius: var(--boarder-radius-3);
-  box-shadow: var(--box-shadow);
-  transition: all 300ms ease;
-}
-
-.right .recent-updates .updates:hover{
-  box-shadow: none;
-}
-
-.right .recent-updates .updates .update{
-  display: grid;
-  grid-template-columns: 2.6rem auto;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-/*-----SALES ANALYTICS-----*/
-
-.right .sales-analytics{
+.Downloads {
   margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 0.7rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-.right .sales-analytics h2{
-  margin-bottom: 0.8rem;
+#status {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
 }
 
-.right .sales-analytics .item{
-  background: #ffff;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.7rem;
-  padding: 1.4rem var(--card-padding);
-  border-radius: var(--boarder-radius-3);
-  box-shadow: var(--box-shadow);
-  transition: all 300ms ease;
+#status.success {
+  background-color: #d1e7dd;
+  color: #0f5132;
 }
 
-.right .sales-analytics .item:hover{
-  box-shadow: none;
+#status.error {
+  background-color: #f8d7da;
+  color: #842029;
 }
 
-.right .sales-analytics .item .right{
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin: 0;
+#previewContainer {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.preview-table {
   width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
 }
 
-.right .sales-analytics .item .icon{
-  padding: 0.6rem;
-  color: #ffff;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  display: flex;
+.preview-table th, .preview-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
 }
 
-.right .sales-analytics .item.offline .icon{
-  background: #ffffff;
+.preview-table th {
+  background-color: #f0f0f0;
 }
 
-.right .sales-analytics .item.customers .icon{
-  background: #15c378;
+.preview-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#downloadReport {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+#downloadReport:hover {
+  background-color: #1565c0;
 }
 
 /* Media Queries */
@@ -486,23 +210,6 @@ canvas {
   .container{
     width: 94%;
     grid-template-columns: 7rem auto 23rem;
-  }
-
-  aside .logo h2{
-    display: none;
-  }
-
-  aside .sidebar h3{
-    display: none;
-  }
-
-  aside .sidebar a{
-    width: 5.6rem;
-  }
-
-  aside .sidebar a:last-child{
-    position: relative;
-    margin-top: 1.8rem;
   }
 
   main .insights{
@@ -527,53 +234,6 @@ canvas {
     grid-template-columns: 1fr;
   }
 
-  aside{
-    position: fixed;
-    left: -100%;
-    background: #fff;
-    width: 18rem;
-    z-index: 3;
-    box-shadow: 1rem 3rem 4rem var(--color-light-blue);
-    height: 100vh;
-    padding-right: var(--card-padding);
-    display: none;
-    animation: showMenu 400ms ease forwards;
-  }
-
-  @keyframes showMenu {
-    to{
-      left: 0;
-    }
-    
-  }
-
-  aside .logo{
-    margin-left: 1rem;
-  }
-
-  aside .logo h2{
-    display: inline;
-  }
-
-  aside .sidebar h3{
-    display: inline;
-  }
-
-  aside .sidebar a{
-    width: 100%;
-    height: 3.4rem;
-  }
-
-  aside .sidebar a:last-child{
-    position: absolute;
-    bottom: 5rem;
-  }
-
-  aside .close{
-    display: inline-block;
-    cursor: pointer;
-  }
-
   main{
     margin-top: 8rem;
     padding: 0 1rem;
@@ -593,43 +253,6 @@ canvas {
     width: 80%; /* Buttons take up 80% of the screen width */
     font-size: 14px; /* Smaller font size for better fit */
     padding: 8px 16px; /* Adjust padding for small screens */
-  }
-
-
-  .right{
-    width: 94%;
-    margin: 0 auto 4rem;
-  }
-
-  .right .top{
-    position: fixed;
-    top: 0;
-    left: 0;
-    align-items: center;
-    padding: 0 0 0.8rem;
-    height: 4.6rem;
-    background: #fff;
-    width: 100%;
-    margin: 0;
-    z-index: 2;
-    box-shadow: 0 1rem 1rem var(--color-light-blue);
-  }
-
-  .right .profile .info{
-    display: none;
-  }
-
-  .right .top button{
-    display: inline-block;
-    background: transparent;
-    cursor: pointer;
-    color: var(--color-black);
-    position: absolute;
-    left: 1rem;
-  }
-
-  .right .top button span{
-    font-size: 2rem;
   }
 
 }

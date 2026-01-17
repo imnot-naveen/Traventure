@@ -33,11 +33,11 @@ document
     event.preventDefault();
 
     // Get form input values
-    const tspid = document.getElementById("tspid").value;
     const username = document.getElementById("username").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
     const email = document.getElementById("email").value;
+    const IDNumber = document.getElementById("IDNumber").value;
     const contactNumber = document.getElementById("contactNumber").value;
     const newPassword = document.getElementById("new-password").value;
     const confirmPassword = document.getElementById("confirm-password").value;
@@ -50,14 +50,15 @@ document
 
     // Prepare the data to send to the server
     const requestData = {
-      tspid: tspid,
       username: username,
       firstName: firstName,
       lastName: lastName,
+      IDNumber: IDNumber,
       email: email,
       contactNumber: contactNumber,
       password: newPassword, // Note: Password hashing is handled server-side
     };
+
 
     // Send the data to the API
     fetch("../../../Server/api/adminTspAdd.php", {
@@ -72,6 +73,7 @@ document
         if (jsonData.success) {
           alert("TSP Registration successful!");
           modal.style.display = "none";
+          document.getElementById("addTspForm").reset();            
         } else {
           alert(jsonData.message || "TSP registration failed. Please try again.");
         }

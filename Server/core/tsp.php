@@ -8,7 +8,6 @@ class TrainServiceProvider extends Person {
 
     // TSP-specific properties
     public $tspid;
-    public $Active_status;
     public $password; // Only for use in login table
     public $userType;
 
@@ -40,13 +39,14 @@ class TrainServiceProvider extends Person {
             $this->conn->beginTransaction();
     
             // Step 3: Insert into the person table
-            $query = 'INSERT INTO person (username, firstName, lastName, email, contactNo) 
-                      VALUES (:username, :first_name, :last_name, :email, :contact_no)';
+            $query = 'INSERT INTO person (username, firstName, lastName,IDNumber, email, contactNo) 
+                      VALUES (:username, :first_name, :last_name,:id_number, :email, :contact_no)';
             $stmt = $this->conn->prepare($query);
     
             $stmt->bindParam(':username', $this->username);
             $stmt->bindParam(':first_name', $this->first_name);
             $stmt->bindParam(':last_name', $this->last_name);
+            $stmt->bindParam(':id_number', $this->id_number);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':contact_no', $this->contact_number);
     
@@ -56,11 +56,10 @@ class TrainServiceProvider extends Person {
             }
     
             // Step 4: Insert into the trainserviceprovider table
-            $query = 'INSERT INTO trainserviceprovider (TSPID, username) 
-                      VALUES (:tspid, :username)';
+            $query = 'INSERT INTO trainserviceprovider ( username) 
+                      VALUES ( :username)';
             $stmt = $this->conn->prepare($query);
     
-            $stmt->bindParam(':tspid', $this->tspid);
             $stmt->bindParam(':username', $this->username);
     
             if (!$stmt->execute()) {
@@ -101,10 +100,11 @@ class TrainServiceProvider extends Person {
     
     // GET all train service providers
     public function getAllTSPs() {
-        $query = 'SELECT t.username, p.firstName AS first_name, p.lastName AS last_name, p.email, p.contactNo AS contact_number, t.status AS Active_status,
-                         t.TSPID AS tspid 
-                  FROM ' . $this->tsp_table . ' t
-                  INNER JOIN ' . $this->person_table . ' p ON t.username = p.username';
+        $query = 'SELECT t.username, p.firstName AS first_name, p.lastName AS last_name, p.email, p.contactNo AS contact_number, 
+                 t.TSPID AS tspid 
+          FROM `' . $this->tsp_table . '` t
+          INNER JOIN `' . $this->person_table . '` p ON t.username = p.username';
+
 
         $stmt = $this->conn->prepare($query);
 
@@ -134,7 +134,7 @@ class TrainServiceProvider extends Person {
   public function getTSPDetails($tspid) {
     try {
         $query = 'SELECT t.username, p.firstName AS first_name, p.lastName AS last_name, 
-                         p.email, p.contactNo AS contact_number,t.status AS Active_status, t.TSPID AS tspid
+                         p.email, p.contactNo AS contact_number,p.status AS Active_status, t.TSPID AS tspid
                   FROM ' . $this->tsp_table . ' t
                   INNER JOIN ' . $this->person_table . ' p ON t.username = p.username
                   WHERE t.TSPID = :tspid LIMIT 1';
@@ -198,7 +198,9 @@ class TrainServiceProvider extends Person {
   public function updateStatus($tspid, $status) {
     try {
         // Corrected query with consistent placeholder naming
-        $query = 'UPDATE ' . $this->tsp_table . ' SET status = :status WHERE TSPID = :tspid';
+        $query = 'UPDATE ' . $this->tsp_table . ' t
+        JOIN person p ON p.username = t.username
+        SET p.status = :status WHERE t.TSPID = :tspid';
         $stmt = $this->conn->prepare($query);
 
         // Correct parameter binding

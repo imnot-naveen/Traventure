@@ -21,7 +21,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 // Check if required data is provided
 if (isset($data['tspid']) && isset($data['status'])) {
     // Validate input for `status`
-    $validStatuses = ['active', 'inactive'];
+    $validStatuses = ['Active', 'Inactive'];
     if (!in_array($data['status'], $validStatuses)) {
         http_response_code(400); // Bad Request
         echo json_encode(['success' => false, 'message' => 'Invalid status provided. Valid values are "active" or "inactive".']);

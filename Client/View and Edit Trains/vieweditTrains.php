@@ -24,19 +24,19 @@ $username = $_SESSION['username'];
     <link rel="stylesheet" href="vieweditTrains.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Traventure Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">About us</a></li>
-                <li class="profile"><a href="#"><img class="user-icon" src="user-icon.png" alt="User icon"> R</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+            <div class="logo">
+                <img src="logo.png" alt="Traventure Logo">
+            </div>
+            <nav>
+                <a href="../Manage Trains/managetrains.php" class="go-back-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Go Back
+                </a>
+            </nav>
+        </header>
 
     <div class="table-container">
         <h2>Trains</h2>
@@ -59,16 +59,24 @@ $username = $_SESSION['username'];
         </div>
     </div>
 
-    <div id="deleteModal" class="modal">
-        <div class="modal-content">
-            <h3>Confirm Delete</h3>
-            <p>Are you sure you want to delete this train?</p>
-            <div class="modal-buttons">
-                <button id="confirmDelete" class="delete-btn">Delete</button>
-                <button id="cancelDelete" class="cancel-btn">Cancel</button>
-            </div>
-        </div>
+    <!-- Disable Modal -->
+    <div id="disableModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to disable this train?</p>
+        <button id="confirmDisable">Yes, Disable</button>
+        <button id="cancelDisable">Cancel</button>
     </div>
+    </div>
+
+    <!-- Activate Modal -->
+    <div id="activateModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to activate this train?</p>
+        <button id="confirmActivate">Yes, Activate</button>
+        <button id="cancelActivate">Cancel</button>
+    </div>
+    </div>
+
     
     <script src="viewedittrains.js"></script>
 </body>

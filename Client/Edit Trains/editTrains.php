@@ -23,21 +23,7 @@ $username = $_SESSION['username'];
     <title>Edit Train</title>
     <link rel="stylesheet" href="edittrains.css">
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Traventure Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">About us</a></li>
-                <li class="profile"><a href="#"><img class="user-icon" src="user-icon.png" alt="User icon"> R</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+<body>    
     <div class="form-container">
         <h2>Edit Train Details</h2>
         <form id="editTrainForm">
@@ -100,7 +86,7 @@ $username = $_SESSION['username'];
             </div>
             <div class="button-group">
                 <button type="submit" class="btn save-btn">Save Changes</button>
-                <button type="button" class="btn cancel-btn" onclick="window.location.href='vieweditTrains.html'">Cancel</button>
+                <button type="button" class="btn cancel-btn" onclick="window.location.href='../view and edit trains/viewedittrains.php'">Cancel</button>
             </div>
         </form>
     </div>

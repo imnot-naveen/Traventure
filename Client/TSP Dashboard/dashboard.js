@@ -7,6 +7,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+populate();
+
+function populateFields(train, route, passenger, revenue) {
+  document.getElementById("trains").textContent = train + " Trains";
+  document.getElementById("routes").textContent = route + " Routes";
+  document.getElementById("passengers").textContent = passenger + " Passengers";
+  document.getElementById("revenue").textContent = "Rs. " + revenue;
+}
+
+function populate() {
+  fetch("../../Server/api/tspdashboard.php")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data); // Check what data is returned from the API
+      train = data.tspData.trains.trains;
+      route = data.tspData.routes.routes;
+      passenger = data.tspData.passengers.passengers;
+      revenue = data.tspData.revenue.revenue;
+
+      populateFields(train, route, passenger, revenue);
+    })
+    .catch((error) => {
+      // Handle errors during the fetch
+      console.error("Fetch error:", error);
+      blogContainer.innerHTML = "<p>Error loading data.</p>";
+      const blogWrapper = document.querySelector(".blog-wrapper");
+      if (blogWrapper) {
+        blogWrapper.classList.remove("hidden");
+      }
+    });
+}
+
 function handleLogout(event) {
   event.preventDefault(); // Prevent default link behavior
 

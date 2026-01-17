@@ -6,15 +6,6 @@ body {
     padding: 0;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 h1 {
     font-size: 28px;
     color: #0d1b4c;
@@ -25,7 +16,6 @@ h1 {
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -67,7 +57,7 @@ h2 {
 }
 
 .form-group input, .form-group select {
-    width: 100%;
+    width: 98%;
     padding: 10px;
     border: 1px solid #ced4da;
     border-radius: 4px;

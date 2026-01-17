@@ -2,122 +2,182 @@ document.addEventListener("DOMContentLoaded", () => {
   const startStationSelect = document.getElementById("start-station");
   const endStationSelect = document.getElementById("end-station");
   const searchDateInput = document.getElementById("search-date");
-  const searchButton = document.querySelector("button[type='button']");
+  const trainNameInput = document.getElementById("train-name");
+  const searchButton = document.getElementById("search-button");
 
-  // Ensure elements are properly fetched
-  if (
-    !startStationSelect ||
-    !endStationSelect ||
-    !searchDateInput ||
-    !searchButton
-  ) {
+  if (!startStationSelect || !endStationSelect || !searchDateInput || !searchButton) {
     console.error("One or more required elements are missing from the DOM.");
     return;
   }
+  
+  searchButton.addEventListener("click", () => {
+    const startStationName = startStationSelect.options[startStationSelect.selectedIndex].text;
+    const endStationName = endStationSelect.options[endStationSelect.selectedIndex].text;
 
-  // Set the current date as the default value for the date input
-  const today = new Date();
-  const formattedDate = today.toISOString().split("T")[0]; // Format to YYYY-MM-DD
-  searchDateInput.value = formattedDate;
-
-  // Fetch stations from the backend
-  const fetchStations = async () => {
-    try {
-      const response = await fetch("../../server/api/getstations.php");
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const stations = await response.json();
-
-      if (stations && Array.isArray(stations)) {
-        stations.forEach((station) => {
-          const optionStart = document.createElement("option");
-          optionStart.value = station.StationID;
-          optionStart.textContent = `${station.name} (${station.city})`;
-
-          const optionEnd = optionStart.cloneNode(true);
-
-          startStationSelect.appendChild(optionStart);
-          endStationSelect.appendChild(optionEnd);
-        });
-      } else {
-        console.error("Unexpected data format from the API:", stations);
-      }
-    } catch (error) {
-      console.error("Error fetching stations:", error);
+    if (startStationName !== "--Select--" && endStationName !== "--Select--") {
+      localStorage.setItem("startStationName", startStationName);
+      localStorage.setItem("endStationName", endStationName);
+      console.log("Start Station:", startStationName);
+      console.log("End Station:", endStationName);
+    } else {
+      console.log("Please select both start and end stations");
     }
-  };
+  });
 
-  fetchStations();
+  // Set current date
+  const today = new Date();
+  const todayStr = today.toISOString().split("T")[0];
+  searchDateInput.value = todayStr;
+  searchDateInput.setAttribute("min", todayStr);
 
-  // Disable selected station in the other dropdown
+  // LocalStorage saved values
+  const savedStartStation = localStorage.getItem("startStation");
+  const savedEndStation = localStorage.getItem("endStation");
+
+  // Station selection handling
   const handleStationSelection = (changedSelect, otherSelect) => {
     const selectedValue = changedSelect.value;
-
     Array.from(otherSelect.options).forEach((option) => {
       option.disabled = option.value === selectedValue;
     });
   };
 
+  // Fetch stations
+  const fetchStations = async () => {
+    try {
+      const res = await fetch("../../server/api/getstations.php");
+      if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+  
+      const stations = await res.json();
+  
+      if (Array.isArray(stations)) {
+        // Clear existing options
+        startStationSelect.innerHTML = '';
+        endStationSelect.innerHTML = '';
+  
+        // Add placeholder option
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "--Select--";
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+  
+        startStationSelect.appendChild(defaultOption.cloneNode(true));
+        endStationSelect.appendChild(defaultOption.cloneNode(true));
+  
+        stations.forEach((station) => {
+          const optionStart = document.createElement("option");
+          optionStart.value = station.StationID;
+          optionStart.textContent = `${station.name} (${station.city})`;
+  
+          const optionEnd = optionStart.cloneNode(true);
+  
+          startStationSelect.appendChild(optionStart);
+          endStationSelect.appendChild(optionEnd);
+        });
+  
+        // Restore previously selected stations (if they still exist)
+        if (savedStartStation && startStationSelect.querySelector(`option[value="${savedStartStation}"]`)) {
+          startStationSelect.value = savedStartStation;
+        }
+        if (savedEndStation && endStationSelect.querySelector(`option[value="${savedEndStation}"]`)) {
+          endStationSelect.value = savedEndStation;
+        }
+  
+        // Apply disable logic if needed
+        if (savedStartStation) handleStationSelection(startStationSelect, endStationSelect);
+        if (savedEndStation) handleStationSelection(endStationSelect, startStationSelect);
+  
+      } else {
+        console.error("Unexpected station format:", stations);
+      }
+    } catch (err) {
+      console.error("Error fetching stations:", err);
+    }
+  };  
+
+  fetchStations();
+
+  // Listeners to save selection and handle disabling
   startStationSelect.addEventListener("change", () => {
+    localStorage.setItem("startStation", startStationSelect.value);
     handleStationSelection(startStationSelect, endStationSelect);
   });
 
   endStationSelect.addEventListener("change", () => {
+    localStorage.setItem("endStation", endStationSelect.value);
     handleStationSelection(endStationSelect, startStationSelect);
   });
 
-  // Handle button click for fetching train schedules
+  // Date validation
+  searchDateInput.addEventListener("change", function () {
+    if (searchDateInput.value < todayStr) {
+      alert("You cannot select a past date.");
+      searchDateInput.value = todayStr;
+    }
+  });
+
+  // Search logic
   searchButton.addEventListener("click", async () => {
-    const startStation = startStationSelect.value;
-    const endStation = endStationSelect.value;
-    const searchDate = searchDateInput.value;
+    const trainName = trainNameInput ? trainNameInput.value.trim() : "";
 
-    // Validate inputs
-    if (
-      startStation === "--Select--" ||
-      endStation === "--Select--" ||
-      !searchDate
-    ) {
-      alert("Please select a valid start station, end station, and date.");
-      return;
-    }
+    if (trainName !== "") {
+      // Train name search
+      try {
+        const response = await fetch(
+          `../../server/api/getTrainIdByName.php?trainName=${encodeURIComponent(trainName)}`
+        );
 
-    if (startStation === endStation) {
-      alert("Start station and end station cannot be the same.");
-      return;
-    }
+        const data = await response.json();
 
-    try {
-      // Fetch train details dynamically
-      const response = await fetch("../../server/api/gettrains.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ startStation, endStation, searchDate }),
-      });
+        if (data.error) {
+          alert(data.error);
+        } else {
+          window.location.href = `../train details/traindetails.html?trainNo=${data.trainID}`;
+        }
+      } catch (err) {
+        console.error("Train search error:", err);
+        alert("An error occurred while searching for the train.");
+      }
+    } else {
+      // Station search
+      const startStation = startStationSelect.value;
+      const endStation = endStationSelect.value;
+      const searchDate = searchDateInput.value;
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      if (
+        startStation === "--Select--" ||
+        endStation === "--Select--" ||
+        !searchDate
+      ) {
+        alert("Please select valid start/end stations and a date.");
+        return;
       }
 
-      const trains = await response.json();
-
-      if (trains && Array.isArray(trains)) {
-        // Store the train data in localStorage and redirect
-        localStorage.setItem("trainData", JSON.stringify(trains));
-
-        // Redirect to the results page
-        window.location.href = "../train schedule/trainschedule.html";
-      } else {
-        alert("No trains found for the selected criteria.");
+      if (startStation === endStation) {
+        alert("Start and end stations cannot be the same.");
+        return;
       }
-    } catch (error) {
-      console.error("Error fetching trains:", error);
-      alert(
-        "An error occurred while fetching train schedules. Please try again."
-      );
+
+      try {
+        const response = await fetch("../../server/api/gettrains.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ startStation, endStation, searchDate }),
+        });
+
+        const trains = await response.json();
+
+        if (Array.isArray(trains)) {
+          localStorage.setItem("trainData", JSON.stringify(trains));
+          window.location.href = "../train schedule/trainschedule.html";
+        } else {
+          alert("No trains found for the selected criteria.");
+        }
+      } catch (err) {
+        console.error("Station-based search error:", err);
+        alert("Error fetching train schedules.");
+      }
     }
   });
 });

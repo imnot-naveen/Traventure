@@ -33,6 +33,14 @@ if (!isset($data->firstName, $data->lastName, $data->email, $data->contactNo)) {
     exit();
 }
 
+if (isset($data->destinationChanges)) {
+    error_log("Destination changes received: " . print_r($data->destinationChanges, true));
+    $person->setDestinationChanges([
+        'add' => $data->destinationChanges->add ?? [],
+        'remove' => $data->destinationChanges->remove ?? []
+    ]);
+}
+
 // Set properties
 $person->username = $_SESSION['username'];
 $person->first_name = $data->firstName;

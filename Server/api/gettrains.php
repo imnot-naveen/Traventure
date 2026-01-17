@@ -27,6 +27,7 @@ try {
     $query = "
         SELECT 
             t.trainID,
+            t.name,
             t.type,
             ts1.departureTime AS departureTime,
             ts2.arrivalTime AS arrivalTime,
@@ -40,6 +41,7 @@ try {
           AND ts2.stationID = :endStation
           AND ts1.arrivalTime < ts2.arrivalTime
           AND (t.days = 'Daily' OR (t.days = 'Weekdays' AND NOT :isWeekend))
+          AND t.status = 'Active'
     ";
 
     $stmt = $db->prepare($query);

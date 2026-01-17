@@ -3,7 +3,7 @@ fetch('../../../Server/api/adminTsp.php')
     .then(response => response.json())
     .then(data => {
         if (data.success && Array.isArray(data.data)) {
-            const tableBody = document.getElementById('userTableBody'); // Ensure correct ID
+            const tableBody = document.getElementById('userTableBody'); 
             tableBody.innerHTML = ""; // Clear any existing rows before appending new ones
 
             data.data.forEach(tsp => {

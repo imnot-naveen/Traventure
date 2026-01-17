@@ -1,75 +1,21 @@
 let typingTimeout, erasingTimeout;
 
-function typeWriter(text, i, fnCallback) {
-  if (i < text.length) {
-    document.getElementById("animated-text").innerHTML =
-      text.substring(0, i + 1) + '<span aria-hidden="true"></span>';
-    typingTimeout = setTimeout(function () {
-      typeWriter(text, i + 1, fnCallback);
-    }, 50);
-  } else if (typeof fnCallback === "function") {
-    setTimeout(fnCallback, 1500);
-  }
-}
-
-function eraseText(i, fnCallback) {
-  const element = document.getElementById("animated-text");
-  if (i > 0) {
-    element.innerHTML =
-      element.innerHTML.substring(0, i - 1) +
-      '<span aria-hidden="true"></span>';
-    erasingTimeout = setTimeout(function () {
-      eraseText(i - 1, fnCallback);
-    }, 30);
-  } else if (typeof fnCallback === "function") {
-    setTimeout(fnCallback, 500);
-  }
-}
-
-function resetAnimation(text1, text2) {
-  clearTimeout(typingTimeout);
-  clearTimeout(erasingTimeout);
-  document.getElementById("animated-text").innerHTML = "";
-  animateAlternatingText(text1, text2);
-}
-
-function animateAlternatingText(text1, text2) {
-  typeWriter(text1, 0, function () {
-    eraseText(text1.length, function () {
-      typeWriter(text2, 0, function () {
-        eraseText(text2.length, function () {
-          animateAlternatingText(text1, text2);
-        });
-      });
-    });
-  });
-}
-
 function switchTab(tab) {
   const loginForm = document.getElementById("login-form");
   const signupForm = document.getElementById("signup-form");
   const loginTab = document.querySelector(".tab:nth-child(2)");
   const signupTab = document.querySelector(".tab:nth-child(1)");
 
-  clearTimeout(typingTimeout);
-  clearTimeout(erasingTimeout);
-
-  document.getElementById("animated-text").innerHTML = "";
-  typingTimeout = null;
-  erasingTimeout = null;
-
   if (tab === "signup") {
     loginForm.style.display = "none";
     signupForm.style.display = "block";
     loginTab.classList.remove("active");
     signupTab.classList.add("active");
-    resetAnimation("Sign up with us", "Let's start your journey");
   } else {
     loginForm.style.display = "block";
     signupForm.style.display = "none";
     loginTab.classList.add("active");
     signupTab.classList.remove("active");
-    resetAnimation("Login to Traventure", "Continue your journey");
   }
 }
 
@@ -118,7 +64,7 @@ document
               window.location.href = "../CW Home/home.php";
               break;
             case "Driver":
-              window.location.href = "../DriverHome/home.php";
+              window.location.href = "../Driver/Dashboard/Dashboard.php";
               break;
             default:
               alert("Unknown user type. Contact support.");
@@ -148,6 +94,7 @@ document
     const username = document.getElementById("new-username").value;
     const firstName = document.getElementById("new-firstName").value;
     const lastName = document.getElementById("new-lastName").value;
+    const id_number = document.getElementById("new-idNumber").value;
     const contactNumber = document.getElementById("new-contact").value;
     const email = document.getElementById("email").value;
     const newPassword = document.getElementById("new-password").value;
@@ -173,6 +120,63 @@ document
       valid = false;
     }
 
+    //validate id number
+    if (!(id_number.length < 15)) {
+      alert("Invalid id_number");
+      valid = false;
+    }
+
+    // password validation requirements
+    let strength = 0;
+    let messages = [];
+    const requirements = {
+      minLength: 8,
+      requireUpper: true,
+      requireLower: true,
+      requireNumber: true,
+      requireSpecialChar: true,
+    };
+
+    if (password.length < requirements.minLength) {
+      document.getElementById("password-error") = `Password must be at least ${requirements.minLength} characters`;
+    } else {
+      strength += 1;
+    }
+
+    if (requirements.requireUpper && !/[A-Z]/.test(password)) {
+      document.getElementById("password-error").textContent =
+        "Password must be have at least one uppercase letter";
+    } else {
+      strength += 1;
+    }
+
+    if (requirements.requireLower && !/[a-z]/.test(password)) {
+      document.getElementById("password-error").textContent =
+        "Password must have at least one lowercase letter";
+    } else {
+      strength += 1;
+    }
+
+    if (requirements.requireNumber && !/\d/.test(password)) {
+      document.getElementById("password-error").textContent =
+        "Password must have at least one number";
+    } else {
+      strength += 1;
+    }
+
+    if (
+      requirements.requireSpecialChar &&
+      !/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+    ) {
+      document.getElementById("password-error").textContent = "Password is too weak. Password should have at least one uppercase letter, one lowercase letter, one number and one special character";
+    } else {
+      strength += 1;
+    }
+
+    if(strength < 5){
+      valid = false;
+    }
+
     // Check if passwords match
     if (newPassword !== confirmPassword) {
       document.getElementById("confirm-password-error").textContent =
@@ -195,6 +199,7 @@ document
         username: username,
         first_name: firstName,
         last_name: lastName,
+        id_number: id_number,
         email: email,
         contact_number: contactNumber,
         password: newPassword,
@@ -209,8 +214,10 @@ document
       })
       .then((jsonData) => {
         if (jsonData.success) {
-          alert(jsonData.message || "Signup successful!");
-          // Redirect or perform further actions as needed
+          alert(jsonData.message || "Signup successful! User logged In..");
+          // Redirect to preffered destinations page
+          window.location.href =
+            "../DestinationPreferences/destPreferences.html";
         } else {
           alert(jsonData.message || "Signup failed. Please try again.");
         }
@@ -251,5 +258,6 @@ document.getElementById("email").addEventListener("input", function () {
   }
 });
 
-// Start the animation with initial texts
-animateAlternatingText("Welcome to Traventure", "Your adventure starts here");
+function goBack() {
+  window.history.back();
+}

@@ -1,19 +1,5 @@
 <?php
-
-session_start();
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: ../../Login/LoginPage.html"); 
-    exit();
-}
-
-if ($_SESSION['userType'] !== "Admin") {
-    header("Location: ../../Home/home.html"); 
-    exit();
-}
-
-// Get the username from the session
-$username = $_SESSION['username'];
+    include '../Session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -21,83 +7,17 @@ $username = $_SESSION['username'];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Users | Admin</title>
+  <title>Drivers | Admin</title>
   <link rel="stylesheet" href="AdminDriver.css">
   <link rel="stylesheet" href="AdminDriverAdd.css">
-  <link rel="stylesheet" href="../Common/Logout_Modal.css">
+  <link rel="stylesheet" href="../LogoutModal/logoutModal.css">
+  <link rel="stylesheet" href="../Sidebar/Sidebar.css">
+  <link rel="stylesheet" href="../Recent_updates/Recent.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
   <div class="container">
-    <aside>
-    <div class="top">
-                <div class="logo">
-                    <img src="../../assets/logo/logo.png" alt="logo">
-                </div>
-                <div class="close" id="close-btn">
-                    <span class="material-symbols-outlined">
-                        close
-                    </span>
-                </div>
-            </div>
-            <div class="sidebar">
-                <a href="../AdminDashboard/AdminDashboard.php">
-                    <span class="material-symbols-outlined">
-                        grid_view
-                    </span>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="../AdminForum/AdminForum.php">
-                    <span class="material-symbols-outlined">
-                        forum
-                    </span>
-                    <h3>Forums</h3>
-                </a>
-                <a href="../AdminUsers/AdminUsers.php" >
-                    <span class="material-symbols-outlined">
-                        manage_accounts
-                    </span>
-                    <h3>Users</h3>
-                </a>
-                <a href="../AdminTsp/AdminTsp.php">
-                    <span class="material-symbols-outlined">
-                        train
-                    </span>
-                    <h3>Train Service Providers</h3>
-                </a>
-                <a href="../AdminCW/AdminCW.php">
-                    <span class="material-symbols-outlined">
-                        smb_share
-                        </span>
-                    <h3>Content Writers</h3>
-                </a>
-                <a href="#" class="active">
-                    <span class="material-symbols-outlined">
-                        directions_car
-                        </span>
-                    <h3>Drivers</h3>
-                </a>
-                <a href="../AdminAnalytics/AdminAnalytics.php">
-                    <span class="material-symbols-outlined">
-                        monitoring
-                    </span>
-                    <h3>Analytics</h3>
-                </a>
-                <a href="../AdminBookings/AdminBookings.php">
-                    <span class="material-symbols-outlined">
-                        confirmation_number
-                        </span>
-                    <h3>Bookings</h3>
-                </a>
-                <a id="logoutButton">
-                    <span class="material-symbols-outlined">
-                        logout
-                    </span>
-                    <h3>Logout</h3>
-                </a>
-            </div>
-    </aside>
-
+  <?php include '../Sidebar/Sidebar.php'; ?>
     <main>
             <h1>Drivers</h1>
             <div class="insights">
@@ -107,16 +27,8 @@ $username = $_SESSION['username'];
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Users</h3>
-                            <h1>5,056</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
+                            <h3>Total Drivers</h3>
+                            <h1 id="driverCount">3</h1>
                         </div>
                     </div>
                     <small class="text-muted">
@@ -126,20 +38,12 @@ $username = $_SESSION['username'];
 
                 <div class="expenses">
                     <span class="material-symbols-outlined">
-                        bar_chart
+                        train
                         </span>
                     <div class="middle">
                         <div class="left">
-                            <h3>User Accounts</h3>
-                            <h1>43</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>87%</p>
-                            </div>
+                            <h3>Requests</h3>
+                            <h1 id="reqCount">43</h1>
                         </div>
                     </div>
                     <small class="text-muted">
@@ -147,34 +51,10 @@ $username = $_SESSION['username'];
                     </small>
                 </div>
 
-                <div class="income">
-                    <span class="material-symbols-outlined">
-                        psychology
-                        </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>User Preferences</h3>
-                            <h1>123</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Last 24 Hours
-                    </small>
-                </div>
-                <!-- END OF INCOME -->
-
             </div>
             <!-- END OF INSIGHTS -->
              <div class="recent-orders">
-                <h2>Drivers Details</h2>
+                <!-- <h2>Drivers Details</h2> -->
                 <div class="search-container">
                     <input
                       type="text"
@@ -184,52 +64,130 @@ $username = $_SESSION['username'];
                       oninput="filterUsers()"
                     />
                   </div>
-                  <div class="Add-users">
-                    <button id="Add-user">Add Driver</button>
+                  <div class="Add-driver">
+                    <button id="Add-driver">Add Driver</button>
                   </div>
-                  <div id="userModal" class="modal">
+                  <div id="driverModal" class="modal">
                     <div class="modal-content">
-                      <span class="close">&times;</span>
-                      <h2>Add New Driver</h2>
-                      <form id="addUserForm">
+                      <form id="addDriverForm">
                         <div class="form-group">
                           <label for="username">Username</label>
-                          <input type="text" id="username" name="username" required>
+                          <input type="text" id="username" name="username" required autocomplete="username">
                         </div>
+                        
                         <div class="form-group">
                           <label for="firstName">First Name</label>
-                          <input type="text" id="firstName" name="firstName" required>
+                          <input type="text" id="firstName" name="firstName" 
+                                required 
+                                autocomplete="given-name" 
+                                pattern="[A-Za-z]+" 
+                                title="First name should contain letters only">
                         </div>
+
+                        
                         <div class="form-group">
                           <label for="lastName">Last Name</label>
-                          <input type="text" id="lastName" name="lastName" required>
+                          <input type="text" id="lastName" name="lastName" required 
+                          autocomplete="given-name" 
+                          pattern="[A-Za-z]+" 
+                          title="First name should contain letters only">
                         </div>
+
+                        <div class="form-group">
+                          <label for="nic">NIC No</label>
+                          <input type="text" id="nic" name="nic" 
+                                required 
+                                pattern="^(\d{9}[vVxX]|\d{12})$" 
+                                title="Enter a valid NIC: 9 digits followed by V/X or 12 digits">
+                        </div>
+
+                        
                         <div class="form-group">
                           <label for="email">Email</label>
-                          <input type="email" id="email" name="email" required>
+                          <input type="email" id="email" name="email" required autocomplete="email">
                         </div>
+                        
                         <div class="form-group">
                           <label for="contactNumber">Contact Number</label>
-                          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
+                          <input 
+                            type="tel" 
+                            id="contactNumber" 
+                            name="contactNumber" 
+                            pattern="\d{10}" 
+                            title="Enter a valid 10-digit phone number" 
+                            required 
+                            autocomplete="tel">
                         </div>
+
+                        <div class="form-group">
+                          <label for="maxPassengers">Max Passengers</label>
+                          <input 
+                            type="number" 
+                            id="maxPassengers" 
+                            name="maxPassengers" 
+                            min="1" 
+                            max="99" 
+                            required 
+                            title="Enter a number between 1 and 99">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="station">Assigned Station</label>
+                          <input type="tel" id="station" name="station" title="Enter a 10-digit phone number" required >
+                        </div>
+
+                        <div class="form-group">
+                          <label for="vehicle">Vehicle ID</label>
+                          <input 
+                            type="text" 
+                            id="vehicle" 
+                            name="vehicle" 
+                            required 
+                            title="Enter only numeric Vehicle ID">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="license">Driving License</label>
+                          <input 
+                            type="text" 
+                            id="license" 
+                            name="license" 
+                            pattern="^[A-Za-z]{1,2}-\d{7}$" 
+                            required 
+                            title="Enter a valid Sri Lankan driver's license (e.g., P-1234567)">
+                        </div>
+
+                        
+                        <div class="form-group">
+                          <label for="new-password">Password</label>
+                          <input type="password" id="new-password" name="new-password" required autocomplete="new-password">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="confirm-password">Confirm Password</label>
+                          <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password">
+                        </div>
+                        
                         <div class="modal-buttons">
                           <button type="submit" class="btn-save">Save</button>
                           <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
                         </div>
-                      </form>
+                      </form>                      
                     </div>
                   </div>
                 <table id="userTable">
                     <thead>
                         <tr>
-                            <th>Username</th>
+                            <th>Driver ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
+                            <th>Vehicle</th>
+                            <th>Licence</th>
                             <th>Contact Number</th>
                         </tr>
                     </thead>
-                    <tbody id="userTableBody">
+                    <tbody id="driverTableBody">
                     </tbody>
                 </table>
                 <div class="pagination">
@@ -241,130 +199,17 @@ $username = $_SESSION['username'];
         </main>
 
         <div class="right">
-            <div class="top">
-                <button id="menu-btn">
-                    <span class="material-symbols-outlined">
-                        menu
-                        </span>
-                </button>
-                <div class="profile">
-                    <div class="info">
-                        <p>Hey, <b>Dimuthu</b></p>
-                        <small class="text-muted">Admin</small>
-                    </div>
-                    <div class="profile-photo">
-                        <span class="material-symbols-outlined">
-                            account_circle
-                            </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- END OF TOP --> 
-            <div class="recent-updates">
-                <h2>Recent Updates</h2>
-                <div class="updates">
-                    <div class="update">
-                        <div class="profile-photo">
-                            <span class="material-symbols-outlined">
-                                account_circle
-                                </span>
-                        </div>
-                        <div class="message">
-                            <p><b>John Doe</b> booked a train Maradana to Kandy.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <span class="material-symbols-outlined">
-                                account_circle
-                                </span>
-                        </div>
-                        <div class="message">
-                            <p><b>Virat Kohli</b> booked a train Kalutara to Panadura.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <span class="material-symbols-outlined">
-                                account_circle
-                                </span>
-                        </div>
-                        <div class="message">
-                            <p><b>Kylian Mbappe</b> booked a train Maradana to Galle.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                </div>
-             </div>
-             <div class="sales-analytics">
-                <h2>Analytics</h2>
-                <div class="item online">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">
-                            local_mall
-                            </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>ONLINE BOOKINGS</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">-17%</h5>
-                        <h3>1100</h3>
-                    </div>
-                </div>
-                <div class="item online">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">
-                            shopping_cart
-                            </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>TOTAL TRIPS</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">+39%</h5>
-                        <h3>3849</h3>
-                    </div>
-                </div>
-                <div class="item customers">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">
-                            person
-                            </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>NEW USERS</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">+25%</h5>
-                        <h3>849</h3>
-                    </div>
-                </div>
-             </div>
+            <?php include '../Recent_updates/Recent.php'; ?>
         </div>
   </div>
 
-            <!-- Dialog Box -->
-            <div id="logoutDialog" class="modal-lo">
-                <div class="modal-content-lo">
-                    <h2>Logout</h2>
-                    <p>Are you sure you want to logout?</p>
-                    <div class="button-group">
-                        <button id="confirmLogout" class="btn btn-confirm">Yes</button>
-                        <button id="cancelLogout" class="btn btn-cancel">Cancel</button>
-                    </div>
-                </div>
-            </div>
-               
- <script src="../Common/Logout_Modal.js"></script>
+  <?php include '../LogoutModal/logoutModal.php'; ?>
+
+ <script src="../LogoutModal/logoutModal.js"></script>
  <script src="AdminDriver-crud-v3.js"></script>
  <script src="AdminDriver.js"></script>
  <script src="AdminDriverAdd.js"></script>
+ <script src="../Recent_updates/Recent.js"></script>
+ 
 </body>
 </html>
