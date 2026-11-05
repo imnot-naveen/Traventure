@@ -2,3 +2,7 @@
 /Client/Footer/
 /Client/About/
 /Client/database/
+
+node_modules/
+.env
+trainscraper/state/

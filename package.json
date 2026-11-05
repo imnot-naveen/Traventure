@@ -1,0 +1,27 @@
+{
+  "name": "traventure",
+  "version": "1.0.0",
+  "description": "UCSC 2nd year group project - CS06 - Batch20",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./Client/assets/css/input.css -o ./Client/assets/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./Client/assets/css/input.css -o ./Client/assets/css/tailwind.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imnot-naveen/Traventure.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/imnot-naveen/Traventure/issues"
+  },
+  "homepage": "https://github.com/imnot-naveen/Traventure#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.4",
+    "tailwindcss": "^4.3.4"
+  }
+}
