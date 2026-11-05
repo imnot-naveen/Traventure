@@ -1,0 +1,392 @@
+[
+ {
+  "id": "fort",
+  "name": "Colombo Fort",
+  "line": "main",
+  "kmFromFort": 0
+ },
+ {
+  "id": "maradana",
+  "name": "Maradana",
+  "line": "main",
+  "kmFromFort": 1.9
+ },
+ {
+  "id": "dematagoda",
+  "name": "Dematagoda",
+  "line": "main",
+  "kmFromFort": 3.67
+ },
+ {
+  "id": "kelaniya",
+  "name": "Kelaniya",
+  "line": "main",
+  "kmFromFort": 6.87
+ },
+ {
+  "id": "ragama",
+  "name": "Ragama",
+  "line": "main",
+  "kmFromFort": 15.55
+ },
+ {
+  "id": "gampaha",
+  "name": "Gampaha",
+  "line": "main",
+  "kmFromFort": 27.54
+ },
+ {
+  "id": "veyangoda",
+  "name": "Veyangoda",
+  "line": "main",
+  "kmFromFort": 37.48
+ },
+ {
+  "id": "mirigama",
+  "name": "Mirigama",
+  "line": "main",
+  "kmFromFort": 50.27
+ },
+ {
+  "id": "polgahawela",
+  "name": "Polgahawela",
+  "line": "main",
+  "kmFromFort": 73.83
+ },
+ {
+  "id": "rambukkana",
+  "name": "Rambukkana",
+  "line": "main",
+  "kmFromFort": 84.44
+ },
+ {
+  "id": "kadugannawa",
+  "name": "Kadugannawa",
+  "line": "main",
+  "kmFromFort": 105.54
+ },
+ {
+  "id": "peradeniya",
+  "name": "Peradeniya Junction",
+  "line": "main",
+  "kmFromFort": 114.85
+ },
+ {
+  "id": "kandy",
+  "name": "Kandy",
+  "line": "main",
+  "kmFromFort": 120.74
+ },
+ {
+  "id": "gampola",
+  "name": "Gampola",
+  "line": "hill_country",
+  "kmFromFort": 126.93
+ },
+ {
+  "id": "nawalapitiya",
+  "name": "Nawalapitiya",
+  "line": "hill_country",
+  "kmFromFort": 141.52
+ },
+ {
+  "id": "hatton",
+  "name": "Hatton",
+  "line": "hill_country",
+  "kmFromFort": 174.91
+ },
+ {
+  "id": "nanu_oya",
+  "name": "Nanu Oya (Nuwara Eliya)",
+  "line": "hill_country",
+  "kmFromFort": 207.06
+ },
+ {
+  "id": "pattipola",
+  "name": "Pattipola",
+  "line": "hill_country",
+  "kmFromFort": 224.93
+ },
+ {
+  "id": "ohiya",
+  "name": "Ohiya",
+  "line": "hill_country",
+  "kmFromFort": 231.64
+ },
+ {
+  "id": "haputale",
+  "name": "Haputale",
+  "line": "hill_country",
+  "kmFromFort": 247.97
+ },
+ {
+  "id": "bandarawela",
+  "name": "Bandarawela",
+  "line": "hill_country",
+  "kmFromFort": 259.15
+ },
+ {
+  "id": "ella",
+  "name": "Ella",
+  "line": "hill_country",
+  "kmFromFort": 271.59
+ },
+ {
+  "id": "badulla",
+  "name": "Badulla",
+  "line": "hill_country",
+  "kmFromFort": 292.39
+ },
+ {
+  "id": "bambalapitiya",
+  "name": "Bambalapitiya",
+  "line": "coastal",
+  "kmFromFort": 5.13
+ },
+ {
+  "id": "wellawatte",
+  "name": "Wellawatte",
+  "line": "coastal",
+  "kmFromFort": 7.25
+ },
+ {
+  "id": "mount_lavinia",
+  "name": "Mount Lavinia",
+  "line": "coastal",
+  "kmFromFort": 12.22
+ },
+ {
+  "id": "moratuwa",
+  "name": "Moratuwa",
+  "line": "coastal",
+  "kmFromFort": 18.96
+ },
+ {
+  "id": "panadura",
+  "name": "Panadura",
+  "line": "coastal",
+  "kmFromFort": 26.26
+ },
+ {
+  "id": "kalutara_south",
+  "name": "Kalutara South",
+  "line": "coastal",
+  "kmFromFort": 41.87
+ },
+ {
+  "id": "aluthgama",
+  "name": "Aluthgama",
+  "line": "coastal",
+  "kmFromFort": 59.67
+ },
+ {
+  "id": "bentota",
+  "name": "Bentota",
+  "line": "coastal",
+  "kmFromFort": 60.97
+ },
+ {
+  "id": "ambalangoda",
+  "name": "Ambalangoda",
+  "line": "coastal",
+  "kmFromFort": 83.14
+ },
+ {
+  "id": "hikkaduwa",
+  "name": "Hikkaduwa",
+  "line": "coastal",
+  "kmFromFort": 95.14
+ },
+ {
+  "id": "galle",
+  "name": "Galle",
+  "line": "coastal",
+  "kmFromFort": 113.89
+ },
+ {
+  "id": "weligama",
+  "name": "Weligama",
+  "line": "coastal",
+  "kmFromFort": 142.83
+ },
+ {
+  "id": "mirissa",
+  "name": "Mirissa",
+  "line": "coastal",
+  "kmFromFort": 147.56
+ },
+ {
+  "id": "matara",
+  "name": "Matara",
+  "line": "coastal",
+  "kmFromFort": 156.82
+ },
+ {
+  "id": "beliatta",
+  "name": "Beliatta",
+  "line": "coastal",
+  "kmFromFort": 183.23
+ },
+ {
+  "id": "ja_ela",
+  "name": "Ja-Ela",
+  "line": "puttalam",
+  "kmFromFort": 22.15
+ },
+ {
+  "id": "negombo",
+  "name": "Negombo",
+  "line": "puttalam",
+  "kmFromFort": 38.85
+ },
+ {
+  "id": "chilaw",
+  "name": "Chilaw",
+  "line": "puttalam",
+  "kmFromFort": 82.46
+ },
+ {
+  "id": "puttalam",
+  "name": "Puttalam",
+  "line": "puttalam",
+  "kmFromFort": 135.12
+ },
+ {
+  "id": "cotta_road",
+  "name": "Cotta Road",
+  "line": "kv",
+  "kmFromFort": 5.45
+ },
+ {
+  "id": "nugegoda",
+  "name": "Nugegoda",
+  "line": "kv",
+  "kmFromFort": 11.05
+ },
+ {
+  "id": "maharagama",
+  "name": "Maharagama",
+  "line": "kv",
+  "kmFromFort": 16.36
+ },
+ {
+  "id": "homagama",
+  "name": "Homagama",
+  "line": "kv",
+  "kmFromFort": 26.51
+ },
+ {
+  "id": "padukka",
+  "name": "Padukka",
+  "line": "kv",
+  "kmFromFort": 37.18
+ },
+ {
+  "id": "avissawella",
+  "name": "Avissawella",
+  "line": "kv",
+  "kmFromFort": 61.18
+ },
+ {
+  "id": "kurunegala",
+  "name": "Kurunegala",
+  "line": "northern",
+  "kmFromFort": 95.27
+ },
+ {
+  "id": "maho",
+  "name": "Maho Junction",
+  "line": "northern",
+  "kmFromFort": 138.59
+ },
+ {
+  "id": "galgamuwa",
+  "name": "Galgamuwa",
+  "line": "northern",
+  "kmFromFort": 160.24
+ },
+ {
+  "id": "anuradhapura",
+  "name": "Anuradhapura",
+  "line": "northern",
+  "kmFromFort": 204.94
+ },
+ {
+  "id": "medawachchiya",
+  "name": "Medawachchiya",
+  "line": "northern",
+  "kmFromFort": 230.92
+ },
+ {
+  "id": "vavuniya",
+  "name": "Vavuniya",
+  "line": "northern",
+  "kmFromFort": 254.36
+ },
+ {
+  "id": "kilinochchi",
+  "name": "Kilinochchi",
+  "line": "northern",
+  "kmFromFort": 330.32
+ },
+ {
+  "id": "pallai",
+  "name": "Pallai",
+  "line": "northern",
+  "kmFromFort": 357.72
+ },
+ {
+  "id": "jaffna",
+  "name": "Jaffna",
+  "line": "northern",
+  "kmFromFort": 395.83
+ },
+ {
+  "id": "kankesanturai",
+  "name": "Kankesanturai (KKS)",
+  "line": "northern",
+  "kmFromFort": 413.29
+ },
+ {
+  "id": "habarana",
+  "name": "Habarana",
+  "line": "eastern",
+  "kmFromFort": 210.24
+ },
+ {
+  "id": "gal_oya",
+  "name": "Gal Oya Junction",
+  "line": "eastern",
+  "kmFromFort": 226.68
+ },
+ {
+  "id": "polonnaruwa",
+  "name": "Polonnaruwa",
+  "line": "eastern",
+  "kmFromFort": 259.7
+ },
+ {
+  "id": "valaichchenai",
+  "name": "Valaichchenai",
+  "line": "eastern",
+  "kmFromFort": 319.13
+ },
+ {
+  "id": "batticaloa",
+  "name": "Batticaloa",
+  "line": "eastern",
+  "kmFromFort": 349.69
+ },
+ {
+  "id": "kantale",
+  "name": "Kantale",
+  "line": "trincomalee",
+  "kmFromFort": 256.38
+ },
+ {
+  "id": "trincomalee",
+  "name": "Trincomalee",
+  "line": "trincomalee",
+  "kmFromFort": 296.91
+ }
+]

@@ -1,0 +1,392 @@
+stationID,srcStationID,name,city,matchedTo,matchMethod,hasScheduleData
+101,206,Maradana,Maradana,Maradana,exact,true
+102,56,Colombo Fort,Colombo Fort,Colombo Fort,exact,true
+103,315,Secretartat Halt,Secretartat Halt,Secretariat Halt,fuzzy(d=1),true
+104,168,Kompannavediya,Kompannavediya,Kompanna Vidiya,fuzzy(d=1),true
+105,167,Kollupitiya,Kollupitiya,Kollupitiya,exact,true
+106,31,Bambalapitiya,Bambalapitiya,Bambalapitiya,exact,true
+107,381,Wellawatta,Wellawatta,Wellawatta,exact,true
+108,59,Dehiwala,Dehiwala,Dehiwala,exact,true
+109,229,Mount Lavinia,Mount Lavinia,Mount Lavinia,exact,true
+110,305,Ratmalana,Ratmalana,Ratmalana,exact,true
+111,17,Angulana,Angulana,Angulana,exact,true
+112,186,Lunawa,Lunawa,Lunawa,exact,true
+113,228,Moratuwa,Moratuwa,Moratuwa,exact,true
+114,171,Koralawella,Koralawella,Koralawalla,fuzzy(d=1),true
+115,68,Egoda Uyana,Egoda Uyana,Egoda Uyana,exact,true
+117,259,Panadura,Panadura,Panadura,exact,true
+118,281,Pinwatte,Pinwatte,Pinwatta,fuzzy(d=1),true
+119,361,Wadduwa,Wadduwa,Wadduwa,exact,true
+120,346,Train Halt 01,Train Halt 01,Train Halt No 01,fuzzy(d=2),true
+121,139,Kalutara North,Kalutara North,Kalutara North,exact,true
+123,140,Kalutara South,Kalutara South,Kalutara South,exact,true
+124,153,Katukurunda,Katukurunda,Katukurunda,exact,true
+125,270,Payagala North,Payagala North,Paiyagala North,fuzzy(d=1),true
+126,271,Payagala South,Payagala South,Paiyagala South,fuzzy(d=1),true
+127,193,Maggona,Maggona,Maggona,exact,true
+128,43,Beruwala,Beruwala,Beruwala,exact,true
+129,107,Hettimulla,Hettimulla,Hettimulla,exact,true
+130,10,Aluthgama,Aluthgama,Aluthgama,exact,true
+132,42,Bentota,Bentota,Bentota,exact,true
+133,122,Induruwa,Induruwa,Induruwa,exact,true
+134,194,Maha Induruwa,Maha Induruwa,Maha Induruwa,exact,true
+135,173,Kosgoda,Kosgoda,Kosgoda,exact,true
+136,283,Piyagama,Piyagama,Piyagama,exact,true
+137,3,Ahungalle,Ahungalle,Ahungalla,fuzzy(d=1),true
+138,267,Pategamgoda,Pategamgoda,Pathagangoda,fuzzy(d=3),true
+139,30,Balapitiya,Balapitiya,Balapitiya,exact,true
+141,15,Andadola,Andadola,Andadola,exact,true
+142,143,Kandegoda,Kandegoda,Kandegoda,exact,true
+143,11,Ambalangoda,Ambalangoda,Ambalangoda,exact,true
+145,188,Madampagama,Madampagama,Madampagama,exact,true
+146,5,Akurala,Akurala,Akurala,exact,true
+147,134,Kahawa,Kahawa,Kahawa,exact,true
+148,329,Telwatte,Telwatte,Telwatta,fuzzy(d=1),true
+149,317,Seenigama,Seenigama,Sinigama,fuzzy(d=2),true
+150,108,Hikkaduwa,Hikkaduwa,Hikkaduwa,exact,true
+151,340,Thiranagama,Thiranagama,Thiranagama,exact,true
+152,179,Kumarakanda,Kumarakanda,Kumarakanda,exact,true
+154,66,Dodanduwa,Dodanduwa,Dodanduwa,exact,true
+155,304,Rathgama,Rathgama,Rajgama,fuzzy(d=2),true
+156,45,Boossa,Boossa,Boossa,exact,true
+158,92,Ginthota,Ginthota,Ginthota,exact,true
+159,282,Piyadigama,Piyadigama,Piyadigama,exact,true
+160,307,Richmond Hill,Richmond Hill,Richmond Hill,exact,true
+161,79,Galle,Galle,Galle,exact,true
+162,152,Katugoda,Katugoda,Katugoda,exact,true
+163,356,Unawatuna,Unawatuna,Unawatuna,exact,true
+164,334,Thalpe,Thalpe,Talpe,fuzzy(d=1),true
+165,97,Habaraduwa,Habaraduwa,Habaraduwa,exact,true
+166,165,Koggala,Koggala,Koggala,exact,true
+168,148,Kathaluwa,Kathaluwa,Kathaluwa,exact,true
+169,2,Ahangama,Ahangama,Ahangama,exact,true
+170,218,Midigama,Midigama,Midigama,exact,true
+171,180,Kumbalgama,Kumbalgama,Kubalgama,fuzzy(d=1),true
+172,378,Weligama,Weligama,Weligama,exact,true
+174,287,Polwathumodara,Polwathumodara,Polwathumodara,exact,true
+175,222,Mirissa,Mirissa,Mirissa,exact,true
+176,141,Kamburugamuwa,Kamburugamuwa,Kamburugamuwa,exact,true
+177,366,Walgama,Walgama,Walgama,exact,true
+178,209,Matara,Matara,Matara,exact,true
+179,278,Piladuwa,Piladuwa,Piladuwa,exact,true
+181,376,Weherahena,Weherahena,Weherahena,exact,true
+183,135,Kakanadura,Kakanadura,Kekanadura,fuzzy(d=1),true
+184,32,Bambaranda,Bambaranda,Babarenda,fuzzy(d=2),true
+186,383,Wewurukannala,Wewurukannala,Wavurukannala,fuzzy(d=2),true
+188,40,Beliaththa,Beliaththa,Beliatta,fuzzy(d=2),true
+189,1,Abanpola,Abanpola,,new,true
+190,4,Akbopura,Akbopura,,new,true
+191,6,Al wala,Al wala,,new,false
+192,7,Alawatupitiya,Alawatupitiya,,new,true
+193,8,Alawwa,Alawwa,,new,true
+194,9,aluth ambalama,aluth ambalama,,new,true
+195,12,Ambewela,Ambewela,,new,true
+196,13,Ambeypussa,Ambeypussa,,new,true
+197,14,Anawilundawa,Anawilundawa,,new,true
+198,16,Angampitiya,Angampitiya,,new,true
+199,18,Anuradhapura Town,Anuradhapura Town,,new,true
+200,19,Anuradhapura,Anuradhapura,,new,true
+201,20,Arachchikattuwa,Arachchikattuwa,,new,true
+202,21,Arapangama,Arapangama,,new,true
+203,22,Ariviyal Nagar,Ariviyal Nagar,,new,true
+204,23,Arukwatte,Arukwatte,,new,true
+205,24,Aselapura,Aselapura,,new,true
+206,25,Asgiriya,Asgiriya,,new,false
+207,26,Aukana,Aukana,,new,true
+208,27,Avissawella,Avissawella,,new,true
+209,28,Badulla,Badulla,,new,true
+210,29,Balana,Balana,,new,false
+211,33,Bandarawela,Bandarawela,,new,true
+212,34,Bangadeniya,Bangadeniya,,new,true
+213,35,Barammane,Barammane,,new,false
+214,36,Baseline Road,Baseline Road,,new,true
+215,37,Battaluoya,Battaluoya,,new,true
+216,38,Batticaloa,Batticaloa,,new,true
+217,39,Batuwatte,Batuwatte,,new,true
+218,41,Bemmulla,Bemmulla,,new,true
+219,44,Bolawatte,Bolawatte,,new,true
+220,46,Borelessa,Borelessa,,new,true
+221,47,Botale,Botale,,new,true
+222,48,Bujjomuwa,Bujjomuwa,,new,true
+223,49,Bulugahagoda,Bulugahagoda,,new,true
+224,50,Chavakachcheri,Chavakachcheri,,new,true
+225,51,Cheddikulam,Cheddikulam,,new,true
+226,52,Chilaw,Chilaw,,new,true
+227,53,China bay,China bay,,new,true
+228,54,Chunnakam,Chunnakam,,new,true
+229,55,Colconveli,Colconveli,,new,false
+230,57,Cotta Road,Cotta Road,,new,true
+231,58,Daraluwa,Daraluwa,,new,true
+232,60,Dekinda,Dekinda,,new,false
+233,61,Dematagoda,Dematagoda,,new,true
+234,62,Demodara,Demodara,,new,true
+235,63,Derikleya,Derikleya,,new,false
+236,64,Dewapuram,Dewapuram,,new,true
+237,65,Diyatalawa,Diyatalawa,,new,true
+238,67,Ederamulla,Ederamulla,,new,true
+239,69,Elephant Pass,Elephant Pass,,new,true
+240,70,Ella,Ella,,new,true
+241,71,Eluthumattuval,Eluthumattuval,,new,true
+242,72,Eratperiakulam,Eratperiakulam,,new,true
+243,73,Eravur,Eravur,,new,true
+244,74,Erukkalampiddy Nagawillu,Erukkalampiddy Nagawillu,,new,true
+245,75,Galboda,Galboda,,new,false
+246,76,Galgamuwa,Galgamuwa,,new,true
+247,77,Galkanda waththa,Galkanda waththa,,new,false
+248,80,Gallella,Gallella,,new,true
+249,81,Galoya Junction,Galoya Junction,,new,true
+250,82,Gammana,Gammana,,new,true
+251,83,Gampaha,Gampaha,,new,true
+252,84,Gampola,Gampola,,new,false
+253,85,Ganegoda,Ganegoda,,new,true
+254,86,Ganemulla,Ganemulla,,new,true
+255,87,Ganewatte,Ganewatte,,new,true
+256,88,Gangathilaka,Gangathilaka,,new,false
+257,89,Gangoda,Gangoda,,new,false
+258,90,Gantalawa,Gantalawa,,new,true
+259,91,Gelioya,Gelioya,,new,false
+260,93,Girambe,Girambe,,new,true
+261,94,Glenoor,Glenoor,,new,false
+262,95,Godagama,Godagama,,new,true
+263,96,Great Western,Great Western,,new,false
+264,98,Habarana,Habarana,,new,true
+265,99,Haliela,Haliela,,new,true
+266,100,Haputale,Haputale,,new,true
+267,101,Hatamuna,Hatamuna,,new,true
+268,102,Hataras Kotuwa,Hataras Kotuwa,,new,true
+269,103,Hatton,Hatton,,new,false
+270,104,Heel Oya,Heel Oya,,new,true
+271,105,Heendeniya Pattigoda,Heendeniya Pattigoda,,new,true
+272,106,Heightenford,Heightenford,,new,false
+273,109,Hingurakgoda,Hingurakgoda,,new,true
+274,110,Hingurala,Hingurala,,new,true
+275,111,Hiriyala,Hiriyala,,new,true
+276,112,Homagama,Homagama,,new,true
+277,113,Homagama Hospital,Homagama Hospital,,new,true
+278,114,Horape,Horape,,new,true
+279,115,Horiwiala,Horiwiala,,new,true
+280,116,Hunupitiya,Hunupitiya,,new,true
+281,117,Idalgasinna,Idalgasinna,,new,true
+282,118,Ihalagama,Ihalagama,,new,true
+283,119,Ihalakotte,Ihalakotte,,new,false
+284,120,Ihalawatawala,Ihalawatawala,,new,false
+285,121,Kohombiliwala,Kohombiliwala,,new,false
+286,123,Inguruoya,Inguruoya,,new,false
+287,124,Inuvil,Inuvil,,new,true
+288,125,Investment Promotion Zone,Investment Promotion Zone,,new,true
+289,126,Ja-ela,Ja-ela,,new,true
+290,127,Jaffna,Jaffna,,new,true
+291,128,Jayanthipura,Jayanthipura,,new,true
+292,129,Kadadasi Nagar,Kadadasi Nagar,,new,true
+293,130,Kadigamuwa,Kadigamuwa,,new,false
+294,131,Kadugannawa,Kadugannawa,,new,false
+295,132,Kadugoda,Kadugoda,,new,true
+296,133,Kahatapitiya,Kahatapitiya,,new,false
+297,136,Kakkapalliya,Kakkapalliya,,new,true
+298,137,Kalawewa,Kalawewa,,new,true
+299,138,Kalkudah,Kalkudah,,new,true
+300,142,Kandana,Kandana,,new,true
+301,144,Kandy,Kandy,,new,true
+302,145,Kankesanthurai,Kankesanthurai,,new,true
+303,146,Kantale,Kantale,,new,true
+304,147,Kapuwatte,Kapuwatte,,new,true
+305,149,Kattuwa,Kattuwa,,new,true
+306,150,Katugastota,Katugastota,,new,false
+307,151,Katugastote para,Katugastote para,,new,false
+308,154,Katunayake,Katunayake,,new,true
+309,155,Keenawala,Keenawala,,new,true
+310,156,Kekirawa,Kekirawa,,new,true
+311,157,Kelaniya,Kelaniya,,new,true
+312,158,Kilinochchi,Kilinochchi,,new,true
+313,159,Kinigama,Kinigama,,new,true
+314,160,Kiriwandala,Kiriwandala,,new,true
+315,161,Kirulapana,Kirulapana,,new,true
+316,162,Kital Ella,Kital Ella,,new,true
+317,163,Kochchikade,Kochchikade,,new,true
+318,164,Kodikamam,Kodikamam,,new,true
+319,166,Kokkuvil,Kokkuvil,,new,true
+320,169,Kondavil,Kondavil,,new,true
+321,170,Konwewa,Konwewa,,new,true
+322,172,Kosgama,Kosgama,,new,true
+323,174,Koshinna,Koshinna,,new,false
+324,175,Kotagala,Kotagala,,new,false
+325,176,Kottawa,Kottawa,,new,true
+326,177,Kudawewa,Kudawewa,,new,true
+327,178,Kudahakapola,Kudahakapola,,new,true
+328,181,Kurana,Kurana,,new,true
+329,182,Kurunegala,Kurunegala,,new,true
+330,183,Laksauyana,Laksauyana,,new,true
+331,184,Liyanagemulla,Liyanagemulla,,new,true
+332,185,Liyanwala,Liyanwala,,new,true
+333,187,Lunuwila,Lunuwila,,new,true
+334,189,Madampe,Madampe,,new,true
+335,190,Madu Road,Madu Road,,new,true
+336,191,Madurankuliya,Madurankuliya,,new,true
+337,192,Magalegoda,Magalegoda,,new,true
+338,195,Mahaiyawa,Mahaiyawa,,new,false
+339,196,Maharagama,Maharagama,,new,true
+340,197,Maho,Maho,,new,true
+341,198,Makehelwala,Makehelwala,,new,false
+342,199,Makumbura,Makumbura,,new,true
+343,200,Mallakam,Mallakam,,new,true
+344,201,Manampitiya,Manampitiya,,new,true
+345,202,Mangala Eliya,Mangala Eliya,,new,true
+346,203,Mankulam,Mankulam,,new,true
+347,204,Mannar,Mannar,,new,true
+348,205,Manuwangama,Manuwangama,,new,true
+349,207,Marakona,Marakona,,new,false
+350,208,Matale,Matale,,new,false
+351,210,Mathottam,Mathottam,,new,true
+352,211,Mavilmada,Mavilmada,,new,false
+353,212,Mavittapuram,Mavittapuram,,new,true
+354,213,Medagama,Medagama,,new,false
+355,214,Medawachchiya,Medawachchiya,,new,true
+356,215,Meegammana,Meegammana,,new,false
+357,216,Meegoda,Meegoda,,new,true
+358,217,Meesalai,Meesalai,,new,true
+359,219,Mihintale Junction,Mihintale Junction,,new,false
+360,220,Minneriya,Minneriya,,new,true
+361,221,Mirigama,Mirigama,,new,true
+362,223,Miriswatte,Miriswatte,,new,true
+363,224,Mirusuvil,Mirusuvil,,new,true
+364,225,Mollipatana,Mollipatana,,new,true
+365,226,Moragollagama,Moragollagama,,new,true
+366,227,Morakele,Morakele,,new,true
+367,230,Mundal,Mundal,,new,true
+368,231,Murikandy,Murikandy,,new,true
+369,232,Murukandi kovila,Murukandi kovila,,new,false
+370,233,Murunkan,Murunkan,,new,true
+371,234,Muththettugala,Muththettugala,,new,true
+372,235,Nagollagama,Nagollagama,,new,true
+373,236,Nailiya,Nailiya,,new,true
+374,237,Nakulugamuwa,Nakulugamuwa,,new,true
+375,238,Nanuoya,Nanuoya,,new,true
+376,239,Narahenpita,Narahenpita,,new,true
+377,240,Nattandiya,Nattandiya,,new,true
+378,241,Navatkuli,Navatkuli,,new,true
+379,242,Nawalapitiya,Nawalapitiya,,new,false
+380,243,Nawinna,Nawinna,,new,true
+381,244,Negama,Negama,,new,true
+382,245,Negombo,Negombo,,new,true
+383,246,Nelumpokuna,Nelumpokuna,,new,true
+384,247,Neriyakulam,Neriyakulam,,new,true
+385,248,Noor Nagar,Noor Nagar,,new,true
+386,249,Nugegoda,Nugegoda,,new,true
+387,250,Ohiya,Ohiya,,new,true
+388,251,Omanthai,Omanthai,,new,true
+389,252,Padukka,Padukka,,new,true
+390,253,Palai,Palai,,new,true
+391,254,Palavi,Palavi,,new,true
+392,255,Pallegama,Pallegama,,new,false
+393,256,Pallethalavinna,Pallethalavinna,,new,false
+394,257,Pallewala,Pallewala,,new,true
+395,258,Palugaswewa,Palugaswewa,,new,true
+396,260,Panagoda,Panagoda,,new,true
+397,261,Panaleeya,Panaleeya,,new,true
+398,262,Pangiriwatta,Pangiriwatta,,new,true
+399,263,Pannipitiya,Pannipitiya,,new,true
+400,264,Parakum Uyana,Parakum Uyana,,new,true
+401,265,Paranthan,Paranthan,,new,true
+402,266,Parasangahawewa,Parasangahawewa,,new,true
+403,268,Pathanpha,Pathanpha,,new,false
+404,269,Pattipola,Pattipola,,new,true
+405,272,Penrose,Penrose,,new,false
+406,274,Peradeniya,Peradeniya,,new,true
+407,275,Perakumpura,Perakumpura,,new,true
+408,276,Peralanda,Peralanda,,new,true
+409,277,Pesalai,Pesalai,,new,true
+410,279,Pilimatalawa,Pilimatalawa,,new,false
+411,280,Pinnawala,Pinnawala,,new,true
+412,284,Polgaha anga,Polgaha anga,,new,false
+413,285,Polgahawela,Polgahawela,,new,true
+414,286,Polonnaruwa,Polonnaruwa,,new,true
+415,288,Poonewa,Poonewa,,new,true
+416,289,Potuhera,Potuhera,,new,true
+417,290,Pulachchikulam,Pulachchikulam,,new,true
+418,291,Puliyankulam,Puliyankulam,,new,true
+419,292,Punani,Punani,,new,true
+420,293,Punkankulam,Punkankulam,,new,true
+421,294,Puttalam,Puttalam,,new,true
+422,295,Puwakpitiya,Puwakpitiya,,new,true
+423,296,Puwakpitiya town,Puwakpitiya town,,new,true
+424,297,Radella,Radella,,new,false
+425,298,Ragama,Ragama,,new,true
+426,300,Rajawaththa,Rajawaththa,,new,false
+427,301,Rambukkana,Rambukkana,,new,true
+428,302,Ranamukgama,Ranamukgama,,new,true
+429,303,Randenigama,Randenigama,,new,true
+430,306,Rendals hil,Rendals hil,,new,false
+431,308,Rideethenna,Rideethenna,,new,true
+432,309,Rosella,Rosella,,new,false
+433,310,Saliyapura,Saliyapura,,new,true
+434,311,Sankaththanai,Sankaththanai,,new,true
+435,313,Sarasaviuyana,Sarasaviuyana,,new,false
+436,314,Sawarana,Sawarana,,new,true
+437,316,Seeduwa,Seeduwa,,new,true
+438,318,Senarathgama,Senarathgama,,new,true
+439,319,Sevanapitiya,Sevanapitiya,,new,true
+440,320,Sittankudi,Sittankudi,,new,false
+441,321,Siyalangamuwa,Siyalangamuwa,,new,true
+442,322,Srawasthipura,Srawasthipura,,new,true
+443,324,Suduhumpola,Suduhumpola,,new,false
+444,325,Talawa,Talawa,,new,true
+445,326,Talawakele,Talawakele,,new,false
+446,327,Talawattegedara,Talawattegedara,,new,true
+447,328,Tellippalai,Tellippalai,,new,true
+448,330,Tembligala,Tembligala,,new,false
+449,331,Thachanthoppu,Thachanthoppu,,new,true
+450,332,Thalaimannar,Thalaimannar,,new,true
+451,333,Thalaimannar Pier,Thalaimannar Pier,,new,true
+452,335,Thambalagamuwa,Thambalagamuwa,,new,true
+453,336,Thambuttegama,Thambuttegama,,new,true
+454,337,Thandikulama,Thandikulama,,new,true
+455,338,Thavalankoya,Thavalankoya,,new,false
+456,339,Thil adiya,Thil adiya,,new,true
+457,341,Thiruketheeswaram,Thiruketheeswaram,,new,true
+458,342,Thoddaveli,Thoddaveli,,new,true
+459,343,Thudella,Thudella,,new,true
+460,344,Timbiriyagedara,Timbiriyagedara,,new,true
+461,345,Tismalpola,Tismalpola,,new,true
+462,347,Trincomalee,Trincomalee,,new,true
+463,348,Tummodara,Tummodara,,new,true
+464,349,Udahamulla,Udahamulla,,new,true
+465,350,Udatalawinna,Udatalawinna,,new,false
+466,351,Udaththawala,Udaththawala,,new,false
+467,352,Uduwara,Uduwara,,new,true
+468,353,Uggalla,Uggalla,,new,true
+469,354,Ukuwela,Ukuwela,,new,false
+470,355,Ulapane,Ulapane,,new,false
+471,357,Valachchenei,Valachchenei,,new,true
+472,358,Vandaramullai,Vandaramullai,,new,true
+473,359,Vavuniya,Vavuniya,,new,true
+474,360,Veyangoda,Veyangoda,,new,true
+475,362,Waga,Waga,,new,true
+476,363,Waikkala,Waikkala,,new,true
+477,364,Walahapitiya,Walahapitiya,,new,true
+478,365,Walakumbura,Walakumbura,,new,true
+479,367,Wallahagoda,Wallahagoda,,new,false
+480,368,Walpola,Walpola,,new,true
+481,369,Wanawasala,Wanawasala,,new,true
+482,370,Wandurawa,Wandurawa,,new,true
+483,371,Warakapitiya,Warakapitiya,,new,false
+484,372,Watagoda,Watagoda,,new,false
+485,373,Wataraka,Wataraka,,new,true
+486,374,Watawala,Watawala,,new,false
+487,375,Wattegama,Wattegama,,new,false
+488,377,Weligalla,Weligalla,,new,false
+489,379,Welikanda,Welikanda,,new,true
+490,380,Wellawa,Wellawa,,new,true
+491,382,Weralugolla,Weralugolla,,new,false
+492,384,Wijayarajadahana,Wijayarajadahana,,new,true
+493,385,Wilwatte,Wilwatte,,new,true
+494,386,Yagoda,Yagoda,,new,true
+495,387,Yapahuwa,Yapahuwa,,new,true
+496,388,Yatagama,Yatagama,,new,true
+497,389,Yatawara,Yatawara,,new,false
+498,390,Yatirawana,Yatirawana,,new,false
+499,391,Yatiweldeniya,Yatiweldeniya,,new,false
+500,392,Yattalgoda,Yattalgoda,,new,true
+501,393,Kiribathkubura,Kiribathkubura,,new,false
+502,394,St kylas,St kylas,,new,false
+503,395,Higuranoya,Higuranoya,,new,false
+504,396,Warakawa,Warakawa,,new,false

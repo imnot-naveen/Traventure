@@ -1,0 +1,10 @@
+const r = await fetch("https://trainschedule.lk/", { headers: { "user-agent": "Mozilla/5.0" } });
+const html = await r.text();
+const m = {};
+for (const x of html.matchAll(/<option value="(\d+)">([^<]+)<\/option>/g)) m[x[1]] = x[2].trim();
+const out = Object.entries(m).map(([id, name]) => ({ id: Number(id), name })).sort((a, b) => a.id - b.id);
+import("node:fs").then(fs => fs.writeFileSync("state/stationmaster.json", JSON.stringify(out)));
+const ids = out.map(o => o.id);
+const missing = [];
+for (let i = 1; i <= Math.max(...ids); i++) if (!ids.includes(i)) missing.push(i);
+console.log("stations:", out.length, "missing ids:", missing.join(","));

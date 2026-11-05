@@ -1,0 +1,3521 @@
+[
+ {
+  "stationID": 101,
+  "srcStationID": 206,
+  "name": "Maradana",
+  "city": "Maradana",
+  "matchedTo": "Maradana",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 102,
+  "srcStationID": 56,
+  "name": "Colombo Fort",
+  "city": "Colombo Fort",
+  "matchedTo": "Colombo Fort",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 103,
+  "srcStationID": 315,
+  "name": "Secretartat Halt",
+  "city": "Secretartat Halt",
+  "matchedTo": "Secretariat Halt",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 104,
+  "srcStationID": 168,
+  "name": "Kompannavediya",
+  "city": "Kompannavediya",
+  "matchedTo": "Kompanna Vidiya",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 105,
+  "srcStationID": 167,
+  "name": "Kollupitiya",
+  "city": "Kollupitiya",
+  "matchedTo": "Kollupitiya",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 106,
+  "srcStationID": 31,
+  "name": "Bambalapitiya",
+  "city": "Bambalapitiya",
+  "matchedTo": "Bambalapitiya",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 107,
+  "srcStationID": 381,
+  "name": "Wellawatta",
+  "city": "Wellawatta",
+  "matchedTo": "Wellawatta",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 108,
+  "srcStationID": 59,
+  "name": "Dehiwala",
+  "city": "Dehiwala",
+  "matchedTo": "Dehiwala",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 109,
+  "srcStationID": 229,
+  "name": "Mount Lavinia",
+  "city": "Mount Lavinia",
+  "matchedTo": "Mount Lavinia",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 110,
+  "srcStationID": 305,
+  "name": "Ratmalana",
+  "city": "Ratmalana",
+  "matchedTo": "Ratmalana",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 111,
+  "srcStationID": 17,
+  "name": "Angulana",
+  "city": "Angulana",
+  "matchedTo": "Angulana",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 112,
+  "srcStationID": 186,
+  "name": "Lunawa",
+  "city": "Lunawa",
+  "matchedTo": "Lunawa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 113,
+  "srcStationID": 228,
+  "name": "Moratuwa",
+  "city": "Moratuwa",
+  "matchedTo": "Moratuwa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 114,
+  "srcStationID": 171,
+  "name": "Koralawella",
+  "city": "Koralawella",
+  "matchedTo": "Koralawalla",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 115,
+  "srcStationID": 68,
+  "name": "Egoda Uyana",
+  "city": "Egoda Uyana",
+  "matchedTo": "Egoda Uyana",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 117,
+  "srcStationID": 259,
+  "name": "Panadura",
+  "city": "Panadura",
+  "matchedTo": "Panadura",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 118,
+  "srcStationID": 281,
+  "name": "Pinwatte",
+  "city": "Pinwatte",
+  "matchedTo": "Pinwatta",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 119,
+  "srcStationID": 361,
+  "name": "Wadduwa",
+  "city": "Wadduwa",
+  "matchedTo": "Wadduwa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 120,
+  "srcStationID": 346,
+  "name": "Train Halt 01",
+  "city": "Train Halt 01",
+  "matchedTo": "Train Halt No 01",
+  "matchMethod": "fuzzy(d=2)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 121,
+  "srcStationID": 139,
+  "name": "Kalutara North",
+  "city": "Kalutara North",
+  "matchedTo": "Kalutara North",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 123,
+  "srcStationID": 140,
+  "name": "Kalutara South",
+  "city": "Kalutara South",
+  "matchedTo": "Kalutara South",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 124,
+  "srcStationID": 153,
+  "name": "Katukurunda",
+  "city": "Katukurunda",
+  "matchedTo": "Katukurunda",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 125,
+  "srcStationID": 270,
+  "name": "Payagala North",
+  "city": "Payagala North",
+  "matchedTo": "Paiyagala North",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 126,
+  "srcStationID": 271,
+  "name": "Payagala South",
+  "city": "Payagala South",
+  "matchedTo": "Paiyagala South",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 127,
+  "srcStationID": 193,
+  "name": "Maggona",
+  "city": "Maggona",
+  "matchedTo": "Maggona",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 128,
+  "srcStationID": 43,
+  "name": "Beruwala",
+  "city": "Beruwala",
+  "matchedTo": "Beruwala",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 129,
+  "srcStationID": 107,
+  "name": "Hettimulla",
+  "city": "Hettimulla",
+  "matchedTo": "Hettimulla",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 130,
+  "srcStationID": 10,
+  "name": "Aluthgama",
+  "city": "Aluthgama",
+  "matchedTo": "Aluthgama",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 132,
+  "srcStationID": 42,
+  "name": "Bentota",
+  "city": "Bentota",
+  "matchedTo": "Bentota",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 133,
+  "srcStationID": 122,
+  "name": "Induruwa",
+  "city": "Induruwa",
+  "matchedTo": "Induruwa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 134,
+  "srcStationID": 194,
+  "name": "Maha Induruwa",
+  "city": "Maha Induruwa",
+  "matchedTo": "Maha Induruwa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 135,
+  "srcStationID": 173,
+  "name": "Kosgoda",
+  "city": "Kosgoda",
+  "matchedTo": "Kosgoda",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 136,
+  "srcStationID": 283,
+  "name": "Piyagama",
+  "city": "Piyagama",
+  "matchedTo": "Piyagama",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 137,
+  "srcStationID": 3,
+  "name": "Ahungalle",
+  "city": "Ahungalle",
+  "matchedTo": "Ahungalla",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 138,
+  "srcStationID": 267,
+  "name": "Pategamgoda",
+  "city": "Pategamgoda",
+  "matchedTo": "Pathagangoda",
+  "matchMethod": "fuzzy(d=3)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 139,
+  "srcStationID": 30,
+  "name": "Balapitiya",
+  "city": "Balapitiya",
+  "matchedTo": "Balapitiya",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 141,
+  "srcStationID": 15,
+  "name": "Andadola",
+  "city": "Andadola",
+  "matchedTo": "Andadola",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 142,
+  "srcStationID": 143,
+  "name": "Kandegoda",
+  "city": "Kandegoda",
+  "matchedTo": "Kandegoda",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 143,
+  "srcStationID": 11,
+  "name": "Ambalangoda",
+  "city": "Ambalangoda",
+  "matchedTo": "Ambalangoda",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 145,
+  "srcStationID": 188,
+  "name": "Madampagama",
+  "city": "Madampagama",
+  "matchedTo": "Madampagama",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 146,
+  "srcStationID": 5,
+  "name": "Akurala",
+  "city": "Akurala",
+  "matchedTo": "Akurala",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 147,
+  "srcStationID": 134,
+  "name": "Kahawa",
+  "city": "Kahawa",
+  "matchedTo": "Kahawa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 148,
+  "srcStationID": 329,
+  "name": "Telwatte",
+  "city": "Telwatte",
+  "matchedTo": "Telwatta",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 149,
+  "srcStationID": 317,
+  "name": "Seenigama",
+  "city": "Seenigama",
+  "matchedTo": "Sinigama",
+  "matchMethod": "fuzzy(d=2)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 150,
+  "srcStationID": 108,
+  "name": "Hikkaduwa",
+  "city": "Hikkaduwa",
+  "matchedTo": "Hikkaduwa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 151,
+  "srcStationID": 340,
+  "name": "Thiranagama",
+  "city": "Thiranagama",
+  "matchedTo": "Thiranagama",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 152,
+  "srcStationID": 179,
+  "name": "Kumarakanda",
+  "city": "Kumarakanda",
+  "matchedTo": "Kumarakanda",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 154,
+  "srcStationID": 66,
+  "name": "Dodanduwa",
+  "city": "Dodanduwa",
+  "matchedTo": "Dodanduwa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 155,
+  "srcStationID": 304,
+  "name": "Rathgama",
+  "city": "Rathgama",
+  "matchedTo": "Rajgama",
+  "matchMethod": "fuzzy(d=2)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 156,
+  "srcStationID": 45,
+  "name": "Boossa",
+  "city": "Boossa",
+  "matchedTo": "Boossa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 158,
+  "srcStationID": 92,
+  "name": "Ginthota",
+  "city": "Ginthota",
+  "matchedTo": "Ginthota",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 159,
+  "srcStationID": 282,
+  "name": "Piyadigama",
+  "city": "Piyadigama",
+  "matchedTo": "Piyadigama",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 160,
+  "srcStationID": 307,
+  "name": "Richmond Hill",
+  "city": "Richmond Hill",
+  "matchedTo": "Richmond Hill",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 161,
+  "srcStationID": 79,
+  "name": "Galle",
+  "city": "Galle",
+  "matchedTo": "Galle",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 162,
+  "srcStationID": 152,
+  "name": "Katugoda",
+  "city": "Katugoda",
+  "matchedTo": "Katugoda",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 163,
+  "srcStationID": 356,
+  "name": "Unawatuna",
+  "city": "Unawatuna",
+  "matchedTo": "Unawatuna",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 164,
+  "srcStationID": 334,
+  "name": "Thalpe",
+  "city": "Thalpe",
+  "matchedTo": "Talpe",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 165,
+  "srcStationID": 97,
+  "name": "Habaraduwa",
+  "city": "Habaraduwa",
+  "matchedTo": "Habaraduwa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 166,
+  "srcStationID": 165,
+  "name": "Koggala",
+  "city": "Koggala",
+  "matchedTo": "Koggala",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 168,
+  "srcStationID": 148,
+  "name": "Kathaluwa",
+  "city": "Kathaluwa",
+  "matchedTo": "Kathaluwa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 169,
+  "srcStationID": 2,
+  "name": "Ahangama",
+  "city": "Ahangama",
+  "matchedTo": "Ahangama",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 170,
+  "srcStationID": 218,
+  "name": "Midigama",
+  "city": "Midigama",
+  "matchedTo": "Midigama",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 171,
+  "srcStationID": 180,
+  "name": "Kumbalgama",
+  "city": "Kumbalgama",
+  "matchedTo": "Kubalgama",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 172,
+  "srcStationID": 378,
+  "name": "Weligama",
+  "city": "Weligama",
+  "matchedTo": "Weligama",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 174,
+  "srcStationID": 287,
+  "name": "Polwathumodara",
+  "city": "Polwathumodara",
+  "matchedTo": "Polwathumodara",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 175,
+  "srcStationID": 222,
+  "name": "Mirissa",
+  "city": "Mirissa",
+  "matchedTo": "Mirissa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 176,
+  "srcStationID": 141,
+  "name": "Kamburugamuwa",
+  "city": "Kamburugamuwa",
+  "matchedTo": "Kamburugamuwa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 177,
+  "srcStationID": 366,
+  "name": "Walgama",
+  "city": "Walgama",
+  "matchedTo": "Walgama",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 178,
+  "srcStationID": 209,
+  "name": "Matara",
+  "city": "Matara",
+  "matchedTo": "Matara",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 179,
+  "srcStationID": 278,
+  "name": "Piladuwa",
+  "city": "Piladuwa",
+  "matchedTo": "Piladuwa",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 181,
+  "srcStationID": 376,
+  "name": "Weherahena",
+  "city": "Weherahena",
+  "matchedTo": "Weherahena",
+  "matchMethod": "exact",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 183,
+  "srcStationID": 135,
+  "name": "Kakanadura",
+  "city": "Kakanadura",
+  "matchedTo": "Kekanadura",
+  "matchMethod": "fuzzy(d=1)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 184,
+  "srcStationID": 32,
+  "name": "Bambaranda",
+  "city": "Bambaranda",
+  "matchedTo": "Babarenda",
+  "matchMethod": "fuzzy(d=2)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 186,
+  "srcStationID": 383,
+  "name": "Wewurukannala",
+  "city": "Wewurukannala",
+  "matchedTo": "Wavurukannala",
+  "matchMethod": "fuzzy(d=2)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 188,
+  "srcStationID": 40,
+  "name": "Beliaththa",
+  "city": "Beliaththa",
+  "matchedTo": "Beliatta",
+  "matchMethod": "fuzzy(d=2)",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 189,
+  "srcStationID": 1,
+  "name": "Abanpola",
+  "city": "Abanpola",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 190,
+  "srcStationID": 4,
+  "name": "Akbopura",
+  "city": "Akbopura",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 191,
+  "srcStationID": 6,
+  "name": "Al wala",
+  "city": "Al wala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 192,
+  "srcStationID": 7,
+  "name": "Alawatupitiya",
+  "city": "Alawatupitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 193,
+  "srcStationID": 8,
+  "name": "Alawwa",
+  "city": "Alawwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 194,
+  "srcStationID": 9,
+  "name": "aluth ambalama",
+  "city": "aluth ambalama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 195,
+  "srcStationID": 12,
+  "name": "Ambewela",
+  "city": "Ambewela",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 196,
+  "srcStationID": 13,
+  "name": "Ambeypussa",
+  "city": "Ambeypussa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 197,
+  "srcStationID": 14,
+  "name": "Anawilundawa",
+  "city": "Anawilundawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 198,
+  "srcStationID": 16,
+  "name": "Angampitiya",
+  "city": "Angampitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 199,
+  "srcStationID": 18,
+  "name": "Anuradhapura Town",
+  "city": "Anuradhapura Town",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 200,
+  "srcStationID": 19,
+  "name": "Anuradhapura",
+  "city": "Anuradhapura",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 201,
+  "srcStationID": 20,
+  "name": "Arachchikattuwa",
+  "city": "Arachchikattuwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 202,
+  "srcStationID": 21,
+  "name": "Arapangama",
+  "city": "Arapangama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 203,
+  "srcStationID": 22,
+  "name": "Ariviyal Nagar",
+  "city": "Ariviyal Nagar",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 204,
+  "srcStationID": 23,
+  "name": "Arukwatte",
+  "city": "Arukwatte",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 205,
+  "srcStationID": 24,
+  "name": "Aselapura",
+  "city": "Aselapura",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 206,
+  "srcStationID": 25,
+  "name": "Asgiriya",
+  "city": "Asgiriya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 207,
+  "srcStationID": 26,
+  "name": "Aukana",
+  "city": "Aukana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 208,
+  "srcStationID": 27,
+  "name": "Avissawella",
+  "city": "Avissawella",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 209,
+  "srcStationID": 28,
+  "name": "Badulla",
+  "city": "Badulla",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 210,
+  "srcStationID": 29,
+  "name": "Balana",
+  "city": "Balana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 211,
+  "srcStationID": 33,
+  "name": "Bandarawela",
+  "city": "Bandarawela",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 212,
+  "srcStationID": 34,
+  "name": "Bangadeniya",
+  "city": "Bangadeniya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 213,
+  "srcStationID": 35,
+  "name": "Barammane",
+  "city": "Barammane",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 214,
+  "srcStationID": 36,
+  "name": "Baseline Road",
+  "city": "Baseline Road",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 215,
+  "srcStationID": 37,
+  "name": "Battaluoya",
+  "city": "Battaluoya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 216,
+  "srcStationID": 38,
+  "name": "Batticaloa",
+  "city": "Batticaloa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 217,
+  "srcStationID": 39,
+  "name": "Batuwatte",
+  "city": "Batuwatte",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 218,
+  "srcStationID": 41,
+  "name": "Bemmulla",
+  "city": "Bemmulla",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 219,
+  "srcStationID": 44,
+  "name": "Bolawatte",
+  "city": "Bolawatte",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 220,
+  "srcStationID": 46,
+  "name": "Borelessa",
+  "city": "Borelessa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 221,
+  "srcStationID": 47,
+  "name": "Botale",
+  "city": "Botale",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 222,
+  "srcStationID": 48,
+  "name": "Bujjomuwa",
+  "city": "Bujjomuwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 223,
+  "srcStationID": 49,
+  "name": "Bulugahagoda",
+  "city": "Bulugahagoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 224,
+  "srcStationID": 50,
+  "name": "Chavakachcheri",
+  "city": "Chavakachcheri",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 225,
+  "srcStationID": 51,
+  "name": "Cheddikulam",
+  "city": "Cheddikulam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 226,
+  "srcStationID": 52,
+  "name": "Chilaw",
+  "city": "Chilaw",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 227,
+  "srcStationID": 53,
+  "name": "China bay",
+  "city": "China bay",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 228,
+  "srcStationID": 54,
+  "name": "Chunnakam",
+  "city": "Chunnakam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 229,
+  "srcStationID": 55,
+  "name": "Colconveli",
+  "city": "Colconveli",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 230,
+  "srcStationID": 57,
+  "name": "Cotta Road",
+  "city": "Cotta Road",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 231,
+  "srcStationID": 58,
+  "name": "Daraluwa",
+  "city": "Daraluwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 232,
+  "srcStationID": 60,
+  "name": "Dekinda",
+  "city": "Dekinda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 233,
+  "srcStationID": 61,
+  "name": "Dematagoda",
+  "city": "Dematagoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 234,
+  "srcStationID": 62,
+  "name": "Demodara",
+  "city": "Demodara",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 235,
+  "srcStationID": 63,
+  "name": "Derikleya",
+  "city": "Derikleya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 236,
+  "srcStationID": 64,
+  "name": "Dewapuram",
+  "city": "Dewapuram",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 237,
+  "srcStationID": 65,
+  "name": "Diyatalawa",
+  "city": "Diyatalawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 238,
+  "srcStationID": 67,
+  "name": "Ederamulla",
+  "city": "Ederamulla",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 239,
+  "srcStationID": 69,
+  "name": "Elephant Pass",
+  "city": "Elephant Pass",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 240,
+  "srcStationID": 70,
+  "name": "Ella",
+  "city": "Ella",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 241,
+  "srcStationID": 71,
+  "name": "Eluthumattuval",
+  "city": "Eluthumattuval",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 242,
+  "srcStationID": 72,
+  "name": "Eratperiakulam",
+  "city": "Eratperiakulam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 243,
+  "srcStationID": 73,
+  "name": "Eravur",
+  "city": "Eravur",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 244,
+  "srcStationID": 74,
+  "name": "Erukkalampiddy Nagawillu",
+  "city": "Erukkalampiddy Nagawillu",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 245,
+  "srcStationID": 75,
+  "name": "Galboda",
+  "city": "Galboda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 246,
+  "srcStationID": 76,
+  "name": "Galgamuwa",
+  "city": "Galgamuwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 247,
+  "srcStationID": 77,
+  "name": "Galkanda waththa",
+  "city": "Galkanda waththa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 248,
+  "srcStationID": 80,
+  "name": "Gallella",
+  "city": "Gallella",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 249,
+  "srcStationID": 81,
+  "name": "Galoya Junction",
+  "city": "Galoya Junction",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 250,
+  "srcStationID": 82,
+  "name": "Gammana",
+  "city": "Gammana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 251,
+  "srcStationID": 83,
+  "name": "Gampaha",
+  "city": "Gampaha",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 252,
+  "srcStationID": 84,
+  "name": "Gampola",
+  "city": "Gampola",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 253,
+  "srcStationID": 85,
+  "name": "Ganegoda",
+  "city": "Ganegoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 254,
+  "srcStationID": 86,
+  "name": "Ganemulla",
+  "city": "Ganemulla",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 255,
+  "srcStationID": 87,
+  "name": "Ganewatte",
+  "city": "Ganewatte",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 256,
+  "srcStationID": 88,
+  "name": "Gangathilaka",
+  "city": "Gangathilaka",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 257,
+  "srcStationID": 89,
+  "name": "Gangoda",
+  "city": "Gangoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 258,
+  "srcStationID": 90,
+  "name": "Gantalawa",
+  "city": "Gantalawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 259,
+  "srcStationID": 91,
+  "name": "Gelioya",
+  "city": "Gelioya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 260,
+  "srcStationID": 93,
+  "name": "Girambe",
+  "city": "Girambe",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 261,
+  "srcStationID": 94,
+  "name": "Glenoor",
+  "city": "Glenoor",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 262,
+  "srcStationID": 95,
+  "name": "Godagama",
+  "city": "Godagama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 263,
+  "srcStationID": 96,
+  "name": "Great Western",
+  "city": "Great Western",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 264,
+  "srcStationID": 98,
+  "name": "Habarana",
+  "city": "Habarana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 265,
+  "srcStationID": 99,
+  "name": "Haliela",
+  "city": "Haliela",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 266,
+  "srcStationID": 100,
+  "name": "Haputale",
+  "city": "Haputale",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 267,
+  "srcStationID": 101,
+  "name": "Hatamuna",
+  "city": "Hatamuna",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 268,
+  "srcStationID": 102,
+  "name": "Hataras Kotuwa",
+  "city": "Hataras Kotuwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 269,
+  "srcStationID": 103,
+  "name": "Hatton",
+  "city": "Hatton",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 270,
+  "srcStationID": 104,
+  "name": "Heel Oya",
+  "city": "Heel Oya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 271,
+  "srcStationID": 105,
+  "name": "Heendeniya Pattigoda",
+  "city": "Heendeniya Pattigoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 272,
+  "srcStationID": 106,
+  "name": "Heightenford",
+  "city": "Heightenford",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 273,
+  "srcStationID": 109,
+  "name": "Hingurakgoda",
+  "city": "Hingurakgoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 274,
+  "srcStationID": 110,
+  "name": "Hingurala",
+  "city": "Hingurala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 275,
+  "srcStationID": 111,
+  "name": "Hiriyala",
+  "city": "Hiriyala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 276,
+  "srcStationID": 112,
+  "name": "Homagama",
+  "city": "Homagama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 277,
+  "srcStationID": 113,
+  "name": "Homagama Hospital",
+  "city": "Homagama Hospital",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 278,
+  "srcStationID": 114,
+  "name": "Horape",
+  "city": "Horape",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 279,
+  "srcStationID": 115,
+  "name": "Horiwiala",
+  "city": "Horiwiala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 280,
+  "srcStationID": 116,
+  "name": "Hunupitiya",
+  "city": "Hunupitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 281,
+  "srcStationID": 117,
+  "name": "Idalgasinna",
+  "city": "Idalgasinna",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 282,
+  "srcStationID": 118,
+  "name": "Ihalagama",
+  "city": "Ihalagama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 283,
+  "srcStationID": 119,
+  "name": "Ihalakotte",
+  "city": "Ihalakotte",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 284,
+  "srcStationID": 120,
+  "name": "Ihalawatawala",
+  "city": "Ihalawatawala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 285,
+  "srcStationID": 121,
+  "name": "Kohombiliwala",
+  "city": "Kohombiliwala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 286,
+  "srcStationID": 123,
+  "name": "Inguruoya",
+  "city": "Inguruoya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 287,
+  "srcStationID": 124,
+  "name": "Inuvil",
+  "city": "Inuvil",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 288,
+  "srcStationID": 125,
+  "name": "Investment Promotion Zone",
+  "city": "Investment Promotion Zone",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 289,
+  "srcStationID": 126,
+  "name": "Ja-ela",
+  "city": "Ja-ela",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 290,
+  "srcStationID": 127,
+  "name": "Jaffna",
+  "city": "Jaffna",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 291,
+  "srcStationID": 128,
+  "name": "Jayanthipura",
+  "city": "Jayanthipura",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 292,
+  "srcStationID": 129,
+  "name": "Kadadasi Nagar",
+  "city": "Kadadasi Nagar",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 293,
+  "srcStationID": 130,
+  "name": "Kadigamuwa",
+  "city": "Kadigamuwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 294,
+  "srcStationID": 131,
+  "name": "Kadugannawa",
+  "city": "Kadugannawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 295,
+  "srcStationID": 132,
+  "name": "Kadugoda",
+  "city": "Kadugoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 296,
+  "srcStationID": 133,
+  "name": "Kahatapitiya",
+  "city": "Kahatapitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 297,
+  "srcStationID": 136,
+  "name": "Kakkapalliya",
+  "city": "Kakkapalliya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 298,
+  "srcStationID": 137,
+  "name": "Kalawewa",
+  "city": "Kalawewa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 299,
+  "srcStationID": 138,
+  "name": "Kalkudah",
+  "city": "Kalkudah",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 300,
+  "srcStationID": 142,
+  "name": "Kandana",
+  "city": "Kandana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 301,
+  "srcStationID": 144,
+  "name": "Kandy",
+  "city": "Kandy",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 302,
+  "srcStationID": 145,
+  "name": "Kankesanthurai",
+  "city": "Kankesanthurai",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 303,
+  "srcStationID": 146,
+  "name": "Kantale",
+  "city": "Kantale",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 304,
+  "srcStationID": 147,
+  "name": "Kapuwatte",
+  "city": "Kapuwatte",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 305,
+  "srcStationID": 149,
+  "name": "Kattuwa",
+  "city": "Kattuwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 306,
+  "srcStationID": 150,
+  "name": "Katugastota",
+  "city": "Katugastota",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 307,
+  "srcStationID": 151,
+  "name": "Katugastote para",
+  "city": "Katugastote para",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 308,
+  "srcStationID": 154,
+  "name": "Katunayake",
+  "city": "Katunayake",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 309,
+  "srcStationID": 155,
+  "name": "Keenawala",
+  "city": "Keenawala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 310,
+  "srcStationID": 156,
+  "name": "Kekirawa",
+  "city": "Kekirawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 311,
+  "srcStationID": 157,
+  "name": "Kelaniya",
+  "city": "Kelaniya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 312,
+  "srcStationID": 158,
+  "name": "Kilinochchi",
+  "city": "Kilinochchi",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 313,
+  "srcStationID": 159,
+  "name": "Kinigama",
+  "city": "Kinigama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 314,
+  "srcStationID": 160,
+  "name": "Kiriwandala",
+  "city": "Kiriwandala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 315,
+  "srcStationID": 161,
+  "name": "Kirulapana",
+  "city": "Kirulapana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 316,
+  "srcStationID": 162,
+  "name": "Kital Ella",
+  "city": "Kital Ella",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 317,
+  "srcStationID": 163,
+  "name": "Kochchikade",
+  "city": "Kochchikade",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 318,
+  "srcStationID": 164,
+  "name": "Kodikamam",
+  "city": "Kodikamam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 319,
+  "srcStationID": 166,
+  "name": "Kokkuvil",
+  "city": "Kokkuvil",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 320,
+  "srcStationID": 169,
+  "name": "Kondavil",
+  "city": "Kondavil",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 321,
+  "srcStationID": 170,
+  "name": "Konwewa",
+  "city": "Konwewa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 322,
+  "srcStationID": 172,
+  "name": "Kosgama",
+  "city": "Kosgama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 323,
+  "srcStationID": 174,
+  "name": "Koshinna",
+  "city": "Koshinna",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 324,
+  "srcStationID": 175,
+  "name": "Kotagala",
+  "city": "Kotagala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 325,
+  "srcStationID": 176,
+  "name": "Kottawa",
+  "city": "Kottawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 326,
+  "srcStationID": 177,
+  "name": "Kudawewa",
+  "city": "Kudawewa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 327,
+  "srcStationID": 178,
+  "name": "Kudahakapola",
+  "city": "Kudahakapola",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 328,
+  "srcStationID": 181,
+  "name": "Kurana",
+  "city": "Kurana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 329,
+  "srcStationID": 182,
+  "name": "Kurunegala",
+  "city": "Kurunegala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 330,
+  "srcStationID": 183,
+  "name": "Laksauyana",
+  "city": "Laksauyana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 331,
+  "srcStationID": 184,
+  "name": "Liyanagemulla",
+  "city": "Liyanagemulla",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 332,
+  "srcStationID": 185,
+  "name": "Liyanwala",
+  "city": "Liyanwala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 333,
+  "srcStationID": 187,
+  "name": "Lunuwila",
+  "city": "Lunuwila",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 334,
+  "srcStationID": 189,
+  "name": "Madampe",
+  "city": "Madampe",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 335,
+  "srcStationID": 190,
+  "name": "Madu Road",
+  "city": "Madu Road",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 336,
+  "srcStationID": 191,
+  "name": "Madurankuliya",
+  "city": "Madurankuliya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 337,
+  "srcStationID": 192,
+  "name": "Magalegoda",
+  "city": "Magalegoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 338,
+  "srcStationID": 195,
+  "name": "Mahaiyawa",
+  "city": "Mahaiyawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 339,
+  "srcStationID": 196,
+  "name": "Maharagama",
+  "city": "Maharagama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 340,
+  "srcStationID": 197,
+  "name": "Maho",
+  "city": "Maho",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 341,
+  "srcStationID": 198,
+  "name": "Makehelwala",
+  "city": "Makehelwala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 342,
+  "srcStationID": 199,
+  "name": "Makumbura",
+  "city": "Makumbura",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 343,
+  "srcStationID": 200,
+  "name": "Mallakam",
+  "city": "Mallakam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 344,
+  "srcStationID": 201,
+  "name": "Manampitiya",
+  "city": "Manampitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 345,
+  "srcStationID": 202,
+  "name": "Mangala Eliya",
+  "city": "Mangala Eliya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 346,
+  "srcStationID": 203,
+  "name": "Mankulam",
+  "city": "Mankulam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 347,
+  "srcStationID": 204,
+  "name": "Mannar",
+  "city": "Mannar",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 348,
+  "srcStationID": 205,
+  "name": "Manuwangama",
+  "city": "Manuwangama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 349,
+  "srcStationID": 207,
+  "name": "Marakona",
+  "city": "Marakona",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 350,
+  "srcStationID": 208,
+  "name": "Matale",
+  "city": "Matale",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 351,
+  "srcStationID": 210,
+  "name": "Mathottam",
+  "city": "Mathottam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 352,
+  "srcStationID": 211,
+  "name": "Mavilmada",
+  "city": "Mavilmada",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 353,
+  "srcStationID": 212,
+  "name": "Mavittapuram",
+  "city": "Mavittapuram",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 354,
+  "srcStationID": 213,
+  "name": "Medagama",
+  "city": "Medagama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 355,
+  "srcStationID": 214,
+  "name": "Medawachchiya",
+  "city": "Medawachchiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 356,
+  "srcStationID": 215,
+  "name": "Meegammana",
+  "city": "Meegammana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 357,
+  "srcStationID": 216,
+  "name": "Meegoda",
+  "city": "Meegoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 358,
+  "srcStationID": 217,
+  "name": "Meesalai",
+  "city": "Meesalai",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 359,
+  "srcStationID": 219,
+  "name": "Mihintale Junction",
+  "city": "Mihintale Junction",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 360,
+  "srcStationID": 220,
+  "name": "Minneriya",
+  "city": "Minneriya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 361,
+  "srcStationID": 221,
+  "name": "Mirigama",
+  "city": "Mirigama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 362,
+  "srcStationID": 223,
+  "name": "Miriswatte",
+  "city": "Miriswatte",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 363,
+  "srcStationID": 224,
+  "name": "Mirusuvil",
+  "city": "Mirusuvil",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 364,
+  "srcStationID": 225,
+  "name": "Mollipatana",
+  "city": "Mollipatana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 365,
+  "srcStationID": 226,
+  "name": "Moragollagama",
+  "city": "Moragollagama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 366,
+  "srcStationID": 227,
+  "name": "Morakele",
+  "city": "Morakele",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 367,
+  "srcStationID": 230,
+  "name": "Mundal",
+  "city": "Mundal",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 368,
+  "srcStationID": 231,
+  "name": "Murikandy",
+  "city": "Murikandy",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 369,
+  "srcStationID": 232,
+  "name": "Murukandi kovila",
+  "city": "Murukandi kovila",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 370,
+  "srcStationID": 233,
+  "name": "Murunkan",
+  "city": "Murunkan",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 371,
+  "srcStationID": 234,
+  "name": "Muththettugala",
+  "city": "Muththettugala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 372,
+  "srcStationID": 235,
+  "name": "Nagollagama",
+  "city": "Nagollagama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 373,
+  "srcStationID": 236,
+  "name": "Nailiya",
+  "city": "Nailiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 374,
+  "srcStationID": 237,
+  "name": "Nakulugamuwa",
+  "city": "Nakulugamuwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 375,
+  "srcStationID": 238,
+  "name": "Nanuoya",
+  "city": "Nanuoya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 376,
+  "srcStationID": 239,
+  "name": "Narahenpita",
+  "city": "Narahenpita",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 377,
+  "srcStationID": 240,
+  "name": "Nattandiya",
+  "city": "Nattandiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 378,
+  "srcStationID": 241,
+  "name": "Navatkuli",
+  "city": "Navatkuli",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 379,
+  "srcStationID": 242,
+  "name": "Nawalapitiya",
+  "city": "Nawalapitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 380,
+  "srcStationID": 243,
+  "name": "Nawinna",
+  "city": "Nawinna",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 381,
+  "srcStationID": 244,
+  "name": "Negama",
+  "city": "Negama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 382,
+  "srcStationID": 245,
+  "name": "Negombo",
+  "city": "Negombo",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 383,
+  "srcStationID": 246,
+  "name": "Nelumpokuna",
+  "city": "Nelumpokuna",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 384,
+  "srcStationID": 247,
+  "name": "Neriyakulam",
+  "city": "Neriyakulam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 385,
+  "srcStationID": 248,
+  "name": "Noor Nagar",
+  "city": "Noor Nagar",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 386,
+  "srcStationID": 249,
+  "name": "Nugegoda",
+  "city": "Nugegoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 387,
+  "srcStationID": 250,
+  "name": "Ohiya",
+  "city": "Ohiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 388,
+  "srcStationID": 251,
+  "name": "Omanthai",
+  "city": "Omanthai",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 389,
+  "srcStationID": 252,
+  "name": "Padukka",
+  "city": "Padukka",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 390,
+  "srcStationID": 253,
+  "name": "Palai",
+  "city": "Palai",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 391,
+  "srcStationID": 254,
+  "name": "Palavi",
+  "city": "Palavi",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 392,
+  "srcStationID": 255,
+  "name": "Pallegama",
+  "city": "Pallegama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 393,
+  "srcStationID": 256,
+  "name": "Pallethalavinna",
+  "city": "Pallethalavinna",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 394,
+  "srcStationID": 257,
+  "name": "Pallewala",
+  "city": "Pallewala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 395,
+  "srcStationID": 258,
+  "name": "Palugaswewa",
+  "city": "Palugaswewa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 396,
+  "srcStationID": 260,
+  "name": "Panagoda",
+  "city": "Panagoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 397,
+  "srcStationID": 261,
+  "name": "Panaleeya",
+  "city": "Panaleeya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 398,
+  "srcStationID": 262,
+  "name": "Pangiriwatta",
+  "city": "Pangiriwatta",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 399,
+  "srcStationID": 263,
+  "name": "Pannipitiya",
+  "city": "Pannipitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 400,
+  "srcStationID": 264,
+  "name": "Parakum Uyana",
+  "city": "Parakum Uyana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 401,
+  "srcStationID": 265,
+  "name": "Paranthan",
+  "city": "Paranthan",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 402,
+  "srcStationID": 266,
+  "name": "Parasangahawewa",
+  "city": "Parasangahawewa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 403,
+  "srcStationID": 268,
+  "name": "Pathanpha",
+  "city": "Pathanpha",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 404,
+  "srcStationID": 269,
+  "name": "Pattipola",
+  "city": "Pattipola",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 405,
+  "srcStationID": 272,
+  "name": "Penrose",
+  "city": "Penrose",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 406,
+  "srcStationID": 274,
+  "name": "Peradeniya",
+  "city": "Peradeniya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 407,
+  "srcStationID": 275,
+  "name": "Perakumpura",
+  "city": "Perakumpura",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 408,
+  "srcStationID": 276,
+  "name": "Peralanda",
+  "city": "Peralanda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 409,
+  "srcStationID": 277,
+  "name": "Pesalai",
+  "city": "Pesalai",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 410,
+  "srcStationID": 279,
+  "name": "Pilimatalawa",
+  "city": "Pilimatalawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 411,
+  "srcStationID": 280,
+  "name": "Pinnawala",
+  "city": "Pinnawala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 412,
+  "srcStationID": 284,
+  "name": "Polgaha anga",
+  "city": "Polgaha anga",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 413,
+  "srcStationID": 285,
+  "name": "Polgahawela",
+  "city": "Polgahawela",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 414,
+  "srcStationID": 286,
+  "name": "Polonnaruwa",
+  "city": "Polonnaruwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 415,
+  "srcStationID": 288,
+  "name": "Poonewa",
+  "city": "Poonewa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 416,
+  "srcStationID": 289,
+  "name": "Potuhera",
+  "city": "Potuhera",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 417,
+  "srcStationID": 290,
+  "name": "Pulachchikulam",
+  "city": "Pulachchikulam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 418,
+  "srcStationID": 291,
+  "name": "Puliyankulam",
+  "city": "Puliyankulam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 419,
+  "srcStationID": 292,
+  "name": "Punani",
+  "city": "Punani",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 420,
+  "srcStationID": 293,
+  "name": "Punkankulam",
+  "city": "Punkankulam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 421,
+  "srcStationID": 294,
+  "name": "Puttalam",
+  "city": "Puttalam",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 422,
+  "srcStationID": 295,
+  "name": "Puwakpitiya",
+  "city": "Puwakpitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 423,
+  "srcStationID": 296,
+  "name": "Puwakpitiya town",
+  "city": "Puwakpitiya town",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 424,
+  "srcStationID": 297,
+  "name": "Radella",
+  "city": "Radella",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 425,
+  "srcStationID": 298,
+  "name": "Ragama",
+  "city": "Ragama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 426,
+  "srcStationID": 300,
+  "name": "Rajawaththa",
+  "city": "Rajawaththa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 427,
+  "srcStationID": 301,
+  "name": "Rambukkana",
+  "city": "Rambukkana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 428,
+  "srcStationID": 302,
+  "name": "Ranamukgama",
+  "city": "Ranamukgama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 429,
+  "srcStationID": 303,
+  "name": "Randenigama",
+  "city": "Randenigama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 430,
+  "srcStationID": 306,
+  "name": "Rendals hil",
+  "city": "Rendals hil",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 431,
+  "srcStationID": 308,
+  "name": "Rideethenna",
+  "city": "Rideethenna",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 432,
+  "srcStationID": 309,
+  "name": "Rosella",
+  "city": "Rosella",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 433,
+  "srcStationID": 310,
+  "name": "Saliyapura",
+  "city": "Saliyapura",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 434,
+  "srcStationID": 311,
+  "name": "Sankaththanai",
+  "city": "Sankaththanai",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 435,
+  "srcStationID": 313,
+  "name": "Sarasaviuyana",
+  "city": "Sarasaviuyana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 436,
+  "srcStationID": 314,
+  "name": "Sawarana",
+  "city": "Sawarana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 437,
+  "srcStationID": 316,
+  "name": "Seeduwa",
+  "city": "Seeduwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 438,
+  "srcStationID": 318,
+  "name": "Senarathgama",
+  "city": "Senarathgama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 439,
+  "srcStationID": 319,
+  "name": "Sevanapitiya",
+  "city": "Sevanapitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 440,
+  "srcStationID": 320,
+  "name": "Sittankudi",
+  "city": "Sittankudi",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 441,
+  "srcStationID": 321,
+  "name": "Siyalangamuwa",
+  "city": "Siyalangamuwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 442,
+  "srcStationID": 322,
+  "name": "Srawasthipura",
+  "city": "Srawasthipura",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 443,
+  "srcStationID": 324,
+  "name": "Suduhumpola",
+  "city": "Suduhumpola",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 444,
+  "srcStationID": 325,
+  "name": "Talawa",
+  "city": "Talawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 445,
+  "srcStationID": 326,
+  "name": "Talawakele",
+  "city": "Talawakele",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 446,
+  "srcStationID": 327,
+  "name": "Talawattegedara",
+  "city": "Talawattegedara",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 447,
+  "srcStationID": 328,
+  "name": "Tellippalai",
+  "city": "Tellippalai",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 448,
+  "srcStationID": 330,
+  "name": "Tembligala",
+  "city": "Tembligala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 449,
+  "srcStationID": 331,
+  "name": "Thachanthoppu",
+  "city": "Thachanthoppu",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 450,
+  "srcStationID": 332,
+  "name": "Thalaimannar",
+  "city": "Thalaimannar",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 451,
+  "srcStationID": 333,
+  "name": "Thalaimannar Pier",
+  "city": "Thalaimannar Pier",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 452,
+  "srcStationID": 335,
+  "name": "Thambalagamuwa",
+  "city": "Thambalagamuwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 453,
+  "srcStationID": 336,
+  "name": "Thambuttegama",
+  "city": "Thambuttegama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 454,
+  "srcStationID": 337,
+  "name": "Thandikulama",
+  "city": "Thandikulama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 455,
+  "srcStationID": 338,
+  "name": "Thavalankoya",
+  "city": "Thavalankoya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 456,
+  "srcStationID": 339,
+  "name": "Thil adiya",
+  "city": "Thil adiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 457,
+  "srcStationID": 341,
+  "name": "Thiruketheeswaram",
+  "city": "Thiruketheeswaram",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 458,
+  "srcStationID": 342,
+  "name": "Thoddaveli",
+  "city": "Thoddaveli",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 459,
+  "srcStationID": 343,
+  "name": "Thudella",
+  "city": "Thudella",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 460,
+  "srcStationID": 344,
+  "name": "Timbiriyagedara",
+  "city": "Timbiriyagedara",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 461,
+  "srcStationID": 345,
+  "name": "Tismalpola",
+  "city": "Tismalpola",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 462,
+  "srcStationID": 347,
+  "name": "Trincomalee",
+  "city": "Trincomalee",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 463,
+  "srcStationID": 348,
+  "name": "Tummodara",
+  "city": "Tummodara",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 464,
+  "srcStationID": 349,
+  "name": "Udahamulla",
+  "city": "Udahamulla",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 465,
+  "srcStationID": 350,
+  "name": "Udatalawinna",
+  "city": "Udatalawinna",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 466,
+  "srcStationID": 351,
+  "name": "Udaththawala",
+  "city": "Udaththawala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 467,
+  "srcStationID": 352,
+  "name": "Uduwara",
+  "city": "Uduwara",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 468,
+  "srcStationID": 353,
+  "name": "Uggalla",
+  "city": "Uggalla",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 469,
+  "srcStationID": 354,
+  "name": "Ukuwela",
+  "city": "Ukuwela",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 470,
+  "srcStationID": 355,
+  "name": "Ulapane",
+  "city": "Ulapane",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 471,
+  "srcStationID": 357,
+  "name": "Valachchenei",
+  "city": "Valachchenei",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 472,
+  "srcStationID": 358,
+  "name": "Vandaramullai",
+  "city": "Vandaramullai",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 473,
+  "srcStationID": 359,
+  "name": "Vavuniya",
+  "city": "Vavuniya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 474,
+  "srcStationID": 360,
+  "name": "Veyangoda",
+  "city": "Veyangoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 475,
+  "srcStationID": 362,
+  "name": "Waga",
+  "city": "Waga",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 476,
+  "srcStationID": 363,
+  "name": "Waikkala",
+  "city": "Waikkala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 477,
+  "srcStationID": 364,
+  "name": "Walahapitiya",
+  "city": "Walahapitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 478,
+  "srcStationID": 365,
+  "name": "Walakumbura",
+  "city": "Walakumbura",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 479,
+  "srcStationID": 367,
+  "name": "Wallahagoda",
+  "city": "Wallahagoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 480,
+  "srcStationID": 368,
+  "name": "Walpola",
+  "city": "Walpola",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 481,
+  "srcStationID": 369,
+  "name": "Wanawasala",
+  "city": "Wanawasala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 482,
+  "srcStationID": 370,
+  "name": "Wandurawa",
+  "city": "Wandurawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 483,
+  "srcStationID": 371,
+  "name": "Warakapitiya",
+  "city": "Warakapitiya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 484,
+  "srcStationID": 372,
+  "name": "Watagoda",
+  "city": "Watagoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 485,
+  "srcStationID": 373,
+  "name": "Wataraka",
+  "city": "Wataraka",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 486,
+  "srcStationID": 374,
+  "name": "Watawala",
+  "city": "Watawala",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 487,
+  "srcStationID": 375,
+  "name": "Wattegama",
+  "city": "Wattegama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 488,
+  "srcStationID": 377,
+  "name": "Weligalla",
+  "city": "Weligalla",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 489,
+  "srcStationID": 379,
+  "name": "Welikanda",
+  "city": "Welikanda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 490,
+  "srcStationID": 380,
+  "name": "Wellawa",
+  "city": "Wellawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 491,
+  "srcStationID": 382,
+  "name": "Weralugolla",
+  "city": "Weralugolla",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 492,
+  "srcStationID": 384,
+  "name": "Wijayarajadahana",
+  "city": "Wijayarajadahana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 493,
+  "srcStationID": 385,
+  "name": "Wilwatte",
+  "city": "Wilwatte",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 494,
+  "srcStationID": 386,
+  "name": "Yagoda",
+  "city": "Yagoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 495,
+  "srcStationID": 387,
+  "name": "Yapahuwa",
+  "city": "Yapahuwa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 496,
+  "srcStationID": 388,
+  "name": "Yatagama",
+  "city": "Yatagama",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 497,
+  "srcStationID": 389,
+  "name": "Yatawara",
+  "city": "Yatawara",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 498,
+  "srcStationID": 390,
+  "name": "Yatirawana",
+  "city": "Yatirawana",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 499,
+  "srcStationID": 391,
+  "name": "Yatiweldeniya",
+  "city": "Yatiweldeniya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 500,
+  "srcStationID": 392,
+  "name": "Yattalgoda",
+  "city": "Yattalgoda",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": true
+ },
+ {
+  "stationID": 501,
+  "srcStationID": 393,
+  "name": "Kiribathkubura",
+  "city": "Kiribathkubura",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 502,
+  "srcStationID": 394,
+  "name": "St kylas",
+  "city": "St kylas",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 503,
+  "srcStationID": 395,
+  "name": "Higuranoya",
+  "city": "Higuranoya",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ },
+ {
+  "stationID": 504,
+  "srcStationID": 396,
+  "name": "Warakawa",
+  "city": "Warakawa",
+  "matchedTo": null,
+  "matchMethod": "new",
+  "hasScheduleData": false
+ }
+]

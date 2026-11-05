@@ -1,0 +1,716 @@
+[
+ {
+  "routeName": "Nanuoya - Badulla",
+  "startStation": 375,
+  "endStation": 209,
+  "orderedStations": "375,407,195,404,387,281,266,237,211,313,270,316,240,234,467,265,209",
+  "trains": 2
+ },
+ {
+  "routeName": "Badulla - Nanuoya",
+  "startStation": 209,
+  "endStation": 375,
+  "orderedStations": "209,265,467,234,240,316,270,313,211,237,266,281,387,404,195,407,375",
+  "trains": 2
+ },
+ {
+  "routeName": "Colombo Fort - Rambukkana",
+  "startStation": 102,
+  "endStation": 427,
+  "orderedStations": "102,101,193,478,413,397,461,496,427",
+  "trains": 17
+ },
+ {
+  "routeName": "Maradana - Polgahawela",
+  "startStation": 101,
+  "endStation": 413,
+  "orderedStations": "101,233,311,481,280,238,278,425,480,217,223,254,494,251,231,218,337,271,474,482,309,394,253,492,361,493,221,196,500,222,193,478,413",
+  "trains": 1
+ },
+ {
+  "routeName": "Maradana - Ragama",
+  "startStation": 101,
+  "endStation": 425,
+  "orderedStations": "101,233,311,280,425",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Polgahawela",
+  "startStation": 102,
+  "endStation": 413,
+  "orderedStations": "102,101,233,311,481,280,238,278,425,480,217,223,254,494,251,231,218,337,271,474,482,309,394,253,492,361,493,221,196,500,222,193,478,413",
+  "trains": 8
+ },
+ {
+  "routeName": "Colombo Fort - Mirigama",
+  "startStation": 102,
+  "endStation": 361,
+  "orderedStations": "102,101,233,425,254,251,474,394,361",
+  "trains": 5
+ },
+ {
+  "routeName": "Colombo Fort - Ragama",
+  "startStation": 102,
+  "endStation": 425,
+  "orderedStations": "102,101,233,311,481,280,238,278,425",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Veyangoda",
+  "startStation": 102,
+  "endStation": 474,
+  "orderedStations": "102,101,233,311,481,280,238,278,425,480,217,223,254,494,251,231,218,337,271,474",
+  "trains": 1
+ },
+ {
+  "routeName": "Polgahawela - Kalutara South",
+  "startStation": 413,
+  "endStation": 123,
+  "orderedStations": "413,478,193,222,500,196,221,493,361,492,253,394,309,482,474,271,337,218,231,251,494,254,223,217,480,425,278,238,280,481,311,233,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,117,118,119,120,121,123",
+  "trains": 1
+ },
+ {
+  "routeName": "Rambukkana - Maradana",
+  "startStation": 427,
+  "endStation": 101,
+  "orderedStations": "427,496,461,397,413,478,193,222,500,196,221,493,361,492,253,394,309,482,474,271,337,218,231,251,494,254,223,217,480,425,278,238,280,481,311,233,101",
+  "trains": 2
+ },
+ {
+  "routeName": "Rambukkana - Colombo Fort",
+  "startStation": 427,
+  "endStation": 102,
+  "orderedStations": "427,496,461,397,413,478,193,222,500,196,221,493,361,492,253,394,309,482,474,271,337,218,231,251,494,254,223,217,480,425,278,238,280,481,311,233,101,102",
+  "trains": 15
+ },
+ {
+  "routeName": "Mirigama - Colombo Fort",
+  "startStation": 361,
+  "endStation": 102,
+  "orderedStations": "361,492,253,394,309,482,474,271,337,218,231,251,254,425,280,233,101,102",
+  "trains": 4
+ },
+ {
+  "routeName": "Polgahawela - Colombo Fort",
+  "startStation": 413,
+  "endStation": 102,
+  "orderedStations": "413,478,193,222,500,196,221,493,361,394,309,482,474,251,254,311,233,101,102",
+  "trains": 10
+ },
+ {
+  "routeName": "Rambukkana - Moratuwa",
+  "startStation": 427,
+  "endStation": 113,
+  "orderedStations": "427,496,461,397,413,478,193,222,500,196,221,493,361,492,253,394,309,482,474,271,337,218,231,251,494,254,223,217,480,425,280,311,233,101,102,103,104,105,106,107,108,109,110,111,112,113",
+  "trains": 2
+ },
+ {
+  "routeName": "Ragama - Colombo Fort",
+  "startStation": 425,
+  "endStation": 102,
+  "orderedStations": "425,278,238,280,481,311,233,101,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Rambukkana - Panadura",
+  "startStation": 427,
+  "endStation": 117,
+  "orderedStations": "427,496,461,397,413,193,361,394,474,494,223,311,233,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,117",
+  "trains": 2
+ },
+ {
+  "routeName": "Gampaha - Colombo Fort",
+  "startStation": 251,
+  "endStation": 102,
+  "orderedStations": "251,494,254,223,217,480,425,481,311,233,101,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Ambeypussa - Colombo Fort",
+  "startStation": 196,
+  "endStation": 102,
+  "orderedStations": "196,221,493,361,492,253,394,309,482,474,271,337,218,231,251,494,254,223,217,480,425,278,238,280,481,311,233,101,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Veyangoda - Colombo Fort",
+  "startStation": 474,
+  "endStation": 102,
+  "orderedStations": "474,271,337,218,231,251,494,254,223,217,480,425,278,238,280,481,311,233,101,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Ragama - Galle",
+  "startStation": 425,
+  "endStation": 161,
+  "orderedStations": "425,278,238,280,481,311,233,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,117,118,119,120,121,123,124,125,126,127,128,129,130,132,133,134,135,136,137,138,139,141,142,143,145,146,147,148,149,150,151,152,154,155,156,158,159,160,161",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Noor Nagar",
+  "startStation": 102,
+  "endStation": 385,
+  "orderedStations": "102,101,233,311,481,280,238,278,425,408,300,304,289,459,327,192,437,331,288,308,328,382,305,317,476,219,220,333,463,377,477,326,383,334,297,436,226,348,212,201,197,215,417,367,345,336,244,391,456,421,385",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Negombo",
+  "startStation": 102,
+  "endStation": 382,
+  "orderedStations": "102,101,233,311,481,280,238,278,425,408,300,304,289,459,327,192,437,331,288,308,328,382",
+  "trains": 3
+ },
+ {
+  "routeName": "Colombo Fort - Puttalam",
+  "startStation": 102,
+  "endStation": 421,
+  "orderedStations": "102,101,233,311,481,280,238,278,425,408,300,304,289,459,327,192,437,331,288,308,328,382,305,317,476,219,220,333,463,377,477,326,383,334,297,436,226,348,212,201,197,215,417,367,345,336,244,391,456,421",
+  "trains": 2
+ },
+ {
+  "routeName": "Colombo Fort - Chilaw",
+  "startStation": 102,
+  "endStation": 226,
+  "orderedStations": "102,101,233,311,481,280,238,278,425,408,300,304,289,459,327,192,437,331,288,308,328,382,305,317,476,219,220,333,463,377,477,326,383,334,297,436,226",
+  "trains": 8
+ },
+ {
+  "routeName": "Colombo Fort - Madampe",
+  "startStation": 102,
+  "endStation": 334,
+  "orderedStations": "102,101,233,311,481,280,238,278,425,408,300,304,289,459,327,192,437,331,288,308,328,382,305,317,476,219,220,333,463,377,477,326,383,334",
+  "trains": 1
+ },
+ {
+  "routeName": "Chilaw - Panadura",
+  "startStation": 226,
+  "endStation": 117,
+  "orderedStations": "226,436,297,334,383,326,477,377,463,333,220,219,476,317,305,382,328,308,288,331,437,192,327,459,289,304,300,408,425,278,238,280,481,311,233,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,117",
+  "trains": 3
+ },
+ {
+  "routeName": "Chilaw - Colombo Fort",
+  "startStation": 226,
+  "endStation": 102,
+  "orderedStations": "226,436,297,334,383,326,477,377,463,333,220,219,476,317,305,382,328,308,288,331,437,192,327,459,289,304,300,408,425,238,280,311,233,101,102",
+  "trains": 10
+ },
+ {
+  "routeName": "Puttalam - Mount Lavinia",
+  "startStation": 421,
+  "endStation": 109,
+  "orderedStations": "421,456,391,244,336,345,367,417,215,197,201,212,348,226,436,297,334,383,326,477,377,463,333,220,219,476,317,305,382,288,437,289,300,233,101,102,103,104,105,106,107,108,109",
+  "trains": 2
+ },
+ {
+  "routeName": "Negombo - Colombo Fort",
+  "startStation": 382,
+  "endStation": 102,
+  "orderedStations": "382,328,308,288,331,437,192,327,459,289,304,300,408,425,233,101,102",
+  "trains": 3
+ },
+ {
+  "routeName": "Noor Nagar - Colombo Fort",
+  "startStation": 385,
+  "endStation": 102,
+  "orderedStations": "385,421,456,391,244,336,345,367,417,215,197,201,212,348,226,436,297,334,383,326,477,377,463,333,220,219,476,317,305,382,328,308,288,331,437,192,327,459,289,304,300,408,425,278,238,280,481,311,233,101,102",
+  "trains": 2
+ },
+ {
+  "routeName": "Puttalam - Colombo Fort",
+  "startStation": 421,
+  "endStation": 102,
+  "orderedStations": "421,456,391,244,336,345,367,417,215,197,201,212,348,226,436,297,334,383,326,477,377,463,333,220,219,476,317,305,382,328,308,288,331,437,192,327,459,289,304,300,408,425,278,238,280,481,311,233,101,102",
+  "trains": 5
+ },
+ {
+  "routeName": "Madampe - Colombo Fort",
+  "startStation": 334,
+  "endStation": 102,
+  "orderedStations": "334,383,326,477,377,463,333,220,219,476,317,305,382,328,308,288,331,437,192,327,459,289,304,300,408,425,278,238,280,481,311,233,101,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Mount Lavinia - Kankesanthurai",
+  "startStation": 109,
+  "endStation": 302,
+  "orderedStations": "109,108,107,106,102,251,474,413,329,200,473,312,318,290,320,228,302",
+  "trains": 1
+ },
+ {
+  "routeName": "Kankesanthurai - Mount Lavinia",
+  "startStation": 302,
+  "endStation": 109,
+  "orderedStations": "302,228,320,290,318,312,473,200,329,413,474,251,101,102,106,107,108,109",
+  "trains": 1
+ },
+ {
+  "routeName": "Kankesanthurai - Colombo Fort",
+  "startStation": 302,
+  "endStation": 102,
+  "orderedStations": "302,447,228,320,319,290,378,224,318,390,239,401,312,203,368,346,418,388,473,355,402,200,442,444,453,438,246,189,340,372,255,490,371,329,416,413,361,474,251,425,101,102",
+  "trains": 2
+ },
+ {
+  "routeName": "Anuradhapura - Beliaththa",
+  "startStation": 200,
+  "endStation": 188,
+  "orderedStations": "200,442,444,453,438,246,189,429,340,460,372,275,255,490,371,329,373,416,446,260,413,193,196,361,474,251,425,101,102,109,117,123,130,143,150,161,164,165,166,169,172,176,178,179,181,183,184,186,374,188",
+  "trains": 1
+ },
+ {
+  "routeName": "Moratuwa - Kankesanthurai",
+  "startStation": 113,
+  "endStation": 302,
+  "orderedStations": "113,109,108,107,106,102,425,251,474,413,329,340,189,246,438,453,444,442,200,402,355,415,242,473,454,388,418,346,368,203,312,401,239,390,241,363,318,358,434,224,449,378,420,290,319,320,287,228,343,447,353,302",
+  "trains": 1
+ },
+ {
+  "routeName": "Kankesanthurai - Moratuwa",
+  "startStation": 302,
+  "endStation": 113,
+  "orderedStations": "302,353,447,343,228,287,320,319,290,420,378,449,224,434,358,318,363,241,390,239,401,312,203,368,346,418,388,454,473,242,415,355,402,433,200,442,444,453,438,246,189,340,329,413,196,474,251,425,101,102,106,107,108,109,113",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Kurunegala",
+  "startStation": 102,
+  "endStation": 329,
+  "orderedStations": "102,101,233,311,481,280,238,278,425,480,217,223,254,494,251,231,218,337,271,474,482,309,394,253,492,361,493,221,196,500,222,193,478,413,260,446,416,373,329",
+  "trains": 3
+ },
+ {
+  "routeName": "Colombo Fort - Ganewatte",
+  "startStation": 102,
+  "endStation": 255,
+  "orderedStations": "102,101,233,251,474,482,309,394,253,492,361,493,221,196,500,222,193,478,413,260,446,416,373,329,371,490,255",
+  "trains": 2
+ },
+ {
+  "routeName": "Colombo Fort - Maho",
+  "startStation": 102,
+  "endStation": 340,
+  "orderedStations": "102,101,233,251,361,196,193,413,260,446,416,373,329,371,490,255,275,372,460,340",
+  "trains": 2
+ },
+ {
+  "routeName": "Kurunegala - Colombo Fort",
+  "startStation": 329,
+  "endStation": 102,
+  "orderedStations": "329,373,416,446,260,413,478,193,222,500,196,221,493,361,492,253,394,309,482,474,271,337,218,231,251,494,254,223,217,480,425,278,238,280,481,311,233,101,102",
+  "trains": 3
+ },
+ {
+  "routeName": "Ganewatte - Panadura",
+  "startStation": 255,
+  "endStation": 117,
+  "orderedStations": "255,490,371,329,373,416,446,260,413,478,193,222,500,196,221,493,361,492,253,394,309,482,474,271,337,218,231,251,494,254,223,217,480,425,278,238,280,481,311,233,101,102,103,104,105,106,108,110,111,113,114,115,117",
+  "trains": 1
+ },
+ {
+  "routeName": "Maho - Moratuwa",
+  "startStation": 340,
+  "endStation": 113,
+  "orderedStations": "340,460,372,275,255,490,371,329,373,416,446,260,413,193,196,361,251,233,101,102,103,104,105,106,107,108,109,110,111,112,113",
+  "trains": 2
+ },
+ {
+  "routeName": "Colombo Fort - Thalaimannar Pier",
+  "startStation": 102,
+  "endStation": 451,
+  "orderedStations": "102,251,413,329,340,189,246,453,199,200,402,355,384,225,335,370,351,457,347,458,409,450,451",
+  "trains": 1
+ },
+ {
+  "routeName": "Thalaimannar Pier - Colombo Fort",
+  "startStation": 451,
+  "endStation": 102,
+  "orderedStations": "451,450,409,458,347,457,351,370,335,225,384,355,402,200,199,453,246,340,329,413,361,474,251,101,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Batticaloa",
+  "startStation": 102,
+  "endStation": 216,
+  "orderedStations": "102,101,425,251,474,361,413,416,329,371,490,255,372,340,321,428,365,441,381,207,298,310,279,395,264,249,273,414,344,439,489,431,419,471,236,472,243,216",
+  "trains": 3
+ },
+ {
+  "routeName": "Batticaloa - Colombo Fort",
+  "startStation": 216,
+  "endStation": 102,
+  "orderedStations": "216,243,472,236,299,471,292,419,431,205,489,439,344,248,414,400,330,291,273,360,249,268,264,395,279,310,298,207,381,441,365,428,321,340,372,255,490,371,329,416,413,361,474,251,425,101,102",
+  "trains": 3
+ },
+ {
+  "routeName": "Maho - Batticaloa",
+  "startStation": 340,
+  "endStation": 216,
+  "orderedStations": "340,495,321,428,365,441,381,207,298,282,310,279,395,264,268,249,360,273,267,291,330,400,414,248,344,439,489,205,431,419,292,471,299,236,472,243,216",
+  "trains": 1
+ },
+ {
+  "routeName": "Batticaloa - Maho",
+  "startStation": 216,
+  "endStation": 340,
+  "orderedStations": "216,243,472,236,299,471,292,419,431,205,489,439,344,248,414,400,330,291,267,273,360,249,268,264,395,279,310,282,298,207,381,441,365,428,321,495,340",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Trincomalee",
+  "startStation": 102,
+  "endStation": 462,
+  "orderedStations": "102,425,251,474,361,413,416,329,490,255,372,340,321,428,365,441,381,207,298,310,279,395,264,249,190,303,258,364,452,227,462",
+  "trains": 2
+ },
+ {
+  "routeName": "Trincomalee - Colombo Fort",
+  "startStation": 462,
+  "endStation": 102,
+  "orderedStations": "462,227,452,364,258,303,190,249,264,395,279,310,298,207,381,441,365,321,340,372,255,490,329,416,413,361,474,251,425,101,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Galoya Junction - Trincomalee",
+  "startStation": 249,
+  "endStation": 462,
+  "orderedStations": "249,190,303,258,364,452,227,462",
+  "trains": 1
+ },
+ {
+  "routeName": "Trincomalee - Galoya Junction",
+  "startStation": 462,
+  "endStation": 249,
+  "orderedStations": "462,227,452,364,258,303,190,249",
+  "trains": 1
+ },
+ {
+  "routeName": "Beliaththa - Maradana",
+  "startStation": 188,
+  "endStation": 101,
+  "orderedStations": "188,374,186,184,183,181,179,178,176,172,169,165,164,161,150,143,132,130,123,117,113,110,109,102,101",
+  "trains": 5
+ },
+ {
+  "routeName": "Maradana - Matara",
+  "startStation": 101,
+  "endStation": 178,
+  "orderedStations": "101,102,109,113,117,123,130,132,143,150,161,164,165,169,172,176,178",
+  "trains": 2
+ },
+ {
+  "routeName": "Maradana - Beliaththa",
+  "startStation": 101,
+  "endStation": 188,
+  "orderedStations": "101,102,108,109,110,113,117,119,120,121,123,130,132,143,150,161,162,163,164,165,166,168,169,170,171,172,174,175,176,177,178,179,181,183,184,186,374,188",
+  "trains": 5
+ },
+ {
+  "routeName": "Matara - Maradana",
+  "startStation": 178,
+  "endStation": 101,
+  "orderedStations": "178,177,176,175,174,172,171,170,169,168,166,165,164,163,162,161,150,143,132,130,123,117,113,109,108,102,101",
+  "trains": 2
+ },
+ {
+  "routeName": "Maradana - Hikkaduwa",
+  "startStation": 101,
+  "endStation": 150,
+  "orderedStations": "101,102,103,104,105,106,107,117,123,126,127,128,130,133,135,137,139,143,147,150",
+  "trains": 2
+ },
+ {
+  "routeName": "Hikkaduwa - Maradana",
+  "startStation": 150,
+  "endStation": 101,
+  "orderedStations": "150,147,143,139,137,135,133,130,128,127,126,123,117,107,106,105,104,103,102,101",
+  "trains": 1
+ },
+ {
+  "routeName": "Beliaththa - Anuradhapura",
+  "startStation": 188,
+  "endStation": 200,
+  "orderedStations": "188,374,186,184,183,178,176,172,169,166,165,164,161,150,143,130,123,117,109,102,101,425,251,474,361,196,193,413,260,446,416,373,329,371,490,255,275,372,460,340,429,189,246,438,453,444,442,200",
+  "trains": 1
+ },
+ {
+  "routeName": "Aluthgama - Ambeypussa",
+  "startStation": 130,
+  "endStation": 196,
+  "orderedStations": "130,129,128,127,126,125,124,123,121,120,119,118,117,115,114,113,112,111,110,109,108,107,106,105,104,102,101,233,311,280,425,480,217,223,254,494,251,231,218,337,271,474,482,309,394,253,492,361,493,221,196",
+  "trains": 1
+ },
+ {
+  "routeName": "Aluthgama - Chilaw",
+  "startStation": 130,
+  "endStation": 226,
+  "orderedStations": "130,129,128,127,126,125,124,123,121,120,119,118,117,115,114,113,112,111,110,109,108,107,106,105,104,102,101,233,311,481,280,238,278,425,408,300,304,289,459,327,192,437,331,288,308,328,382,305,317,476,219,220,333,463,377,477,326,383,334,297,436,226",
+  "trains": 1
+ },
+ {
+  "routeName": "Aluthgama - Gampaha",
+  "startStation": 130,
+  "endStation": 251,
+  "orderedStations": "130,129,128,127,126,125,124,123,121,120,119,118,117,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101,233,311,481,280,238,278,425,480,217,223,254,494,251",
+  "trains": 1
+ },
+ {
+  "routeName": "Wadduwa - Maradana",
+  "startStation": 119,
+  "endStation": 101,
+  "orderedStations": "119,118,117,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101",
+  "trains": 1
+ },
+ {
+  "routeName": "Galle - Maradana",
+  "startStation": 161,
+  "endStation": 101,
+  "orderedStations": "161,160,159,158,156,155,154,152,150,148,147,145,143,142,139,137,135,134,133,132,130,129,128,127,126,125,124,123,121,120,119,118,117,113,110,109,108,106,105,104,103,102,101",
+  "trains": 8
+ },
+ {
+  "routeName": "Panadura - Maradana",
+  "startStation": 117,
+  "endStation": 101,
+  "orderedStations": "117,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101",
+  "trains": 5
+ },
+ {
+  "routeName": "Aluthgama - Maradana",
+  "startStation": 130,
+  "endStation": 101,
+  "orderedStations": "130,129,128,127,126,125,124,123,121,120,119,118,117,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101",
+  "trains": 6
+ },
+ {
+  "routeName": "Kalutara South - Maradana",
+  "startStation": 123,
+  "endStation": 101,
+  "orderedStations": "123,121,119,117,113,109,106,105,104,103,102,101",
+  "trains": 9
+ },
+ {
+  "routeName": "Moratuwa - Maradana",
+  "startStation": 113,
+  "endStation": 101,
+  "orderedStations": "113,112,111,110,109,108,107,106,105,104,103,102,101",
+  "trains": 1
+ },
+ {
+  "routeName": "Mount Lavinia - Maradana",
+  "startStation": 109,
+  "endStation": 101,
+  "orderedStations": "109,108,107,106,105,104,103,102,101",
+  "trains": 1
+ },
+ {
+  "routeName": "Galle - Rambukkana",
+  "startStation": 161,
+  "endStation": 427,
+  "orderedStations": "161,160,159,158,156,155,154,152,151,150,149,148,147,146,145,143,142,141,139,138,137,136,135,134,133,132,130,129,128,127,126,125,124,123,117,113,102,101,233,311,280,425,254,251,474,394,361,196,500,222,193,478,413,397,461,496,427",
+  "trains": 1
+ },
+ {
+  "routeName": "Mount Lavinia - Polgahawela",
+  "startStation": 109,
+  "endStation": 413,
+  "orderedStations": "109,108,107,106,105,104,103,102,101,233,425,254,251,474,394,361,196,193,413",
+  "trains": 1
+ },
+ {
+  "routeName": "Moratuwa - Polgahawela",
+  "startStation": 113,
+  "endStation": 413,
+  "orderedStations": "113,110,109,108,107,106,105,104,103,102,101,233,311,425,480,217,223,254,494,251,231,218,337,271,474,482,309,394,253,492,361,493,221,196,500,222,193,478,413",
+  "trains": 1
+ },
+ {
+  "routeName": "Panadura - Puttalam",
+  "startStation": 117,
+  "endStation": 421,
+  "orderedStations": "117,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101,233,300,289,437,288,382,305,317,476,219,220,333,463,377,477,326,383,334,297,436,226,348,212,201,197,215,417,367,345,336,244,391,456,421",
+  "trains": 1
+ },
+ {
+  "routeName": "Panadura - Chilaw",
+  "startStation": 117,
+  "endStation": 226,
+  "orderedStations": "117,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101,233,425,408,300,304,289,459,327,192,437,331,288,308,328,382,305,317,476,219,220,333,463,377,477,326,383,334,297,436,226",
+  "trains": 1
+ },
+ {
+  "routeName": "Kalutara South - Chilaw",
+  "startStation": 123,
+  "endStation": 226,
+  "orderedStations": "123,117,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101,233,311,481,280,238,278,425,408,300,304,289,459,327,192,437,331,288,308,328,382,305,317,476,219,220,333,463,377,477,326,383,334,297,436,226",
+  "trains": 1
+ },
+ {
+  "routeName": "Aluthgama - Polgahawela",
+  "startStation": 130,
+  "endStation": 413,
+  "orderedStations": "130,129,128,127,126,125,124,123,121,120,119,118,117,113,112,111,110,109,108,107,106,105,104,103,102,101,233,311,481,280,238,278,425,480,217,223,254,494,251,231,218,337,271,474,482,309,394,253,492,361,493,221,196,500,222,193,478,413",
+  "trains": 1
+ },
+ {
+  "routeName": "Panadura - Rambukkana",
+  "startStation": 117,
+  "endStation": 427,
+  "orderedStations": "117,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101,233,311,425,254,251,474,482,309,394,253,492,361,493,221,196,500,222,193,478,413,397,461,496,427",
+  "trains": 1
+ },
+ {
+  "routeName": "Aluthgama - Galle",
+  "startStation": 130,
+  "endStation": 161,
+  "orderedStations": "130,132,133,134,135,136,137,138,139,141,142,143,145,146,147,148,149,150,151,152,154,155,156,158,159,160,161",
+  "trains": 2
+ },
+ {
+  "routeName": "Maradana - Wadduwa",
+  "startStation": 101,
+  "endStation": 119,
+  "orderedStations": "101,102,104,105,106,108,113,117,119",
+  "trains": 1
+ },
+ {
+  "routeName": "Maradana - Panadura",
+  "startStation": 101,
+  "endStation": 117,
+  "orderedStations": "101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,117",
+  "trains": 6
+ },
+ {
+  "routeName": "Maradana - Kalutara South",
+  "startStation": 101,
+  "endStation": 123,
+  "orderedStations": "101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,117,118,119,120,121,123",
+  "trains": 8
+ },
+ {
+  "routeName": "Maradana - Aluthgama",
+  "startStation": 101,
+  "endStation": 130,
+  "orderedStations": "101,102,104,105,106,107,108,109,110,111,112,113,114,115,117,118,119,120,121,123,124,125,126,127,128,129,130",
+  "trains": 9
+ },
+ {
+  "routeName": "Maradana - Mount Lavinia",
+  "startStation": 101,
+  "endStation": 109,
+  "orderedStations": "101,102,104,105,106,107,108,109",
+  "trains": 1
+ },
+ {
+  "routeName": "Maradana - Galle",
+  "startStation": 101,
+  "endStation": 161,
+  "orderedStations": "101,102,103,104,105,106,110,123,130,132,133,134,135,136,137,138,139,141,142,143,145,146,147,148,149,150,151,152,154,155,156,158,159,160,161",
+  "trains": 5
+ },
+ {
+  "routeName": "Maradana - Moratuwa",
+  "startStation": 101,
+  "endStation": 113,
+  "orderedStations": "101,102,103,104,105,106,107,108,109,110,111,112,113",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Kalutara South",
+  "startStation": 102,
+  "endStation": 123,
+  "orderedStations": "102,103,104,105,106,107,108,109,110,111,112,113,117,119,121,123",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Avissawella",
+  "startStation": 102,
+  "endStation": 208,
+  "orderedStations": "102,101,214,230,376,315,386,398,464,380,339,399,325,342,277,276,396,262,357,485,332,389,204,198,468,411,250,366,475,295,202,322,194,362,274,422,423,314,208",
+  "trains": 5
+ },
+ {
+  "routeName": "Colombo Fort - Padukka",
+  "startStation": 102,
+  "endStation": 389,
+  "orderedStations": "102,101,214,230,376,315,386,398,464,380,339,399,325,342,277,276,396,262,357,485,332,389",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Kosgama",
+  "startStation": 102,
+  "endStation": 322,
+  "orderedStations": "102,101,214,230,376,315,386,398,464,380,339,399,325,342,277,276,396,262,357,485,332,389,204,198,468,411,250,366,475,295,202,322",
+  "trains": 3
+ },
+ {
+  "routeName": "Avissawella - Colombo Fort",
+  "startStation": 208,
+  "endStation": 102,
+  "orderedStations": "208,422,194,322,295,475,250,411,468,198,204,389,485,357,262,396,276,277,342,325,399,339,380,464,398,386,315,376,230,214,101,102",
+  "trains": 6
+ },
+ {
+  "routeName": "Waga - Colombo Fort",
+  "startStation": 475,
+  "endStation": 102,
+  "orderedStations": "475,366,250,411,468,198,204,389,332,485,357,262,396,276,277,342,325,399,339,380,464,398,386,315,376,230,214,101,102",
+  "trains": 2
+ },
+ {
+  "routeName": "Kosgama - Colombo Fort",
+  "startStation": 322,
+  "endStation": 102,
+  "orderedStations": "322,475,250,411,198,389,357,396,276,277,342,325,399,339,380,464,386,315,376,230,214,101,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Padukka - Colombo Fort",
+  "startStation": 389,
+  "endStation": 102,
+  "orderedStations": "389,485,357,262,396,276,277,342,325,399,339,386,315,376,230,214,101,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Kankesanthurai",
+  "startStation": 102,
+  "endStation": 302,
+  "orderedStations": "102,425,251,474,361,413,329,340,189,246,453,442,200,402,355,473,388,418,346,368,203,312,401,239,390,318,224,378,290,319,320,228,447,302",
+  "trains": 2
+ },
+ {
+  "routeName": "Maho - Colombo Fort",
+  "startStation": 340,
+  "endStation": 102,
+  "orderedStations": "340,460,372,275,255,490,371,329,373,416,446,260,413,193,196,361,474,251,254,425,280,311,233,101,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Kandy",
+  "startStation": 102,
+  "endStation": 301,
+  "orderedStations": "102,251,413,406,301",
+  "trains": 3
+ },
+ {
+  "routeName": "Kandy - Colombo Fort",
+  "startStation": 301,
+  "endStation": 102,
+  "orderedStations": "301,406,413,251,102",
+  "trains": 2
+ },
+ {
+  "routeName": "Badulla - Colombo Fort",
+  "startStation": 209,
+  "endStation": 102,
+  "orderedStations": "209,240,211,375,406,413,251,102",
+  "trains": 1
+ },
+ {
+  "routeName": "Colombo Fort - Jaffna",
+  "startStation": 102,
+  "endStation": 290,
+  "orderedStations": "102,251,413,329,340,200,473,312,290",
+  "trains": 1
+ }
+]

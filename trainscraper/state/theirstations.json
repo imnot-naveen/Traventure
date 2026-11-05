@@ -1,0 +1,452 @@
+{
+ "stations": [
+  {
+   "stationID": 101,
+   "city": "Maradana",
+   "name": "Maradana"
+  },
+  {
+   "stationID": 102,
+   "city": "Colombo",
+   "name": "Colombo Fort"
+  },
+  {
+   "stationID": 103,
+   "city": "Colombo",
+   "name": "Secretariat Halt"
+  },
+  {
+   "stationID": 104,
+   "city": "Kompanna Vidiya",
+   "name": "Kompanna Vidiya"
+  },
+  {
+   "stationID": 105,
+   "city": "Kollupitiya",
+   "name": "Kollupitiya"
+  },
+  {
+   "stationID": 106,
+   "city": "Bambalapitiya",
+   "name": "Bambalapitiya"
+  },
+  {
+   "stationID": 107,
+   "city": "Wellawatta",
+   "name": "Wellawatta"
+  },
+  {
+   "stationID": 108,
+   "city": "Dehiwala",
+   "name": "Dehiwala"
+  },
+  {
+   "stationID": 109,
+   "city": "Mount Lavinia",
+   "name": "Mount Lavinia"
+  },
+  {
+   "stationID": 110,
+   "city": "Ratmalana",
+   "name": "Ratmalana"
+  },
+  {
+   "stationID": 111,
+   "city": "Angulana",
+   "name": "Angulana"
+  },
+  {
+   "stationID": 112,
+   "city": "Lunawa",
+   "name": "Lunawa"
+  },
+  {
+   "stationID": 113,
+   "city": "Moratuwa",
+   "name": "Moratuwa"
+  },
+  {
+   "stationID": 114,
+   "city": "Koralawalla",
+   "name": "Koralawalla"
+  },
+  {
+   "stationID": 115,
+   "city": "Egoda Uyana",
+   "name": "Egoda Uyana"
+  },
+  {
+   "stationID": 116,
+   "city": "Bolgoda",
+   "name": "Bolgoda Lake"
+  },
+  {
+   "stationID": 117,
+   "city": "Panadura",
+   "name": "Panadura"
+  },
+  {
+   "stationID": 118,
+   "city": "Pinwatta",
+   "name": "Pinwatta"
+  },
+  {
+   "stationID": 119,
+   "city": "Wadduwa",
+   "name": "Wadduwa"
+  },
+  {
+   "stationID": 120,
+   "city": "Pothupitiya",
+   "name": "Train Halt No 01"
+  },
+  {
+   "stationID": 121,
+   "city": "Kalutara North",
+   "name": "Kalutara North"
+  },
+  {
+   "stationID": 122,
+   "city": "Kalutara",
+   "name": "Kalu Ganga"
+  },
+  {
+   "stationID": 123,
+   "city": "Kalutara South",
+   "name": "Kalutara South"
+  },
+  {
+   "stationID": 124,
+   "city": "Katukurunda",
+   "name": "Katukurunda"
+  },
+  {
+   "stationID": 125,
+   "city": "Paiyagala North",
+   "name": "Paiyagala North"
+  },
+  {
+   "stationID": 126,
+   "city": "Paiyagala South",
+   "name": "Paiyagala South"
+  },
+  {
+   "stationID": 127,
+   "city": "Maggona",
+   "name": "Maggona"
+  },
+  {
+   "stationID": 128,
+   "city": "Beruwala",
+   "name": "Beruwala"
+  },
+  {
+   "stationID": 129,
+   "city": "Hettimulla",
+   "name": "Hettimulla"
+  },
+  {
+   "stationID": 130,
+   "city": "Aluthgama",
+   "name": "Aluthgama"
+  },
+  {
+   "stationID": 131,
+   "city": "Benthota",
+   "name": "Benthota Ganga"
+  },
+  {
+   "stationID": 132,
+   "city": "Bentota",
+   "name": "Bentota"
+  },
+  {
+   "stationID": 133,
+   "city": "Induruwa",
+   "name": "Induruwa"
+  },
+  {
+   "stationID": 134,
+   "city": "Maha Induruwa",
+   "name": "Maha Induruwa"
+  },
+  {
+   "stationID": 135,
+   "city": "Kosgoda",
+   "name": "Kosgoda"
+  },
+  {
+   "stationID": 136,
+   "city": "Piyagama",
+   "name": "Piyagama"
+  },
+  {
+   "stationID": 137,
+   "city": "Ahungalla",
+   "name": "Ahungalla"
+  },
+  {
+   "stationID": 138,
+   "city": "Pathagangoda",
+   "name": "Pathagangoda"
+  },
+  {
+   "stationID": 139,
+   "city": "Balapitiya",
+   "name": "Balapitiya"
+  },
+  {
+   "stationID": 140,
+   "city": "Balapitiya",
+   "name": "Madu Ganga"
+  },
+  {
+   "stationID": 141,
+   "city": "Andadola",
+   "name": "Andadola"
+  },
+  {
+   "stationID": 142,
+   "city": "Kandegoda",
+   "name": "Kandegoda"
+  },
+  {
+   "stationID": 143,
+   "city": "Ambalangoda",
+   "name": "Ambalangoda"
+  },
+  {
+   "stationID": 144,
+   "city": "Madampe",
+   "name": "Madampe Lagoon"
+  },
+  {
+   "stationID": 145,
+   "city": "Madampagama",
+   "name": "Madampagama"
+  },
+  {
+   "stationID": 146,
+   "city": "Akurala",
+   "name": "Akurala"
+  },
+  {
+   "stationID": 147,
+   "city": "Kahawa",
+   "name": "Kahawa"
+  },
+  {
+   "stationID": 148,
+   "city": "Telwatta",
+   "name": "Telwatta"
+  },
+  {
+   "stationID": 149,
+   "city": "Sinigama",
+   "name": "Sinigama"
+  },
+  {
+   "stationID": 150,
+   "city": "Hikkaduwa",
+   "name": "Hikkaduwa"
+  },
+  {
+   "stationID": 151,
+   "city": "Thiranagama",
+   "name": "Thiranagama"
+  },
+  {
+   "stationID": 152,
+   "city": "Kumarakanda",
+   "name": "Kumarakanda"
+  },
+  {
+   "stationID": 153,
+   "city": "Rathgama",
+   "name": "Rathgama Lagoon"
+  },
+  {
+   "stationID": 154,
+   "city": "Dodanduwa",
+   "name": "Dodanduwa"
+  },
+  {
+   "stationID": 155,
+   "city": "Rajgama",
+   "name": "Rajgama"
+  },
+  {
+   "stationID": 156,
+   "city": "Boossa",
+   "name": "Boossa"
+  },
+  {
+   "stationID": 157,
+   "city": "Boossa",
+   "name": "Gin Ganga"
+  },
+  {
+   "stationID": 158,
+   "city": "Ginthota",
+   "name": "Ginthota"
+  },
+  {
+   "stationID": 159,
+   "city": "Piyadigama",
+   "name": "Piyadigama"
+  },
+  {
+   "stationID": 160,
+   "city": "Galle",
+   "name": "Richmond Hill"
+  },
+  {
+   "stationID": 161,
+   "city": "Galle",
+   "name": "Galle"
+  },
+  {
+   "stationID": 162,
+   "city": "Katugoda",
+   "name": "Katugoda"
+  },
+  {
+   "stationID": 163,
+   "city": "Unawatuna",
+   "name": "Unawatuna"
+  },
+  {
+   "stationID": 164,
+   "city": "Talpe",
+   "name": "Talpe"
+  },
+  {
+   "stationID": 165,
+   "city": "Habaraduwa",
+   "name": "Habaraduwa"
+  },
+  {
+   "stationID": 166,
+   "city": "Koggala",
+   "name": "Koggala"
+  },
+  {
+   "stationID": 167,
+   "city": "Koggala",
+   "name": "Koggala Lagoon"
+  },
+  {
+   "stationID": 168,
+   "city": "Kathaluwa",
+   "name": "Kathaluwa"
+  },
+  {
+   "stationID": 169,
+   "city": "Ahangama",
+   "name": "Ahangama"
+  },
+  {
+   "stationID": 170,
+   "city": "Midigama",
+   "name": "Midigama"
+  },
+  {
+   "stationID": 171,
+   "city": "Kubalgama",
+   "name": "Kubalgama"
+  },
+  {
+   "stationID": 172,
+   "city": "Weligama",
+   "name": "Weligama"
+  },
+  {
+   "stationID": 173,
+   "city": "Polwatta",
+   "name": "Polwatta Ganga"
+  },
+  {
+   "stationID": 174,
+   "city": "Polwathumodara",
+   "name": "Polwathumodara"
+  },
+  {
+   "stationID": 175,
+   "city": "Mirissa",
+   "name": "Mirissa"
+  },
+  {
+   "stationID": 176,
+   "city": "Kamburugamuwa",
+   "name": "Kamburugamuwa"
+  },
+  {
+   "stationID": 177,
+   "city": "Walgama",
+   "name": "Walgama"
+  },
+  {
+   "stationID": 178,
+   "city": "Matara",
+   "name": "Matara"
+  },
+  {
+   "stationID": 179,
+   "city": "Piladuwa",
+   "name": "Piladuwa"
+  },
+  {
+   "stationID": 180,
+   "city": "Nilwala",
+   "name": "Nilwala Ganga"
+  },
+  {
+   "stationID": 181,
+   "city": "Weherahena",
+   "name": "Weherahena"
+  },
+  {
+   "stationID": 182,
+   "city": "Nakuttiyagama",
+   "name": "Nakuttiyagama Tunnel"
+  },
+  {
+   "stationID": 183,
+   "city": "Kekanadura",
+   "name": "Kekanadura"
+  },
+  {
+   "stationID": 184,
+   "city": "Babarenda",
+   "name": "Babarenda"
+  },
+  {
+   "stationID": 185,
+   "city": "Akurubebila",
+   "name": "Akurubebila Tunnel"
+  },
+  {
+   "stationID": 186,
+   "city": "Wavurukannala",
+   "name": "Wavurukannala"
+  },
+  {
+   "stationID": 187,
+   "city": "Dedduwawala",
+   "name": "Dedduwawala"
+  },
+  {
+   "stationID": 188,
+   "city": "Beliatta",
+   "name": "Beliatta"
+  }
+ ],
+ "routes": [
+  {
+   "routeName": "Coastal",
+   "startStation": 101,
+   "endStation": 188,
+   "orderedStations": "101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188"
+  }
+ ]
+}

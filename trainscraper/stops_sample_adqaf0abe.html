@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> - TrainSchedule.lk</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/lk-site.css?v=fepBHPvhZXsD3y50EJkdnj3ZVnsBBFRwHxlXrN4jt9U" />
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3376419559591383"
+        crossorigin="anonymous"></script>
+
+    <meta name="google-adsense-account" content="ca-pub-3376419559591383">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSH6CNVWJQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JSH6CNVWJQ');
+    </script>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=67bd433501b24900196a414c&product=inline-share-buttons&source=platform" async="async"></script>
+</head>
+<body>
+    <header b-3vo3j4s65u>
+        <nav b-3vo3j4s65u class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div b-3vo3j4s65u class="container-fluid">
+                <a class="navbar-brand" href="/">TrainSchedule.lk</a>
+                <button b-3vo3j4s65u class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span b-3vo3j4s65u class="navbar-toggler-icon"></span>
+                </button>
+                <div b-3vo3j4s65u class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul b-3vo3j4s65u class="navbar-nav flex-grow-1">
+                        <li b-3vo3j4s65u class="nav-item">
+                            <a class="nav-link text-dark" href="/">Schedule</a>
+                        </li>
+                        <li b-3vo3j4s65u class="nav-item">
+                            <a class="nav-link text-dark" href="/Home/Privacy">Privacy</a>
+                        </li>
+                        <li b-3vo3j4s65u class="nav-item">
+                            <a class="nav-link text-dark" href="/Home/Contact">Contact</a>
+                        </li>
+                        <li b-3vo3j4s65u class="nav-item">
+                            <a class="nav-link text-dark" href="/about">About</a>
+                        </li>
+                        <li b-3vo3j4s65u class="nav-item">
+                            <a class="nav-link text-dark" href="/Guide">Guide</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div b-3vo3j4s65u class="container">
+        <main b-3vo3j4s65u role="main" class="pb-3">
+            
+<style>
+    .circle-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 20px; /* Adjust based on your design */
+    }
+
+    .circle {
+        position: relative;
+        width: auto;
+        height: auto;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .circle:not(:last-child)::after {
+            content: '→';
+            color: #000;
+            position: absolute;
+            right: -20px; /* Adjust based on your design */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+</style>
+<link href="/css/lk-schedule.css rel=" stylesheet" />
+
+<link href="/css/lk-schedule.css" rel="stylesheet" />
+
+
+<div class="text-center">
+    <img src="/img/trainschedulelogo2.png" alt="TrainSchedule.lk" class="img-responsive" width="150px" />
+    <hr />
+    <h1>Stopping Stations</h1>
+    <div class="row">
+        <div class="col-md-3  col-sm-3 col-xs-3">
+        </div>
+        <div class="col-md-6  col-sm-6 col-xs-6">
+            <h5>
+                Train No : <br />
+                Start Station : <br />
+                End Station : <br />
+            </h5>
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <div class="circle-container">
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
+<hr />
+<div id="legend-container">
+    <b>Legend:</b>
+    <span style="color: green;">🟩 Starting Station</span>
+    <span style="color: red;">🟥 Ending Station</span>
+    <span style="color: blue;">🔵 Regular Stop</span>
+</div>
+<div>
+    <br />
+    <label for="showRegularStops" style="cursor: pointer;">
+        <input type="checkbox" id="showRegularStops"> Show Names of Regular Stops
+    </label>
+    <br />  <br />
+</div>
+<div id="map" style="width: 100%; height: 400px;"></div>
+<br />
+<br />
+<div class="sharethis-inline-share-buttons"></div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        
+    </div>
+</div>
+
+<script>
+    var stationsData = [];
+</script>
+<script src="/js/stops-map.js"></script>
+
+
+<style>
+    .leaflet-control-attribution {
+        display: none !important;
+    }
+    #legend-container {
+        margin-top: 10px;
+        padding: 8px;
+        background: white;
+        border-radius: 5px;
+        font-size: 14px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        color: black;
+        display: flex;
+        gap: 15px;
+    }
+
+    .station-label {
+        font-size: 12px;
+        font-weight: bold;
+        color: black;
+        padding: 2px 4px;
+        border-radius: 3px;
+        text-align: center;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+        </main>
+    </div>
+    <br b-3vo3j4s65u /><br b-3vo3j4s65u /><br b-3vo3j4s65u />
+
+    <footer b-3vo3j4s65u class="border-top footer text-muted">
+        <div b-3vo3j4s65u class="container text-center">
+            &copy; 2026 TrainSchedule.lk. All rights Reserved.
+        </div>
+    </footer>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+    
+</body>
+</html>
