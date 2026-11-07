@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 // Headers
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
@@ -11,13 +13,14 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS
 }
 
 include_once('../core/initialize.php');
+require_once('../core/TransitRouter.php');
 
 try {
     $rawInput = file_get_contents("php://input");
     $data = json_decode($rawInput, true);
 
-    $startStation = $data['startStation'] ?? null;
-    $endStation = $data['endStation'] ?? null;
+    $startStation = isset($data['startStation']) ? (int)$data['startStation'] : null;
+    $endStation = isset($data['endStation']) ? (int)$data['endStation'] : null;
     $searchDate = $data['searchDate'] ?? date('Y-m-d');
 
     if (!$startStation || !$endStation) {
@@ -27,102 +30,39 @@ try {
     }
 
     $timestamp = strtotime($searchDate);
-    $dayOfWeek = date('D', $timestamp); // Mon, Tue, Wed, Thu, Fri, Sat, Sun
-    $isWeekend = in_array($dayOfWeek, ['Sat', 'Sun']);
+    $dayOfWeek = date('D', $timestamp);
+    $isWeekend = in_array($dayOfWeek, ['Sat', 'Sun'], true);
 
-    // Helper to check running days
-    function isTrainRunningOnDate($daysStr, $dayOfWeek, $isWeekend) {
-        if (empty($daysStr)) return true;
-        $daysStr = trim($daysStr);
-        if ($daysStr === 'Daily') return true;
-        if ($daysStr === 'Weekdays') return !$isWeekend;
-        if ($daysStr === 'Weekends') return $isWeekend;
-        // Check comma-separated tokens (e.g., 'Mon, Tue, Wed, Thu, Fri')
-        $tokens = array_map('trim', explode(',', $daysStr));
-        return in_array($dayOfWeek, $tokens);
-    }
+    $router = new TransitRouter($db);
 
-    // 1. DIRECT TRAIN SEARCH
-    $directQuery = "
-        SELECT 
-            t.trainID,
-            t.name AS trainName,
-            t.type AS trainType,
-            t.days,
-            ts1.departuretime AS departureTime,
-            ts2.arrivaltime AS arrivalTime,
-            st_start.name AS startStationName,
-            st_end.name AS endStationName,
-            st_term.name AS terminalStationName,
-            TIMEDIFF(ts2.arrivaltime, ts1.departuretime) AS rawDuration
-        FROM trainstops ts1
-        JOIN trainstops ts2 ON ts1.trainID = ts2.trainID
-        JOIN train t ON t.trainID = ts1.trainID
-        JOIN station st_start ON st_start.stationID = ts1.stationid
-        JOIN station st_end ON st_end.stationID = ts2.stationid
-        LEFT JOIN station st_term ON st_term.stationID = t.endStation
-        WHERE ts1.stationid = :startStation 
-          AND ts2.stationid = :endStation
-          AND (
-              ts1.departuretime < ts2.arrivaltime 
-              OR (ts2.arrivaltime < ts1.departuretime) -- Overnight train
-          )
-        ORDER BY ts1.departuretime ASC
-    ";
-
-    $stmt = $db->prepare($directQuery);
-    $stmt->execute([
-        ':startStation' => $startStation,
-        ':endStation' => $endStation
-    ]);
-    $rawDirect = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    // 1. Direct Trains via TransitRouter
+    $directTrains = $router->findDirectTrains($startStation, $endStation, $searchDate);
     $directItineraries = [];
-    foreach ($rawDirect as $tr) {
-        if (!isTrainRunningOnDate($tr['days'], $dayOfWeek, $isWeekend)) {
-            continue;
-        }
-
-        // Calculate clean duration
-        $depSec = strtotime("1970-01-01 " . $tr['departureTime']);
-        $arrSec = strtotime("1970-01-01 " . $tr['arrivalTime']);
-        $isOvernight = false;
-        if ($arrSec < $depSec) {
-            $arrSec += 86400; // Next day arrival
-            $isOvernight = true;
-        }
-        $diffSec = $arrSec - $depSec;
-        $hours = floor($diffSec / 3600);
-        $minutes = floor(($diffSec % 3600) / 60);
-        $formattedDuration = "{$hours}h {$minutes}m";
-
+    foreach ($directTrains as $dt) {
         $directItineraries[] = [
             'type' => 'direct',
-            'isOvernight' => $isOvernight,
-            'totalDuration' => $formattedDuration,
+            'isOvernight' => $dt['isOvernight'],
+            'totalDuration' => $dt['duration'],
             'legs' => [
                 [
-                    'trainID' => $tr['trainID'],
-                    'trainName' => $tr['trainName'],
-                    'trainType' => $tr['trainType'],
-                    'departureStation' => $tr['startStationName'],
-                    'departureTime' => substr($tr['departureTime'], 0, 5),
-                    'arrivalStation' => $tr['endStationName'],
-                    'arrivalTime' => substr($tr['arrivalTime'], 0, 5),
-                    'terminalStation' => $tr['terminalStationName'],
-                    'duration' => $formattedDuration,
-                    'days' => $tr['days']
+                    'trainID' => $dt['trainID'],
+                    'trainName' => $dt['trainName'],
+                    'trainType' => $dt['trainType'],
+                    'departureStation' => $dt['departureStation'],
+                    'departureTime' => $dt['departureTime'],
+                    'arrivalStation' => $dt['arrivalStation'],
+                    'arrivalTime' => $dt['arrivalTime'],
+                    'terminalStation' => $dt['terminalStation'],
+                    'duration' => $dt['duration'],
+                    'days' => $dt['days']
                 ]
             ]
         ];
     }
 
-    // 2. MULTI-LEG / TRANSFER SEARCH (Key Sri Lanka Railway Junctions)
-    // Major transit hubs in Sri Lanka: Colombo Fort (102), Maradana (101), Ragama (425/424), Polgahawela (413), Maho (340), Peradeniya (406)
+    // 2. Multi-Leg Transfers across major railway transit hubs
+    // Hubs: Colombo Fort (102), Maradana (101), Polgahawela (413), Ragama (425), Peradeniya (406)
     $transitHubs = [102, 101, 413, 425, 406];
-    $transferItineraries = [];
-
-    // Only search transfers if direct results are few, or if user is searching cross-line routes
     $hubPlaceholders = implode(',', array_map('intval', $transitHubs));
 
     // Leg 1: startStation -> Hub
@@ -191,65 +131,50 @@ try {
     ]);
     $leg2Results = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
-    // Pair matching Hub transfers
+    $transferItineraries = [];
     $matchedTransfers = [];
-    foreach ($leg1Results as $l1) {
-        if (!isTrainRunningOnDate($l1['days'], $dayOfWeek, $isWeekend)) continue;
 
-        $l1DepSec = strtotime("1970-01-01 " . $l1['departureTime']);
-        $l1ArrSec = strtotime("1970-01-01 " . $l1['arrivalTime']);
-        if ($l1ArrSec < $l1DepSec) $l1ArrSec += 86400;
+    foreach ($leg1Results as $l1) {
+        if (!$router->isTrainRunning($l1['days'] ?? '', $dayOfWeek, $isWeekend)) {
+            continue;
+        }
+
+        $l1DepSec = (int)strtotime("1970-01-01 " . $l1['departureTime']);
 
         foreach ($leg2Results as $l2) {
-            if ($l1['hubStationID'] != $l2['hubStationID']) continue;
-
-            $l2DepSec = strtotime("1970-01-01 " . $l2['departureTime']);
-            $l2ArrSec = strtotime("1970-01-01 " . $l2['arrivalTime']);
-            if ($l2ArrSec < $l2DepSec) $l2ArrSec += 86400;
-
-            $isOvernightLayover = false;
-            $layoverSeconds = $l2DepSec - $l1ArrSec;
-
-            // Same day transfer: layover must be >= 25 mins and <= 4 hours
-            if ($layoverSeconds >= 1500 && $layoverSeconds <= 14400) {
-                $isOvernightLayover = false;
-            } 
-            // Overnight transfer: L1 arrives in evening/night, L2 departs next morning (layover 4h to 16h)
-            elseif ($layoverSeconds < 1500) {
-                // Next day morning departure
-                $nextDayL2DepSec = $l2DepSec + 86400;
-                $overnightLayoverSec = $nextDayL2DepSec - $l1ArrSec;
-                if ($overnightLayoverSec >= 14400 && $overnightLayoverSec <= 57600) {
-                    $layoverSeconds = $overnightLayoverSec;
-                    $isOvernightLayover = true;
-                } else {
-                    continue; // Infeasible layover
-                }
-            } else {
+            if ($l1['hubStationID'] != $l2['hubStationID']) {
                 continue;
             }
 
-            // Format layover duration
-            $layHours = floor($layoverSeconds / 3600);
-            $layMins = floor(($layoverSeconds % 3600) / 60);
-            $formattedLayover = "{$layHours}h {$layMins}m";
+            if (!$router->isTrainRunning($l2['days'] ?? '', $dayOfWeek, $isWeekend)) {
+                continue;
+            }
 
-            // Total journey duration
-            $totalSec = ($isOvernightLayover ? $l2ArrSec + 86400 : $l2ArrSec) - $l1DepSec;
-            $totHours = floor($totalSec / 3600);
-            $totMins = floor(($totalSec % 3600) / 60);
+            // Utilize evaluateTransfer()
+            $eval = $router->evaluateTransfer($l1['arrivalTime'], $l2['departureTime']);
+            if ($eval === null) {
+                continue;
+            }
 
             $key = $l1['trainID'] . '_' . $l2['trainID'];
-            if (isset($matchedTransfers[$key])) continue;
+            if (isset($matchedTransfers[$key])) {
+                continue;
+            }
             $matchedTransfers[$key] = true;
+
+            $l2ArrSec = (int)strtotime("1970-01-01 " . $l2['arrivalTime']);
+            $totalSec = ($eval['isOvernight'] ? $l2ArrSec + 86400 : $l2ArrSec) - $l1DepSec;
+            if ($totalSec < 0) {
+                $totalSec += 86400;
+            }
 
             $transferItineraries[] = [
                 'type' => 'transfer',
-                'isOvernightLayover' => $isOvernightLayover,
+                'isOvernightLayover' => $eval['isOvernight'],
                 'layoverStation' => $l1['hubStationName'],
-                'layoverDuration' => $formattedLayover,
-                'layoverHours' => round($layoverSeconds / 3600, 1),
-                'totalDuration' => "{$totHours}h {$totMins}m",
+                'layoverDuration' => $eval['layoverFormatted'],
+                'layoverHours' => round($eval['layoverSeconds'] / 3600, 1),
+                'totalDuration' => $router->formatDuration($totalSec),
                 'departureTime' => substr($l1['departureTime'], 0, 5),
                 'arrivalTime' => substr($l2['arrivalTime'], 0, 5),
                 'legs' => [
@@ -280,7 +205,7 @@ try {
         }
     }
 
-    // Limit transfer count to top 15 fastest
+    // Sort by departure time and limit results
     usort($transferItineraries, function($a, $b) {
         return strcmp($a['departureTime'], $b['departureTime']);
     });

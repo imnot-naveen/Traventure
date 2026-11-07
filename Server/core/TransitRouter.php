@@ -133,42 +133,45 @@ class TransitRouter {
     }
 
     /**
-     * =========================================================================
-     * YOUR HANDS-ON MISSION: MULTI-LEG TRANSFER EVALUATION
-     * =========================================================================
-     * 
-     * Given Leg 1 (arriving at a transit junction) and Leg 2 (departing from the same junction),
-     * determine if the connection is valid, calculate the layover, and classify whether
-     * it is a Same-Day transfer or an Overnight Layover.
-     * 
-     * @param string $leg1ArrTime  Departure station -> Junction arrival time (e.g., "21:30:00")
-     * @param string $leg2DepTime  Junction departure -> Destination departure time (e.g., "05:55:00")
-     * 
-     * @return array|null Returns null if transfer is invalid/infeasible, OR an array:
-     *   [
-     *      'isValid' => true,
-     *      'isOvernight' => bool,           // True if traveler must stay overnight
-     *      'layoverSeconds' => int,         // Duration waiting at junction in seconds
-     *      'layoverFormatted' => string     // e.g. "8h 25m"
-     *   ]
-     * 
-     * RULES:
-     * 1. Minimum transfer time at a junction is 20 minutes (1200 seconds) so travelers can change platforms.
-     * 2. If Leg 2 departs later on the same day ($leg2DepTime >= $leg1ArrTime + 20 mins):
-     *    - If layover is <= 4 hours (14400 seconds), it's a SAME-DAY transfer ('isOvernight' => false).
-     *    - If layover > 4 hours on the same day, you can still consider it same-day or reject if too long.
-     * 3. If Leg 2 departs earlier in the clock time than Leg 1 arrives (e.g. arrives at 21:30 at night,
-     *    next train is at 05:55 the next morning):
-     *    - Add 86400 seconds (24 hours) to Leg 2 departure time to calculate overnight layover.
-     *    - If overnight layover is between 4 hours (14400s) and 16 hours (57600s),
-     *      it is a valid OVERNIGHT layover ('isOvernight' => true).
-     * 4. Otherwise, return null (infeasible).
+     * Evaluates a transfer connection between two train legs at a junction.
+     *
+     * Validates minimum platform transfer windows (>=20m) and classifies
+     * connections into same-day transfers (<=4h) or overnight layovers (4h-16h).
+     *
+     * @param string $leg1ArrTime  Inbound arrival time (HH:MM:SS)
+     * @param string $leg2DepTime  Outbound departure time (HH:MM:SS)
+     * @return array|null Returns connection metadata or null if infeasible
      */
     public function evaluateTransfer(string $leg1ArrTime, string $leg2DepTime): ?array {
-        // TODO: Implement your transfer logic here!
-        // Hint: You can use strtotime("1970-01-01 " . $time) to convert time strings to timestamps.
-        
-        return null; // Replace this with your implementation
+        $arrSec = (int)strtotime("1970-01-01 " . $leg1ArrTime);
+        $depSec = (int)strtotime("1970-01-01 " . $leg2DepTime);
+
+        // Scenario 1: Same-day connection (min 20 mins, max 4 hours)
+        if ($depSec >= $arrSec) {
+            $diff = $depSec - $arrSec;
+            if ($diff >= 1200 && $diff <= 14400) {
+                return [
+                    'isValid' => true,
+                    'isOvernight' => false,
+                    'layoverSeconds' => $diff,
+                    'layoverFormatted' => $this->formatDuration($diff),
+                ];
+            }
+        }
+
+        // Scenario 2: Overnight connection (train departs next morning, 4h - 16h layover)
+        if ($depSec < $arrSec) {
+            $diff = ($depSec + 86400) - $arrSec;
+            if ($diff >= 14400 && $diff <= 57600) {
+                return [
+                    'isValid' => true,
+                    'isOvernight' => true,
+                    'layoverSeconds' => $diff,
+                    'layoverFormatted' => $this->formatDuration($diff),
+                ];
+            }
+        }      
+
+        return null;       
     }
 }
-
