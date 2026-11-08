@@ -1,0 +1,2186 @@
+[
+  {
+    "stationID": 101,
+    "name": "Maradana",
+    "city": "Maradana",
+    "lat": 6.92969,
+    "lng": 79.86509
+  },
+  {
+    "stationID": 102,
+    "name": "Colombo Fort",
+    "city": "Colombo Fort",
+    "lat": 6.93386,
+    "lng": 79.85005
+  },
+  {
+    "stationID": 103,
+    "name": "Secretartat Halt",
+    "city": "Secretartat Halt",
+    "lat": 6.93222,
+    "lng": 79.84607
+  },
+  {
+    "stationID": 104,
+    "name": "Kompannavediya",
+    "city": "Kompannavediya",
+    "lat": 6.92318,
+    "lng": 79.84956
+  },
+  {
+    "stationID": 105,
+    "name": "Kollupitiya",
+    "city": "Kollupitiya",
+    "lat": 6.91143,
+    "lng": 79.84818
+  },
+  {
+    "stationID": 106,
+    "name": "Bambalapitiya",
+    "city": "Bambalapitiya",
+    "lat": 6.89392,
+    "lng": 79.85299
+  },
+  {
+    "stationID": 107,
+    "name": "Wellawatta",
+    "city": "Wellawatta",
+    "lat": 6.87616,
+    "lng": 79.85719
+  },
+  {
+    "stationID": 108,
+    "name": "Dehiwala",
+    "city": "Dehiwala",
+    "lat": 6.8511,
+    "lng": 79.86211
+  },
+  {
+    "stationID": 109,
+    "name": "Mount Lavinia",
+    "city": "Mount Lavinia",
+    "lat": 6.83156,
+    "lng": 79.86268
+  },
+  {
+    "stationID": 110,
+    "name": "Ratmalana",
+    "city": "Ratmalana",
+    "lat": 6.81488,
+    "lng": 79.86689
+  },
+  {
+    "stationID": 111,
+    "name": "Angulana",
+    "city": "Angulana",
+    "lat": 6.79912,
+    "lng": 79.87253
+  },
+  {
+    "stationID": 112,
+    "name": "Lunawa",
+    "city": "Lunawa",
+    "lat": 6.78737,
+    "lng": 79.87547
+  },
+  {
+    "stationID": 113,
+    "name": "Moratuwa",
+    "city": "Moratuwa",
+    "lat": 6.77458,
+    "lng": 79.88211
+  },
+  {
+    "stationID": 114,
+    "name": "Koralawella",
+    "city": "Koralawella",
+    "lat": 6.75875,
+    "lng": 79.88599
+  },
+  {
+    "stationID": 115,
+    "name": "Egoda Uyana",
+    "city": "Egoda Uyana",
+    "lat": 6.74312,
+    "lng": 79.89174
+  },
+  {
+    "stationID": 117,
+    "name": "Panadura",
+    "city": "Panadura",
+    "lat": 6.71259,
+    "lng": 79.90468
+  },
+  {
+    "stationID": 118,
+    "name": "Pinwatte",
+    "city": "Pinwatte",
+    "lat": 6.6862,
+    "lng": 79.91602
+  },
+  {
+    "stationID": 119,
+    "name": "Wadduwa",
+    "city": "Wadduwa",
+    "lat": 6.66297,
+    "lng": 79.92855
+  },
+  {
+    "stationID": 120,
+    "name": "Train Halt 01",
+    "city": "Train Halt 01",
+    "lat": 6.63276,
+    "lng": 79.9403
+  },
+  {
+    "stationID": 121,
+    "name": "Kalutara North",
+    "city": "Kalutara North",
+    "lat": 6.60142,
+    "lng": 79.95429
+  },
+  {
+    "stationID": 123,
+    "name": "Kalutara South",
+    "city": "Kalutara South",
+    "lat": 6.58443,
+    "lng": 79.95903
+  },
+  {
+    "stationID": 124,
+    "name": "Katukurunda",
+    "city": "Katukurunda",
+    "lat": 6.56034,
+    "lng": 79.9661
+  },
+  {
+    "stationID": 125,
+    "name": "Payagala North",
+    "city": "Payagala North",
+    "lat": 6.53187,
+    "lng": 79.97512
+  },
+  {
+    "stationID": 126,
+    "name": "Payagala South",
+    "city": "Payagala South",
+    "lat": 6.52183,
+    "lng": 79.9789
+  },
+  {
+    "stationID": 127,
+    "name": "Maggona",
+    "city": "Maggona",
+    "lat": 6.50505,
+    "lng": 79.98147
+  },
+  {
+    "stationID": 128,
+    "name": "Beruwala",
+    "city": "Beruwala",
+    "lat": 6.47716,
+    "lng": 79.98363
+  },
+  {
+    "stationID": 129,
+    "name": "Hettimulla",
+    "city": "Hettimulla",
+    "lat": 6.45826,
+    "lng": 79.99077
+  },
+  {
+    "stationID": 130,
+    "name": "Aluthgama",
+    "city": "Aluthgama",
+    "lat": 6.43316,
+    "lng": 80.00023
+  },
+  {
+    "stationID": 132,
+    "name": "Bentota",
+    "city": "Bentota",
+    "lat": 6.42236,
+    "lng": 79.99668
+  },
+  {
+    "stationID": 133,
+    "name": "Induruwa",
+    "city": "Induruwa",
+    "lat": 6.3878,
+    "lng": 80.00863
+  },
+  {
+    "stationID": 134,
+    "name": "Maha Induruwa",
+    "city": "Maha Induruwa",
+    "lat": 6.36446,
+    "lng": 80.01418
+  },
+  {
+    "stationID": 135,
+    "name": "Kosgoda",
+    "city": "Kosgoda",
+    "lat": 6.33867,
+    "lng": 80.02949
+  },
+  {
+    "stationID": 136,
+    "name": "Piyagama",
+    "city": "Piyagama",
+    "lat": 6.32776,
+    "lng": 80.03408
+  },
+  {
+    "stationID": 137,
+    "name": "Ahungalle",
+    "city": "Ahungalle",
+    "lat": 6.31286,
+    "lng": 80.03762
+  },
+  {
+    "stationID": 138,
+    "name": "Pategamgoda",
+    "city": "Pategamgoda",
+    "lat": 6.29674,
+    "lng": 80.04164
+  },
+  {
+    "stationID": 139,
+    "name": "Balapitiya",
+    "city": "Balapitiya",
+    "lat": 6.27687,
+    "lng": 80.04343
+  },
+  {
+    "stationID": 141,
+    "name": "Andadola",
+    "city": "Andadola",
+    "lat": 6.26633,
+    "lng": 80.04698
+  },
+  {
+    "stationID": 142,
+    "name": "Kandegoda",
+    "city": "Kandegoda",
+    "lat": 6.25034,
+    "lng": 80.05293
+  },
+  {
+    "stationID": 143,
+    "name": "Ambalangoda",
+    "city": "Ambalangoda",
+    "lat": 6.23549,
+    "lng": 80.05501
+  },
+  {
+    "stationID": 145,
+    "name": "Madampagama",
+    "city": "Madampagama",
+    "lat": 6.21287,
+    "lng": 80.06106
+  },
+  {
+    "stationID": 146,
+    "name": "Akurala",
+    "city": "Akurala",
+    "lat": 6.19229,
+    "lng": 80.06487
+  },
+  {
+    "stationID": 147,
+    "name": "Kahawa",
+    "city": "Kahawa",
+    "lat": 6.18342,
+    "lng": 80.07398
+  },
+  {
+    "stationID": 148,
+    "name": "Telwatte",
+    "city": "Telwatte",
+    "lat": 6.16938,
+    "lng": 80.08902
+  },
+  {
+    "stationID": 149,
+    "name": "Seenigama",
+    "city": "Seenigama",
+    "lat": 6.15889,
+    "lng": 80.09468
+  },
+  {
+    "stationID": 150,
+    "name": "Hikkaduwa",
+    "city": "Hikkaduwa",
+    "lat": 6.14237,
+    "lng": 80.10011
+  },
+  {
+    "stationID": 151,
+    "name": "Thiranagama",
+    "city": "Thiranagama",
+    "lat": 6.12249,
+    "lng": 80.11445
+  },
+  {
+    "stationID": 152,
+    "name": "Kumarakanda",
+    "city": "Kumarakanda",
+    "lat": 6.11269,
+    "lng": 80.12428
+  },
+  {
+    "stationID": 154,
+    "name": "Dodanduwa",
+    "city": "Dodanduwa",
+    "lat": 6.09842,
+    "lng": 80.1329
+  },
+  {
+    "stationID": 155,
+    "name": "Rathgama",
+    "city": "Rathgama",
+    "lat": 6.09355,
+    "lng": 80.14001
+  },
+  {
+    "stationID": 156,
+    "name": "Boossa",
+    "city": "Boossa",
+    "lat": 6.07419,
+    "lng": 80.16108
+  },
+  {
+    "stationID": 158,
+    "name": "Ginthota",
+    "city": "Ginthota",
+    "lat": 6.06083,
+    "lng": 80.17929
+  },
+  {
+    "stationID": 159,
+    "name": "Piyadigama",
+    "city": "Piyadigama",
+    "lat": 6.05388,
+    "lng": 80.19081
+  },
+  {
+    "stationID": 160,
+    "name": "Richmond Hill",
+    "city": "Richmond Hill",
+    "lat": 6.05405,
+    "lng": 80.20482
+  },
+  {
+    "stationID": 161,
+    "name": "Galle",
+    "city": "Galle",
+    "lat": 6.03355,
+    "lng": 80.21428
+  },
+  {
+    "stationID": 162,
+    "name": "Katugoda",
+    "city": "Katugoda",
+    "lat": 6.03284,
+    "lng": 80.24018
+  },
+  {
+    "stationID": 163,
+    "name": "Unawatuna",
+    "city": "Unawatuna",
+    "lat": 6.02217,
+    "lng": 80.24915
+  },
+  {
+    "stationID": 164,
+    "name": "Thalpe",
+    "city": "Thalpe",
+    "lat": 5.99877,
+    "lng": 80.28001
+  },
+  {
+    "stationID": 165,
+    "name": "Habaraduwa",
+    "city": "Habaraduwa",
+    "lat": 5.99423,
+    "lng": 80.30839
+  },
+  {
+    "stationID": 166,
+    "name": "Koggala",
+    "city": "Koggala",
+    "lat": 5.98622,
+    "lng": 80.33148
+  },
+  {
+    "stationID": 168,
+    "name": "Kathaluwa",
+    "city": "Kathaluwa",
+    "lat": 5.98273,
+    "lng": 80.34032
+  },
+  {
+    "stationID": 169,
+    "name": "Ahangama",
+    "city": "Ahangama",
+    "lat": 5.97339,
+    "lng": 80.36382
+  },
+  {
+    "stationID": 170,
+    "name": "Midigama",
+    "city": "Midigama",
+    "lat": 5.96559,
+    "lng": 80.39129
+  },
+  {
+    "stationID": 171,
+    "name": "Kumbalgama",
+    "city": "Kumbalgama",
+    "lat": 5.9639,
+    "lng": 80.40968
+  },
+  {
+    "stationID": 172,
+    "name": "Weligama",
+    "city": "Weligama",
+    "lat": 5.97595,
+    "lng": 80.42954
+  },
+  {
+    "stationID": 174,
+    "name": "Polwathumodara",
+    "city": "Polwathumodara",
+    "lat": 5.96444,
+    "lng": 80.45738
+  },
+  {
+    "stationID": 175,
+    "name": "Mirissa",
+    "city": "Mirissa",
+    "lat": 5.95713,
+    "lng": 80.4734
+  },
+  {
+    "stationID": 176,
+    "name": "Kamburugamuwa",
+    "city": "Kamburugamuwa",
+    "lat": 5.94365,
+    "lng": 80.49582
+  },
+  {
+    "stationID": 177,
+    "name": "Walgama",
+    "city": "Walgama",
+    "lat": 5.94568,
+    "lng": 80.51417
+  },
+  {
+    "stationID": 178,
+    "name": "Matara",
+    "city": "Matara",
+    "lat": 5.952,
+    "lng": 80.54347
+  },
+  {
+    "stationID": 179,
+    "name": "Piladuwa",
+    "city": "Piladuwa",
+    "lat": 5.95392,
+    "lng": 80.55665
+  },
+  {
+    "stationID": 181,
+    "name": "Weherahena",
+    "city": "Weherahena",
+    "lat": 5.95739,
+    "lng": 80.57793
+  },
+  {
+    "stationID": 183,
+    "name": "Kakanadura",
+    "city": "Kakanadura",
+    "lat": 5.96062,
+    "lng": 80.59917
+  },
+  {
+    "stationID": 184,
+    "name": "Bambaranda",
+    "city": "Bambaranda",
+    "lat": 5.97073,
+    "lng": 80.66051
+  },
+  {
+    "stationID": 186,
+    "name": "Wewurukannala",
+    "city": "Wewurukannala",
+    "lat": 5.97944,
+    "lng": 80.6974
+  },
+  {
+    "stationID": 188,
+    "name": "Beliaththa",
+    "city": "Beliaththa",
+    "lat": 6.04246,
+    "lng": 80.73725
+  },
+  {
+    "stationID": 189,
+    "name": "Abanpola",
+    "city": "Abanpola",
+    "lat": 7.91925,
+    "lng": 80.24607
+  },
+  {
+    "stationID": 190,
+    "name": "Akbopura",
+    "city": "Akbopura",
+    "lat": 8.32705,
+    "lng": 80.97971
+  },
+  {
+    "stationID": 192,
+    "name": "Alawatupitiya",
+    "city": "Alawatupitiya",
+    "lat": 7.11601,
+    "lng": 79.88704
+  },
+  {
+    "stationID": 193,
+    "name": "Alawwa",
+    "city": "Alawwa",
+    "lat": 7.29364,
+    "lng": 80.23859
+  },
+  {
+    "stationID": 194,
+    "name": "aluth ambalama",
+    "city": "aluth ambalama",
+    "lat": 6.94009,
+    "lng": 80.15975
+  },
+  {
+    "stationID": 195,
+    "name": "Ambewela",
+    "city": "Ambewela",
+    "lat": 6.87735,
+    "lng": 80.81467
+  },
+  {
+    "stationID": 196,
+    "name": "Ambeypussa",
+    "city": "Ambeypussa",
+    "lat": 7.25641,
+    "lng": 80.16929
+  },
+  {
+    "stationID": 197,
+    "name": "Anawilundawa",
+    "city": "Anawilundawa",
+    "lat": 7.7034,
+    "lng": 79.82811
+  },
+  {
+    "stationID": 198,
+    "name": "Angampitiya",
+    "city": "Angampitiya",
+    "lat": 6.85334,
+    "lng": 80.10938
+  },
+  {
+    "stationID": 200,
+    "name": "Anuradhapura",
+    "city": "Anuradhapura",
+    "lat": 8.34471,
+    "lng": 80.41081
+  },
+  {
+    "stationID": 201,
+    "name": "Arachchikattuwa",
+    "city": "Arachchikattuwa",
+    "lat": 7.66751,
+    "lng": 79.82863
+  },
+  {
+    "stationID": 202,
+    "name": "Arapangama",
+    "city": "Arapangama",
+    "lat": 6.93238,
+    "lng": 80.13475
+  },
+  {
+    "stationID": 203,
+    "name": "Ariviyal Nagar",
+    "city": "Ariviyal Nagar",
+    "lat": 9.31894,
+    "lng": 80.40767
+  },
+  {
+    "stationID": 204,
+    "name": "Arukwatte",
+    "city": "Arukwatte",
+    "lat": 6.84272,
+    "lng": 80.10079
+  },
+  {
+    "stationID": 205,
+    "name": "Aselapura",
+    "city": "Aselapura",
+    "lat": 7.96375,
+    "lng": 81.30013
+  },
+  {
+    "stationID": 207,
+    "name": "Aukana",
+    "city": "Aukana",
+    "lat": 8.00456,
+    "lng": 80.51163
+  },
+  {
+    "stationID": 208,
+    "name": "Avissawella",
+    "city": "Avissawella",
+    "lat": 6.95484,
+    "lng": 80.20742
+  },
+  {
+    "stationID": 209,
+    "name": "Badulla",
+    "city": "Badulla",
+    "lat": 6.98024,
+    "lng": 81.05971
+  },
+  {
+    "stationID": 211,
+    "name": "Bandarawela",
+    "city": "Bandarawela",
+    "lat": 6.82916,
+    "lng": 80.98761
+  },
+  {
+    "stationID": 212,
+    "name": "Bangadeniya",
+    "city": "Bangadeniya",
+    "lat": 7.63571,
+    "lng": 79.82848
+  },
+  {
+    "stationID": 214,
+    "name": "Baseline Road",
+    "city": "Baseline Road",
+    "lat": 6.92663,
+    "lng": 79.87845
+  },
+  {
+    "stationID": 215,
+    "name": "Battaluoya",
+    "city": "Battaluoya",
+    "lat": 7.72748,
+    "lng": 79.83162
+  },
+  {
+    "stationID": 216,
+    "name": "Batticaloa",
+    "city": "Batticaloa",
+    "lat": 7.72467,
+    "lng": 81.69878
+  },
+  {
+    "stationID": 217,
+    "name": "Batuwatte",
+    "city": "Batuwatte",
+    "lat": 7.05527,
+    "lng": 79.93711
+  },
+  {
+    "stationID": 218,
+    "name": "Bemmulla",
+    "city": "Bemmulla",
+    "lat": 7.12259,
+    "lng": 80.02046
+  },
+  {
+    "stationID": 219,
+    "name": "Bolawatte",
+    "city": "Bolawatte",
+    "lat": 7.29731,
+    "lng": 79.8609
+  },
+  {
+    "stationID": 220,
+    "name": "Borelessa",
+    "city": "Borelessa",
+    "lat": 7.32013,
+    "lng": 79.86311
+  },
+  {
+    "stationID": 221,
+    "name": "Botale",
+    "city": "Botale",
+    "lat": 7.25671,
+    "lng": 80.1533
+  },
+  {
+    "stationID": 222,
+    "name": "Bujjomuwa",
+    "city": "Bujjomuwa",
+    "lat": 7.27339,
+    "lng": 80.21064
+  },
+  {
+    "stationID": 223,
+    "name": "Bulugahagoda",
+    "city": "Bulugahagoda",
+    "lat": 7.06628,
+    "lng": 79.94573
+  },
+  {
+    "stationID": 224,
+    "name": "Chavakachcheri",
+    "city": "Chavakachcheri",
+    "lat": 9.65734,
+    "lng": 80.15859
+  },
+  {
+    "stationID": 225,
+    "name": "Cheddikulam",
+    "city": "Cheddikulam",
+    "lat": 8.6694,
+    "lng": 80.30557
+  },
+  {
+    "stationID": 226,
+    "name": "Chilaw",
+    "city": "Chilaw",
+    "lat": 7.57582,
+    "lng": 79.79112
+  },
+  {
+    "stationID": 227,
+    "name": "China bay",
+    "city": "China bay",
+    "lat": 8.55676,
+    "lng": 81.19053
+  },
+  {
+    "stationID": 228,
+    "name": "Chunnakam",
+    "city": "Chunnakam",
+    "lat": 9.74531,
+    "lng": 80.0334
+  },
+  {
+    "stationID": 230,
+    "name": "Cotta Road",
+    "city": "Cotta Road",
+    "lat": 6.91337,
+    "lng": 79.88457
+  },
+  {
+    "stationID": 231,
+    "name": "Daraluwa",
+    "city": "Daraluwa",
+    "lat": 7.1074,
+    "lng": 80.01048
+  },
+  {
+    "stationID": 233,
+    "name": "Dematagoda",
+    "city": "Dematagoda",
+    "lat": 6.93742,
+    "lng": 79.87864
+  },
+  {
+    "stationID": 234,
+    "name": "Demodara",
+    "city": "Demodara",
+    "lat": 6.90312,
+    "lng": 81.06277
+  },
+  {
+    "stationID": 236,
+    "name": "Dewapuram",
+    "city": "Dewapuram",
+    "lat": 7.82694,
+    "lng": 81.55723
+  },
+  {
+    "stationID": 237,
+    "name": "Diyatalawa",
+    "city": "Diyatalawa",
+    "lat": 6.80215,
+    "lng": 80.95919
+  },
+  {
+    "stationID": 238,
+    "name": "Ederamulla",
+    "city": "Ederamulla",
+    "lat": 7.00063,
+    "lng": 79.90679
+  },
+  {
+    "stationID": 239,
+    "name": "Elephant Pass",
+    "city": "Elephant Pass",
+    "lat": 9.50242,
+    "lng": 80.40588
+  },
+  {
+    "stationID": 240,
+    "name": "Ella",
+    "city": "Ella",
+    "lat": 6.87593,
+    "lng": 81.0471
+  },
+  {
+    "stationID": 241,
+    "name": "Eluthumattuval",
+    "city": "Eluthumattuval",
+    "lat": 9.65306,
+    "lng": 80.28014
+  },
+  {
+    "stationID": 243,
+    "name": "Eravur",
+    "city": "Eravur",
+    "lat": 7.78582,
+    "lng": 81.60439
+  },
+  {
+    "stationID": 244,
+    "name": "Erukkalampiddy Nagawillu",
+    "city": "Erukkalampiddy Nagawillu",
+    "lat": 7.96183,
+    "lng": 79.83002
+  },
+  {
+    "stationID": 246,
+    "name": "Galgamuwa",
+    "city": "Galgamuwa",
+    "lat": 8.0024,
+    "lng": 80.27168
+  },
+  {
+    "stationID": 248,
+    "name": "Gallella",
+    "city": "Gallella",
+    "lat": 7.91459,
+    "lng": 81.04901
+  },
+  {
+    "stationID": 249,
+    "name": "Galoya Junction",
+    "city": "Galoya Junction",
+    "lat": 8.13802,
+    "lng": 80.86577
+  },
+  {
+    "stationID": 250,
+    "name": "Gammana",
+    "city": "Gammana",
+    "lat": 6.87958,
+    "lng": 80.12468
+  },
+  {
+    "stationID": 251,
+    "name": "Gampaha",
+    "city": "Gampaha",
+    "lat": 7.0937,
+    "lng": 79.99374
+  },
+  {
+    "stationID": 253,
+    "name": "Ganegoda",
+    "city": "Ganegoda",
+    "lat": 7.21312,
+    "lng": 80.10513
+  },
+  {
+    "stationID": 254,
+    "name": "Ganemulla",
+    "city": "Ganemulla",
+    "lat": 7.06888,
+    "lng": 79.96074
+  },
+  {
+    "stationID": 255,
+    "name": "Ganewatte",
+    "city": "Ganewatte",
+    "lat": 7.65583,
+    "lng": 80.34877
+  },
+  {
+    "stationID": 258,
+    "name": "Gantalawa",
+    "city": "Gantalawa",
+    "lat": 8.417,
+    "lng": 81.03671
+  },
+  {
+    "stationID": 260,
+    "name": "Girambe",
+    "city": "Girambe",
+    "lat": 7.36465,
+    "lng": 80.30244
+  },
+  {
+    "stationID": 262,
+    "name": "Godagama",
+    "city": "Godagama",
+    "lat": 6.84816,
+    "lng": 80.03272
+  },
+  {
+    "stationID": 264,
+    "name": "Habarana",
+    "city": "Habarana",
+    "lat": 8.0575,
+    "lng": 80.76968
+  },
+  {
+    "stationID": 265,
+    "name": "Haliela",
+    "city": "Haliela",
+    "lat": 6.95427,
+    "lng": 81.03353
+  },
+  {
+    "stationID": 266,
+    "name": "Haputale",
+    "city": "Haputale",
+    "lat": 6.76853,
+    "lng": 80.95762
+  },
+  {
+    "stationID": 270,
+    "name": "Heel Oya",
+    "city": "Heel Oya",
+    "lat": 6.84454,
+    "lng": 81.02562
+  },
+  {
+    "stationID": 271,
+    "name": "Heendeniya Pattigoda",
+    "city": "Heendeniya Pattigoda",
+    "lat": 7.14143,
+    "lng": 80.04707
+  },
+  {
+    "stationID": 273,
+    "name": "Hingurakgoda",
+    "city": "Hingurakgoda",
+    "lat": 8.03995,
+    "lng": 80.95154
+  },
+  {
+    "stationID": 274,
+    "name": "Hingurala",
+    "city": "Hingurala",
+    "lat": 6.93703,
+    "lng": 80.17169
+  },
+  {
+    "stationID": 275,
+    "name": "Hiriyala",
+    "city": "Hiriyala",
+    "lat": 7.71197,
+    "lng": 80.33593
+  },
+  {
+    "stationID": 276,
+    "name": "Homagama",
+    "city": "Homagama",
+    "lat": 6.84594,
+    "lng": 80.00407
+  },
+  {
+    "stationID": 277,
+    "name": "Homagama Hospital",
+    "city": "Homagama Hospital",
+    "lat": 6.84608,
+    "lng": 79.99236
+  },
+  {
+    "stationID": 278,
+    "name": "Horape",
+    "city": "Horape",
+    "lat": 7.01678,
+    "lng": 79.91825
+  },
+  {
+    "stationID": 279,
+    "name": "Horiwiala",
+    "city": "Horiwiala",
+    "lat": 8.06807,
+    "lng": 80.67818
+  },
+  {
+    "stationID": 280,
+    "name": "Hunupitiya",
+    "city": "Hunupitiya",
+    "lat": 6.98791,
+    "lng": 79.90023
+  },
+  {
+    "stationID": 281,
+    "name": "Idalgasinna",
+    "city": "Idalgasinna",
+    "lat": 6.77967,
+    "lng": 80.89688
+  },
+  {
+    "stationID": 287,
+    "name": "Inuvil",
+    "city": "Inuvil",
+    "lat": 9.72693,
+    "lng": 80.02951
+  },
+  {
+    "stationID": 288,
+    "name": "Investment Promotion Zone",
+    "city": "Investment Promotion Zone",
+    "lat": 7.1581,
+    "lng": 79.87522
+  },
+  {
+    "stationID": 289,
+    "name": "Ja-ela",
+    "city": "Ja-ela",
+    "lat": 7.07799,
+    "lng": 79.89196
+  },
+  {
+    "stationID": 290,
+    "name": "Jaffna",
+    "city": "Jaffna",
+    "lat": 9.66545,
+    "lng": 80.02084
+  },
+  {
+    "stationID": 291,
+    "name": "Jayanthipura",
+    "city": "Jayanthipura",
+    "lat": 8.00524,
+    "lng": 80.98367
+  },
+  {
+    "stationID": 292,
+    "name": "Kadadasi Nagar",
+    "city": "Kadadasi Nagar",
+    "lat": 7.92849,
+    "lng": 81.50778
+  },
+  {
+    "stationID": 295,
+    "name": "Kadugoda",
+    "city": "Kadugoda",
+    "lat": 6.91812,
+    "lng": 80.13479
+  },
+  {
+    "stationID": 297,
+    "name": "Kakkapalliya",
+    "city": "Kakkapalliya",
+    "lat": 7.53308,
+    "lng": 79.82269
+  },
+  {
+    "stationID": 298,
+    "name": "Kalawewa",
+    "city": "Kalawewa",
+    "lat": 8.02355,
+    "lng": 80.5311
+  },
+  {
+    "stationID": 299,
+    "name": "Kalkudah",
+    "city": "Kalkudah",
+    "lat": 7.89647,
+    "lng": 81.55413
+  },
+  {
+    "stationID": 300,
+    "name": "Kandana",
+    "city": "Kandana",
+    "lat": 7.0495,
+    "lng": 79.90155
+  },
+  {
+    "stationID": 301,
+    "name": "Kandy",
+    "city": "Kandy",
+    "lat": 7.2906,
+    "lng": 80.6337
+  },
+  {
+    "stationID": 302,
+    "name": "Kankesanthurai",
+    "city": "Kankesanthurai",
+    "lat": 9.81494,
+    "lng": 80.04822
+  },
+  {
+    "stationID": 303,
+    "name": "Kantale",
+    "city": "Kantale",
+    "lat": 8.35642,
+    "lng": 81.00621
+  },
+  {
+    "stationID": 304,
+    "name": "Kapuwatte",
+    "city": "Kapuwatte",
+    "lat": 7.06317,
+    "lng": 79.89602
+  },
+  {
+    "stationID": 305,
+    "name": "Kattuwa",
+    "city": "Kattuwa",
+    "lat": 7.23942,
+    "lng": 79.84757
+  },
+  {
+    "stationID": 308,
+    "name": "Katunayake",
+    "city": "Katunayake",
+    "lat": 7.1676,
+    "lng": 79.87217
+  },
+  {
+    "stationID": 309,
+    "name": "Keenawala",
+    "city": "Keenawala",
+    "lat": 7.18568,
+    "lng": 80.07456
+  },
+  {
+    "stationID": 310,
+    "name": "Kekirawa",
+    "city": "Kekirawa",
+    "lat": 8.05855,
+    "lng": 80.58144
+  },
+  {
+    "stationID": 311,
+    "name": "Kelaniya",
+    "city": "Kelaniya",
+    "lat": 6.96124,
+    "lng": 79.89451
+  },
+  {
+    "stationID": 312,
+    "name": "Kilinochchi",
+    "city": "Kilinochchi",
+    "lat": 9.38988,
+    "lng": 80.40648
+  },
+  {
+    "stationID": 313,
+    "name": "Kinigama",
+    "city": "Kinigama",
+    "lat": 6.8302,
+    "lng": 81.00592
+  },
+  {
+    "stationID": 314,
+    "name": "Kiriwandala",
+    "city": "Kiriwandala",
+    "lat": 6.94131,
+    "lng": 80.19629
+  },
+  {
+    "stationID": 315,
+    "name": "Kirulapana",
+    "city": "Kirulapana",
+    "lat": 6.88322,
+    "lng": 79.88289
+  },
+  {
+    "stationID": 316,
+    "name": "Kital Ella",
+    "city": "Kital Ella",
+    "lat": 6.86144,
+    "lng": 81.04313
+  },
+  {
+    "stationID": 317,
+    "name": "Kochchikade",
+    "city": "Kochchikade",
+    "lat": 7.26453,
+    "lng": 79.85729
+  },
+  {
+    "stationID": 318,
+    "name": "Kodikamam",
+    "city": "Kodikamam",
+    "lat": 9.68166,
+    "lng": 80.21981
+  },
+  {
+    "stationID": 319,
+    "name": "Kokkuvil",
+    "city": "Kokkuvil",
+    "lat": 9.68852,
+    "lng": 80.02115
+  },
+  {
+    "stationID": 320,
+    "name": "Kondavil",
+    "city": "Kondavil",
+    "lat": 9.70439,
+    "lng": 80.02469
+  },
+  {
+    "stationID": 321,
+    "name": "Konwewa",
+    "city": "Konwewa",
+    "lat": 7.85086,
+    "lng": 80.34916
+  },
+  {
+    "stationID": 322,
+    "name": "Kosgama",
+    "city": "Kosgama",
+    "lat": 6.94086,
+    "lng": 80.13734
+  },
+  {
+    "stationID": 325,
+    "name": "Kottawa",
+    "city": "Kottawa",
+    "lat": 6.844,
+    "lng": 79.96828
+  },
+  {
+    "stationID": 326,
+    "name": "Kudawewa",
+    "city": "Kudawewa",
+    "lat": 7.46239,
+    "lng": 79.85302
+  },
+  {
+    "stationID": 327,
+    "name": "Kudahakapola",
+    "city": "Kudahakapola",
+    "lat": 7.10423,
+    "lng": 79.88973
+  },
+  {
+    "stationID": 328,
+    "name": "Kurana",
+    "city": "Kurana",
+    "lat": 7.1913,
+    "lng": 79.86217
+  },
+  {
+    "stationID": 329,
+    "name": "Kurunegala",
+    "city": "Kurunegala",
+    "lat": 7.47697,
+    "lng": 80.37409
+  },
+  {
+    "stationID": 330,
+    "name": "Laksauyana",
+    "city": "Laksauyana",
+    "lat": 7.98852,
+    "lng": 80.99692
+  },
+  {
+    "stationID": 331,
+    "name": "Liyanagemulla",
+    "city": "Liyanagemulla",
+    "lat": 7.1474,
+    "lng": 79.87816
+  },
+  {
+    "stationID": 332,
+    "name": "Liyanwala",
+    "city": "Liyanwala",
+    "lat": 6.83922,
+    "lng": 80.07949
+  },
+  {
+    "stationID": 333,
+    "name": "Lunuwila",
+    "city": "Lunuwila",
+    "lat": 7.347,
+    "lng": 79.86305
+  },
+  {
+    "stationID": 334,
+    "name": "Madampe",
+    "city": "Madampe",
+    "lat": 7.49707,
+    "lng": 79.84132
+  },
+  {
+    "stationID": 335,
+    "name": "Madu Road",
+    "city": "Madu Road",
+    "lat": 8.77604,
+    "lng": 80.14756
+  },
+  {
+    "stationID": 336,
+    "name": "Madurankuliya",
+    "city": "Madurankuliya",
+    "lat": 7.90327,
+    "lng": 79.82104
+  },
+  {
+    "stationID": 337,
+    "name": "Magalegoda",
+    "city": "Magalegoda",
+    "lat": 7.13404,
+    "lng": 80.03631
+  },
+  {
+    "stationID": 339,
+    "name": "Maharagama",
+    "city": "Maharagama",
+    "lat": 6.8485,
+    "lng": 79.92673
+  },
+  {
+    "stationID": 340,
+    "name": "Maho",
+    "city": "Maho",
+    "lat": 7.82297,
+    "lng": 80.2754
+  },
+  {
+    "stationID": 342,
+    "name": "Makumbura",
+    "city": "Makumbura",
+    "lat": 6.84087,
+    "lng": 79.97626
+  },
+  {
+    "stationID": 343,
+    "name": "Mallakam",
+    "city": "Mallakam",
+    "lat": 9.76312,
+    "lng": 80.03242
+  },
+  {
+    "stationID": 344,
+    "name": "Manampitiya",
+    "city": "Manampitiya",
+    "lat": 7.90986,
+    "lng": 81.11012
+  },
+  {
+    "stationID": 345,
+    "name": "Mangala Eliya",
+    "city": "Mangala Eliya",
+    "lat": 7.86054,
+    "lng": 79.8206
+  },
+  {
+    "stationID": 346,
+    "name": "Mankulam",
+    "city": "Mankulam",
+    "lat": 9.13091,
+    "lng": 80.44418
+  },
+  {
+    "stationID": 347,
+    "name": "Mannar",
+    "city": "Mannar",
+    "lat": 8.97141,
+    "lng": 79.89373
+  },
+  {
+    "stationID": 348,
+    "name": "Manuwangama",
+    "city": "Manuwangama",
+    "lat": 7.60097,
+    "lng": 79.82743
+  },
+  {
+    "stationID": 351,
+    "name": "Mathottam",
+    "city": "Mathottam",
+    "lat": 8.87871,
+    "lng": 79.9886
+  },
+  {
+    "stationID": 353,
+    "name": "Mavittapuram",
+    "city": "Mavittapuram",
+    "lat": 9.79963,
+    "lng": 80.03867
+  },
+  {
+    "stationID": 355,
+    "name": "Medawachchiya",
+    "city": "Medawachchiya",
+    "lat": 8.55474,
+    "lng": 80.45812
+  },
+  {
+    "stationID": 357,
+    "name": "Meegoda",
+    "city": "Meegoda",
+    "lat": 6.84362,
+    "lng": 80.0463
+  },
+  {
+    "stationID": 358,
+    "name": "Meesalai",
+    "city": "Meesalai",
+    "lat": 9.67374,
+    "lng": 80.18902
+  },
+  {
+    "stationID": 360,
+    "name": "Minneriya",
+    "city": "Minneriya",
+    "lat": 8.06554,
+    "lng": 80.89468
+  },
+  {
+    "stationID": 361,
+    "name": "Mirigama",
+    "city": "Mirigama",
+    "lat": 7.24272,
+    "lng": 80.1267
+  },
+  {
+    "stationID": 363,
+    "name": "Mirusuvil",
+    "city": "Mirusuvil",
+    "lat": 9.66636,
+    "lng": 80.23917
+  },
+  {
+    "stationID": 365,
+    "name": "Moragollagama",
+    "city": "Moragollagama",
+    "lat": 7.90603,
+    "lng": 80.42194
+  },
+  {
+    "stationID": 366,
+    "name": "Morakele",
+    "city": "Morakele",
+    "lat": 6.88337,
+    "lng": 80.12391
+  },
+  {
+    "stationID": 367,
+    "name": "Mundal",
+    "city": "Mundal",
+    "lat": 7.79787,
+    "lng": 79.82559
+  },
+  {
+    "stationID": 368,
+    "name": "Murikandy",
+    "city": "Murikandy",
+    "lat": 9.30469,
+    "lng": 80.40703
+  },
+  {
+    "stationID": 370,
+    "name": "Murunkan",
+    "city": "Murunkan",
+    "lat": 8.83517,
+    "lng": 80.04924
+  },
+  {
+    "stationID": 371,
+    "name": "Muththettugala",
+    "city": "Muththettugala",
+    "lat": 7.49606,
+    "lng": 80.37906
+  },
+  {
+    "stationID": 372,
+    "name": "Nagollagama",
+    "city": "Nagollagama",
+    "lat": 7.75375,
+    "lng": 80.31469
+  },
+  {
+    "stationID": 373,
+    "name": "Nailiya",
+    "city": "Nailiya",
+    "lat": 7.45018,
+    "lng": 80.35857
+  },
+  {
+    "stationID": 374,
+    "name": "Nakulugamuwa",
+    "city": "Nakulugamuwa",
+    "lat": 6.0018,
+    "lng": 80.72411
+  },
+  {
+    "stationID": 375,
+    "name": "Nanuoya",
+    "city": "Nanuoya",
+    "lat": 6.94238,
+    "lng": 80.74382
+  },
+  {
+    "stationID": 376,
+    "name": "Narahenpita",
+    "city": "Narahenpita",
+    "lat": 6.89712,
+    "lng": 79.8779
+  },
+  {
+    "stationID": 377,
+    "name": "Nattandiya",
+    "city": "Nattandiya",
+    "lat": 7.41451,
+    "lng": 79.86605
+  },
+  {
+    "stationID": 378,
+    "name": "Navatkuli",
+    "city": "Navatkuli",
+    "lat": 9.66199,
+    "lng": 80.08136
+  },
+  {
+    "stationID": 380,
+    "name": "Nawinna",
+    "city": "Nawinna",
+    "lat": 6.85305,
+    "lng": 79.91788
+  },
+  {
+    "stationID": 381,
+    "name": "Negama",
+    "city": "Negama",
+    "lat": 7.98139,
+    "lng": 80.48714
+  },
+  {
+    "stationID": 382,
+    "name": "Negombo",
+    "city": "Negombo",
+    "lat": 7.21069,
+    "lng": 79.84191
+  },
+  {
+    "stationID": 383,
+    "name": "Nelumpokuna",
+    "city": "Nelumpokuna",
+    "lat": 7.47718,
+    "lng": 79.84459
+  },
+  {
+    "stationID": 384,
+    "name": "Neriyakulam",
+    "city": "Neriyakulam",
+    "lat": 8.61471,
+    "lng": 80.36208
+  },
+  {
+    "stationID": 385,
+    "name": "Noor Nagar",
+    "city": "Noor Nagar",
+    "lat": 8.03621,
+    "lng": 79.83982
+  },
+  {
+    "stationID": 386,
+    "name": "Nugegoda",
+    "city": "Nugegoda",
+    "lat": 6.87232,
+    "lng": 79.89099
+  },
+  {
+    "stationID": 387,
+    "name": "Ohiya",
+    "city": "Ohiya",
+    "lat": 6.8179,
+    "lng": 80.84297
+  },
+  {
+    "stationID": 388,
+    "name": "Omanthai",
+    "city": "Omanthai",
+    "lat": 8.8656,
+    "lng": 80.50115
+  },
+  {
+    "stationID": 389,
+    "name": "Padukka",
+    "city": "Padukka",
+    "lat": 6.84288,
+    "lng": 80.09132
+  },
+  {
+    "stationID": 390,
+    "name": "Palai",
+    "city": "Palai",
+    "lat": 9.60762,
+    "lng": 80.33051
+  },
+  {
+    "stationID": 391,
+    "name": "Palavi",
+    "city": "Palavi",
+    "lat": 7.98205,
+    "lng": 79.83283
+  },
+  {
+    "stationID": 394,
+    "name": "Pallewala",
+    "city": "Pallewala",
+    "lat": 7.19897,
+    "lng": 80.09002
+  },
+  {
+    "stationID": 395,
+    "name": "Palugaswewa",
+    "city": "Palugaswewa",
+    "lat": 8.05892,
+    "lng": 80.7121
+  },
+  {
+    "stationID": 396,
+    "name": "Panagoda",
+    "city": "Panagoda",
+    "lat": 6.84716,
+    "lng": 80.01897
+  },
+  {
+    "stationID": 397,
+    "name": "Panaleeya",
+    "city": "Panaleeya",
+    "lat": 7.32888,
+    "lng": 80.32512
+  },
+  {
+    "stationID": 398,
+    "name": "Pangiriwatta",
+    "city": "Pangiriwatta",
+    "lat": 6.86533,
+    "lng": 79.90215
+  },
+  {
+    "stationID": 399,
+    "name": "Pannipitiya",
+    "city": "Pannipitiya",
+    "lat": 6.84738,
+    "lng": 79.94898
+  },
+  {
+    "stationID": 400,
+    "name": "Parakum Uyana",
+    "city": "Parakum Uyana",
+    "lat": 7.91518,
+    "lng": 80.99837
+  },
+  {
+    "stationID": 401,
+    "name": "Paranthan",
+    "city": "Paranthan",
+    "lat": 9.44036,
+    "lng": 80.40722
+  },
+  {
+    "stationID": 402,
+    "name": "Parasangahawewa",
+    "city": "Parasangahawewa",
+    "lat": 8.4453,
+    "lng": 80.43164
+  },
+  {
+    "stationID": 404,
+    "name": "Pattipola",
+    "city": "Pattipola",
+    "lat": 6.85602,
+    "lng": 80.83075
+  },
+  {
+    "stationID": 406,
+    "name": "Peradeniya",
+    "city": "Peradeniya",
+    "lat": 7.2588,
+    "lng": 80.5966
+  },
+  {
+    "stationID": 407,
+    "name": "Perakumpura",
+    "city": "Perakumpura",
+    "lat": 6.92034,
+    "lng": 80.75235
+  },
+  {
+    "stationID": 408,
+    "name": "Peralanda",
+    "city": "Peralanda",
+    "lat": 7.03828,
+    "lng": 79.91234
+  },
+  {
+    "stationID": 409,
+    "name": "Pesalai",
+    "city": "Pesalai",
+    "lat": 9.08293,
+    "lng": 79.82246
+  },
+  {
+    "stationID": 411,
+    "name": "Pinnawala",
+    "city": "Pinnawala",
+    "lat": 6.86965,
+    "lng": 80.11729
+  },
+  {
+    "stationID": 413,
+    "name": "Polgahawela",
+    "city": "Polgahawela",
+    "lat": 7.33134,
+    "lng": 80.301
+  },
+  {
+    "stationID": 414,
+    "name": "Polonnaruwa",
+    "city": "Polonnaruwa",
+    "lat": 7.93037,
+    "lng": 81.03326
+  },
+  {
+    "stationID": 415,
+    "name": "Poonewa",
+    "city": "Poonewa",
+    "lat": 8.62584,
+    "lng": 80.46251
+  },
+  {
+    "stationID": 416,
+    "name": "Potuhera",
+    "city": "Potuhera",
+    "lat": 7.41999,
+    "lng": 80.32733
+  },
+  {
+    "stationID": 417,
+    "name": "Pulachchikulam",
+    "city": "Pulachchikulam",
+    "lat": 7.75748,
+    "lng": 79.82808
+  },
+  {
+    "stationID": 418,
+    "name": "Puliyankulam",
+    "city": "Puliyankulam",
+    "lat": 8.96005,
+    "lng": 80.52234
+  },
+  {
+    "stationID": 419,
+    "name": "Punani",
+    "city": "Punani",
+    "lat": 7.96392,
+    "lng": 81.3873
+  },
+  {
+    "stationID": 420,
+    "name": "Punkankulam",
+    "city": "Punkankulam",
+    "lat": 9.65902,
+    "lng": 80.03976
+  },
+  {
+    "stationID": 421,
+    "name": "Puttalam",
+    "city": "Puttalam",
+    "lat": 8.02295,
+    "lng": 79.83781
+  },
+  {
+    "stationID": 422,
+    "name": "Puwakpitiya",
+    "city": "Puwakpitiya",
+    "lat": 6.93419,
+    "lng": 80.18744
+  },
+  {
+    "stationID": 423,
+    "name": "Puwakpitiya town",
+    "city": "Puwakpitiya town",
+    "lat": 6.93841,
+    "lng": 80.19306
+  },
+  {
+    "stationID": 425,
+    "name": "Ragama",
+    "city": "Ragama",
+    "lat": 7.03022,
+    "lng": 79.92147
+  },
+  {
+    "stationID": 427,
+    "name": "Rambukkana",
+    "city": "Rambukkana",
+    "lat": 7.32147,
+    "lng": 80.39018
+  },
+  {
+    "stationID": 428,
+    "name": "Ranamukgama",
+    "city": "Ranamukgama",
+    "lat": 7.87891,
+    "lng": 80.39505
+  },
+  {
+    "stationID": 429,
+    "name": "Randenigama",
+    "city": "Randenigama",
+    "lat": 7.84866,
+    "lng": 80.25926
+  },
+  {
+    "stationID": 431,
+    "name": "Rideethenna",
+    "city": "Rideethenna",
+    "lat": 7.96405,
+    "lng": 81.3394
+  },
+  {
+    "stationID": 433,
+    "name": "Saliyapura",
+    "city": "Saliyapura",
+    "lat": 8.39009,
+    "lng": 80.42227
+  },
+  {
+    "stationID": 434,
+    "name": "Sankaththanai",
+    "city": "Sankaththanai",
+    "lat": 9.66425,
+    "lng": 80.17231
+  },
+  {
+    "stationID": 436,
+    "name": "Sawarana",
+    "city": "Sawarana",
+    "lat": 7.55846,
+    "lng": 79.80887
+  },
+  {
+    "stationID": 437,
+    "name": "Seeduwa",
+    "city": "Seeduwa",
+    "lat": 7.12909,
+    "lng": 79.88262
+  },
+  {
+    "stationID": 438,
+    "name": "Senarathgama",
+    "city": "Senarathgama",
+    "lat": 8.08603,
+    "lng": 80.27772
+  },
+  {
+    "stationID": 439,
+    "name": "Sevanapitiya",
+    "city": "Sevanapitiya",
+    "lat": 7.92163,
+    "lng": 81.18379
+  },
+  {
+    "stationID": 441,
+    "name": "Siyalangamuwa",
+    "city": "Siyalangamuwa",
+    "lat": 7.9425,
+    "lng": 80.44966
+  },
+  {
+    "stationID": 442,
+    "name": "Srawasthipura",
+    "city": "Srawasthipura",
+    "lat": 8.29905,
+    "lng": 80.37702
+  },
+  {
+    "stationID": 444,
+    "name": "Talawa",
+    "city": "Talawa",
+    "lat": 8.23211,
+    "lng": 80.34829
+  },
+  {
+    "stationID": 446,
+    "name": "Talawattegedara",
+    "city": "Talawattegedara",
+    "lat": 7.3881,
+    "lng": 80.30152
+  },
+  {
+    "stationID": 447,
+    "name": "Tellippalai",
+    "city": "Tellippalai",
+    "lat": 9.78518,
+    "lng": 80.03517
+  },
+  {
+    "stationID": 449,
+    "name": "Thachanthoppu",
+    "city": "Thachanthoppu",
+    "lat": 9.65819,
+    "lng": 80.10899
+  },
+  {
+    "stationID": 450,
+    "name": "Thalaimannar",
+    "city": "Thalaimannar",
+    "lat": 9.09212,
+    "lng": 79.73421
+  },
+  {
+    "stationID": 451,
+    "name": "Thalaimannar Pier",
+    "city": "Thalaimannar Pier",
+    "lat": 9.10345,
+    "lng": 79.72991
+  },
+  {
+    "stationID": 452,
+    "name": "Thambalagamuwa",
+    "city": "Thambalagamuwa",
+    "lat": 8.49864,
+    "lng": 81.09548
+  },
+  {
+    "stationID": 453,
+    "name": "Thambuttegama",
+    "city": "Thambuttegama",
+    "lat": 8.15447,
+    "lng": 80.30385
+  },
+  {
+    "stationID": 454,
+    "name": "Thandikulama",
+    "city": "Thandikulama",
+    "lat": 8.7786,
+    "lng": 80.48484
+  },
+  {
+    "stationID": 456,
+    "name": "Thil adiya",
+    "city": "Thil adiya",
+    "lat": 8.07422,
+    "lng": 79.85113
+  },
+  {
+    "stationID": 457,
+    "name": "Thiruketheeswaram",
+    "city": "Thiruketheeswaram",
+    "lat": 8.91041,
+    "lng": 79.95239
+  },
+  {
+    "stationID": 458,
+    "name": "Thoddaveli",
+    "city": "Thoddaveli",
+    "lat": 9.02543,
+    "lng": 79.86732
+  },
+  {
+    "stationID": 459,
+    "name": "Thudella",
+    "city": "Thudella",
+    "lat": 7.09318,
+    "lng": 79.89095
+  },
+  {
+    "stationID": 460,
+    "name": "Timbiriyagedara",
+    "city": "Timbiriyagedara",
+    "lat": 7.78162,
+    "lng": 80.2978
+  },
+  {
+    "stationID": 461,
+    "name": "Tismalpola",
+    "city": "Tismalpola",
+    "lat": 7.32189,
+    "lng": 80.34291
+  },
+  {
+    "stationID": 462,
+    "name": "Trincomalee",
+    "city": "Trincomalee",
+    "lat": 8.58461,
+    "lng": 81.22619
+  },
+  {
+    "stationID": 463,
+    "name": "Tummodara",
+    "city": "Tummodara",
+    "lat": 7.39076,
+    "lng": 79.85895
+  },
+  {
+    "stationID": 464,
+    "name": "Udahamulla",
+    "city": "Udahamulla",
+    "lat": 6.86247,
+    "lng": 79.9088
+  },
+  {
+    "stationID": 467,
+    "name": "Uduwara",
+    "city": "Uduwara",
+    "lat": 6.93174,
+    "lng": 81.04214
+  },
+  {
+    "stationID": 468,
+    "name": "Uggalla",
+    "city": "Uggalla",
+    "lat": 6.86278,
+    "lng": 80.1141
+  },
+  {
+    "stationID": 471,
+    "name": "Valachchenei",
+    "city": "Valachchenei",
+    "lat": 7.91052,
+    "lng": 81.53181
+  },
+  {
+    "stationID": 472,
+    "name": "Vandaramullai",
+    "city": "Vandaramullai",
+    "lat": 7.95927,
+    "lng": 81.58216
+  },
+  {
+    "stationID": 473,
+    "name": "Vavuniya",
+    "city": "Vavuniya",
+    "lat": 8.75414,
+    "lng": 80.49411
+  },
+  {
+    "stationID": 474,
+    "name": "Veyangoda",
+    "city": "Veyangoda",
+    "lat": 7.15296,
+    "lng": 80.0586
+  },
+  {
+    "stationID": 475,
+    "name": "Waga",
+    "city": "Waga",
+    "lat": 6.90119,
+    "lng": 80.12707
+  },
+  {
+    "stationID": 476,
+    "name": "Waikkala",
+    "city": "Waikkala",
+    "lat": 7.2777,
+    "lng": 79.86027
+  },
+  {
+    "stationID": 477,
+    "name": "Walahapitiya",
+    "city": "Walahapitiya",
+    "lat": 7.43973,
+    "lng": 79.85912
+  },
+  {
+    "stationID": 478,
+    "name": "Walakumbura",
+    "city": "Walakumbura",
+    "lat": 7.3141,
+    "lng": 80.26906
+  },
+  {
+    "stationID": 480,
+    "name": "Walpola",
+    "city": "Walpola",
+    "lat": 7.04738,
+    "lng": 79.93106
+  },
+  {
+    "stationID": 481,
+    "name": "Wanawasala",
+    "city": "Wanawasala",
+    "lat": 6.97594,
+    "lng": 79.89921
+  },
+  {
+    "stationID": 482,
+    "name": "Wandurawa",
+    "city": "Wandurawa",
+    "lat": 7.16789,
+    "lng": 80.06607
+  },
+  {
+    "stationID": 485,
+    "name": "Wataraka",
+    "city": "Wataraka",
+    "lat": 6.8434,
+    "lng": 80.06008
+  },
+  {
+    "stationID": 489,
+    "name": "Welikanda",
+    "city": "Welikanda",
+    "lat": 7.94733,
+    "lng": 81.25057
+  },
+  {
+    "stationID": 490,
+    "name": "Wellawa",
+    "city": "Wellawa",
+    "lat": 7.55833,
+    "lng": 80.36684
+  },
+  {
+    "stationID": 492,
+    "name": "Wijayarajadahana",
+    "city": "Wijayarajadahana",
+    "lat": 7.23099,
+    "lng": 80.11848
+  },
+  {
+    "stationID": 493,
+    "name": "Wilwatte",
+    "city": "Wilwatte",
+    "lat": 7.25661,
+    "lng": 80.13526
+  },
+  {
+    "stationID": 494,
+    "name": "Yagoda",
+    "city": "Yagoda",
+    "lat": 7.07497,
+    "lng": 79.97392
+  },
+  {
+    "stationID": 495,
+    "name": "Yapahuwa",
+    "city": "Yapahuwa",
+    "lat": 7.82893,
+    "lng": 80.30802
+  },
+  {
+    "stationID": 496,
+    "name": "Yatagama",
+    "city": "Yatagama",
+    "lat": 7.31874,
+    "lng": 80.3643
+  },
+  {
+    "stationID": 500,
+    "name": "Yattalgoda",
+    "city": "Yattalgoda",
+    "lat": 7.27088,
+    "lng": 80.19438
+  }
+]

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../Navbar/navbar.css" />
     <link rel="stylesheet" href="../Footer/footer.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Leaflet GIS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -205,7 +207,43 @@
     <!-- Footer Placeholder -->
     <footer id="footer" class="mt-auto"></footer>
 
+    <!-- Interactive Railway Map Modal / Drawer -->
+    <div id="map-modal" class="hidden fixed inset-0 z-50 overflow-hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6">
+      <div class="bg-[#090934] border border-slate-700/80 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col overflow-hidden shadow-2xl relative">
+        <!-- Map Header -->
+        <div class="px-6 py-4 bg-[#040424] border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-cyan-950 border border-cyan-800/60 flex items-center justify-center text-cyan-400">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <div>
+              <h3 id="map-modal-title" class="text-base font-bold text-white">Train Route Map</h3>
+              <p id="map-modal-subtitle" class="text-xs text-slate-400">Live railway path & waypoint visualization</p>
+            </div>
+          </div>
+          <button id="close-map-modal-btn" type="button" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Map Container -->
+        <div id="transit-map-container" class="flex-1 w-full bg-[#040424]"></div>
+
+        <!-- Map Footer Legend -->
+        <div class="px-6 py-3 bg-[#040424] border-t border-slate-800 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-4">
+          <div class="flex items-center gap-4">
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> Departure</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span> Destination</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-slate-400"></span> Station Waypoints</span>
+          </div>
+          <span class="text-[11px] text-slate-500">CartoDB Dark Matter • Sri Lanka Railways GIS</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="scheduleMap.js"></script>
     <script src="../Navbar/navbar.js"></script>
     <script src="scheduleForm.js"></script>
     <script>
