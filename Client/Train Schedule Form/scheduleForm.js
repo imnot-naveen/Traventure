@@ -358,15 +358,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <!-- Action CTA -->
         <div class="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-2 pt-3 md:pt-0 border-t md:border-t-0 border-slate-800">
-          <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-circle-check text-[10px]"></i> Running Today
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              class="view-route-map-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 font-semibold text-xs border border-slate-700 transition flex items-center gap-1.5"
+              data-train-id="${leg.trainID}"
+              data-train-name="${leg.trainName || 'Train'}"
+            >
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>View Route</span>
+            </button>
+            <a
+              href="../Booking/Booking Form/booking_form.php?trainID=${leg.trainID}"
+              class="px-3.5 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition duration-150 shadow-md active:scale-95"
+            >
+              Select
+            </a>
+          </div>
+          <span class="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
+            <i class="fa-solid fa-circle-check text-[9px]"></i> Running Today
           </span>
-          <a
-            href="../Booking/Booking Form/booking_form.php?trainID=${leg.trainID}"
-            class="px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition duration-150 shadow-md active:scale-95"
-          >
-            Select Train
-          </a>
         </div>
       </div>
     `;
@@ -549,10 +560,51 @@ document.addEventListener("DOMContentLoaded", () => {
       filterDirectBtn.className = "filter-tab-btn px-3 py-1.5 rounded-md bg-cyan-500 text-slate-950 font-bold transition";
       directSection.classList.remove("hidden");
       transferSection.classList.add("hidden");
-    } else if (type === "transfers") {
-      filterTransfersBtn.className = "filter-tab-btn px-3 py-1.5 rounded-md bg-cyan-500 text-slate-950 font-bold transition";
-      directSection.classList.add("hidden");
-      transferSection.classList.remove("hidden");
-    }
+  // 9. Interactive Railway Map Modal Triggering
+  const mapModal = document.getElementById("map-modal");
+  const closeMapModalBtn = document.getElementById("close-map-modal-btn");
+  const mapModalTitle = document.getElementById("map-modal-title");
+  const mapModalSubtitle = document.getElementById("map-modal-subtitle");
+
+  if (closeMapModalBtn) {
+    closeMapModalBtn.addEventListener("click", () => {
+      mapModal.classList.add("hidden");
+    });
   }
+
+  // Delegate click for "View Route" buttons
+  document.addEventListener("click", async (e) => {
+    const btn = e.target.closest(".view-route-map-btn");
+    if (!btn) return;
+
+    const trainID = btn.dataset.trainId;
+    const trainName = btn.dataset.trainName;
+
+    mapModalTitle.textContent = `${trainName} (Train #${trainID})`;
+    mapModalSubtitle.textContent = "Loading route track and station waypoints...";
+    mapModal.classList.remove("hidden");
+
+    // Initialize or resize map
+    const map = window.initTransitMap("transit-map-container");
+
+    try {
+      const res = await fetch(`../../Server/api/getTrainRoutePath.php?trainID=${trainID}`);
+      const data = await res.json();
+
+      if (!data.success) {
+        mapModalSubtitle.textContent = "Could not load route coordinates for this train.";
+        return;
+      }
+
+      mapModalSubtitle.textContent = `${data.stopsCount} stops • ${data.train.startStation} to ${data.train.endStation}`;
+      
+      // Call your Leaflet rendering function!
+      if (typeof window.renderTrainRouteOnMap === "function") {
+        window.renderTrainRouteOnMap(map, data);
+      }
+    } catch (err) {
+      console.error("Map route fetch error:", err);
+      mapModalSubtitle.textContent = "Failed to load railway route geometry.";
+    }
+  });
 });
