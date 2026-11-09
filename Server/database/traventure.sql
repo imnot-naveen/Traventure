@@ -10018,3 +10018,20 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `station_accommodations_cache`
+--
+
+CREATE TABLE IF NOT EXISTS `station_accommodations_cache` (
+  `cache_key` varchar(100) NOT NULL,
+  `station_name` varchar(100) NOT NULL,
+  `checkin_date` date NOT NULL,
+  `hotel_data` mediumtext NOT NULL,
+  `created_at` timestamp DEFAULT current_timestamp(),
+  PRIMARY KEY (`cache_key`),
+  KEY `idx_station_date` (`station_name`, `checkin_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
