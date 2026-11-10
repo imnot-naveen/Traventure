@@ -41,7 +41,7 @@ function formatDateForDisplay(dateString) {
 
 async function getUserIDFromSession() {
     try {
-        const response = await fetch('http://localhost/Traventure/Server/api/getUserId.php', {
+        const response = await fetch('../../Server/api/getUserId.php', {
             method: 'GET',
             credentials: 'include'
         });
@@ -90,7 +90,7 @@ async function fetchBookingHistory() {
         const userID = await getUserIDFromSession();
         if (!userID) throw new Error("User ID not available");
 
-        const response = await fetch(`http://localhost/Traventure/Server/api/getBookingbyUser.php?userID=${userID}`);
+        const response = await fetch(`../../Server/api/getBookingbyUser.php?userID=${userID}`);
         const data = await response.json();
 
         hideLoading();
