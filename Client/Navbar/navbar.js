@@ -1,7 +1,26 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Initialize menu toggle for responsive behavior
-  document.getElementById("menu-toggle").addEventListener("click", function () {
-    const navMenu = document.getElementById("nav-menu");
-    navMenu.classList.toggle("active");
-  });
+// Global Traventure Navbar Controller
+document.addEventListener("DOMContentLoaded", () => {
+  setupNavbarToggle();
 });
+
+function setupNavbarToggle() {
+  const toggleBtn = document.getElementById("mobile-menu-toggle");
+  const drawer = document.getElementById("mobile-nav-drawer");
+
+  if (toggleBtn && drawer) {
+    toggleBtn.addEventListener("click", () => {
+      drawer.classList.toggle("hidden");
+      const icon = toggleBtn.querySelector("i");
+      if (icon) {
+        if (drawer.classList.contains("hidden")) {
+          icon.className = "fa-solid fa-bars text-sm";
+        } else {
+          icon.className = "fa-solid fa-xmark text-sm";
+        }
+      }
+    });
+  }
+}
+
+// Support for dynamically injected navbar placeholders
+window.setupNavbarToggle = setupNavbarToggle;

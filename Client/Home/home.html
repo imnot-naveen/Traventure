@@ -3,284 +3,250 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="home.css" />
-    <link rel="stylesheet" href="../Navbar/navbar.css" />
-    <link rel="stylesheet" href="../Footer/footer.css" />
-    <title>Traventure</title>
+    <title>Traventure | Sri Lanka Railways Transit & Travel Platform</title>
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../assets/css/tailwind.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      }
+      .font-mono-num {
+        font-family: 'JetBrains Mono', monospace;
+      }
+    </style>
   </head>
-  <body>
-    <!-- Navbar component -->
-    <nav id="navbar-placeholder"></nav>
+  <body class="bg-[#040424] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-cyan-500 selection:text-slate-950">
+    
+    <!-- Navbar Component -->
+    <nav id="navbar-placeholder" class="relative z-50"></nav>
 
-    <!-- Hero Section -->
-    <div class="hero-container">
-      <h1>Effortless Journeys Begin with Traventure</h1>
-      <p>
-        Plan, explore, and embark on your perfect adventure with ease.
-        Traventure brings you tailored itineraries, up-to-date train schedules,
-        and handpicked destination gems—all in one place. Your next trip just
-        got a lot simpler.
-      </p>
+    <!-- Main Content -->
+    <main class="flex-1">
 
-      <a id="cta" href="../CreateTrip/createTrip.php"
-        ><button>Plan your trip!</button></a
-      >
-    </div>
+      <!-- Hero Section -->
+      <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-slate-800/80">
+        <!-- Subtle Glow Orbs Background -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[400px] h-[300px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-    <!-- Why Traventure -->
-    <div class="problem-section">
-      <div class="text-content">
-        <h2>Why Traventure?</h2>
-        <p>
-          Traventure addresses train schedules and trip planning tools into a
-          single web platform. It automates the process for a stress-free
-          experience, empowering you to manage everything in one place. No more
-          juggling multiple websites—Traventure ensures you have all the
-          necessary information at your fingertips, streamlining and enhancing
-          your travel planning.
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          
+          <!-- Live Railway System Badge -->
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-6 shadow-sm shadow-cyan-950/50">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Official Sri Lanka Railway Network • 2026 Timetable</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white max-w-4xl mx-auto leading-[1.1] mb-6">
+            The Intelligent <span class="bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500 bg-clip-text text-transparent">Transit & Rail</span> Platform
+          </h1>
+
+          <p class="text-slate-400 text-base sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+            Real-time train schedules, multi-leg transit routing across 390+ stations, interactive route geometry, and intelligent layover planning.
+          </p>
+
+          <!-- Quick Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-16">
+            <a
+              href="../Train Schedule Form/scheduleForm.html"
+              class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/25 transition duration-200 flex items-center justify-center gap-2.5 active:scale-95"
+            >
+              <i class="fa-solid fa-train-subway"></i>
+              <span>Find Train Schedules</span>
+            </a>
+            <a
+              href="../Destinations/destinations.html"
+              class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-semibold text-sm border border-slate-700 hover:border-slate-600 transition duration-200 flex items-center justify-center gap-2"
+            >
+              <i class="fa-solid fa-compass"></i>
+              <span>Explore Destinations</span>
+            </a>
+          </div>
+
+          <!-- Real Network Metrics Strip -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-slate-800/80">
+            <div class="p-4 rounded-xl bg-[#090934]/60 border border-slate-800/80 backdrop-blur-sm">
+              <div class="text-2xl sm:text-3xl font-black font-mono-num text-cyan-400">278</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold mt-1">Active Trains</div>
+            </div>
+            <div class="p-4 rounded-xl bg-[#090934]/60 border border-slate-800/80 backdrop-blur-sm">
+              <div class="text-2xl sm:text-3xl font-black font-mono-num text-white">391</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold mt-1">Railway Stations</div>
+            </div>
+            <div class="p-4 rounded-xl bg-[#090934]/60 border border-slate-800/80 backdrop-blur-sm">
+              <div class="text-2xl sm:text-3xl font-black font-mono-num text-cyan-400">7,961</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold mt-1">Stop Timetables</div>
+            </div>
+            <div class="p-4 rounded-xl bg-[#090934]/60 border border-slate-800/80 backdrop-blur-sm">
+              <div class="text-2xl sm:text-3xl font-black font-mono-num text-white">102</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold mt-1">Route Corridors</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Featured Scenic Corridors -->
+      <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+          <div>
+            <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider block mb-2">Iconic Sri Lanka Rail Journeys</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Featured Train Corridors</h2>
+          </div>
+          <a href="../Train Schedule Form/scheduleForm.html" class="text-sm font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 transition">
+            <span>View all 102 routes</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Card 1: Main Line (Kandy -> Ella) -->
+          <div class="group bg-[#090934]/80 border border-slate-800 hover:border-cyan-500/50 rounded-2xl p-6 shadow-xl transition duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800/40">Hill Country Scenic</span>
+                <span class="text-xs text-slate-400 font-mono-num">Train 1005 / 1015</span>
+              </div>
+              <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition">Kandy to Ella & Badulla</h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Winds through tea plantations, pine forests, and over the world-famous Demodara Nine Arch Bridge.
+              </p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-xs font-mono-num text-slate-400">Duration: ~6h 15m</span>
+              <a href="../Train Schedule Form/scheduleForm.html" class="text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition duration-200 flex items-center gap-1">
+                <span>Check Times</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: Coastal Line -->
+          <div class="group bg-[#090934]/80 border border-slate-800 hover:border-cyan-500/50 rounded-2xl p-6 shadow-xl transition duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-blue-950 text-blue-300 border border-blue-800/40">Ocean Express</span>
+                <span class="text-xs text-slate-400 font-mono-num">Samudra Devi #8057</span>
+              </div>
+              <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition">Colombo Fort to Galle & Matara</h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Tracks hugs the Indian Ocean shoreline, offering uninterrupted sea vistas from Mount Lavinia to Weligama.
+              </p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-xs font-mono-num text-slate-400">Duration: ~2h 30m</span>
+              <a href="../Train Schedule Form/scheduleForm.html" class="text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition duration-200 flex items-center gap-1">
+                <span>Check Times</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3: Northern Line -->
+          <div class="group bg-[#090934]/80 border border-slate-800 hover:border-cyan-500/50 rounded-2xl p-6 shadow-xl transition duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-purple-950 text-purple-300 border border-purple-800/40">Northern Express</span>
+                <span class="text-xs text-slate-400 font-mono-num">Yal Devi #4017</span>
+              </div>
+              <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition">Colombo to Anuradhapura & Jaffna</h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Connects the capital with ancient sacred kingdoms and the Northern peninsula across the Elephant Pass.
+              </p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-xs font-mono-num text-slate-400">Duration: ~6h 45m</span>
+              <a href="../Train Schedule Form/scheduleForm.html" class="text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition duration-200 flex items-center gap-1">
+                <span>Check Times</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Engineering Core Features (Non-AI Slop) -->
+      <section class="py-20 bg-[#090934]/40 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider block mb-2">Designed for Real Travelers</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Engineered Around Real Transit Realities</h2>
+            <p class="text-slate-400 text-sm sm:text-base mt-3">
+              Standard timetable apps only show direct trains. Traventure is architected to handle actual railway edge cases.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-6 rounded-2xl bg-[#040424] border border-slate-800 space-y-3">
+              <div class="w-11 h-11 rounded-xl bg-cyan-950 border border-cyan-800/60 flex items-center justify-center text-cyan-400 text-lg">
+                <i class="fa-solid fa-shuffle"></i>
+              </div>
+              <h3 class="text-base font-bold text-white">Multi-Leg Junction Routing</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Cross-line routes automatically calculate platform transfer windows at major junctions (Colombo Fort, Polgahawela, Maradana).
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-[#040424] border border-slate-800 space-y-3">
+              <div class="w-11 h-11 rounded-xl bg-amber-950 border border-amber-800/60 flex items-center justify-center text-amber-400 text-lg">
+                <i class="fa-solid fa-hotel"></i>
+              </div>
+              <h3 class="text-base font-bold text-white">Overnight Layover Hotel Engine</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Arriving late on the coast with a morning train to Kandy? We automatically present verified station-adjacent stays with instant booking links.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-[#040424] border border-slate-800 space-y-3">
+              <div class="w-11 h-11 rounded-xl bg-blue-950 border border-blue-800/60 flex items-center justify-center text-blue-400 text-lg">
+                <i class="fa-solid fa-map-location-dot"></i>
+              </div>
+              <h3 class="text-base font-bold text-white">Interactive GIS Route Geometry</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Inspect every train's actual geographic track on dark CartoDB vector tiles with 310+ coordinates-accurate station stops.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#040424] border-t border-slate-800/80 py-12 text-center text-xs text-slate-500">
+      <div class="max-w-7xl mx-auto px-4 space-y-4">
+        <div class="flex items-center justify-center gap-2 font-bold text-white text-sm">
+          <div class="w-6 h-6 rounded-lg bg-cyan-500 flex items-center justify-center text-slate-950 text-xs">T</div>
+          <span>TRAVENTURE</span>
+        </div>
+        <p class="text-slate-400 max-w-md mx-auto">
+          An open full-stack transit engineering project for Sri Lanka Railways exploration.
         </p>
+        <p>© 2026 Traventure. Crafted with modern PHP 8 and Tailwind CSS.</p>
       </div>
-      <div class="prob-imgs">
-        <img src="../assets/img/problem.png" alt="Train" />
-      </div>
-    </div>
+    </footer>
 
-    <!-- Features Section -->
-    <div class="features-section">
-      <h2>Traventure helps you plan your trip and have a better experience</h2>
-      <div class="features">
-        <div class="feature">
-          <img src="../assets/icons/train.png" alt="icon 1" />
-          <p>Trains</p>
-        </div>
-        <div class="feature">
-          <img src="../assets/icons/iternary.png" alt="icon 2" />
-          <p>Itinerary</p>
-        </div>
-        <div class="feature">
-          <img src="../assets/icons/ticket.png" alt="icon 3" />
-          <p>Ticket Booking</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="blog-container">
-      <div class="section-header">
-        <h1>Blogs</h1>
-        <a href="../Blogs/blogs.html" class="view-all">View All</a>
-      </div>
-
-      <div class="blogs-grid" id="blogs-container">
-        <div class="loading">Loading blogs...</div>
-      </div>
-    </div>
-
-    <!-- Popular Attractions -->
-    <div class="popular-attractions-section">
-      <h2>Most Popular Attractions</h2>
-      <p>
-        Traventure will help you to plan your trip with these popular
-        attractions. Each trip can be booked as a standard way or you can
-        customize it and request a quote using our route planner.
-      </p>
-      <div class="carousel-container">
-        <button class="prev" onclick="moveAttractionSlide(-1)">
-          <img src="../assets/icons/angle-left.png" alt="left" />
-        </button>
-        <div class="carousel-inner">
-          <div class="popular-attraction">
-            <img src="../assets/img/ella.png" alt="location1" />
-            <p>Nine Arch Bridge</p>
-          </div>
-          <div class="popular-attraction">
-            <img src="../assets/img/mirissa.png" alt="location2" />
-            <p>Mirissa</p>
-          </div>
-          <div class="popular-attraction">
-            <img src="../assets/img/hortain.png" alt="location3" />
-            <p>Horton Plains</p>
-          </div>
-          <div class="popular-attraction">
-            <img src="../assets/img/tot.jpg" alt="location4" />
-            <p>Temple of Tooth</p>
-          </div>
-          <div class="popular-attraction">
-            <img src="../assets/img/fort.jpg" alt="location5" />
-            <p>Galle Fort</p>
-          </div>
-        </div>
-        <button class="next" onclick="moveAttractionSlide(1)">
-          <img src="../assets/icons/angle-right.png" alt="right" />
-        </button>
-      </div>
-
-      <div class="action">
-        <h4>Ready to plan your Train trip?</h4>
-        <a id="cta" href="../CreateTrip/createTrip.php"
-          ><button>Plan your trip!</button></a
-        >
-      </div>
-    </div>
-
-    <!-- Last Section -->
-    <div class="last-section"></div>
-
-    <!-- Footer HTML -->
-    <footer id="footer"></footer>
-
+    <!-- Scripts -->
     <script src="../Navbar/navbar.js"></script>
-    <script src="home.js"></script>
     <script>
-      // Function to load the Navbar
-      document.addEventListener("DOMContentLoaded", function () {
-        fetchBlogs();
-      });
-
-      function fetchBlogs() {
-        const blogsContainer = document.getElementById("blogs-container");
-
-        fetch("../../Server/api/getallblogs.php?limit=3&offset=0")
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json();
-          })
-          .then((blogs) => {
-            if (blogs.length === 0) {
-              blogsContainer.innerHTML =
-                '<div class="error">No blogs found</div>';
-              return;
-            }
-
-            // Clear the loading message
-            blogsContainer.innerHTML = "";
-
-            // Display the first blog as the main blog
-            const mainBlog = blogs[0];
-            const mainBlogElement = createMainBlogElement(mainBlog);
-            blogsContainer.appendChild(mainBlogElement);
-
-            // Display the rest of the blogs as cards (up to 3 more)
-            for (let i = 1; i < Math.min(blogs.length, 4); i++) {
-              const blogCard = createBlogCardElement(blogs[i]);
-              blogsContainer.appendChild(blogCard);
-            }
-          })
-          .catch((error) => {
-            console.error("Error fetching blogs:", error);
-            blogsContainer.innerHTML = `<div class="error">Failed to load blogs. Please try again later.</div>`;
-          });
-      }
-
-      function formatDate(dateString) {
-        const options = { year: "numeric", month: "long", day: "numeric" };
-        return new Date(dateString).toLocaleDateString("en-US", options);
-      }
-
-      function createMainBlogElement(blog) {
-        const mainBlog = document.createElement("div");
-        mainBlog.className = "main-blog";
-        mainBlog.onclick = () =>
-          (window.location.href = `../BlogDetails/blogdetails.html?id=${blog.id}`);
-
-        const imageUrl = blog.image || "/api/placeholder/560/400";
-
-        mainBlog.innerHTML = `
-                <img src="${imageUrl}" alt="${blog.title}">
-                <div class="blog-content">
-                    <h2>${blog.title}</h2>
-                    <p>${blog.intro}</p>
-                    <div class="author-date">
-                        <span>By ${blog.author || "Unknown Author"}</span>
-                        <span>${formatDate(blog.createdAt)}</span>
-                    </div>
-                   
-                </div>
-            `;
-
-        return mainBlog;
-      }
-
-      function createBlogCardElement(blog) {
-        const blogCard = document.createElement("div");
-        blogCard.className = "blog-card";
-        blogCard.onclick = () =>
-          (window.location.href = `../BlogDetails/blogdetails.html?id=${blog.id}`);
-
-        const imageUrl = blog.image || "/api/placeholder/120/120";
-
-        blogCard.innerHTML = `
-                <img src="${imageUrl}" alt="${blog.title}">
-                <div class="blog-content">
-                    <div>
-                        <h3>${blog.title}</h3>
-                        <p>${blog.intro}</p>
-                    </div>
-                    <div class="author-date">
-                        <span>By ${blog.author || "Unknown Author"}</span>
-                        <span>${formatDate(blog.createdAt)}</span>
-                    </div>
-                    
-                </div>
-            `;
-
-        return blogCard;
-      }
-      function loadNavbar() {
+      document.addEventListener("DOMContentLoaded", () => {
         fetch("../Navbar/navbar.php")
-          .then((response) => response.text())
-          .then((data) => {
-            document.getElementById("navbar-placeholder").innerHTML = data;
-            // Initialize the navbar functionalities
-            document
-              .getElementById("menu-toggle")
-              .addEventListener("click", function () {
-                const navMenu = document.getElementById("nav-menu");
-                navMenu.classList.toggle("active");
-              });
-
-            // Set the initial state
-            updateNavbarState(false); // Set initial state (false means not logged in)
-          });
-      }
-
-      // Function to load the Footer
-      function loadFooter() {
-        fetch("../Footer/footer.html")
-          .then((response) => response.text())
-          .then((data) => {
-            document.getElementById("footer").innerHTML = data;
-          });
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        loadNavbar();
-        loadFooter();
+          .then(res => res.text())
+          .then(html => {
+            const el = document.getElementById("navbar-placeholder");
+            if (el) {
+              el.innerHTML = html;
+              if (window.setupNavbarToggle) window.setupNavbarToggle();
+            }
+          }).catch(() => {});
       });
-
-      // Handle login state (optional)
-      function handleLogin(event) {
-        event.preventDefault();
-        // Simulate login action
-        updateNavbarState(true); // Set state to logged in
-      }
-
-      function handleLogout(event) {
-        event.preventDefault();
-        // Simulate logout action
-        updateNavbarState(false); // Set state to logged out
-      }
-
-      function updateNavbarState(isLoggedIn) {
-        if (isLoggedIn) {
-          document.getElementById("login-link").classList.add("hidden");
-          document.getElementById("user-icon").classList.remove("hidden");
-        } else {
-          document.getElementById("login-link").classList.remove("hidden");
-          document.getElementById("user-icon").classList.add("hidden");
-        }
-      }
     </script>
   </body>
 </html>
