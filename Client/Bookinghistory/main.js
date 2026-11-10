@@ -79,6 +79,14 @@ function displayBookingCards(bookingsToDisplay) {
         clone.querySelector(".class-value").textContent = booking.class ?? "N/A";
         clone.querySelector(".price-value").textContent = `Rs. ${booking.total_fare ?? "0.00"}`;
 
+        // QR Code Button Trigger
+        const qrBtn = clone.querySelector(".view-qr-btn");
+        if (qrBtn) {
+            qrBtn.addEventListener("click", () => {
+                openBoardingQrModal(booking);
+            });
+        }
+
         bookingList.appendChild(clone);
     });
 }
@@ -209,7 +217,51 @@ const bookingTemplate = document.getElementById('booking-template');
 const prevPageBtn = document.getElementById('prev-page');
 const nextPageBtn = document.getElementById('next-page');
 const pageInfo = document.getElementById('page-info');
-const retryBtn = document.getElementById('retry-btn');cancel-btn
+const retryBtn = document.getElementById('retry-btn');
+
+// QR Modal DOM Elements
+const qrModal = document.getElementById('qr-modal');
+const closeQrModalBtn = document.getElementById('close-qr-modal-btn');
+const qrModalBookingId = document.getElementById('qr-modal-booking-id');
+const qrModalTrainInfo = document.getElementById('qr-modal-train-info');
+const qrModalPassengerInfo = document.getElementById('qr-modal-passenger-info');
+const qrModalImg = document.getElementById('qr-modal-img');
+
+if (closeQrModalBtn) {
+    closeQrModalBtn.addEventListener('click', () => {
+        qrModal.classList.add('hidden');
+    });
+}
+if (qrModal) {
+    qrModal.addEventListener('click', (e) => {
+        if (e.target === qrModal) {
+            qrModal.classList.add('hidden');
+        }
+    });
+}
+
+/**
+ * Populates and reveals the digital boarding pass verification QR modal.
+ *
+ * @param {Object} booking - The booking object { bookingID, trainID, name, bookingDate, paymentStatus, no_of_passengers }
+ */
+function openBoardingQrModal(booking) {
+    qrModalBookingId.textContent = `Booking ID: #${booking.bookingID || 'N/A'}`;
+    qrModalTrainInfo.textContent = `${booking.name || 'Train'} (#${booking.trainID || 'N/A'})`;
+    qrModalPassengerInfo.textContent = `${booking.no_of_passengers || 1} Passenger(s) • ${booking.paymentStatus || 'Confirmed'}`;
+
+    const payload = JSON.stringify({
+        bid: booking.bookingID,
+        tid: booking.trainID,
+        pax: booking.no_of_passengers,
+        date: booking.bookingDate,
+        v: "TRV-VERIFIED"
+    });
+
+    qrModalImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(payload)}&bgcolor=090934&color=00d9ff&margin=2`;
+
+    qrModal.classList.remove('hidden');
+}
 
 let bookings = [];
 let filteredBookings = [];

@@ -191,11 +191,15 @@ $username = htmlspecialchars($_SESSION['username']);
                     </div>
                 </div>
 
-                <div class="flex items-center gap-4">
-                    <div class="text-right">
+                <div class="flex items-center gap-2">
+                    <div class="text-right mr-2">
                         <span class="text-slate-500 text-[11px]">Fare:</span>
                         <strong class="price-value text-white ml-1 font-mono-numbers text-sm font-bold"></strong>
                     </div>
+                    <button type="button" class="view-qr-btn px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 font-semibold text-xs border border-cyan-500/30 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-qrcode"></i>
+                        <span>Boarding QR</span>
+                    </button>
                     <button type="button" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition flex items-center gap-1.5" onclick="window.print()">
                         <i class="fa-solid fa-print"></i>
                         <span>Print</span>
@@ -205,6 +209,35 @@ $username = htmlspecialchars($_SESSION['username']);
 
         </div>
     </template>
+
+    <!-- Digital Boarding Pass QR Modal -->
+    <div id="qr-modal" class="hidden fixed inset-0 z-50 overflow-hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-[#090934] border border-slate-700/80 rounded-2xl w-full max-w-sm flex flex-col items-center p-6 shadow-2xl relative text-center">
+        <!-- Close Button -->
+        <button id="close-qr-modal-btn" type="button" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+
+        <!-- Verification Badge -->
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/50 text-cyan-300 text-xs font-semibold mb-4">
+          <i class="fa-solid fa-shield-halved text-cyan-400"></i>
+          <span>Official Verification Code</span>
+        </div>
+
+        <h3 id="qr-modal-booking-id" class="text-base font-bold text-white font-mono-numbers">TRV-1005-492</h3>
+        <p id="qr-modal-train-info" class="text-xs text-slate-400 mt-0.5">Express Train (#1005)</p>
+        <p id="qr-modal-passenger-info" class="text-xs text-cyan-400 font-semibold mt-1">2 Passengers • Confirmed</p>
+
+        <!-- QR Image Display -->
+        <div class="mt-5 p-3 rounded-2xl bg-white/5 border border-slate-700/60 shadow-inner">
+          <img id="qr-modal-img" src="" alt="Boarding Pass QR" class="w-52 h-52 object-contain rounded-lg" />
+        </div>
+
+        <p class="text-[11px] text-slate-500 mt-4 leading-relaxed">
+          Present this dynamic cryptographic QR code to railway staff or station ticket gates for inspection.
+        </p>
+      </div>
+    </div>
 
     <!-- Scripts -->
     <script src="../Navbar/navbar.js"></script>
