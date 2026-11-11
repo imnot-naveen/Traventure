@@ -10035,3 +10035,26 @@ CREATE TABLE IF NOT EXISTS `station_accommodations_cache` (
   PRIMARY KEY (`cache_key`),
   KEY `idx_station_date` (`station_name`, `checkin_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `seat_reservations`
+--
+
+CREATE TABLE IF NOT EXISTS `seat_reservations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `train_id` int(11) NOT NULL,
+  `journey_date` date NOT NULL,
+  `coach_class` varchar(20) NOT NULL DEFAULT '1st Class',
+  `seat_number` varchar(10) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` enum('HELD','CONFIRMED','RELEASED') NOT NULL DEFAULT 'HELD',
+  `booking_id` int(11) DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  `created_at` timestamp DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_train_date_seat` (`train_id`, `journey_date`, `seat_number`),
+  KEY `idx_expires_status` (`status`, `expires_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
