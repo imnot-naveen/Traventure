@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
       directSection.classList.remove("hidden");
       direct.forEach(item => {
         const leg = item.legs[0];
-        const card = createDirectCard(leg, item.totalDuration, item.isOvernight);
+        const card = createDirectCard(leg, item.totalDuration, item.isOvernight, data.searchDate);
         directContainer.appendChild(card);
       });
     } else {
@@ -312,9 +312,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Card Generator: Direct Train
-  function createDirectCard(leg, duration, isOvernight) {
+  function createDirectCard(leg, duration, isOvernight, searchDate) {
     const card = document.createElement("div");
     card.className = "bg-[#090934]/80 border border-slate-800 hover:border-cyan-500/40 rounded-xl p-5 shadow-lg transition duration-200 group";
+
+    const selectedDate = searchDate || journeyDateInput.value || todayStr;
+    const bookingParams = new URLSearchParams({
+      trainID: leg.trainID,
+      date: selectedDate,
+      from: originStationId.value || "",
+      to: destStationId.value || "",
+      fromName: leg.departureStation || originInput.value || "",
+      toName: leg.arrivalStation || destInput.value || "",
+      trainName: leg.trainName || "Express Train",
+      dep: leg.departureTime || "",
+      arr: leg.arrivalTime || "",
+      duration: duration || ""
+    });
 
     card.innerHTML = `
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -369,8 +383,8 @@ document.addEventListener("DOMContentLoaded", () => {
               <span>View Route</span>
             </button>
             <a
-              href="../Booking/Booking Form/booking_form.php?trainID=${leg.trainID}"
-              class="px-3.5 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition duration-150 shadow-md active:scale-95"
+              href="../Booking/Booking Form/booking_form.php?${bookingParams.toString()}"
+              class="select-train-btn px-3.5 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition duration-150 shadow-md active:scale-95"
             >
               Select
             </a>
@@ -381,6 +395,26 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
     `;
+
+    const selectBtn = card.querySelector(".select-train-btn");
+    if (selectBtn) {
+      selectBtn.addEventListener("click", () => {
+        localStorage.setItem("selectedTrain", JSON.stringify({
+          trainID: leg.trainID,
+          trainName: leg.trainName,
+          departureTime: leg.departureTime,
+          arrivalTime: leg.arrivalTime,
+          duration: duration,
+          startStationId: originStationId.value,
+          endStationId: destStationId.value
+        }));
+        if (originStationId.value) localStorage.setItem("startStation", originStationId.value);
+        if (destStationId.value) localStorage.setItem("endStation", destStationId.value);
+        localStorage.setItem("startStationName", leg.departureStation || originInput.value || "");
+        localStorage.setItem("endStationName", leg.arrivalStation || destInput.value || "");
+        localStorage.setItem("journeyDate", selectedDate);
+      });
+    }
 
     return card;
   }
@@ -560,6 +594,13 @@ document.addEventListener("DOMContentLoaded", () => {
       filterDirectBtn.className = "filter-tab-btn px-3 py-1.5 rounded-md bg-cyan-500 text-slate-950 font-bold transition";
       directSection.classList.remove("hidden");
       transferSection.classList.add("hidden");
+    } else {
+      filterTransfersBtn.className = "filter-tab-btn px-3 py-1.5 rounded-md bg-cyan-500 text-slate-950 font-bold transition";
+      directSection.classList.add("hidden");
+      transferSection.classList.remove("hidden");
+    }
+  }
+
   // 9. Interactive Railway Map Modal Triggering
   const mapModal = document.getElementById("map-modal");
   const closeMapModalBtn = document.getElementById("close-map-modal-btn");
