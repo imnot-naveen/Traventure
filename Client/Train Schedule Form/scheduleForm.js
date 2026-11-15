@@ -40,15 +40,51 @@ document.addEventListener("DOMContentLoaded", () => {
   journeyDateInput.value = todayStr;
   journeyDateInput.min = todayStr;
 
-  // 1. Fetch Station Master List
+  // 1. Fetch Station Master List (IndexedDB Cache-First with Background Network Sync)
   async function loadStations() {
+    // Phase A: Immediate load from local IndexedDB cache (0ms instant autocomplete)
+    if (window.TraventureStore) {
+      try {
+        const cached = await window.TraventureStore.getAllStations();
+        if (cached && cached.length > 0) {
+          stationsList = cached;
+          console.log(`[PWA] Loaded ${stationsList.length} stations from IndexedDB cache.`);
+        }
+      } catch (err) {
+        console.warn("[PWA] IndexedDB read warning:", err);
+      }
+    }
+
+    // Phase B: Network sync to keep station records fresh
     try {
       const res = await fetch("../../Server/api/getstations.php");
-      if (!res.ok) throw new Error("Failed to load stations");
-      stationsList = await res.json();
-      console.log(`Loaded ${stationsList.length} stations.`);
+      if (!res.ok) throw new Error("Failed to load stations from API");
+      const fresh = await res.json();
+      if (Array.isArray(fresh) && fresh.length > 0) {
+        stationsList = fresh;
+        console.log(`[PWA] Synced ${stationsList.length} fresh stations from API.`);
+        if (window.TraventureStore) {
+          window.TraventureStore.saveStations(fresh).catch(() => { });
+        }
+      }
     } catch (err) {
-      console.error("Station loading error:", err);
+      console.warn("[PWA] Station network fetch failed (offline or tunnel), relying on local cache:", err);
+      // Fallback: If IndexedDB was empty, bootstrap from static station coordinates
+      if (stationsList.length === 0) {
+        try {
+          const fallbackRes = await fetch("../../public/station_coordinates.json");
+          const coords = await fallbackRes.json();
+          stationsList = Object.keys(coords).map((name, idx) => ({
+            StationID: idx + 1,
+            name: name,
+            latitude: coords[name].lat,
+            longitude: coords[name].lng
+          }));
+          if (window.TraventureStore) {
+            window.TraventureStore.saveStations(stationsList).catch(() => { });
+          }
+        } catch (e) { }
+      }
     }
   }
   loadStations();
@@ -257,9 +293,30 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      // Cache successful query in IndexedDB for mountain-tunnel offline journeys
+      if (window.TraventureStore && typeof window.TraventureStore.cacheTimetable === "function") {
+        window.TraventureStore.cacheTimetable(fromId, toId, searchDate, data).catch(() => { });
+      }
+
       renderResults(data);
     } catch (err) {
-      console.error("Search API error:", err);
+      console.warn("[PWA] Live search failed (offline/tunnel). Checking local IndexedDB cache:", err);
+
+      // Attempt offline fallback from IndexedDB
+      if (window.TraventureStore && typeof window.TraventureStore.getCachedTimetable === "function") {
+        try {
+          const cachedData = await window.TraventureStore.getCachedTimetable(fromId, toId, searchDate);
+          if (cachedData) {
+            loadingEl.classList.add("hidden");
+            cachedData.isOfflineCached = true;
+            renderResults(cachedData);
+            return;
+          }
+        } catch (e) {
+          console.error("[PWA] IndexedDB timetable query failed:", e);
+        }
+      }
+
       loadingEl.classList.add("hidden");
       noResultsEl.classList.remove("hidden");
     }
@@ -277,7 +334,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     summaryRouteText.textContent = `${originInput.value} → ${destInput.value}`;
-    summaryMetaText.textContent = `${data.dayOfWeek}, ${data.searchDate} • ${total} itinerary option${total > 1 ? "s" : ""}`;
+
+    if (data.isOfflineCached) {
+      summaryMetaText.innerHTML = `${data.dayOfWeek}, ${data.searchDate} • ${total} itinerary option${total > 1 ? "s" : ""} <span class="ml-2 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-950/80 border border-amber-600/50 text-amber-300 text-[10px] font-mono"><i class="fa-solid fa-cloud-arrow-down text-amber-400"></i> Offline Cached Timetable</span>`;
+    } else {
+      summaryMetaText.textContent = `${data.dayOfWeek}, ${data.searchDate} • ${total} itinerary option${total > 1 ? "s" : ""}`;
+    }
+
     countAll.textContent = total;
     countDirect.textContent = direct.length;
     countTransfers.textContent = transfers.length;
@@ -638,7 +701,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       mapModalSubtitle.textContent = `${data.stopsCount} stops • ${data.train.startStation} to ${data.train.endStation}`;
-      
+
       // Call your Leaflet rendering function!
       if (typeof window.renderTrainRouteOnMap === "function") {
         window.renderTrainRouteOnMap(map, data);

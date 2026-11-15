@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Train Schedule & Transit Search | Traventure</title>
+    <!-- PWA Manifest & Theme -->
+    <link rel="manifest" href="../manifest.json" />
+    <meta name="theme-color" content="#040424" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="../assets/icons/pwa-icon.svg" />
     <!-- Tailwind CSS (compiled with brand theme tokens) -->
     <link rel="stylesheet" href="../assets/css/tailwind.css" />
     <link rel="stylesheet" href="../Navbar/navbar.css" />
@@ -244,6 +250,9 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="scheduleMap.js"></script>
+    <!-- PWA Offline & Storage Scripts -->
+    <script src="../assets/js/offlineStore.js"></script>
+    <script src="../assets/js/pwa.js"></script>
     <script src="../Navbar/navbar.js"></script>
     <script src="scheduleForm.js"></script>
     <script>
