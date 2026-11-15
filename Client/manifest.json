@@ -1,0 +1,25 @@
+{
+  "name": "Traventure • Sri Lanka Railways Transit Platform",
+  "short_name": "Traventure",
+  "description": "Real-time timetable routing, interactive coach seat booking, and offline rail transit itineraries for Sri Lanka Railways.",
+  "start_url": "./Home/Home.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#040424",
+  "theme_color": "#040424",
+  "icons": [
+    {
+      "src": "./assets/icons/pwa-icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/logo/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
