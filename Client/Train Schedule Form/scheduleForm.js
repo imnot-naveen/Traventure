@@ -74,12 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
           const fallbackRes = await fetch("../../public/station_coordinates.json");
           const coords = await fallbackRes.json();
-          stationsList = Object.keys(coords).map((name, idx) => ({
-            StationID: idx + 1,
-            name: name,
-            latitude: coords[name].lat,
-            longitude: coords[name].lng
-          }));
+          stationsList = Array.isArray(coords)
+            ? coords.map(c => ({ StationID: c.stationID, name: c.name, latitude: c.lat, longitude: c.lng }))
+            : Object.keys(coords).map((name, idx) => ({
+                StationID: idx + 1,
+                name: name,
+                latitude: coords[name].lat,
+                longitude: coords[name].lng
+              }));
           if (window.TraventureStore) {
             window.TraventureStore.saveStations(stationsList).catch(() => { });
           }
