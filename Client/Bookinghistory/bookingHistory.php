@@ -16,6 +16,12 @@ $username = htmlspecialchars($_SESSION['username']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bookings & Boarding Passes | Traventure</title>
+    <!-- PWA Manifest & Theme -->
+    <link rel="manifest" href="../manifest.json" />
+    <meta name="theme-color" content="#040424" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="../assets/icons/pwa-icon.svg" />
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../assets/css/tailwind.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -86,6 +92,22 @@ $username = htmlspecialchars($_SESSION['username']);
                     </select>
                 </div>
             </div>
+        </div>
+
+        <!-- Offline Digital Wallet Notice -->
+        <div id="offline-wallet-banner" class="hidden rounded-2xl bg-amber-950/30 border border-amber-500/50 p-4 mb-6 text-xs text-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg shadow-amber-950/30">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-white block">Offline Digital Ticket Wallet Active</span>
+                    <span class="text-amber-300/80 text-[11px]">Displaying cryptographically valid railway boarding passes cached in on-device IndexedDB.</span>
+                </div>
+            </div>
+            <span class="font-mono text-[10px] uppercase font-bold text-amber-300 bg-amber-900/60 px-2.5 py-1 rounded-lg border border-amber-700/60 self-start sm:self-auto">
+                Offline Mode
+            </span>
         </div>
 
         <!-- Bookings Container -->
@@ -228,9 +250,10 @@ $username = htmlspecialchars($_SESSION['username']);
         <p id="qr-modal-train-info" class="text-xs text-slate-400 mt-0.5">Express Train (#1005)</p>
         <p id="qr-modal-passenger-info" class="text-xs text-cyan-400 font-semibold mt-1">2 Passengers • Confirmed</p>
 
-        <!-- QR Image Display -->
-        <div class="mt-5 p-3 rounded-2xl bg-white/5 border border-slate-700/60 shadow-inner">
+        <!-- QR Image & Offline Canvas Display -->
+        <div class="mt-5 p-3 rounded-2xl bg-white/5 border border-slate-700/60 shadow-inner flex flex-col items-center justify-center min-h-[220px]">
           <img id="qr-modal-img" src="" alt="Boarding Pass QR" class="w-52 h-52 object-contain rounded-lg" />
+          <canvas id="qr-modal-canvas" width="208" height="208" class="hidden rounded-lg"></canvas>
         </div>
 
         <p class="text-[11px] text-slate-500 mt-4 leading-relaxed">
@@ -240,6 +263,8 @@ $username = htmlspecialchars($_SESSION['username']);
     </div>
 
     <!-- Scripts -->
+    <script src="../assets/js/offlineStore.js"></script>
+    <script src="../assets/js/pwa.js"></script>
     <script src="../Navbar/navbar.js"></script>
     <script type="module" src="main.js"></script>
     <script>
