@@ -7,7 +7,7 @@
 
 (function () {
   const DB_NAME = 'traventure_offline_db';
-  const DB_VERSION = 1;
+  const DB_VERSION = 2;
 
   let dbPromise = null;
 
@@ -40,6 +40,13 @@
         // Store 3: User Booked Itineraries & Boarding Passes
         if (!db.objectStoreNames.contains('userBookings')) {
           db.createObjectStore('userBookings', { keyPath: 'bookingID' });
+        }
+
+        // Store 4: Outbox Sync Queue for Offline Submissions
+        if (!db.objectStoreNames.contains('outboxQueue')) {
+          const outboxStore = db.createObjectStore('outboxQueue', { keyPath: 'id', autoIncrement: true });
+          outboxStore.createIndex('actionType', 'actionType', { unique: false });
+          outboxStore.createIndex('status', 'status', { unique: false });
         }
       };
 
@@ -232,6 +239,98 @@
     return matches.slice(0, limit);
   }
 
+  /**
+   * Enqueues an action into the outbox queue when offline.
+   */
+  async function queueOutboxAction(actionType, payload) {
+    const db = await openDatabase();
+
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('outboxQueue', 'readwrite');
+      const store = tx.objectStore('outboxQueue');
+      const item = {
+        actionType,
+        payload,
+        status: 'PENDING',
+        createdAt: Date.now()
+      };
+      const req = store.add(item);
+      req.onsuccess = () => resolve(req.result);
+      tx.oncomplete = () => { };
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
+  /**
+   * Retrieves all pending actions from the outbox queue.
+   */
+  async function getPendingOutboxActions() {
+    const db = await openDatabase();
+
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('outboxQueue', 'readonly');
+      const store = tx.objectStore('outboxQueue');
+      const req = store.getAll();
+
+      req.onsuccess = () => {
+        const all = req.result || [];
+        resolve(all.filter((item) => item.status === 'PENDING'));
+      };
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  /**
+   * Removes an outbox action once successfully synchronized with the backend.
+   */
+  async function markOutboxActionComplete(id) {
+    const db = await openDatabase();
+
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('outboxQueue', 'readwrite');
+      const store = tx.objectStore('outboxQueue');
+      store.delete(id);
+      tx.oncomplete = () => resolve(true);
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
+  /**
+   * Flushes and synchronizes any pending offline outbox actions with the cloud backend.
+   *
+   * @returns {Promise<number>} Number of successfully synchronized actions.
+   */
+  async function flushOutboxQueue() {
+    if (!navigator.onLine) {
+      return 0;
+    }
+    const pending = await getPendingOutboxActions();
+    if (!pending || pending.length === 0) {
+      return 0;
+    }
+
+    let syncedCount = 0;
+    for (const item of pending) {
+      try {
+        if (item.actionType === 'SAVE_RATING') {
+          const response = await fetch('../../Server/api/saveRating.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item.payload)
+          });
+
+          if (response.ok) {
+            await markOutboxActionComplete(item.id);
+            syncedCount++;
+          }
+        }
+      } catch (err) {
+        console.warn(`[Outbox Sync] Action #${item.id} sync deferred:`, err);
+      }
+    }
+    return syncedCount;
+  }
+
   window.TraventureStore = {
     openDatabase,
     saveStations,
@@ -241,6 +340,10 @@
     cacheAllBookings,
     getAllBookings,
     cacheTimetable,
-    searchOfflineStations
+    searchOfflineStations,
+    queueOutboxAction,
+    getPendingOutboxActions,
+    markOutboxActionComplete,
+    flushOutboxQueue
   };
 })();

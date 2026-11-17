@@ -11,6 +11,12 @@ $username = $isLoggedIn ? htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'U
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sri Lanka Rail Destinations & Attractions | Traventure</title>
+  <!-- PWA Manifest & Theme -->
+  <link rel="manifest" href="../manifest.json" />
+  <meta name="theme-color" content="#040424" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="../assets/icons/pwa-icon.svg" />
   <link rel="stylesheet" href="../assets/css/tailwind.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -164,6 +170,9 @@ $username = $isLoggedIn ? htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'U
   <script>
     window.TRAVENTURE_USER = <?= json_encode($username); ?>;
   </script>
+  <!-- PWA Offline & Storage Scripts -->
+  <script src="../assets/js/offlineStore.js"></script>
+  <script src="../assets/js/pwa.js"></script>
   <script src="../Navbar/navbar.js"></script>
   <script src="destinations.js"></script>
 </body>
