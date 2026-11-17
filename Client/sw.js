@@ -18,6 +18,8 @@ const PRECACHE_ASSETS = [
   './Train Schedule Form/scheduleForm.js',
   './Train Schedule Form/scheduleMap.js',
   './Home/Home.html',
+  './Bookinghistory/bookingHistory.php',
+  './Bookinghistory/main.js',
   '../public/station_coordinates.json'
 ];
 

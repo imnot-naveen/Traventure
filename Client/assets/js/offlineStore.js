@@ -137,6 +137,49 @@
   }
 
   /**
+   * Bulk-saves an array of user bookings into IndexedDB for offline digital wallet access.
+   */
+  async function cacheAllBookings(bookings) {
+    if (!Array.isArray(bookings) || bookings.length === 0) return 0;
+    const db = await openDatabase();
+
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('userBookings', 'readwrite');
+      const store = tx.objectStore('userBookings');
+
+      bookings.forEach((booking) => {
+        if (booking && (booking.bookingID || booking.id)) {
+          const bookingID = Number(booking.bookingID || booking.id);
+          store.put({
+            ...booking,
+            bookingID,
+            cachedAt: Date.now()
+          });
+        }
+      });
+
+      tx.oncomplete = () => resolve(bookings.length);
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
+  /**
+   * Retrieves all cached user bookings from IndexedDB.
+   */
+  async function getAllBookings() {
+    const db = await openDatabase();
+
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('userBookings', 'readonly');
+      const store = tx.objectStore('userBookings');
+      const request = store.getAll();
+
+      request.onsuccess = () => resolve(request.result || []);
+      request.onerror = () => reject(request.error);
+    });
+  }
+
+  /**
    * Caches a multi-leg timetable query response in IndexedDB.
    */
   async function cacheTimetable(originId, destId, date, data) {
@@ -195,6 +238,8 @@
     getAllStations,
     getCachedTimetable,
     cacheBooking,
+    cacheAllBookings,
+    getAllBookings,
     cacheTimetable,
     searchOfflineStations
   };
