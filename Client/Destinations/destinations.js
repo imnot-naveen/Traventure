@@ -445,16 +445,35 @@
     modalSubmitRatingBtn.disabled = true;
     modalSubmitRatingBtn.textContent = "Submitting...";
 
+    const reviewPayload = {
+      username: user,
+      destinationId: activeDestinationForModal.id,
+      rating: selectedModalRating,
+      description: modalReviewText.value.trim()
+    };
+
+    // If device is offline in a mountain tunnel, enqueue in on-device Outbox
+    if (!navigator.onLine && window.TraventureStore && typeof window.TraventureStore.queueOutboxAction === "function") {
+      try {
+        await window.TraventureStore.queueOutboxAction("SAVE_RATING", reviewPayload);
+        modalReviewMsg.textContent = "Offline Mode: Review saved locally. Will sync automatically when reconnected.";
+        modalReviewMsg.className = "text-xs font-semibold text-amber-400";
+        modalReviewText.value = "";
+      } catch (err) {
+        modalReviewMsg.textContent = "Could not queue review locally.";
+        modalReviewMsg.className = "text-xs font-semibold text-rose-400";
+      } finally {
+        modalSubmitRatingBtn.disabled = false;
+        modalSubmitRatingBtn.textContent = "Submit Review";
+      }
+      return;
+    }
+
     try {
       const res = await fetch(API_SAVE_RATING, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: user,
-          destinationId: activeDestinationForModal.id,
-          rating: selectedModalRating,
-          description: modalReviewText.value.trim()
-        })
+        body: JSON.stringify(reviewPayload)
       });
       const data = await res.json();
       if (data.success) {
@@ -467,7 +486,16 @@
         modalReviewMsg.className = "text-xs font-semibold text-rose-400";
       }
     } catch (e) {
-      console.error("Save rating error:", e);
+      console.warn("Live save rating failed. Enqueueing into IndexedDB outbox:", e);
+      if (window.TraventureStore && typeof window.TraventureStore.queueOutboxAction === "function") {
+        try {
+          await window.TraventureStore.queueOutboxAction("SAVE_RATING", reviewPayload);
+          modalReviewMsg.textContent = "Offline Mode: Review saved locally. Will sync automatically when reconnected.";
+          modalReviewMsg.className = "text-xs font-semibold text-amber-400";
+          modalReviewText.value = "";
+          return;
+        } catch (err) {}
+      }
       modalReviewMsg.textContent = "Network error. Please try again.";
       modalReviewMsg.className = "text-xs font-semibold text-rose-400";
     } finally {

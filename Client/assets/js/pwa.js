@@ -74,9 +74,52 @@
 
     window.dispatchEvent(new CustomEvent('traventure:connectivity', { detail: { online: true } }));
 
+    // Automatically synchronize pending offline outbox queue actions
+    if (window.TraventureStore && typeof window.TraventureStore.flushOutboxQueue === 'function') {
+      window.TraventureStore.flushOutboxQueue()
+        .then((syncedCount) => {
+          if (syncedCount > 0) {
+            console.log(`[PWA Sync] Automatically flushed ${syncedCount} queued action(s) to cloud.`);
+          }
+        })
+        .catch((err) => {
+          console.warn('[PWA Sync] Background outbox flush error:', err);
+        });
+    }
+
     bannerTimeout = setTimeout(() => {
       el.classList.add('hidden');
     }, 3500);
+  }
+
+  let deferredPrompt = null;
+
+  function setupInstallPrompt() {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+
+      // Provide native 1-click PWA install pill in the ambient banner
+      const banner = createBanner();
+      if (!document.getElementById('pwa-install-pill')) {
+        const installPill = document.createElement('button');
+        installPill.id = 'pwa-install-pill';
+        installPill.type = 'button';
+        installPill.className = 'ml-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-semibold transition active:scale-95';
+        installPill.innerHTML = `<i class="fa-solid fa-download text-[11px]"></i><span>Install Traventure App</span>`;
+        installPill.addEventListener('click', async () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+              installPill.remove();
+            }
+            deferredPrompt = null;
+          }
+        });
+        banner.appendChild(installPill);
+      }
+    });
   }
 
   function setupConnectivityListeners() {
@@ -97,6 +140,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     initServiceWorker();
     setupConnectivityListeners();
+    setupInstallPrompt();
   });
 
   window.TraventurePWA = {
