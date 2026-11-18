@@ -102,3 +102,16 @@ if (!function_exists('verifyCsrfToken')) {
     }
 }
 
+// 6. Global API Rate Limiting Helper
+if (!function_exists('applyApiRateLimit')) {
+    function applyApiRateLimit(string $action = 'general', int $limit = 60, int $decaySeconds = 60): void {
+        $rateLimiterFile = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'RateLimiter.php';
+        if (file_exists($rateLimiterFile)) {
+            require_once($rateLimiterFile);
+            if (class_exists('RateLimiter')) {
+                RateLimiter::enforce($action, $limit, $decaySeconds);
+            }
+        }
+    }
+}
+

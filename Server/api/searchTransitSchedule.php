@@ -15,6 +15,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS
 include_once('../core/initialize.php');
 require_once('../core/TransitRouter.php');
 
+// Rate limiting: 60 search requests per minute per IP
+RateLimiter::enforce('search', 60, 60);
+
 try {
     $rawInput = file_get_contents("php://input");
     $data = json_decode($rawInput, true);
@@ -24,9 +27,7 @@ try {
     $searchDate = $data['searchDate'] ?? date('Y-m-d');
 
     if (!$startStation || !$endStation) {
-        http_response_code(400);
-        echo json_encode(['success' => false, 'message' => 'Please provide start and end stations.']);
-        exit();
+        ApiResponse::badRequest('Please provide start and end stations.');
     }
 
     $timestamp = strtotime($searchDate);
@@ -211,8 +212,7 @@ try {
     });
     $transferItineraries = array_slice($transferItineraries, 0, 15);
 
-    echo json_encode([
-        'success' => true,
+    ApiResponse::ok([
         'searchDate' => $searchDate,
         'dayOfWeek' => $dayOfWeek,
         'directCount' => count($directItineraries),
@@ -221,11 +221,6 @@ try {
         'transfers' => $transferItineraries
     ]);
 
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode([
-        'success' => false,
-        'message' => 'Error querying transit schedules.',
-        'error' => $e->getMessage()
-    ]);
+} catch (Throwable $e) {
+    ApiResponse::serverError('Error querying transit schedules.', $e);
 }

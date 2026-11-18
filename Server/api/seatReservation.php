@@ -15,6 +15,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS
 include_once('../core/initialize.php');
 require_once('../core/SeatReservationService.php');
 
+// Rate limiting: 30 seat reservation requests per minute per IP
+RateLimiter::enforce('seat_reservation', 30, 60);
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -29,19 +32,15 @@ try {
         $journeyDate = trim($_GET['date'] ?? date('Y-m-d'));
 
         if (!$trainId) {
-            http_response_code(400);
-            echo json_encode(['success' => false, 'message' => 'trainID is required.']);
-            exit();
+            ApiResponse::badRequest('trainID is required.');
         }
 
         $seatMap = $service->getSeatMap($trainId, $journeyDate);
-        echo json_encode([
-            'success' => true,
+        ApiResponse::ok([
             'trainID' => $trainId,
             'journeyDate' => $journeyDate,
             'seats' => $seatMap
         ]);
-        exit();
     }
 
     // POST: Acquire 5-minute hold or confirm reservation
@@ -55,40 +54,35 @@ try {
         $userId = isset($_SESSION['userID']) ? (int)$_SESSION['userID'] : (isset($data['userID']) ? (int)$data['userID'] : 0);
 
         if (!$trainId || empty($seats) || !$userId) {
-            http_response_code(400);
-            echo json_encode(['success' => false, 'message' => 'trainID, seats array, and userID are required.']);
-            exit();
+            ApiResponse::badRequest('trainID, seats array, and userID are required.');
         }
 
         if ($action === 'hold') {
             $result = $service->holdSeats($trainId, $journeyDate, $seats, $userId, $coachClass);
             if (!$result['success']) {
-                http_response_code(409); // Conflict
+                ApiResponse::conflict($result['message'] ?? 'Seat hold conflict.');
             }
-            echo json_encode($result);
-            exit();
+            ApiResponse::ok($result);
         }
 
         if ($action === 'confirm') {
             $bookingId = isset($data['bookingID']) ? (int)$data['bookingID'] : 0;
             if (!$bookingId) {
-                http_response_code(400);
-                echo json_encode(['success' => false, 'message' => 'bookingID is required to confirm seats.']);
-                exit();
+                ApiResponse::badRequest('bookingID is required to confirm seats.');
             }
             $confirmed = $service->confirmSeats($trainId, $journeyDate, $seats, $userId, $bookingId);
-            echo json_encode([
-                'success' => $confirmed,
-                'message' => $confirmed ? 'Seats confirmed.' : 'Failed to confirm seats (hold may have expired).'
+            if (!$confirmed) {
+                ApiResponse::conflict('Failed to confirm seats (hold may have expired or belongs to another user).');
+            }
+            ApiResponse::ok([
+                'confirmed' => true,
+                'message' => 'Seats confirmed.'
             ]);
-            exit();
         }
     }
 
-    http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Method not allowed.']);
+    ApiResponse::error('Method not allowed.', 405);
 
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Reservation error.', 'error' => $e->getMessage()]);
+} catch (Throwable $e) {
+    ApiResponse::serverError('Reservation error.', $e);
 }
