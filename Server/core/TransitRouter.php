@@ -8,29 +8,23 @@ declare(strict_types=1);
  * Railway Network using graph adjacency and timetable interval traversal.
  */
 class TransitRouter {
-    private PDO $db;
-
-    public function __construct(PDO $db) {
-        $this->db = $db;
+    /**
+     * Constructor utilizes PHP 8 constructor property promotion.
+     */
+    public function __construct(private PDO $db) {
     }
 
     /**
-     * Checks if a train runs on a specific day of the week.
+     * Checks if a train runs on a specific day of the week using PHP 8 match expression.
      */
     public function isTrainRunning(string $daysStr, string $dayOfWeek, bool $isWeekend): bool {
         $daysStr = trim($daysStr);
-        if ($daysStr === '' || $daysStr === 'Daily') {
-            return true;
-        }
-        if ($daysStr === 'Weekdays') {
-            return !$isWeekend;
-        }
-        if ($daysStr === 'Weekends') {
-            return $isWeekend;
-        }
-
-        $tokens = array_map('trim', explode(',', $daysStr));
-        return in_array($dayOfWeek, $tokens, true);
+        return match ($daysStr) {
+            '', 'Daily' => true,
+            'Weekdays'  => !$isWeekend,
+            'Weekends'  => $isWeekend,
+            default     => in_array($dayOfWeek, array_map('trim', explode(',', $daysStr)), true),
+        };
     }
 
     /**
@@ -56,10 +50,12 @@ class TransitRouter {
 
     /**
      * Formats duration in seconds to a human-readable string: e.g. "2h 45m"
+     * Demonstrates PHP 8 union type int|float.
      */
-    public function formatDuration(int $seconds): string {
-        $hours = floor($seconds / 3600);
-        $minutes = floor(($seconds % 3600) / 60);
+    public function formatDuration(int|float $seconds): string {
+        $sec = (int)$seconds;
+        $hours = floor($sec / 3600);
+        $minutes = floor(($sec % 3600) / 60);
         return "{$hours}h {$minutes}m";
     }
 
