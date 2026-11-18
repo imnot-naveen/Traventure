@@ -13,6 +13,10 @@ defined('CORE_PATH') ? null : define('CORE_PATH', SITE_ROOT . DS . 'Server' . DS
 // Load the config file first
 require_once(INC_PATH . DS . "config.php");
 
+// Core framework & systems infrastructure
+require_once(CORE_PATH . DS . "ApiResponse.php");
+require_once(CORE_PATH . DS . "RateLimiter.php");
+
 // Core classes
 require_once(CORE_PATH . DS . "person.php");
 require_once(CORE_PATH.DS. "login.php");

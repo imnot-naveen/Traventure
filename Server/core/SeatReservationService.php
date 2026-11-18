@@ -8,11 +8,24 @@ declare(strict_types=1);
  * time-bounded 5-minute reservation leases to prevent double-booking race conditions.
  */
 class SeatReservationService {
-    private PDO $db;
     private const HOLD_MINUTES = 5;
 
-    public function __construct(PDO $db) {
-        $this->db = $db;
+    /**
+     * Constructor utilizes PHP 8 constructor property promotion.
+     */
+    public function __construct(private PDO $db) {
+    }
+
+    /**
+     * Normalizes hold and reservation states using PHP 8 match expression.
+     */
+    public function normalizeHoldStatus(string $status): string {
+        return match (strtoupper(trim($status))) {
+            'HELD'      => 'HELD',
+            'CONFIRMED' => 'CONFIRMED',
+            'RELEASED', 'EXPIRED' => 'RELEASED',
+            default     => 'AVAILABLE',
+        };
     }
 
     /**

@@ -1,24 +1,27 @@
 <?php
-// saveRating.php
+declare(strict_types=1);
+
 // Include database and other necessary files
 include_once('../core/initialize.php');
-header('Content-Type: application/json');
+
+// Rate limiting: 20 rating submissions per minute per IP
+RateLimiter::enforce('save_rating', 20, 60);
+
+// Check if user session exists
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['username'])) {
+    ApiResponse::unauthorized('You must be logged in to rate destinations.');
+}
 
 // Get JSON input
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
-// Check if user is logged in
-session_start();
-if (!isset($_SESSION['username'])) {
-    echo json_encode(['success' => false, 'message' => 'You must be logged in to rate destinations.']);
-    exit();
-}
-
 // Validate input
 if (empty($data['destinationId']) || empty($data['rating']) || !is_numeric($data['rating']) || $data['rating'] < 1 || $data['rating'] > 5) {
-    echo json_encode(['success' => false, 'message' => 'Invalid input: Destination ID and rating (1-5) are required.']);
-    exit();
+    ApiResponse::badRequest('Invalid input: Destination ID and rating (1-5) are required.');
 }
 
 try {
@@ -62,14 +65,13 @@ try {
     $db->commit();
     
     // Return success response
-    echo json_encode([
-        'success' => true,
+    ApiResponse::ok([
         'message' => 'Your rating has been saved successfully!'
     ]);
     
-} catch (Exception $e) {
-    // Rollback transaction on error
-    $db->rollBack();
-    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+} catch (Throwable $e) {
+    if ($db->inTransaction()) {
+        $db->rollBack();
+    }
+    ApiResponse::serverError('Failed to save rating: ' . $e->getMessage(), $e);
 }
-?>

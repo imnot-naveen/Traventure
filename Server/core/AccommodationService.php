@@ -10,11 +10,12 @@ declare(strict_types=1);
  * 3. Deterministic Curated Fallback with Affiliate Deep Links
  */
 class AccommodationService {
-    private ?PDO $db;
-    private array $stationGeoMap;
+    private array $stationGeoMap = [];
 
-    public function __construct(?PDO $db = null) {
-        $this->db = $db;
+    /**
+     * Constructor utilizes PHP 8 constructor property promotion.
+     */
+    public function __construct(private ?PDO $db = null) {
         $this->loadStationGeo();
     }
 
@@ -48,6 +49,18 @@ class AccommodationService {
             'bookingDeepLink' => "https://www.booking.com/searchresults.html?ss={$encodedQuery}&checkin={$checkinDate}&checkout={$checkoutDate}&group_adults=1&no_rooms=1&group_children=0",
             'airbnbDeepLink' => "https://www.airbnb.com/s/{$encodedQuery}/homes?checkin={$checkinDate}&checkout={$checkoutDate}&adults=1"
         ];
+    }
+
+    /**
+     * Categorizes accommodation price tier using PHP 8 match expression and union types.
+     */
+    public function categorizeBudgetTier(int|float|string $price): string {
+        $numericPrice = is_string($price) ? (float)preg_replace('/[^0-9.]/', '', $price) : (float)$price;
+        return match (true) {
+            $numericPrice <= 25.0 => 'Budget Pods (< $25)',
+            $numericPrice <= 60.0 => 'Mid-scale ($25–$60)',
+            default => 'Premium Stay (> $60)',
+        };
     }
 
     /**

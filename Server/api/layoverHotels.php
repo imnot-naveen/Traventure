@@ -14,6 +14,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS
 include_once('../core/initialize.php');
 require_once('../core/AccommodationService.php');
 
+// Rate limiting: 60 layover accommodation requests per minute per IP
+RateLimiter::enforce('layover_hotels', 60, 60);
+
 try {
     $station = trim($_GET['station'] ?? 'Colombo Fort');
     $checkin = trim($_GET['checkin'] ?? date('Y-m-d'));
@@ -22,8 +25,7 @@ try {
     $service = new AccommodationService($db);
     $result = $service->getHotelsForLayover($station, $checkin, $checkout);
 
-    echo json_encode([
-        'success' => true,
+    ApiResponse::ok([
         'source' => $result['source'],
         'station' => $result['station'],
         'dates' => $result['dates'],
@@ -31,11 +33,6 @@ try {
         'airbnbDeepLink' => $result['links']['airbnbDeepLink'],
         'hotels' => $result['hotels']
     ]);
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode([
-        'success' => false,
-        'message' => 'Error querying layover accommodation.',
-        'error' => $e->getMessage()
-    ]);
+} catch (Throwable $e) {
+    ApiResponse::serverError('Error querying layover accommodation.', $e);
 }
