@@ -126,54 +126,22 @@ document
       valid = false;
     }
 
-    // password validation requirements
-    let strength = 0;
-    let messages = [];
-    const requirements = {
-      minLength: 8,
-      requireUpper: true,
-      requireLower: true,
-      requireNumber: true,
-      requireSpecialChar: true,
-    };
-
-    if (password.length < requirements.minLength) {
-      document.getElementById("password-error") = `Password must be at least ${requirements.minLength} characters`;
-    } else {
-      strength += 1;
-    }
-
-    if (requirements.requireUpper && !/[A-Z]/.test(password)) {
-      document.getElementById("password-error").textContent =
-        "Password must be have at least one uppercase letter";
-    } else {
-      strength += 1;
-    }
-
-    if (requirements.requireLower && !/[a-z]/.test(password)) {
-      document.getElementById("password-error").textContent =
-        "Password must have at least one lowercase letter";
-    } else {
-      strength += 1;
-    }
-
-    if (requirements.requireNumber && !/\d/.test(password)) {
-      document.getElementById("password-error").textContent =
-        "Password must have at least one number";
-    } else {
-      strength += 1;
-    }
-
-    if (
-      requirements.requireSpecialChar &&
-      !/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
-    ) {
-      document.getElementById("password-error").textContent = "Password is too weak. Password should have at least one uppercase letter, one lowercase letter, one number and one special character";
-    } else {
-      strength += 1;
-    }
-
-    if(strength < 5){
+    // Password validation requirements
+    const passwordErrorEl = document.getElementById("password-error");
+    if (!newPassword || newPassword.length < 8) {
+      passwordErrorEl.textContent = "Password must be at least 8 characters long.";
+      valid = false;
+    } else if (!/[A-Z]/.test(newPassword)) {
+      passwordErrorEl.textContent = "Password must have at least one uppercase letter.";
+      valid = false;
+    } else if (!/[a-z]/.test(newPassword)) {
+      passwordErrorEl.textContent = "Password must have at least one lowercase letter.";
+      valid = false;
+    } else if (!/\d/.test(newPassword)) {
+      passwordErrorEl.textContent = "Password must have at least one number.";
+      valid = false;
+    } else if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(newPassword)) {
+      passwordErrorEl.textContent = "Password must have at least one special character (!@#$%^&*...).";
       valid = false;
     }
 

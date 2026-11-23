@@ -72,7 +72,40 @@ try {
         echo "  ✓ Schema and seed data successfully imported.\n\n";
     }
 
-    // 4. Run composite index optimizations
+    // 4. Provision standard test accounts for instant review
+    echo "Provisioning standard test review accounts...\n";
+    $testPasswordHash = password_hash('Password@123', PASSWORD_DEFAULT);
+    $adminPasswordHash = password_hash('Admin@123', PASSWORD_DEFAULT);
+
+    $pdo->prepare("
+        INSERT INTO login (username, email, password, userType)
+        VALUES ('traveller', 'traveller@traventure.lk', :hash, 'Traveller')
+        ON DUPLICATE KEY UPDATE password = VALUES(password)
+    ")->execute([':hash' => $testPasswordHash]);
+
+    $pdo->prepare("
+        INSERT INTO person (username, firstName, lastName, IDNumber, email, contactNo, userType)
+        VALUES ('traveller', 'Naveen', 'Perera', '200012345678', 'traveller@traventure.lk', '0771234567', 'Traveller')
+        ON DUPLICATE KEY UPDATE firstName = VALUES(firstName)
+    ")->execute();
+
+    $pdo->prepare("
+        INSERT INTO login (username, email, password, userType)
+        VALUES ('admin', 'admin@traventure.lk', :hash, 'Admin')
+        ON DUPLICATE KEY UPDATE password = VALUES(password)
+    ")->execute([':hash' => $adminPasswordHash]);
+
+    $pdo->prepare("
+        INSERT INTO person (username, firstName, lastName, IDNumber, email, contactNo, userType)
+        VALUES ('admin', 'System', 'Admin', '199512345678', 'admin@traventure.lk', '0777654321', 'Admin')
+        ON DUPLICATE KEY UPDATE firstName = VALUES(firstName)
+    ")->execute();
+
+    echo "  ✓ Review credentials ready:\n";
+    echo "    - Traveller Account: username = 'traveller' | password = 'Password@123'\n";
+    echo "    - Admin Account:     username = 'admin'     | password = 'Admin@123'\n\n";
+
+    // 5. Run composite index optimizations
     echo "Applying production composite indexes...\n";
     require_once(__DIR__ . DIRECTORY_SEPARATOR . 'apply_indexes.php');
 
