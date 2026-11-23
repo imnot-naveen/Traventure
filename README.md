@@ -186,9 +186,9 @@ php Server/database/apply_indexes.php
 npm run build:css
 
 # Start PHP built-in development server
-php -S 127.0.0.1:8000
+php -S 127.0.0.1:8085
 ```
-Visit `http://127.0.0.1:8000/Client/Home/Home.html` in your browser.
+Visit `http://127.0.0.1:8085` in your browser.
 
 ---
 
