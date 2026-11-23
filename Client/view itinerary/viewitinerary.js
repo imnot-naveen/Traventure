@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function getUserIDFromSession() {
     try {
       const response = await fetch(
-        "http://localhost/Traventure/Server/api/getUserId.php",
+        "../../Server/api/getUserId.php",
         {
           method: "GET",
           credentials: "include",
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const response = await fetch(
-      `http://localhost/Traventure/Server/api/calculateFare.php?from=${fromStationId}&to=${toStationId}&class=${travelClass}`
+      `../../Server/api/calculateFare.php?from=${fromStationId}&to=${toStationId}&class=${travelClass}`
     );
 
     if (response.ok) {

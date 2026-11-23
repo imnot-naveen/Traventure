@@ -7,7 +7,7 @@ document
     const confirmPassword = document.getElementById("confirm-password").value;
 
     try {
-      const response = await fetch("/traventure/server/api/resetpassword.php", {
+      const response = await fetch("../../Server/api/resetpassword.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

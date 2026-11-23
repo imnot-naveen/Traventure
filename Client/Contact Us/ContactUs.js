@@ -39,7 +39,7 @@ document
     let fullName = firstName + " " + lastName;
 
     if (valid) {
-      fetch("/traventure/server/api/contactUs.php", {
+      fetch("../../Server/api/contactUs.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

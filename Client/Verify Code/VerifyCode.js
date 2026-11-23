@@ -6,7 +6,7 @@ document
     const verificationCode = document.getElementById("verification-code").value;
 
     try {
-      const response = await fetch("/traventure/server/api/verifycode.php", {
+      const response = await fetch("../../Server/api/verifycode.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

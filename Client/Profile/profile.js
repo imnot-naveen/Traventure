@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fetch user profile data
   fetch(
-    `/traventure/server/api/getProfile.php?username=${encodeURIComponent(
+    `../../Server/api/getProfile.php?username=${encodeURIComponent(
       username
     )}`
   )
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutButton = document.querySelector(".logout-btn");
   if (logoutButton) {
     logoutButton.addEventListener("click", () => {
-      fetch("/traventure/server/api/logout.php", {
+      fetch("../../Server/api/logout.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Sending update:", updatedProfile);
 
       // Send updated profile to server
-      fetch("/traventure/server/api/updateProfile.php", {
+      fetch("../../Server/api/updateProfile.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

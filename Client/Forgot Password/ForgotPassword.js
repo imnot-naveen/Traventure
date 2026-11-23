@@ -7,7 +7,7 @@ document
 
     try {
       const response = await fetch(
-        "/traventure/server/api/forgotpassword.php",
+        "../../Server/api/forgotpassword.php",
         {
           method: "POST",
           headers: {

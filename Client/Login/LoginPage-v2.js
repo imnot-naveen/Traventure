@@ -28,7 +28,7 @@ document
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    fetch("/traventure/server/api/login.php", {
+    fetch("../../Server/api/login.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -190,7 +190,7 @@ document
     }
 
     // Proceed with form submission if valid
-    fetch("/traventure/server/api/signup.php", {
+    fetch("../../Server/api/signup.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
