@@ -6,6 +6,7 @@
   "scripts": {
     "start": "php -S 127.0.0.1:8085 router.php",
     "dev": "php -S 127.0.0.1:8085 router.php",
+    "db:init": "php Server/database/init_db.php",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "tailwindcss -i ./Client/assets/css/input.css -o ./Client/assets/css/tailwind.css --minify",
     "watch:css": "tailwindcss -i ./Client/assets/css/input.css -o ./Client/assets/css/tailwind.css --watch"
