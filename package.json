@@ -4,6 +4,8 @@
   "description": "UCSC 2nd year group project - CS06 - Batch20",
   "main": "index.js",
   "scripts": {
+    "start": "php -S 127.0.0.1:8000",
+    "dev": "php -S 127.0.0.1:8000",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "tailwindcss -i ./Client/assets/css/input.css -o ./Client/assets/css/tailwind.css --minify",
     "watch:css": "tailwindcss -i ./Client/assets/css/input.css -o ./Client/assets/css/tailwind.css --watch"
